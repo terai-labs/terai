@@ -33,6 +33,16 @@ function App() {
       <p className='read-the-docs'>
         Click on the Vite and React logos to learn more
       </p>
+
+      <button onClick={() => rosseta.changeLanguage('french')}>
+        Switch to fr
+      </button>
+      <button onClick={() => rosseta.changeLanguage('english')}>
+        Switch to en
+      </button>
+      <button onClick={() => rosseta.changeLanguage('portuguese')}>
+        Switch to pt
+      </button>
     </>
   )
 }

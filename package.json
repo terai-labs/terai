@@ -65,6 +65,7 @@
     "@types/node": "^20.4.9",
     "chatgpt": "^5.2.5",
     "openai": "^3.3.0",
-    "openai-authenticator": "^0.0.3"
+    "openai-authenticator": "^0.0.3",
+    "uuidv4": "^6.2.13"
   }
 }

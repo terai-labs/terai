@@ -1,12 +1,25 @@
 import { Configuration, OpenAIApi } from 'openai'
 
 export class Rosseta {
-  private readonly library: Map<string, Node>
-  private readonly apiKey: string
+  private readonly nodes: Map<string, Node>
+  private readonly library: Map<string, Record<string, string>>
   private readonly openai: OpenAIApi
+  private readonly baseLanguage: string
+  private language: string
 
-  constructor({ apiKey }: { apiKey: string }) {
-    this.library = new Map()
+  constructor({
+    apiKey,
+    language = 'spanish',
+    baseLanguage = 'english'
+  }: {
+    apiKey: string
+    language?: string
+    baseLanguage?: string
+  }) {
+    this.baseLanguage = baseLanguage
+    this.language = language
+    this.library = this.getFromStorage()
+    this.nodes = new Map()
     this.openai = new OpenAIApi(
       new Configuration({
         apiKey
@@ -15,57 +28,115 @@ export class Rosseta {
   }
 
   public init() {
-    this.setListeners()
-    this.getLibraryNodes()
+    this.getNodes()
     this.translateNodes()
   }
 
-  private setListeners() {
-    window.addEventListener('popstate', () => {
-      this.getLibraryNodes()
-      this.translateNodes()
-    })
+  public changeLanguage(language: string) {
+    this.language = language
+
+    this.translateNodes()
   }
 
-  private getLibraryNodes() {
-    const domElements = document.querySelectorAll(
-      '*:not(script):not(style):not(head):not(body):not(title)'
-    )
+  // private setListeners() {
+  //   window.addEventListener('popstate', () => {
+  //     this.getNodes()
+  //     this.translateNodes()
+  //   })
+  // }
 
-    domElements.forEach(element => {
-      if (element?.childNodes?.[0]?.nodeType === Node.TEXT_NODE) {
-        const text = element.textContent.trim()
+  private saveToStorage(): void {
+    const serializedMap = JSON.stringify([...this.library])
+    localStorage.setItem('ROSETTA_LIB', serializedMap)
+  }
 
-        this.library.set(text, element)
+  private getFromStorage(): Map<string, Record<string, string>> {
+    const serializedMap = localStorage.getItem('ROSETTA_LIB')
+
+    if (serializedMap) {
+      const mapArray = JSON.parse(serializedMap)
+      return new Map<string, Record<string, string>>(mapArray)
+    }
+
+    return new Map()
+  }
+
+  private sanitizeText(text: string) {
+    return text.replaceAll('\n', '').replaceAll(' ', '')
+  }
+
+  private getNodes(node: Node = document.body): void {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent
+      const sanitizedText = this.sanitizeText(text)
+
+      if (Boolean(sanitizedText)) {
+        if (this.nodes.has(sanitizedText)) return
+
+        this.nodes.set(sanitizedText, node)
+
+        if (!this.library.has(sanitizedText)) {
+          this.library.set(sanitizedText, {
+            [this.baseLanguage]: text
+          })
+        }
       }
-    })
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      for (const childNode of Array.from(node.childNodes)) {
+        this.getNodes(childNode)
+      }
+    }
   }
 
   private translateNodes() {
-    this.library.forEach(async (node, key) => {
-      node.textContent = await this.translate(key)
+    this.nodes.forEach(async (node, key) => {
+      node.textContent =
+        this.library.get(key)[this.language] ||
+        (await this.getNodeTranslation(
+          key,
+          this.library.get(key)[this.baseLanguage]
+        ))
     })
   }
 
-  private async translate(text: string) {
+  private async getNodeTranslation(key: string, text: string) {
+    const translation = await this.getAiTranslation(
+      JSON.stringify({ [key]: text })
+    )
+
+    const parsedTranslation = JSON.parse(translation)
+    const value = parsedTranslation[key]
+
+    const lang = this.library.get(key)
+    lang[this.language] = value
+    this.library.set(key, lang)
+
+    this.saveToStorage()
+    return value
+  }
+
+  private async getAiTranslation(text: string) {
     const response = await this.openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
+      // model: 'gpt-4',
       messages: [
         {
           role: 'system',
-          content:
-            'You will be provided with a sentence in English, and your task is to translate it into Spanish. Use a funny approach'
+          content: `
+          You will translate JSONs that I will pass to you in ${this.baseLanguage} into ${this.language}.
+          Do not translate the keys of the json.
+          Keep white spaces and new lines.
+          `
         },
         {
           role: 'user',
           content: text
         }
       ],
-      temperature: 0,
+      temperature: 0.4,
       max_tokens: 256,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0
+      frequency_penalty: -2.0,
+      presence_penalty: -2.0
     })
 
     return response.data.choices[0].message.content
