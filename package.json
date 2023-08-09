@@ -1,0 +1,70 @@
+{
+  "name": "@hugocxl/rosseta",
+  "description": "Transform your React components into images",
+  "productName": "@hugocxl/rosseta",
+  "version": "0.0.6",
+  "license": "MIT",
+  "private": false,
+  "author": "hugocxl (http://github.com/hugocxl)",
+  "homepage": "https://hugocxl.github.io/rosseta/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hugocxl/rosseta"
+  },
+  "bugs": {
+    "url": "https://hugocxl.github.io/rosseta/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "scripts": {
+    "dev": "pnpm bundle -w",
+    "serve": "pnpm build && node dist/index.js",
+    "build": "pnpm clean && pnpm bundle",
+    "bundle": "rollup -c",
+    "clean": "rm -rf ./dist",
+    "test": "jest --coverage",
+    "changelog": "npx conventional-changelog-cli conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "postchangelog": "git add CHANGELOG.md && git commit -m 'CHANGELOG'",
+    "preversion": "git pull && pnpm i && pnpm test && pnpm build",
+    "postversion": "pnpm changelog && pnpm postchangelog && git push && git push --tags",
+    "format:check": "pnpm format --list-different",
+    "format:fix": "pnpm format --write",
+    "format": "prettier --cache --ignore-path .gitignore ./src",
+    "lint:check": "pnpm lint",
+    "lint:fix": "pnpm lint --fix",
+    "lint": "eslint --cache --ignore-path .gitignore ./src",
+    "setup:env": "npx vercel env pull .env.local",
+    "static:check": "pnpm lint:check && pnpm format:check && pnpm types:check",
+    "static:fix": "pnpm lint:fix && pnpm format:fix",
+    "types:check": "pnpm types --noEmit",
+    "types": "tsc"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.46.0",
+    "eslint-config-next": "^13.4.12",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.1",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
+    "prettier": "^3.0.1",
+    "rollup": "^3.27.2",
+    "rollup-plugin-dts": "^5.3.1",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@types/node": "^20.4.9",
+    "chatgpt": "^5.2.5",
+    "openai": "^3.3.0",
+    "openai-authenticator": "^0.0.3"
+  }
+}
