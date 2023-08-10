@@ -149,3 +149,6 @@ common/autoinstallers/*/.npmrc
 # yarn v2
 .yarn
 .pnp.*
+
+# Panda
+styled-system
