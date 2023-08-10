@@ -6,6 +6,7 @@ import { rosseta } from './rosseta'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     rosseta.init()
@@ -26,6 +27,15 @@ function App() {
         <button onClick={() => setCount(count => count + 1)}>
           count is {count}
         </button>
+        <button onClick={() => setIsOpen(!isOpen)}>Open new component</button>
+        {isOpen && (
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            ad, eos odit tempora placeat consequatur hic, doloremque modi
+            assumenda esse sapiente sit maxime quo natus quaerat rem a illum
+            ipsam?
+          </p>
+        )}
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
