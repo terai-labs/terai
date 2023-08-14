@@ -1,0 +1,21 @@
+{
+  "name": "@rosseta/shared",
+  "version": "0.0.1",
+  "description": "Shared utilities for rosseta",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup --dts",
+    "build-fast": "tsup --no-dts",
+    "dev": "pnpm build-fast --watch"
+  },
+  "files": [
+    "dist"
+  ]
+}

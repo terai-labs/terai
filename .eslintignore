@@ -1,0 +1,9 @@
+dist
+node_modules
+coverage
+.next
+build
+pnpm-lock.yaml
+*.d.ts
+*.js
+*.cjs

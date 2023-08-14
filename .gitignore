@@ -63,6 +63,9 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# Panda files
+styled-system/
+
 # Optional npm cache directory
 .npm
 
@@ -88,7 +91,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -149,3 +151,7 @@ common/autoinstallers/*/.npmrc
 # yarn v2
 .yarn
 .pnp.*
+.vercel
+
+__generated__
+.env*.local
