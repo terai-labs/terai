@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "description": "The repository of rosseta",
-  "packageManager": "pnpm@8.6.4",
   "keywords": [],
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",
@@ -11,10 +10,10 @@
     "dev": "pnpm build:shared && pnpm -r --parallel --filter=./packages/** dev",
     "build-fast": "pnpm -r --parallel --filter=./packages/** build-fast",
     "build": "pnpm -r --filter=./packages/** build",
+    "build:shared": "pnpm --filter {./packages/shared}... build-fast",
     "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test run",
     "prepare": "husky install && pnpm build-fast",
-    "clean": "pnpm -r --parallel exec rimraf dist .turbo *.log",
-    "reset": "pnpm -r --parallel exec rimraf node_modules && rimraf node_modules",
+    "clean": "pnpm -r --parallel exec rimraf node_modules dist *.log && rimraf node_modules",
     "test": "vitest",
     "test-watch": "vitest --watch -u",
     "lint": "eslint packages --ext .ts",
@@ -27,6 +26,11 @@
     "mdx-check": "mdx-local-link-checker docs && mdx-local-link-checker website/pages/docs"
   },
   "dependencies": {
+    "tsup": "^7.1.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.2",
     "@types/node": "^20.4.5",
@@ -35,10 +39,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.0.0",
-    "ts-morph": "^19.0.0",
-    "tsup": "^7.1.0",
-    "tsx": "^3.12.7",
-    "typescript": "^5.1.6",
-    "vitest": "^0.33.0"
+    "rimraf": "^5.0.1"
   }
 }

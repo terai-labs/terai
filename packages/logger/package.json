@@ -1,19 +1,14 @@
 {
   "name": "@rosseta/logger",
-  "version": "0.11.0",
-  "description": "The core rosseta library",
+  "version": "0.0.1",
+  "description": "The core rosseta logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
-    "build-fast": "tsup src/index.ts --format=esm,cjs --no-dts",
-    "dev": "pnpm build-fast --watch"
-  },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
+    "dev": "pnpm build --watch",
+    "build": "tsup"
   },
   "files": [
     "dist"

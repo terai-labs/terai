@@ -18,7 +18,7 @@ export const formatEntry = (entry: Entry) =>
           const { msg, level } = entry
           const color = logLevels[level!].color
           const label = colors.bold(color(`${level}`))
-          return { label: [`🐼`, label, uword].filter(Boolean).join(' '), msg }
+          return { label: [`🕋`, label, uword].filter(Boolean).join(' '), msg }
         },
       ),
       otherwise(({ entry, uword }) => {
