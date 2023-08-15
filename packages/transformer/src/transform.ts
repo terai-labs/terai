@@ -1,35 +1,28 @@
 // Dependencies
-import * as typescript from 'typescript'
-import { type MessageDescriptor } from './types'
-import { interpolateName } from './interpolate-name'
+import * as ts from 'typescript'
+import type { ExtractedMessage } from '@rosseta/types'
 import {
   parse,
   type MessageFormatElement
 } from '@formatjs/icu-messageformat-parser'
-import stringify from 'json-stable-stringify'
-export type Extractor = (filePath: string, msgs: MessageDescriptor[]) => void
-export type MetaExtractor = (
-  filePath: string,
-  meta: Record<string, string>
-) => void
+import type { Opts } from './types'
 
-export type InterpolateNameFn = (
-  id?: MessageDescriptor['id'],
-  defaultMessage?: MessageDescriptor['defaultMessage'],
-  description?: MessageDescriptor['description'],
-  filePath?: string
-) => string
+type TypeScript = typeof ts
 
-const MESSAGE_DESC_KEYS: Array<keyof MessageDescriptor> = [
+// Constants
+const PRAGMA_REGEX = /^\/\/ @([^\s]*) (.*)$/m
+const MESSAGE_DESC_KEYS: Array<keyof ExtractedMessage> = [
   'id',
   'defaultMessage',
   'description'
 ]
-
-type TypeScript = typeof typescript
+const DEFAULT_OPTS: Omit<Opts, 'program'> = {
+  onMsgExtracted: () => undefined,
+  onMetaExtracted: () => undefined
+}
 
 function primitiveToTSNode(
-  factory: typescript.NodeFactory,
+  factory: ts.NodeFactory,
   v: string | number | boolean
 ) {
   return typeof v === 'string'
@@ -52,11 +45,11 @@ function isValidIdentifier(k: string): boolean {
   }
 }
 
-function objToTSNode(factory: typescript.NodeFactory, obj: object) {
+function objToTSNode(factory: ts.NodeFactory, obj: object) {
   if (typeof obj === 'object' && !obj) {
     return factory.createNull()
   }
-  const props: typescript.PropertyAssignment[] = Object.entries(obj)
+  const props: ts.PropertyAssignment[] = Object.entries(obj)
     .filter(([_, v]) => typeof v !== 'undefined')
     .map(([k, v]) =>
       factory.createPropertyAssignment(
@@ -75,7 +68,7 @@ function objToTSNode(factory: typescript.NodeFactory, obj: object) {
 }
 
 function messageASTToTSNode(
-  factory: typescript.NodeFactory,
+  factory: ts.NodeFactory,
   ast: MessageFormatElement[]
 ) {
   return factory.createArrayLiteralExpression(
@@ -83,7 +76,7 @@ function messageASTToTSNode(
   )
 }
 
-function literalToObj(ts: TypeScript, n: typescript.Node) {
+function literalToObj(ts: TypeScript, n: ts.Node) {
   if (ts.isNumericLiteral(n)) {
     return +n.text
   }
@@ -100,7 +93,7 @@ function literalToObj(ts: TypeScript, n: typescript.Node) {
 
 function objectLiteralExpressionToObj(
   ts: TypeScript,
-  obj: typescript.ObjectLiteralExpression
+  obj: ts.ObjectLiteralExpression
 ): object {
   return obj.properties.reduce((all: Record<string, any>, prop) => {
     if (ts.isPropertyAssignment(prop) && prop.name) {
@@ -117,84 +110,7 @@ function objectLiteralExpressionToObj(
   }, {})
 }
 
-export interface Opts {
-  /**
-   * Parse specific additional custom pragma.
-   * This allows you to tag certain file with metadata such as `project`.
-   * For example with this file:
-   * ```tsx
-   * // @intl-meta project:my-custom-project
-   * import {FormattedMessage} from 'react-intl';
-   * <FormattedMessage defaultMessage="foo" id="bar" />;
-   * ```
-   * and with option `{pragma: "@intl-meta"}`,
-   * we'll parse out `// @intl-meta project:my-custom-project`
-   * into `{project: 'my-custom-project'}` in the result file.
-   */
-  pragma?: string
-  /**
-   * Whether the metadata about the location of the message in the source file
-   * should be extracted. If `true`, then `file`, `start`, and `end`
-   * fields will exist for each extracted message descriptors.
-   * Defaults to `false`.
-   */
-  extractSourceLocation?: boolean
-  /**
-   * Remove `defaultMessage` field in generated js after extraction.
-   */
-  removeDefaultMessage?: boolean
-  /**
-   * Additional component names to extract messages from,
-   * e.g: `['FormattedFooBarMessage']`.
-   */
-  additionalComponentNames?: string[]
-  /**
-   * Additional function names to extract messages from,
-   * e.g: `['formatMessage', '$t']`
-   * Default to `['formatMessage']`
-   */
-  additionalFunctionNames?: string[]
-  /**
-   * Callback function that gets called everytime we encountered something
-   * that looks like a MessageDescriptor
-   *
-   * @type {Extractor}
-   * @memberof Opts
-   */
-  onMsgExtracted?: Extractor
-  /**
-   * Callback function that gets called when we successfully parsed meta
-   * declared in pragma
-   */
-  onMetaExtracted?: MetaExtractor
-  /**
-   * webpack-style name interpolation.
-   * Can also be a string like '[sha512:contenthash:hex:6]'
-   *
-   * @type {(InterpolateNameFn | string)}
-   * @memberof Opts
-   */
-  overrideIdFn?: InterpolateNameFn | string
-  /**
-   * Whether to compile `defaultMessage` to AST.
-   * This is no-op if `removeDefaultMessage` is `true`
-   */
-  ast?: boolean
-  /**
-   * Whether to preserve whitespace and newlines.
-   */
-  preserveWhitespace?: boolean
-}
-
-const DEFAULT_OPTS: Omit<Opts, 'program'> = {
-  onMsgExtracted: () => undefined,
-  onMetaExtracted: () => undefined
-}
-
-function isMultipleMessageDecl(
-  ts: TypeScript,
-  node: typescript.CallExpression
-) {
+function isMultipleMessageDecl(ts: TypeScript, node: ts.CallExpression) {
   return (
     ts.isIdentifier(node.expression) &&
     node.expression.text === 'defineMessages'
@@ -203,10 +119,7 @@ function isMultipleMessageDecl(
 
 function isSingularMessageDecl(
   ts: TypeScript,
-  node:
-    | typescript.CallExpression
-    | typescript.JsxOpeningElement
-    | typescript.JsxSelfClosingElement,
+  node: ts.CallExpression | ts.JsxOpeningElement | ts.JsxSelfClosingElement,
   additionalComponentNames: string[]
 ) {
   const compNames = new Set([
@@ -235,7 +148,7 @@ function isSingularMessageDecl(
 
 function evaluateStringConcat(
   ts: TypeScript,
-  node: typescript.BinaryExpression
+  node: ts.BinaryExpression
 ): [result: string, isStaticallyEvaluatable: boolean] {
   const { right, left } = node
   if (!ts.isStringLiteral(right)) {
@@ -254,32 +167,27 @@ function evaluateStringConcat(
 function extractMessageDescriptor(
   ts: TypeScript,
   node:
-    | typescript.ObjectLiteralExpression
-    | typescript.JsxOpeningElement
-    | typescript.JsxSelfClosingElement,
-  { overrideIdFn, extractSourceLocation, preserveWhitespace }: Opts,
-  sf: typescript.SourceFile
-): MessageDescriptor | undefined {
-  let properties:
-    | typescript.NodeArray<typescript.ObjectLiteralElement>
-    | undefined = undefined
+    | ts.ObjectLiteralExpression
+    | ts.JsxOpeningElement
+    | ts.JsxSelfClosingElement,
+  { extractSourceLocation, preserveWhitespace }: Opts,
+  sf: ts.SourceFile
+): ExtractedMessage | undefined {
+  let properties: ts.NodeArray<ts.ObjectLiteralElement> | undefined = undefined
   if (ts.isObjectLiteralExpression(node)) {
     properties = node.properties
   } else if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
     // @ts-ignore
     properties = node.attributes.properties
   }
-  const msg: MessageDescriptor = { id: '' }
+  const msg: ExtractedMessage = { id: '' }
   if (!properties) {
     return
   }
 
   properties.forEach(prop => {
     const { name } = prop
-    const initializer:
-      | typescript.Expression
-      | typescript.JsxExpression
-      | undefined =
+    const initializer: ts.Expression | ts.JsxExpression | undefined =
       ts.isPropertyAssignment(prop) || ts.isJsxAttribute(prop)
         ? prop.initializer
         : undefined
@@ -405,35 +313,7 @@ function extractMessageDescriptor(
   if (msg.defaultMessage && !preserveWhitespace) {
     msg.defaultMessage = msg.defaultMessage.trim().replace(/\s+/gm, ' ')
   }
-  if (msg.defaultMessage && overrideIdFn) {
-    switch (typeof overrideIdFn) {
-      case 'string':
-        if (!msg.id) {
-          msg.id = interpolateName(
-            { resourcePath: sf.fileName } as any,
-            overrideIdFn,
-            {
-              content: msg.description
-                ? `${msg.defaultMessage}#${
-                    typeof msg.description === 'string'
-                      ? msg.description
-                      : stringify(msg.description)
-                  }`
-                : msg.defaultMessage
-            }
-          )
-        }
-        break
-      case 'function':
-        msg.id = overrideIdFn(
-          msg.id,
-          msg.defaultMessage,
-          msg.description,
-          sf.fileName
-        )
-        break
-    }
-  }
+
   if (extractSourceLocation) {
     return {
       ...msg,
@@ -452,7 +332,7 @@ function extractMessageDescriptor(
  */
 function isMemberMethodFormatMessageCall(
   ts: TypeScript,
-  node: typescript.CallExpression,
+  node: ts.CallExpression,
   additionalFunctionNames: string[]
 ) {
   const fnNames = new Set([
@@ -473,25 +353,25 @@ function isMemberMethodFormatMessageCall(
 
 function extractMessageFromJsxComponent(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.JsxSelfClosingElement,
+  factory: ts.NodeFactory,
+  node: ts.JsxSelfClosingElement,
   opts: Opts,
-  sf: typescript.SourceFile
-): typescript.VisitResult<typescript.JsxSelfClosingElement>
+  sf: ts.SourceFile
+): ts.VisitResult<ts.JsxSelfClosingElement>
 function extractMessageFromJsxComponent(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.JsxOpeningElement,
+  factory: ts.NodeFactory,
+  node: ts.JsxOpeningElement,
   opts: Opts,
-  sf: typescript.SourceFile
-): typescript.VisitResult<typescript.JsxOpeningElement>
+  sf: ts.SourceFile
+): ts.VisitResult<ts.JsxOpeningElement>
 function extractMessageFromJsxComponent(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.JsxOpeningElement | typescript.JsxSelfClosingElement,
+  factory: ts.NodeFactory,
+  node: ts.JsxOpeningElement | ts.JsxSelfClosingElement,
   opts: Opts,
-  sf: typescript.SourceFile
-): typescript.VisitResult<typeof node> {
+  sf: ts.SourceFile
+): ts.VisitResult<typeof node> {
   const { onMsgExtracted } = opts
   if (!isSingularMessageDecl(ts, node, opts.additionalComponentNames || [])) {
     return node
@@ -536,9 +416,9 @@ function extractMessageFromJsxComponent(
 
 function setAttributesInObject(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.ObjectLiteralExpression,
-  msg: MessageDescriptor,
+  factory: ts.NodeFactory,
+  node: ts.ObjectLiteralExpression,
+  msg: ExtractedMessage,
   ast?: boolean
 ) {
   const newProps = [
@@ -559,7 +439,7 @@ function setAttributesInObject(
     if (
       ts.isPropertyAssignment(prop) &&
       ts.isIdentifier(prop.name) &&
-      MESSAGE_DESC_KEYS.includes(prop.name.text as keyof MessageDescriptor)
+      MESSAGE_DESC_KEYS.includes(prop.name.text as keyof ExtractedMessage)
     ) {
       continue
     }
@@ -574,9 +454,9 @@ function setAttributesInObject(
 
 function generateNewProperties(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.JsxAttributes,
-  msg: MessageDescriptor,
+  factory: ts.NodeFactory,
+  node: ts.JsxAttributes,
+  msg: ExtractedMessage,
   ast?: boolean
 ) {
   const newProps = [
@@ -602,7 +482,7 @@ function generateNewProperties(
     if (
       ts.isJsxAttribute(prop) &&
       ts.isIdentifier(prop.name) &&
-      MESSAGE_DESC_KEYS.includes(prop.name.text as keyof MessageDescriptor)
+      MESSAGE_DESC_KEYS.includes(prop.name.text as keyof ExtractedMessage)
     ) {
       continue
     }
@@ -615,15 +495,15 @@ function generateNewProperties(
 
 function extractMessagesFromCallExpression(
   ts: TypeScript,
-  factory: typescript.NodeFactory,
-  node: typescript.CallExpression,
+  factory: ts.NodeFactory,
+  node: ts.CallExpression,
   opts: Opts,
-  sf: typescript.SourceFile
-): typescript.VisitResult<typescript.CallExpression> {
+  sf: ts.SourceFile
+): ts.VisitResult<ts.CallExpression> {
   const { onMsgExtracted, additionalFunctionNames } = opts
   if (isMultipleMessageDecl(ts, node)) {
     const [arg, ...restArgs] = node.arguments
-    let descriptorsObj: typescript.ObjectLiteralExpression | undefined
+    let descriptorsObj: ts.ObjectLiteralExpression | undefined
     if (ts.isObjectLiteralExpression(arg)) {
       descriptorsObj = arg
     } else if (
@@ -635,16 +515,15 @@ function extractMessagesFromCallExpression(
     if (descriptorsObj) {
       const properties = descriptorsObj.properties
       const msgs = properties
-        .filter<typescript.PropertyAssignment>(
-          (prop): prop is typescript.PropertyAssignment =>
-            ts.isPropertyAssignment(prop)
+        .filter<ts.PropertyAssignment>((prop): prop is ts.PropertyAssignment =>
+          ts.isPropertyAssignment(prop)
         )
         .map(
           prop =>
             ts.isObjectLiteralExpression(prop.initializer) &&
             extractMessageDescriptor(ts, prop.initializer, opts, sf)
         )
-        .filter((msg): msg is MessageDescriptor => !!msg)
+        .filter((msg): msg is ExtractedMessage => !!msg)
       if (!msgs.length) {
         return node
       }
@@ -732,39 +611,34 @@ function extractMessagesFromCallExpression(
   return node
 }
 
-const PRAGMA_REGEX = /^\/\/ @([^\s]*) (.*)$/m
-
 function getVisitor(
   ts: TypeScript,
-  ctx: typescript.TransformationContext,
-  sf: typescript.SourceFile,
+  ctx: ts.TransformationContext,
+  sf: ts.SourceFile,
   opts: Opts
 ) {
-  const visitor: typescript.Visitor = (
-    node: typescript.Node
-  ): typescript.Node => {
+  const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
     const newNode = ts.isCallExpression(node)
       ? extractMessagesFromCallExpression(ts, ctx.factory, node, opts, sf)
       : ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)
       ? extractMessageFromJsxComponent(
           ts,
           ctx.factory,
-          node as typescript.JsxOpeningElement,
+          node as ts.JsxOpeningElement,
           opts,
           sf
         )
       : node
-    return ts.visitEachChild(newNode as typescript.Node, visitor, ctx)
+    return ts.visitEachChild(newNode as ts.Node, visitor, ctx)
   }
   return visitor
 }
 
-export function transform(opts: Opts, ts: TypeScript = typescript) {
+export function transform(opts: Opts) {
   opts = { ...DEFAULT_OPTS, ...opts }
   console.log('Transforming options', opts)
-  const transformFn: typescript.TransformerFactory<
-    typescript.SourceFile
-  > = ctx => {
+
+  const transformFn: ts.TransformerFactory<ts.SourceFile> = ctx => {
     return sf => {
       const pragmaResult = PRAGMA_REGEX.exec(sf.text)
       if (pragmaResult) {

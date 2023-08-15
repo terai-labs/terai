@@ -1,3 +1,1 @@
-export interface HugoTest {
-  name: string
-}
+export * from './extracted-message'

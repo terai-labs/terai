@@ -1,10 +1,10 @@
-import { type MessageDescriptor } from '@rosseta/transformer'
+import { type ExtractedMessage } from '@rosseta/types'
 
-export type FormatFn<T = Record<string, MessageDescriptor>> = (
-  msgs: Record<string, MessageDescriptor>
+export type FormatFn<T = Record<string, ExtractedMessage>> = (
+  msgs: Record<string, ExtractedMessage>
 ) => T
 
-export type CompileFn<T = Record<string, MessageDescriptor>> = (
+export type CompileFn<T = Record<string, ExtractedMessage>> = (
   msgs: T
 ) => Record<string, string>
 

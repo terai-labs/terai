@@ -1,18 +1,18 @@
-import type { Opts, MessageDescriptor } from '@rosseta/transformer'
-import type { Formatter } from './formatters'
+import type { ExtractedMessage } from '@rosseta/types'
+import type { Opts } from '@rosseta/transformer'
 
 export interface ExtractionResult<M = Record<string, string>> {
   /**
    * List of extracted messages
    */
-  messages: MessageDescriptor[]
+  messages: ExtractedMessage[]
   /**
    * Metadata extracted w/ `pragma`
    */
   meta?: M
 }
 
-export interface ExtractedMessageDescriptor extends MessageDescriptor {
+export interface ExtractedMessageDescriptor extends ExtractedMessage {
   /**
    * Line number
    */
@@ -51,10 +51,6 @@ export type ExtractOpts = Opts & {
    * Message ID interpolation pattern
    */
   idInterpolationPattern?: string
-  /**
-   * Path to a formatter file that controls the shape of JSON file from `outFile`.
-   */
-  format?: string | Formatter
   /**
    * Whether to hoist selectors & flatten sentences
    */
