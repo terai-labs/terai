@@ -170,16 +170,18 @@ function extractMessageDescriptor(
     | ts.ObjectLiteralExpression
     | ts.JsxOpeningElement
     | ts.JsxSelfClosingElement,
-  { extractSourceLocation, preserveWhitespace }: Opts,
+  { preserveWhitespace }: Opts,
   sf: ts.SourceFile
 ): ExtractedMessage | undefined {
   let properties: ts.NodeArray<ts.ObjectLiteralElement> | undefined = undefined
+
   if (ts.isObjectLiteralExpression(node)) {
     properties = node.properties
   } else if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
     // @ts-ignore
     properties = node.attributes.properties
   }
+
   const msg: ExtractedMessage = { id: '' }
   if (!properties) {
     return
@@ -314,15 +316,20 @@ function extractMessageDescriptor(
     msg.defaultMessage = msg.defaultMessage.trim().replace(/\s+/gm, ' ')
   }
 
-  if (extractSourceLocation) {
-    return {
-      ...msg,
-      file: sf.fileName,
-      start: node.pos,
-      end: node.end
-    }
+  const start = node.pos
+  const end = node.end
+  const chunk = sf.fileName.slice(0, start)
+  const lines = chunk.split('\n')
+  const lastLine = lines[lines.length - 1]
+
+  return {
+    ...msg,
+    file: sf.fileName,
+    start,
+    end,
+    line: lines.length,
+    col: lastLine.length
   }
-  return msg
 }
 
 /**
@@ -373,13 +380,17 @@ function extractMessageFromJsxComponent(
   sf: ts.SourceFile
 ): ts.VisitResult<typeof node> {
   const { onMsgExtracted } = opts
+
   if (!isSingularMessageDecl(ts, node, opts.additionalComponentNames || [])) {
     return node
   }
+
   const msg = extractMessageDescriptor(ts, node, opts, sf)
+
   if (!msg) {
     return node
   }
+
   if (typeof onMsgExtracted === 'function') {
     onMsgExtracted(sf.fileName, [msg])
   }
@@ -501,6 +512,7 @@ function extractMessagesFromCallExpression(
   sf: ts.SourceFile
 ): ts.VisitResult<ts.CallExpression> {
   const { onMsgExtracted, additionalFunctionNames } = opts
+
   if (isMultipleMessageDecl(ts, node)) {
     const [arg, ...restArgs] = node.arguments
     let descriptorsObj: ts.ObjectLiteralExpression | undefined
@@ -524,14 +536,17 @@ function extractMessagesFromCallExpression(
             extractMessageDescriptor(ts, prop.initializer, opts, sf)
         )
         .filter((msg): msg is ExtractedMessage => !!msg)
+
       if (!msgs.length) {
         return node
       }
-      console.log(
-        'Multiple messages extracted from "%s": %s',
-        sf.fileName,
-        msgs
-      )
+
+      // console.log(
+      //   'Multiple messages extracted from "%s": %s',
+      //   sf.fileName,
+      //   msgs
+      // )
+
       if (typeof onMsgExtracted === 'function') {
         onMsgExtracted(sf.fileName, msgs)
       }
@@ -564,6 +579,7 @@ function extractMessagesFromCallExpression(
       )
       const clonedDescriptorsObj =
         factory.createObjectLiteralExpression(clonedProperties)
+
       return factory.updateCallExpression(
         node,
         node.expression,
@@ -576,12 +592,15 @@ function extractMessagesFromCallExpression(
     isMemberMethodFormatMessageCall(ts, node, additionalFunctionNames || [])
   ) {
     const [descriptorsObj, ...restArgs] = node.arguments
+
     if (ts.isObjectLiteralExpression(descriptorsObj)) {
       const msg = extractMessageDescriptor(ts, descriptorsObj, opts, sf)
+
       if (!msg) {
         return node
       }
-      console.log('Message extracted from "%s": %s', sf.fileName, msg)
+      // console.log('Message extracted from "%s": %s', sf.fileName, msg)
+
       if (typeof onMsgExtracted === 'function') {
         onMsgExtracted(sf.fileName, [msg])
       }
@@ -608,6 +627,7 @@ function extractMessagesFromCallExpression(
       )
     }
   }
+
   return node
 }
 
@@ -629,21 +649,25 @@ function getVisitor(
           sf
         )
       : node
+
     return ts.visitEachChild(newNode as ts.Node, visitor, ctx)
   }
+
   return visitor
 }
 
 export function transform(opts: Opts) {
   opts = { ...DEFAULT_OPTS, ...opts }
-  console.log('Transforming options', opts)
+  // console.log('Transforming options', opts)
 
   const transformFn: ts.TransformerFactory<ts.SourceFile> = ctx => {
     return sf => {
       const pragmaResult = PRAGMA_REGEX.exec(sf.text)
+
       if (pragmaResult) {
-        console.log('Pragma found', pragmaResult)
+        // console.log('Pragma found', pragmaResult)
         const [, pragma, kvString] = pragmaResult
+
         if (pragma === opts.pragma) {
           const kvs = kvString.split(' ')
           const result: Record<string, string> = {}
@@ -651,12 +675,14 @@ export function transform(opts: Opts) {
             const [k, v] = kv.split(':')
             result[k] = v
           }
-          console.log('Pragma extracted', result)
+
+          // console.log('Pragma extracted', result)
           if (typeof opts.onMetaExtracted === 'function') {
             opts.onMetaExtracted(sf.fileName, result)
           }
         }
       }
+
       return ts.visitEachChild(sf, getVisitor(ts, ctx, sf, opts), ctx)
     }
   }

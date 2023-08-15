@@ -2,15 +2,15 @@
 import { cac } from 'cac'
 import { extractAndWrite } from '@rosseta/extractor'
 import { logger } from '@rosseta/logger'
-import pkg from '../package.json'
 import { resolve } from 'pathe'
+import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
 
-  const cli = cac('rosseta')
   const cwd = process.cwd()
+  const cli = cac('rosseta')
 
   cli
     .command('extract', "Initialize the rosseta's extraction")
@@ -22,8 +22,7 @@ export async function main() {
       logger.info('cli', `Rosseta v${cwd}\n`)
 
       extractAndWrite([file], {
-        outFile: resolve(cwd, 'output.json')
-        // extractSourceLocation: true
+        outFile: resolve(cwd, 'output.ts')
       })
 
       done()

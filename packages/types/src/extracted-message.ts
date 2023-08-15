@@ -5,8 +5,6 @@ export interface ExtractedMessage {
   file?: string
   start?: number
   end?: number
-}
-
-export interface ExtractedMessages {
-  [key: string]: ExtractedMessage
+  line?: number
+  col?: number
 }

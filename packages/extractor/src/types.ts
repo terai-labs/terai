@@ -29,7 +29,7 @@ export interface ExtractedMessageDescriptor extends ExtractedMessage {
 
 export type ExtractCLIOptions = Omit<
   ExtractOpts,
-  'overrideIdFn' | 'onMsgExtracted' | 'onMetaExtracted'
+  'onMsgExtracted' | 'onMetaExtracted'
 > & {
   /**
    * Output File
@@ -47,10 +47,6 @@ export type ExtractOpts = Opts & {
    * 1 of the source files
    */
   throws?: boolean
-  /**
-   * Message ID interpolation pattern
-   */
-  idInterpolationPattern?: string
   /**
    * Whether to hoist selectors & flatten sentences
    */

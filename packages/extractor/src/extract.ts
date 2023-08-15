@@ -1,16 +1,11 @@
 // Dependencies
-import { hoistSelectors } from '@formatjs/icu-messageformat-parser/manipulator'
-import { parse } from '@formatjs/icu-messageformat-parser'
-import { printAST } from '@formatjs/icu-messageformat-parser/printer'
+import { processFile } from './process'
 import { readFile, outputFile } from 'fs-extra'
-import stringify from 'json-stable-stringify'
-import { promisify } from 'util'
-import * as formatter from './formatter'
+import outdent from 'outdent'
 
 // Types
 import type { ExtractCLIOptions, ExtractOpts, ExtractionResult } from './types'
 import type { ExtractedMessage } from '@rosseta/types'
-import { processFile } from './process'
 
 /**
  * Extract strings from source files
@@ -25,7 +20,6 @@ export async function extract(
 ) {
   const rawResults: Array<ExtractionResult | undefined> = await Promise.all(
     files.map(async fileName => {
-      // console.log('Extracting file:', fileName)
       try {
         const source = await readFile(fileName, 'utf8')
 
@@ -77,16 +71,23 @@ export async function extract(
   const messages = Array.from(extractedMessages.values())
 
   for (const { id, ...msg } of messages) {
-    if (flatten && msg.defaultMessage) {
-      msg.defaultMessage = printAST(hoistSelectors(parse(msg.defaultMessage)))
-    }
+    // if (flatten && msg.defaultMessage) {
+    //   msg.defaultMessage = printAST(hoistSelectors(parse(msg.defaultMessage)))
+    // }
     results[id] = msg
   }
 
   //@ts-ignore
-  return stringify(formatter.format(results), {
-    space: 2
-  })
+  // return stringify(formatter.format(results), {
+  //   space: 2
+  // })
+
+  // return results
+  return outdent`
+    export default {
+      ${messages.map(msg => `${msg.id}: '${msg.defaultMessage}'`).join(',\n')},
+    } as const
+  `
 }
 
 /**
@@ -99,13 +100,10 @@ export async function extractAndWrite(
   files: readonly string[],
   { outFile, ...opts }: ExtractCLIOptions
 ) {
-  const writeStdout = promisify(process.stdout.write).bind(process.stdout)
-  const serializedResult = (await extract(files, opts)) + '\n'
+  const result = await extract(files, opts)
 
   if (outFile) {
     // console.log('Writing output file:', outFile)
-    return outputFile(outFile, serializedResult)
+    return outputFile(outFile, result)
   }
-
-  await writeStdout(serializedResult)
 }

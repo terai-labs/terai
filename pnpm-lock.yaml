@@ -143,24 +143,18 @@ importers:
 
   packages/extractor:
     dependencies:
-      '@formatjs/icu-messageformat-parser':
-        specifier: ^2.6.0
-        version: 2.6.0
+      '@rosseta/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@rosseta/transformer':
         specifier: workspace:*
         version: link:../transformer
-      chalk:
-        specifier: ^4.0.0
-        version: 4.1.2
       fs-extra:
         specifier: ^10.0.0
         version: 10.0.0
-      json-stable-stringify:
-        specifier: ^1.0.1
-        version: 1.0.1
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.1
+      outdent:
+        specifier: ' ^0.8.0'
+        version: 0.8.0
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -8318,7 +8312,6 @@ packages:
 
   /outdent@0.8.0:
     resolution: {integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==}
-    dev: true
 
   /p-cancelable@3.0.0:
     resolution: {integrity: sha512-mlVgR3PGuzlo0MmTdk4cXqXWlwQDLnONTAg6sm62XkMJEiRxN3GL3SffkYvqwonbkJBcrI7Uvv5Zh9yjvn2iUw==}

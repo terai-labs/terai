@@ -11,18 +11,16 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "^2.6.0",
+    "@rosseta/logger": "workspace:*",
     "@rosseta/transformer": "workspace:*",
-    "chalk": "^4.0.0",
-    "json-stable-stringify": "^1.0.1",
-    "tslib": "^2.4.0",
-    "typescript": "^5.1.6",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "outdent": " ^0.8.0",
+    "typescript": "^5.1.6"
   },
   "devDependencies": {
     "@rosseta/types": "workspace:*",
-    "@types/json-stable-stringify": "^1.0.32",
     "@types/fs-extra": "^9.0.1",
+    "@types/json-stable-stringify": "^1.0.32",
     "@types/node": "^20.5.0"
   }
 }

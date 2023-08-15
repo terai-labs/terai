@@ -16,13 +16,6 @@ export interface Opts {
    */
   pragma?: string
   /**
-   * Whether the metadata about the location of the message in the source file
-   * should be extracted. If `true`, then `file`, `start`, and `end`
-   * fields will exist for each extracted message descriptors.
-   * Defaults to `false`.
-   */
-  extractSourceLocation?: boolean
-  /**
    * Remove `defaultMessage` field in generated js after extraction.
    */
   removeDefaultMessage?: boolean
