@@ -229,6 +229,7 @@ function isSingularMessageDecl(
   ) {
     fnName = node.tagName.text
   }
+
   return compNames.has(fnName)
 }
 

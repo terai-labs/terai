@@ -1,4 +1,4 @@
-import {CompileFn, FormatFn} from './default'
+import type { CompileFn, FormatFn } from './default'
 
 export type SmartlingJson = Record<
   string,
@@ -16,7 +16,7 @@ export const format: FormatFn<SmartlingJson> = msgs => {
       description:
         typeof msg.description === 'string'
           ? msg.description
-          : JSON.stringify(msg.description),
+          : JSON.stringify(msg.description)
     }
   }
   return results

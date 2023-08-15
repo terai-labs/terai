@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/parser",
-  "description": "Parser for rosseta",
+  "name": "@rosseta/extractor",
+  "description": "Extractor for rosseta",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
