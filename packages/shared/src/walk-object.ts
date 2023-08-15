@@ -23,7 +23,7 @@ const isNotNullish = <T>(element: Nullable<T>): element is T => element != null
 export function walkObject<T, K>(
   target: T,
   predicate: Predicate<K>,
-  options: WalkObjectOptions = {},
+  options: WalkObjectOptions = {}
 ): MappedObject<T, ReturnType<Predicate<K>>> {
   const { stop, getKey } = options
 
@@ -53,5 +53,5 @@ export function walkObject<T, K>(
 
 export function mapObject(obj: any, fn: (value: any) => any) {
   if (!isObject(obj)) return fn(obj)
-  return walkObject(obj, (value) => fn(value))
+  return walkObject(obj, value => fn(value))
 }

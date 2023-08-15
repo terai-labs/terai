@@ -29,17 +29,25 @@ describe('esc className', () => {
   test('edge cases', () => {
     expect(esc('\x80\x2D\x5F\xA9')).toMatchInlineSnapshot('"-_©"')
     expect(esc('\x20\x21\x78\x79')).toMatchInlineSnapshot('"\\\\ \\\\!xy"')
-    expect(esc('\x01\x02\x1E\x1F')).toMatchInlineSnapshot('"\\\\1\\\\2\\\\1e\\\\1f"')
+    expect(esc('\x01\x02\x1E\x1F')).toMatchInlineSnapshot(
+      '"\\\\1\\\\2\\\\1e\\\\1f"'
+    )
   })
 
   test('flametest', () => {
-    expect(esc('decoration-[#ccc]')).toMatchInlineSnapshot('"decoration-\\\\[\\\\#ccc\\\\]"')
-    expect(esc('[@media]:bg_red')).toMatchInlineSnapshot('"\\\\[\\\\@media\\\\]\\\\:bg_red"')
+    expect(esc('decoration-[#ccc]')).toMatchInlineSnapshot(
+      '"decoration-\\\\[\\\\#ccc\\\\]"'
+    )
+    expect(esc('[@media]:bg_red')).toMatchInlineSnapshot(
+      '"\\\\[\\\\@media\\\\]\\\\:bg_red"'
+    )
     expect(esc('bg-red-500/50')).toMatchInlineSnapshot('"bg-red-500\\\\/50"')
     expect(esc('p-[8px_4px]')).toMatchInlineSnapshot('"p-\\\\[8px_4px\\\\]"')
     expect(esc('w_1/3')).toMatchInlineSnapshot('"w_1\\\\/3"')
-    expect(esc(`hover:bg-[url('https://github.com/img.png')]`)).toMatchInlineSnapshot(
-      '"hover\\\\:bg-\\\\[url\\\\(\\\\\'https\\\\:\\\\/\\\\/github\\\\.com\\\\/img\\\\.png\\\\\'\\\\)\\\\]"',
+    expect(
+      esc(`hover:bg-[url('https://github.com/img.png')]`)
+    ).toMatchInlineSnapshot(
+      '"hover\\\\:bg-\\\\[url\\\\(\\\\\'https\\\\:\\\\/\\\\/github\\\\.com\\\\/img\\\\.png\\\\\'\\\\)\\\\]"'
     )
   })
 })

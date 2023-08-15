@@ -21,7 +21,8 @@ describe('css var', () => {
   })
 
   test('with hash + prefix', () => {
-    expect(cssVar('colors-red-200', { hash: true, prefix: 'pd' })).toMatchInlineSnapshot(`
+    expect(cssVar('colors-red-200', { hash: true, prefix: 'pd' }))
+      .toMatchInlineSnapshot(`
       {
         "ref": "var(--pd-bLdQLg)",
         "var": "--pd-bLdQLg",
@@ -30,7 +31,8 @@ describe('css var', () => {
   })
 
   test('with special characters', () => {
-    expect(cssVar('.*+?^${}()|[]\\/', { prefix: 'special' })).toMatchInlineSnapshot(`
+    expect(cssVar('.*+?^${}()|[]\\/', { prefix: 'special' }))
+      .toMatchInlineSnapshot(`
       {
         "ref": "var(--special-\\\\.\\\\*\\\\+\\\\?\\\\^\\\\$\\\\{\\\\}\\\\(\\\\)\\\\|\\\\[\\\\]\\\\\\\\\\\\/)",
         "var": "--special-\\\\.\\\\*\\\\+\\\\?\\\\^\\\\$\\\\{\\\\}\\\\(\\\\)\\\\|\\\\[\\\\]\\\\\\\\\\\\/",

@@ -5,5 +5,5 @@ export const logLevels = {
   info: { weight: 1, color: colors.blue },
   warn: { weight: 2, color: colors.yellow },
   error: { weight: 3, color: colors.red },
-  silent: { weight: 4, color: colors.white },
+  silent: { weight: 4, color: colors.white }
 }

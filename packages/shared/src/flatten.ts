@@ -1,7 +1,10 @@
 import { isObject } from './assert'
 import { walkObject, type WalkObjectStopFn } from './walk-object'
 
-export function flatten(values: Record<string, Record<string, any>>, stop?: WalkObjectStopFn) {
+export function flatten(
+  values: Record<string, Record<string, any>>,
+  stop?: WalkObjectStopFn
+) {
   const result: Record<string, any> = {}
 
   walkObject(
@@ -14,10 +17,10 @@ export function flatten(values: Record<string, Record<string, any>>, stop?: Walk
     {
       stop:
         stop ??
-        ((v) => {
+        (v => {
           return isObject(v) && 'value' in v
-        }),
-    },
+        })
+    }
   )
 
   return result

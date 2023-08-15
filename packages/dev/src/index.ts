@@ -1,3 +1,3 @@
- // Reserved for function exports for the CLI
+// Reserved for function exports for the CLI
 
-export { }
+export {}

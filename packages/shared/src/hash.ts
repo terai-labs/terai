@@ -5,7 +5,8 @@ function toChar(code: number) {
 function toName(code: number) {
   let name = ''
   let x: number
-  for (x = Math.abs(code); x > 52; x = (x / 52) | 0) name = toChar(x % 52) + name
+  for (x = Math.abs(code); x > 52; x = (x / 52) | 0)
+    name = toChar(x % 52) + name
   return toChar(x % 52) + name
 }
 

@@ -8,7 +8,7 @@ export const formatEntry = (entry: Entry) =>
     { entry },
 
     Obj.assign(({ entry }) => ({
-      uword: entry.type ? colors.gray(`[${entry.type}]`) : '',
+      uword: entry.type ? colors.gray(`[${entry.type}]`) : ''
     })),
 
     match(
@@ -19,16 +19,20 @@ export const formatEntry = (entry: Entry) =>
           const color = logLevels[level!].color
           const label = colors.bold(color(`${level}`))
           return { label: [`🕋`, label, uword].filter(Boolean).join(' '), msg }
-        },
+        }
       ),
       otherwise(({ entry, uword }) => {
         const { msg } = entry
         return { label: uword ?? '', msg }
-      }),
-    ),
+      })
+    )
   )
 
-export const createEntry = (level: LogLevel | null, type: string, data: any) => {
+export const createEntry = (
+  level: LogLevel | null,
+  type: string,
+  data: any
+) => {
   const msg = data instanceof Error ? colors.red(data.message) : data
   return { type, level, msg }
 }

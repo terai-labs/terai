@@ -8,7 +8,9 @@ const selectorRegex = /&|@/
 const isCondition = (val: string) => condRegex.test(val)
 
 const finalizeConditions = (paths: string[]) =>
-  paths.map((path) => (selectorRegex.test(path) ? `[${withoutSpace(path.trim())}]` : path))
+  paths.map(path =>
+    selectorRegex.test(path) ? `[${withoutSpace(path.trim())}]` : path
+  )
 
 function sortConditions(paths: string[]) {
   return paths.sort((a, b) => {
@@ -25,7 +27,7 @@ const css_obj = createCss({
   conditions: {
     shift: sortConditions,
     finalize: finalizeConditions,
-    breakpoints: { keys: [] },
+    breakpoints: { keys: [] }
   },
   utility: {
     prefix: '',
@@ -35,8 +37,8 @@ const css_obj = createCss({
     },
     transform(prop, value) {
       return { className: `${prop}_${withoutSpace(value)}` }
-    },
-  },
+    }
+  }
 })
 
 const css = (str: any) => {
@@ -46,11 +48,16 @@ const css = (str: any) => {
 describe('string literal [shared]', () => {
   test('should convert', () => {
     expect(css`
-      font: 12px/1.5 Helvetica, Arial, sans-serif;
+      font:
+        12px/1.5 Helvetica,
+        Arial,
+        sans-serif;
       color: red;
       &:hover {
         color: blue;
       }
-    `).toMatchInlineSnapshot('"font_12px/1.5_Helvetica,_Arial,_sans-serif color_red [&:hover]:color_blue"')
+    `).toMatchInlineSnapshot(
+      '"font_12px/1.5_Helvetica,_Arial,_sans-serif color_red [&:hover]:color_blue"'
+    )
   })
 })

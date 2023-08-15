@@ -13,7 +13,7 @@ describe('split props', () => {
 
   test('it works with predicate split', () => {
     const obj = { a: 1, b: 2, c: 3, d: 4 }
-    const result = splitProps(obj, (key) => key === 'a' || key === 'b')
+    const result = splitProps(obj, key => key === 'a' || key === 'b')
 
     expect(result).toMatchInlineSnapshot(`
       [
@@ -31,7 +31,7 @@ describe('split props', () => {
 
   test('it works with predicate split and array split', () => {
     const obj = { a: 1, b: 2, c: 3, d: 4 }
-    const [a, b, c] = splitProps(obj, (key) => key === 'a' || key === 'b', ['c'])
+    const [a, b, c] = splitProps(obj, key => key === 'a' || key === 'b', ['c'])
 
     expect(a).toEqual({ a: 1, b: 2 })
     expect(b).toEqual({ c: 3 })

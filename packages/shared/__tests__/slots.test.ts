@@ -8,31 +8,31 @@ describe('get-slot-recipes', () => {
       slots: ['root', 'button', 'text'],
       base: {
         root: {
-          color: 'red',
+          color: 'red'
         },
         button: {
-          fontSize: '1rem',
+          fontSize: '1rem'
         },
         text: {
-          letterSpacing: '0.1em',
-        },
+          letterSpacing: '0.1em'
+        }
       },
       variants: {
         variant: {
           size: {
             small: {
               button: {
-                bg: 'red.200',
+                bg: 'red.200'
               },
               text: {
-                color: 'pink',
-              },
-            },
-          },
-        },
+                color: 'pink'
+              }
+            }
+          }
+        }
       },
       defaultVariants: {
-        size: 'small',
+        size: 'small'
       },
       compoundVariants: [
         {
@@ -40,10 +40,10 @@ describe('get-slot-recipes', () => {
           size: 'small',
           css: {
             button: {},
-            text: {},
-          },
-        },
-      ],
+            text: {}
+          }
+        }
+      ]
     })
 
     expect(slots).toMatchInlineSnapshot(`

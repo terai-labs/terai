@@ -5,7 +5,8 @@ import { createEntry, formatEntry } from './format-entry'
 import { logLevels } from './levels'
 import { type Config, type LogLevel } from './utils'
 
-const matches = (filters: string[], value: string) => filters.some((search) => isMatch(value, search))
+const matches = (filters: string[], value: string) =>
+  filters.some(search => isMatch(value, search))
 
 export const createLogger = (conf: Config = {}) => {
   let level: LogLevel = conf.level ?? 'info'
@@ -15,17 +16,19 @@ export const createLogger = (conf: Config = {}) => {
 
     ({ filter }) => ({
       getLevel: () => (filter ? 'debug' : level),
-      filter: filter !== '*' ? filter?.split(/[\s,]+/) ?? [] : [],
+      filter: filter !== '*' ? filter?.split(/[\s,]+/) ?? [] : []
     }),
 
     Obj.assignTo('config'),
 
     Obj.assign(({ config }) => ({
       isValid(level: LogLevel, type: string) {
-        const badLevel = logLevels[config.getLevel()].weight > logLevels[level].weight
-        const badType = config.filter.length > 0 && !matches(config.filter, type)
+        const badLevel =
+          logLevels[config.getLevel()].weight > logLevels[level].weight
+        const badType =
+          config.filter.length > 0 && !matches(config.filter, type)
         return !(badType || badLevel)
-      },
+      }
     })),
 
     Obj.assign(({ isValid, config }) => ({
@@ -36,21 +39,21 @@ export const createLogger = (conf: Config = {}) => {
             match(
               when(
                 ({ level, type }) => level != null && isValid(level, type),
-                (entry) => {
+                entry => {
                   const { msg, label } = formatEntry(entry) ?? {}
                   console.log(label, msg)
-                },
+                }
               ),
               when(
                 ({ level }) => config.getLevel() !== 'silent' && level == null,
                 () => {
                   console.log(...[type, data].filter(Boolean))
-                },
-              ),
-            ),
+                }
+              )
+            )
           )
         }
-      },
+      }
     })),
 
     Obj.assign(({ stdout }) => ({
@@ -59,10 +62,13 @@ export const createLogger = (conf: Config = {}) => {
         return () => {
           const end = performance.now()
           const ms = end - start
-          stdout(level)('hrtime', `${msg} ${colors.gray(`(${ms.toFixed(2)}ms)`)}`)
+          stdout(level)(
+            'hrtime',
+            `${msg} ${colors.gray(`(${ms.toFixed(2)}ms)`)}`
+          )
         }
-      },
-    })),
+      }
+    }))
   )
 
   return {
@@ -79,8 +85,8 @@ export const createLogger = (conf: Config = {}) => {
     log: (data: string) => stdout(null)('', data),
     time: {
       info: timing('info'),
-      debug: timing('debug'),
+      debug: timing('debug')
     },
-    isDebug: Boolean(conf.isDebug),
+    isDebug: Boolean(conf.isDebug)
   }
 }

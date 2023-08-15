@@ -16,14 +16,17 @@ const calcRegex = /calc/g
 const toExpression = (operator: Operator, ...operands: Array<Operand>) =>
   operands.map(getRef).join(` ${operator} `).replace(calcRegex, '')
 
-const multiply = (...operands: Array<Operand>) => `calc(${toExpression('*', ...operands)})`
+const multiply = (...operands: Array<Operand>) =>
+  `calc(${toExpression('*', ...operands)})`
 
 export const calc = {
   negate(x: Operand) {
     const value = getRef(x)
     if (value != null && !Number.isNaN(parseFloat(value))) {
-      return String(value).startsWith('-') ? String(value).slice(1) : `-${value}`
+      return String(value).startsWith('-')
+        ? String(value).slice(1)
+        : `-${value}`
     }
     return multiply(value, -1)
-  },
+  }
 }
