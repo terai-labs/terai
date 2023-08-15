@@ -16,14 +16,19 @@ export async function main() {
     .command('extract', "Initialize the rosseta's extraction")
     .action(async () => {
       const done = logger.time.info('✨ Rosseta extraction')
-      const file = '/Users/hugocxl/repos/rosseta/test.tsx'
 
       logger.info('cli', `Rosseta v${pkg.version}\n`)
       logger.info('cli', `Rosseta v${cwd}\n`)
 
-      extractAndWrite([file], {
-        outFile: resolve(cwd, 'output.ts')
-      })
+      extractAndWrite(
+        [
+          '/Users/hugocxl/repos/rosseta/extract-demo/test1.tsx',
+          '/Users/hugocxl/repos/rosseta/extract-demo/test2.tsx'
+        ],
+        {
+          outFile: resolve(cwd, 'output.ts')
+        }
+      )
 
       done()
     })

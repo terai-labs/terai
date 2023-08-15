@@ -3,16 +3,15 @@ import { transform } from '@rosseta/transformer'
 import * as ts from 'typescript'
 
 // Types
-import type { ExtractedMessageDescriptor } from './types'
 import type { Opts } from '@rosseta/transformer'
+import type { ExtractedMessage } from '@rosseta/types'
 
 export async function processFile(
   source: string,
   fileName: string,
   options: Opts
-) {
-  let messages: ExtractedMessageDescriptor[] = []
-  let meta: Record<string, string> | undefined
+): Promise<ExtractedMessage[]> {
+  let messages: ExtractedMessage[] = []
 
   try {
     ts.transpileModule(source, {
@@ -28,7 +27,6 @@ export async function processFile(
         before: [
           transform({
             ...options,
-            onMetaExtracted: (_, m) => (meta = m),
             onMsgExtracted: (_, msgs) => {
               messages = messages.concat(msgs)
             }
@@ -48,9 +46,5 @@ export async function processFile(
     throw e
   }
 
-  if (meta) {
-    messages.forEach(m => (m.meta = meta))
-  }
-
-  return { messages, meta }
+  return messages
 }

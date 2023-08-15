@@ -1,3 +1,0 @@
-# Rosseta
-
-Experimental

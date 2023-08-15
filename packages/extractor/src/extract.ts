@@ -1,10 +1,11 @@
 // Dependencies
 import { processFile } from './process'
-import { readFile, outputFile } from 'fs-extra'
+import { logger } from '@rosseta/logger'
+import { runtime } from '@rosseta/node'
 import outdent from 'outdent'
 
 // Types
-import type { ExtractCLIOptions, ExtractOpts, ExtractionResult } from './types'
+import type { ExtractCLIOptions, ExtractOpts } from './types'
 import type { ExtractedMessage } from '@rosseta/types'
 
 /**
@@ -14,75 +15,47 @@ import type { ExtractedMessage } from '@rosseta/types'
  * @returns messages serialized as JSON string since key order
  * matters for some `format`
  */
-export async function extract(
-  files: readonly string[],
-  { throws, flatten, ...opts }: ExtractOpts
-) {
-  const rawResults: Array<ExtractionResult | undefined> = await Promise.all(
+export async function extract(files: readonly string[], options: ExtractOpts) {
+  const extractedMessages = new Map<string, ExtractedMessage>()
+  
+  const rawResults = await Promise.all(
     files.map(async fileName => {
       try {
-        const source = await readFile(fileName, 'utf8')
+        const source = runtime.fs.readFileSync(fileName)
 
-        return processFile(source, fileName, opts)
+        return processFile(source, fileName, options)
       } catch (e) {
-        if (throws) {
-          throw e
-        } else {
-          console.warn(String(e))
-        }
+        logger.warn('extract', String(e))
       }
     })
   )
 
-  const extractionResults = rawResults.filter((r): r is ExtractionResult => !!r)
-  const extractedMessages = new Map<string, ExtractedMessage>()
+  const extractionResults = rawResults.filter(
+    (r): r is ExtractedMessage[] => !!r
+  )
 
-  for (const { messages } of extractionResults) {
+  for (const messages of extractionResults) {
     for (const message of messages) {
-      const {
-        id
-        // description,
-        // defaultMessage
-      } = message
+      // if (!id) {
+      //   const error = new Error(
+      //     `[FormatJS CLI] Missing message id for message: ${JSON.stringify(
+      //       message,
+      //       undefined,
+      //       2
+      //     )}`
+      //   )
 
-      if (!id) {
-        const error = new Error(
-          `[FormatJS CLI] Missing message id for message: ${JSON.stringify(
-            message,
-            undefined,
-            2
-          )}`
-        )
+      //   logger.warn('extract', error.message)
 
-        if (throws) {
-          throw error
-        } else {
-          console.warn(error.message)
-        }
+      //   continue
+      // }
 
-        continue
-      }
-
-      extractedMessages.set(id, message)
+      extractedMessages.set(message.id, message)
     }
   }
 
-  const results: Record<string, Omit<ExtractedMessage, 'id'>> = {}
   const messages = Array.from(extractedMessages.values())
 
-  for (const { id, ...msg } of messages) {
-    // if (flatten && msg.defaultMessage) {
-    //   msg.defaultMessage = printAST(hoistSelectors(parse(msg.defaultMessage)))
-    // }
-    results[id] = msg
-  }
-
-  //@ts-ignore
-  // return stringify(formatter.format(results), {
-  //   space: 2
-  // })
-
-  // return results
   return outdent`
     export default {
       ${messages.map(msg => `${msg.id}: '${msg.defaultMessage}'`).join(',\n')},
@@ -104,6 +77,6 @@ export async function extractAndWrite(
 
   if (outFile) {
     // console.log('Writing output file:', outFile)
-    return outputFile(outFile, result)
+    return runtime.fs.writeFile(outFile, result)
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@rosseta/extractor",
-  "description": "Extractor for rosseta",
+  "name": "@rosseta/node",
   "version": "0.0.1",
+  "description": "The Rosseta node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@rosseta/logger": "workspace:*",
-    "@rosseta/transformer": "workspace:*",
-    "@rosseta/node": "workspace:*",
+    "chokidar": "^3.5.3",
+    "fast-glob": "^3.3.1",
+    "fs-extra": "^11.1.1",
     "outdent": " ^0.8.0",
-    "typescript": "^5.1.6"
+    "pathe": "^1.1.1"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*",
-    "@types/node": "^20.5.0"
-  }
+    "@types/fs-extra": "^11.0.1"
+  },
+  "files": [
+    "dist"
+  ]
 }
