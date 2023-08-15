@@ -1,0 +1,16 @@
+{
+  "name": "@rosseta/types",
+  "version": "0.0.1",
+  "description": "Types definitions for Rosseta",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "pnpm build --watch",
+    "build": "tsup"
+  },
+  "files": [
+    "dist"
+  ]
+}

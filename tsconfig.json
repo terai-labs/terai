@@ -1,24 +1,24 @@
 {
+  "exclude": ["node_modules"],
+  "include": ["packages", "test.tsx"],
+  "types": ["vitest/globals"],
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "jsx": "preserve",
     "incremental": true,
-    "noEmit": true,
+    "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "noEmit": true,
     "noImplicitReturns": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "target": "esnext",
     "verbatimModuleSyntax": true
-  },
-  "include": ["packages", "test.tsx"],
-  "types": ["vitest/globals"],
-  "exclude": ["node_modules"]
+  }
 }

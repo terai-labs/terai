@@ -215,6 +215,8 @@ importers:
         specifier: ^20.5.0
         version: 20.5.0
 
+  packages/types: {}
+
   website:
     dependencies:
       '@types/node':
