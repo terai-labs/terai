@@ -1,6 +1,6 @@
 {
   "name": "@rosseta/shared",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Shared utilities for rosseta",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

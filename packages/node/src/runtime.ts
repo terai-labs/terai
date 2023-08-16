@@ -2,25 +2,29 @@ import { logger } from '@pandacss/logger'
 import chokidar from 'chokidar'
 import glob from 'fast-glob'
 import {
+  copySync,
   emptyDirSync,
   ensureDirSync,
   existsSync,
+  outputFileSync,
   readdirSync,
   readFileSync,
   removeSync,
-  writeFile,
-  writeFileSync
+  renameSync
 } from 'fs-extra'
-import { dirname, extname, isAbsolute, join, relative, sep } from 'pathe'
-import type { Runtime } from './types'
+import {
+  dirname,
+  extname,
+  isAbsolute,
+  join,
+  relative,
+  sep,
+  resolve
+} from 'pathe'
 
-export const runtime: Runtime = {
-  cwd() {
-    return process.cwd()
-  },
-  env(name: string) {
-    return process.env[name]
-  },
+export const runtime = {
+  cwd: () => process.cwd(),
+  env: (name: string) => process.env[name],
   path: {
     join,
     relative,
@@ -28,16 +32,22 @@ export const runtime: Runtime = {
     extname,
     isAbsolute,
     sep,
+    resolve,
     abs(cwd: string, str: string) {
       return isAbsolute(str) ? str : join(cwd, str)
     }
   },
   fs: {
-    existsSync,
-    readFileSync(filePath: string) {
-      return readFileSync(filePath, 'utf8')
-    },
-    glob(opts) {
+    copy: copySync,
+    emptyDir: emptyDirSync,
+    ensureDir: ensureDirSync,
+    exists: existsSync,
+    readDir: readdirSync,
+    readFile: (path: any) => readFileSync(path, 'utf8'),
+    remove: removeSync,
+    rename: renameSync,
+    write: outputFileSync,
+    glob: (opts: { include: string[]; exclude?: string[]; cwd?: string }) => {
       if (!opts.include) return []
 
       const ignore = opts.exclude ?? []
@@ -47,15 +57,12 @@ export const runtime: Runtime = {
 
       return glob.sync(opts.include, { cwd: opts.cwd, ignore, absolute: true })
     },
-    writeFile,
-    writeFileSync,
-    readDirSync: readdirSync,
-    rmDirSync: emptyDirSync,
-    rmFileSync: removeSync,
-    ensureDirSync(path: string) {
-      return ensureDirSync(path)
-    },
-    watch(options) {
+    watch: (options: {
+      include: string[]
+      exclude?: string[]
+      cwd?: string
+      poll?: boolean
+    }) => {
       const { include, exclude, cwd, poll } = options
       const coalesce = poll || process.platform === 'win32'
       const watcher = chokidar.watch(include, {

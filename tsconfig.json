@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "include": ["packages", "extract-demo/test.tsx"],
+  "include": ["packages"],
   "types": ["vitest/globals"],
   "compilerOptions": {
     "allowJs": false,

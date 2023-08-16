@@ -1,6 +1,6 @@
 {
   "name": "@rosseta/types",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Types definitions for Rosseta",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

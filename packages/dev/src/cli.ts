@@ -2,14 +2,14 @@
 import { cac } from 'cac'
 import { extractAndWrite } from '@rosseta/extractor'
 import { logger } from '@rosseta/logger'
-import { resolve } from 'pathe'
+import { runtime } from '@rosseta/node'
 import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
 
-  const cwd = process.cwd()
+  const cwd = runtime.cwd()
   const cli = cac('rosseta')
 
   cli
@@ -26,7 +26,7 @@ export async function main() {
           '/Users/hugocxl/repos/rosseta/extract-demo/test2.tsx'
         ],
         {
-          outFile: resolve(cwd, 'output.ts')
+          outFile: runtime.path.resolve(cwd, 'output.ts')
         }
       )
 

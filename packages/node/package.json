@@ -1,6 +1,6 @@
 {
   "name": "@rosseta/node",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "The Rosseta node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -15,50 +15,33 @@ import type { ExtractedMessage } from '@rosseta/types'
  * @returns messages serialized as JSON string since key order
  * matters for some `format`
  */
+
 export async function extract(files: readonly string[], options: ExtractOpts) {
   const extractedMessages = new Map<string, ExtractedMessage>()
-  
-  const rawResults = await Promise.all(
+
+  await Promise.all(
     files.map(async fileName => {
       try {
-        const source = runtime.fs.readFileSync(fileName)
+        const source = runtime.fs.readFile(fileName)
 
-        return processFile(source, fileName, options)
+        const messages = await processFile(source, fileName, options)
+        for (const message of messages) {
+          extractedMessages.set(message.id, message)
+        }
       } catch (e) {
-        logger.warn('extract', String(e))
+        logger.error('extract', `Error processing file ${fileName} ${e}`)
+        return null
       }
     })
   )
-
-  const extractionResults = rawResults.filter(
-    (r): r is ExtractedMessage[] => !!r
-  )
-
-  for (const messages of extractionResults) {
-    for (const message of messages) {
-      // if (!id) {
-      //   const error = new Error(
-      //     `[FormatJS CLI] Missing message id for message: ${JSON.stringify(
-      //       message,
-      //       undefined,
-      //       2
-      //     )}`
-      //   )
-
-      //   logger.warn('extract', error.message)
-
-      //   continue
-      // }
-
-      extractedMessages.set(message.id, message)
-    }
-  }
 
   const messages = Array.from(extractedMessages.values())
 
   return outdent`
     export default {
-      ${messages.map(msg => `${msg.id}: '${msg.defaultMessage}'`).join(',\n')},
+      ${messages
+        .map(msg => `${msg.id}: '${msg.defaultMessage}'`)
+        .join(',\n  ')},
     } as const
   `
 }
@@ -77,6 +60,6 @@ export async function extractAndWrite(
 
   if (outFile) {
     // console.log('Writing output file:', outFile)
-    return runtime.fs.writeFile(outFile, result)
+    return runtime.fs.write(outFile, result)
   }
 }
