@@ -57,6 +57,9 @@ importers:
       '@rosseta/node':
         specifier: workspace:*
         version: link:../node
+      '@rosseta/types':
+        specifier: workspace:*
+        version: link:../types
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -114,6 +117,12 @@ importers:
       '@rosseta/logger':
         specifier: workspace:*
         version: link:../logger
+      '@rosseta/types':
+        specifier: workspace:*
+        version: link:../types
+      bundle-n-require:
+        specifier: ^1.0.1
+        version: 1.0.1
       chokidar:
         specifier: ^3.5.3
         version: 3.5.3
@@ -123,6 +132,9 @@ importers:
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
+      look-it-up:
+        specifier: ^2.1.0
+        version: 2.1.0
       outdent:
         specifier: ' ^0.8.0'
         version: 0.8.0
@@ -165,6 +177,21 @@ importers:
         version: 20.5.0
 
   packages/types: {}
+
+  playground:
+    dependencies:
+      '@rosseta/dev':
+        specifier: link:../packages/dev
+        version: link:../packages/dev
+      '@rosseta/extractor':
+        specifier: link:../packages/extractor
+        version: link:../packages/extractor
+      '@rosseta/logger':
+        specifier: link:../packages/logger
+        version: link:../packages/logger
+      '@rosseta/node':
+        specifier: link:../packages/node
+        version: link:../packages/node
 
   website:
     dependencies:
@@ -3253,7 +3280,6 @@ packages:
     dependencies:
       esbuild: 0.17.19
       node-eval: 2.0.0
-    dev: true
 
   /bundle-name@3.0.0:
     resolution: {integrity: sha512-PKA4BeSvBpQKQ8iPOGCSiell+N8P+Tf1DlwqmYhpe2gAhKPHn8EYOxVT+ShuGmhg8lN8XiSlS80yiExKXrURlw==}
@@ -5487,7 +5513,6 @@ packages:
 
   /look-it-up@2.1.0:
     resolution: {integrity: sha512-nMoGWW2HurtuJf6XAL56FWTDCWLOTSsanrgwOyaR5Y4e3zfG5N/0cU5xWZSEU3tBxhQugRbV1xL9jb+ug7yZww==}
-    dev: true
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -6151,7 +6176,6 @@ packages:
     engines: {node: '>= 4'}
     dependencies:
       path-is-absolute: 1.0.1
-    dev: true
 
   /node-fetch@2.6.12:
     resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}

@@ -11,10 +11,13 @@
     "build": "tsup"
   },
   "dependencies": {
+    "@rosseta/types": "workspace:*",
     "@rosseta/logger": "workspace:*",
     "chokidar": "^3.5.3",
     "fast-glob": "^3.3.1",
     "fs-extra": "^11.1.1",
+    "bundle-n-require": "^1.0.1",
+    "look-it-up": "^2.1.0",
     "outdent": " ^0.8.0",
     "pathe": "^1.1.1"
   },

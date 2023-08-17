@@ -1,3 +1,5 @@
-// Reserved for function exports for the CLI
+import type { Config } from '@rosseta/types'
 
-export {}
+export function defineConfig(config: Config) {
+  return config
+}

@@ -1,10 +1,25 @@
 // Dependencies
 import { cac } from 'cac'
-import { extractAndWrite } from '@rosseta/extractor'
+// import { extractAndWrite } from '@rosseta/extractor'
 import { logger } from '@rosseta/logger'
-import { runtime } from '@rosseta/node'
+import { loadConfig, runtime, setupConfig } from '@rosseta/node'
 import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
+import { extractAndWrite } from '@rosseta/extractor'
+
+type InitOptions = {
+  cwd: string
+  force?: boolean
+  silent?: boolean
+  outExtension?: string
+}
+
+type ExtractOptions = {
+  cwd: string
+  force?: boolean
+  silent?: boolean
+  outExtension?: string
+}
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -13,17 +28,41 @@ export async function main() {
   const cli = cac('rosseta')
 
   cli
-    .command('extract', "Initialize the rosseta's extraction")
-    .action(async () => {
-      const done = logger.time.info('✨ Rosseta extraction')
+    .command('init', "Initialize the Rosseta's config file")
+    .option('-f, --force', 'Force overwrite existing config file')
+    .option('-s, --silent', 'Suppress all messages except errors')
+    .option('--cwd <cwd>', 'Current working directory', { default: cwd })
+    .option(
+      '--out-extension <ext>',
+      "The extension of the generated files (default: 'ts')"
+    )
+    .action(async (options: InitOptions) => {
+      if (options.silent) logger.level = 'silent'
 
       logger.info('cli', `Rosseta v${pkg.version}\n`)
-      logger.info('cli', `Rosseta v${cwd}\n`)
+      const done = logger.time.info('✨ Rosseta initialized')
+
+      await setupConfig(options)
+      done()
+    })
+
+  cli
+    .command('extract', "Initialize the Rosseta's extraction")
+    .option('-s, --silent', 'Suppress all messages except errors')
+    .option('--cwd <cwd>', 'Current working directory', { default: cwd })
+    .action(async (options: ExtractOptions) => {
+      if (options.silent) logger.level = 'silent'
+      const done = logger.time.info('✨ Rosseta extraction')
+
+      const config = await loadConfig(options)
+      console.log(config)
+
+      logger.info('cli', `Rosseta v${pkg.version}\n`)
 
       extractAndWrite(
         [
-          '/Users/hugocxl/repos/rosseta/extract-demo/test1.tsx',
-          '/Users/hugocxl/repos/rosseta/extract-demo/test2.tsx'
+          '/Users/hugocxl/repos/rosseta/playground/src/test1.tsx',
+          '/Users/hugocxl/repos/rosseta/playground/src/test2.tsx'
         ],
         {
           outFile: runtime.path.resolve(cwd, 'output.ts')

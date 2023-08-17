@@ -1,5 +1,6 @@
-import { logger } from '@pandacss/logger'
+import { logger } from '@rosseta/logger'
 import chokidar from 'chokidar'
+import { lookItUpSync } from 'look-it-up'
 import glob from 'fast-glob'
 import {
   copySync,
@@ -45,6 +46,7 @@ export const runtime = {
     readDir: readdirSync,
     readFile: (path: any) => readFileSync(path, 'utf8'),
     remove: removeSync,
+    findUp: lookItUpSync,
     rename: renameSync,
     write: outputFileSync,
     glob: (opts: { include: string[]; exclude?: string[]; cwd?: string }) => {
