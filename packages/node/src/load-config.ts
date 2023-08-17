@@ -1,10 +1,10 @@
 // Dependencies
 import { bundleNRequire } from 'bundle-n-require'
 import { findConfig } from './find-config'
-import { logger } from '@rosseta/logger'
+import { logger } from '@rosetta.js/logger'
 
 // Types
-import type { Config } from '@rosseta/types'
+import type { Config } from '@rosetta.js/types'
 
 export async function loadConfig({
   cwd,

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Context, ReactElement, ReactNode } from 'react'
 import type { LocaleContext } from '../types'
-import type { BaseLocale, ImportedLocales } from '@rosseta/types'
+import type { BaseLocale, ImportedLocales } from '@rosetta.js/types'
 import { useRouter } from 'next/router'
 import { error, warn } from '../helpers/log'
 import { flattenLocale } from '../common/flatten-locale'

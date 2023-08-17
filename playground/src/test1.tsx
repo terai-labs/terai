@@ -8,7 +8,7 @@ export function Demo() {
         defaultMessage={'This is my name: {name}'}
         values={{ name: 'Hugo' }}
       >
-        Rosseta
+        Rosetta
       </a>
     </div>
   )

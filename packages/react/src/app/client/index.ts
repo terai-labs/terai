@@ -4,7 +4,7 @@ import type {
   FlattenLocale,
   GetLocaleType,
   ImportedLocales
-} from '@rosseta/types'
+} from '@rosetta.js/types'
 import type { LocaleContext } from '../../types'
 import { createI18nProviderClient } from './create-i18n-provider-client'
 import { createContext } from 'react'

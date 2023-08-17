@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/generator",
-  "description": "Generator for rosseta",
+  "name": "@rosetta.js/generator",
+  "description": "Code generator for Rosetta.js",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -11,10 +11,10 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@rosseta/node": "workspace:*",
+    "@rosetta.js/node": "workspace:*",
     "outdent": " ^0.8.0"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*"
+    "@rosetta.js/types": "workspace:*"
   }
 }

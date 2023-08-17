@@ -1,4 +1,4 @@
-import type { ExtractedMessage } from '@rosseta/types'
+import type { ExtractedMessage } from '@rosetta.js/types'
 
 export interface Opts {
   /**

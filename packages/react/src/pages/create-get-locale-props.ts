@@ -1,4 +1,4 @@
-import type { ImportedLocales } from '@rosseta/types'
+import type { ImportedLocales } from '@rosetta.js/types'
 import type { GetStaticProps, GetServerSideProps } from 'next'
 import { error } from '../helpers/log'
 

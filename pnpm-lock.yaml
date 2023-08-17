@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       tsup:
-        specifier: ^7.1.0
-        version: 7.1.0(typescript@5.1.6)
+        specifier: ^7.2.0
+        version: 7.2.0(typescript@5.1.6)
       tsx:
         specifier: ^3.12.7
         version: 3.12.7
@@ -48,16 +48,16 @@ importers:
 
   packages/dev:
     dependencies:
-      '@rosseta/extractor':
+      '@rosetta.js/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@rosseta/generator':
+      '@rosetta.js/generator':
         specifier: workspace:*
         version: link:../generator
-      '@rosseta/logger':
+      '@rosetta.js/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosseta/node':
+      '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
       cac:
@@ -67,7 +67,7 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
     devDependencies:
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
       '@types/update-notifier':
@@ -79,33 +79,33 @@ importers:
 
   packages/extractor:
     dependencies:
-      '@rosseta/logger':
+      '@rosetta.js/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosseta/node':
+      '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
-      '@rosseta/transformer':
+      '@rosetta.js/transformer':
         specifier: workspace:*
         version: link:../transformer
-      '@rosseta/utils':
+      '@rosetta.js/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
 
   packages/generator:
     dependencies:
-      '@rosseta/node':
+      '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
       outdent:
         specifier: ' ^0.8.0'
         version: 0.8.0
     devDependencies:
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
 
@@ -124,10 +124,10 @@ importers:
 
   packages/node:
     dependencies:
-      '@rosseta/logger':
+      '@rosetta.js/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
       bundle-n-require:
@@ -168,7 +168,7 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
     devDependencies:
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
       '@types/react':
@@ -189,25 +189,13 @@ importers:
       chalk:
         specifier: ^4.0.0
         version: 4.1.2
-      json-stable-stringify:
-        specifier: ^1.0.1
-        version: 1.0.1
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.1
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
     devDependencies:
-      '@rosseta/types':
+      '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types
-      '@types/json-stable-stringify':
-        specifier: ^1.0.32
-        version: 1.0.32
-      '@types/node':
-        specifier: ^20.5.0
-        version: 20.5.0
 
   packages/types: {}
 
@@ -215,16 +203,16 @@ importers:
 
   playground:
     dependencies:
-      '@rosseta/dev':
+      '@rosetta.js/dev':
         specifier: link:../packages/dev
         version: link:../packages/dev
-      '@rosseta/extractor':
+      '@rosetta.js/extractor':
         specifier: link:../packages/extractor
         version: link:../packages/extractor
-      '@rosseta/logger':
+      '@rosetta.js/logger':
         specifier: link:../packages/logger
         version: link:../packages/logger
-      '@rosseta/node':
+      '@rosetta.js/node':
         specifier: link:../packages/node
         version: link:../packages/node
 
@@ -1917,10 +1905,6 @@ packages:
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
-    dev: true
-
-  /@types/json-stable-stringify@1.0.32:
-    resolution: {integrity: sha512-q9Q6+eUEGwQkv4Sbst3J4PNgDOvpuVuKj79Hl/qnmBMEIPzB5QoFRUtjcgcg2xNUZyYUGXBk5wYIBKHt0A+Mxw==}
     dev: true
 
   /@types/json5@0.0.29:
@@ -5310,12 +5294,6 @@ packages:
   /json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
-  /json-stable-stringify@1.0.1:
-    resolution: {integrity: sha512-i/J297TW6xyj7sDFa7AmBPkQvLIxWr2kKPWI26tXydnZrzVAocNqn5DMNT1Mzk0vit1V5UkRM7C1KdVNp7Lmcg==}
-    dependencies:
-      jsonify: 0.0.1
-    dev: false
-
   /json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
@@ -5348,10 +5326,6 @@ packages:
       universalify: 2.0.0
     optionalDependencies:
       graceful-fs: 4.2.11
-
-  /jsonify@0.0.1:
-    resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
-    dev: false
 
   /jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -7638,8 +7612,8 @@ packages:
   /tslib@2.6.1:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
 
-  /tsup@7.1.0(typescript@5.1.6):
-    resolution: {integrity: sha512-mazl/GRAk70j8S43/AbSYXGgvRP54oQeX8Un4iZxzATHt0roW0t6HYDVZIXMw0ZQIpvr1nFMniIVnN5186lW7w==}
+  /tsup@7.2.0(typescript@5.1.6):
+    resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     peerDependencies:

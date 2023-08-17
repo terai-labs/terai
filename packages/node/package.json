@@ -1,7 +1,7 @@
 {
-  "name": "@rosseta/node",
+  "name": "@rosetta.js/node",
   "version": "0.0.0",
-  "description": "The Rosseta node library",
+  "description": "The Rosetta.js Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -11,8 +11,8 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@rosseta/logger": "workspace:*",
-    "@rosseta/types": "workspace:*",
+    "@rosetta.js/logger": "workspace:*",
+    "@rosetta.js/types": "workspace:*",
     "bundle-n-require": "^1.0.1",
     "chokidar": "^3.5.3",
     "fast-glob": "^3.3.1",

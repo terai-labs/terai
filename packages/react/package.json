@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/react",
-  "description": "Rosseta for React",
+  "name": "@rosetta.js/react",
+  "description": "Rosetta.js for React",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -15,7 +15,7 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*",
+    "@rosetta.js/types": "workspace:*",
     "@types/react": "^18.2.9",
     "next": "^13.4.13",
     "react": "^18.2.0"

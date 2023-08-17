@@ -1,6 +1,6 @@
 import type { Context, ReactElement, ReactNode } from 'react'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import type { BaseLocale, ImportedLocales } from '@rosseta/types'
+import type { BaseLocale, ImportedLocales } from '@rosetta.js/types'
 
 import type { I18nCurrentLocaleConfig, LocaleContext } from '../../types'
 import { flattenLocale } from '../../common/flatten-locale'

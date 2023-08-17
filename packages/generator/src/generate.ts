@@ -1,9 +1,9 @@
 // Dependencies
-import { runtime } from '@rosseta/node'
+import { runtime } from '@rosetta.js/node'
 import { outdent } from 'outdent'
 
 // Types
-import type { Config, ExtractedMessage } from '@rosseta/types'
+import type { Config, ExtractedMessage } from '@rosetta.js/types'
 
 type GenerateOptions = {
   cwd: string

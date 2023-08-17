@@ -1,5 +1,5 @@
 {
-  "name": "@rosseta/playground",
+  "name": "@rosetta.js/playground",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rosseta/dev": "link:../packages/dev",
-    "@rosseta/extractor": "link:../packages/extractor",
-    "@rosseta/logger": "link:../packages/logger",
-    "@rosseta/node": "link:../packages/node"
+    "@rosetta.js/dev": "link:../packages/dev",
+    "@rosetta.js/extractor": "link:../packages/extractor",
+    "@rosetta.js/logger": "link:../packages/logger",
+    "@rosetta.js/node": "link:../packages/node"
   }
 }

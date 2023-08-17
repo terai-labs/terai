@@ -4,7 +4,7 @@ import type {
   ExplicitLocales,
   GetLocaleType,
   FlattenLocale
-} from '@rosseta/types'
+} from '@rosetta.js/types'
 import type { LocaleContext } from '../types'
 import { createDefineLocale } from '../common/create-define-locale'
 import { createGetLocaleProps } from './create-get-locale-props'

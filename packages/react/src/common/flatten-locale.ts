@@ -1,4 +1,4 @@
-import { type BaseLocale } from '@rosseta/types'
+import { type BaseLocale } from '@rosetta.js/types'
 
 export const flattenLocale = <Locale extends BaseLocale>(
   locale: Record<string, unknown>,

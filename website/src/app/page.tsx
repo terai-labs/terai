@@ -16,7 +16,7 @@ export default function Home() {
         fontSize={'50px'}
         color={'text.primary'}
       >
-        Rosseta
+        Rosetta
       </styled.span>
       <styled.span
         lineHeight={'1'}
@@ -33,7 +33,7 @@ export default function Home() {
         textAlign={'center'}
         fontSize={'lg'}
       >
-        Rosseta is a cutting-edge utility that pempower developers and
+        Rosetta is a cutting-edge utility that pempower developers and
         streamline the localization workflow. Say goodbye to cumbersome
         localization challenges and hello to a seamless, intuitive solution.
       </styled.span>

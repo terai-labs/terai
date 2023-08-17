@@ -1,9 +1,9 @@
 // Dependencies
 import { cac } from 'cac'
-import { extract } from '@rosseta/extractor'
-import { generate } from '@rosseta/generator'
-import { loadConfig, runtime, setupConfig } from '@rosseta/node'
-import { logger } from '@rosseta/logger'
+import { extract } from '@rosetta.js/extractor'
+import { generate } from '@rosetta.js/generator'
+import { loadConfig, runtime, setupConfig } from '@rosetta.js/node'
+import { logger } from '@rosetta.js/logger'
 import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
 
@@ -25,10 +25,10 @@ export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
 
   const cwd = runtime.cwd()
-  const cli = cac('rosseta')
+  const cli = cac('rosetta')
 
   cli
-    .command('init', "Initialize the Rosseta's config file")
+    .command('init', "Initialize the Rosetta's config file")
     .option('-f, --force', 'Force overwrite existing config file')
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
@@ -39,24 +39,24 @@ export async function main() {
     .action(async (options: InitOptions) => {
       if (options.silent) logger.level = 'silent'
 
-      logger.info('cli', `Rosseta v${pkg.version}\n`)
-      const done = logger.time.info('✨ Rosseta initialized')
+      logger.info('cli', `Rosetta v${pkg.version}\n`)
+      const done = logger.time.info('✨ Rosetta initialized')
 
       await setupConfig(options)
       done()
     })
 
   cli
-    .command('extract', "Initialize the Rosseta's extraction")
+    .command('extract', "Initialize the Rosetta's extraction")
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(async (options: ExtractOptions) => {
       if (options.silent) logger.level = 'silent'
-      const done = logger.time.info('✨ Rosseta extraction')
+      const done = logger.time.info('✨ Rosetta extraction')
 
       const config = await loadConfig(options)
 
-      logger.info('cli', `Rosseta v${pkg.version}\n`)
+      logger.info('cli', `Rosetta v${pkg.version}\n`)
 
       const files = runtime.fs.glob({
         ...config,

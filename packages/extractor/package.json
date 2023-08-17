@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/extractor",
-  "description": "Extractor for rosseta",
+  "name": "@rosetta.js/extractor",
+  "description": "Messages extractor for Rosetta.js",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -11,12 +11,12 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@rosseta/logger": "workspace:*",
-    "@rosseta/transformer": "workspace:*",
-    "@rosseta/node": "workspace:*",
-    "@rosseta/utils": "workspace:*"
+    "@rosetta.js/logger": "workspace:*",
+    "@rosetta.js/node": "workspace:*",
+    "@rosetta.js/transformer": "workspace:*",
+    "@rosetta.js/utils": "workspace:*"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*"
+    "@rosetta.js/types": "workspace:*"
   }
 }

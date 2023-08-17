@@ -1,7 +1,7 @@
 {
-  "name": "@rosseta/types",
+  "name": "@rosetta.js/types",
   "version": "0.0.0",
-  "description": "Types definitions for Rosseta",
+  "description": "Types definitions for Rosetta.js",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

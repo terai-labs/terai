@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/transformer",
-  "description": "Transformer for rosseta",
+  "name": "@rosetta.js/transformer",
+  "description": "Transformer for Rosetta.js",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -13,13 +13,9 @@
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "^2.6.0",
     "chalk": "^4.0.0",
-    "json-stable-stringify": "^1.0.1",
-    "tslib": "^2.4.0",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*",
-    "@types/json-stable-stringify": "^1.0.32",
-    "@types/node": "^20.5.0"
+    "@rosetta.js/types": "workspace:*"
   }
 }

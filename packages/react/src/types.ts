@@ -1,4 +1,4 @@
-import type { BaseLocale, LocaleValue, Params } from '@rosseta/types'
+import type { BaseLocale, LocaleValue, Params } from '@rosetta.js/types'
 import type { NextRequest } from 'next/server'
 
 export type LocaleContext<Locale extends BaseLocale> = {

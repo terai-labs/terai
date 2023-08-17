@@ -1,6 +1,6 @@
 // Dependencies
 import * as ts from 'typescript'
-import type { ExtractedMessage } from '@rosseta/types'
+import type { ExtractedMessage } from '@rosetta.js/types'
 import {
   parse,
   type MessageFormatElement

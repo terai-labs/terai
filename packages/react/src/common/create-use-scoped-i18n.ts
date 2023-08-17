@@ -1,5 +1,5 @@
 import { useContext, type Context } from 'react'
-import type { BaseLocale, Scopes } from '@rosseta/types'
+import type { BaseLocale, Scopes } from '@rosetta.js/types'
 import type { LocaleContext } from '../types'
 import { createT } from '../common/create-t'
 

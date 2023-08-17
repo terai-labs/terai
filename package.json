@@ -1,8 +1,8 @@
 {
-  "name": "rosseta",
+  "name": "rosetta.js",
   "version": "0.0.0",
-  "private": true,
-  "description": "The repository of rosseta",
+  "private": false,
+  "description": "The localization framework for the web",
   "keywords": [],
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "mdx-check": "mdx-local-link-checker docs && mdx-local-link-checker website/pages/docs"
   },
   "dependencies": {
-    "tsup": "^7.1.0",
+    "tsup": "^7.2.0",
     "tsx": "^3.12.7",
     "typescript": "^5.1.6"
   },

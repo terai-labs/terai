@@ -1,4 +1,4 @@
-import type { Opts } from '@rosseta/transformer'
+import type { Opts } from '@rosetta.js/transformer'
 
 export type ExtractCLIOptions = Omit<
   ExtractOpts,

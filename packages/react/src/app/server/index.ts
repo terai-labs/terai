@@ -5,7 +5,7 @@ import type {
   FlattenLocale,
   GetLocaleType,
   ImportedLocales
-} from '@rosseta/types'
+} from '@rosetta.js/types'
 import { createGetI18n } from './create-get-i18n'
 import { createGetScopedI18n } from './create-get-scoped-i18n'
 import { createGetCurrentLocale } from './create-get-current-locale'

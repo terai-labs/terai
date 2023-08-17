@@ -1,4 +1,4 @@
-import { logger } from '@rosseta/logger'
+import { logger } from '@rosetta.js/logger'
 import chokidar from 'chokidar'
 import { lookItUpSync } from 'look-it-up'
 import glob from 'fast-glob'

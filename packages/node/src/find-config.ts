@@ -12,9 +12,9 @@ export function findConfig({
   if (filePath) return runtime.path.resolve(cwd, filePath)
 
   for (const config of configs) {
-    // const path = runtime.path.resolve(cwd, `rosseta.config${config}`)
+    // const path = runtime.path.resolve(cwd, `rosetta.config${config}`)
     // const exists = runtime.fs.exists(path)
-    const exists = runtime.fs.findUp(`rosseta.config${config}`)
+    const exists = runtime.fs.findUp(`rosetta.config${config}`)
 
     if (exists) return exists
   }

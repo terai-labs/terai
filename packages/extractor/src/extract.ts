@@ -1,12 +1,12 @@
 // Dependencies
 import { processFile } from './process'
-import { logger } from '@rosseta/logger'
-import { runtime } from '@rosseta/node'
-import { toHash } from '@rosseta/utils'
+import { logger } from '@rosetta.js/logger'
+import { runtime } from '@rosetta.js/node'
+import { toHash } from '@rosetta.js/utils'
 
 // Types
 import type { ExtractOpts } from './types'
-import type { ExtractedMessage } from '@rosseta/types'
+import type { ExtractedMessage } from '@rosetta.js/types'
 
 /**
  * Extract strings from source files

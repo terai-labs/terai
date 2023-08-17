@@ -7,7 +7,7 @@ import type {
   ParamsObject,
   ScopedValue,
   Scopes
-} from '@rosseta/types'
+} from '@rosetta.js/types'
 import type { ReactParamsObject, LocaleContext, LocaleMap } from '../types'
 
 export function createT<

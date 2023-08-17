@@ -1,4 +1,4 @@
-import type { BaseLocale, ImportedLocales, Scopes } from '@rosseta/types'
+import type { BaseLocale, ImportedLocales, Scopes } from '@rosetta.js/types'
 import { createT } from '../../common/create-t'
 import type { LocaleContext } from '../../types'
 import { getLocaleCache } from './get-locale-cache'

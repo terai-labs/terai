@@ -1,30 +1,30 @@
 {
-  "name": "@rosseta/dev",
+  "name": "@rosetta.js/dev",
   "version": "0.0.0",
-  "description": "The user facing package for rosseta",
+  "description": "The user facing package for Rosetta.js",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "private": false,
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
-    "rosseta": "bin.js",
-    "rosseta-cli": "bin.js"
+    "rosetta": "bin.js",
+    "rosetta-cli": "bin.js"
   },
   "scripts": {
     "dev": "pnpm build --watch",
     "build": "tsup"
   },
   "dependencies": {
-    "@rosseta/extractor": "workspace:*",
-    "@rosseta/generator": "workspace:*",
-    "@rosseta/logger": "workspace:*",
-    "@rosseta/node": "workspace:*",
+    "@rosetta.js/extractor": "workspace:*",
+    "@rosetta.js/generator": "workspace:*",
+    "@rosetta.js/logger": "workspace:*",
+    "@rosetta.js/node": "workspace:*",
     "cac": "^6.7.14",
     "kleur": "^4.1.5"
   },
   "devDependencies": {
-    "@rosseta/types": "workspace:*",
+    "@rosetta.js/types": "workspace:*",
     "@types/update-notifier": "^6.0.4",
     "update-notifier": "^6.0.2"
   },
