@@ -1,6 +1,6 @@
 {
-  "name": "@rosseta/extractor",
-  "description": "Extractor for rosseta",
+  "name": "@rosseta/generator",
+  "description": "Generator for rosseta",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -11,10 +11,8 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@rosseta/logger": "workspace:*",
-    "@rosseta/transformer": "workspace:*",
     "@rosseta/node": "workspace:*",
-    "@rosseta/utils": "workspace:*"
+    "outdent": " ^0.8.0"
   },
   "devDependencies": {
     "@rosseta/types": "workspace:*"

@@ -1,5 +1,5 @@
 {
-  "name": "@rosseta/shared",
+  "name": "@rosseta/utils",
   "version": "0.0.0",
   "description": "Shared utilities for rosseta",
   "main": "dist/index.js",
@@ -8,7 +8,6 @@
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "build": "tsup",
-    "build:x": "pnpm build --no-dts",
     "dev": "pnpm build --watch"
   },
   "files": [

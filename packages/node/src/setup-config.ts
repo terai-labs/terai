@@ -45,7 +45,7 @@ export async function setupConfig({ force, outExtension, cwd }: SetupOptions) {
         outDir: "locale",
 
         // The extension for the emitted JavaScript files
-        outExtension: "${outExtension || isTs ? 'ts' : 'js'}",
+        outExtension: "${outExtension || isTs ? '.ts' : '.js'}",
       })
     `
 

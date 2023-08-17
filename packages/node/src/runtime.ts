@@ -98,3 +98,5 @@ process.on('unhandledRejection', reason => {
 process.on('uncaughtException', reason => {
   logger.error('❌', reason)
 })
+
+export type Runtime = typeof runtime

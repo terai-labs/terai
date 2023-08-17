@@ -1,11 +1,11 @@
 // Dependencies
 import { cac } from 'cac'
-// import { extractAndWrite } from '@rosseta/extractor'
-import { logger } from '@rosseta/logger'
+import { extract } from '@rosseta/extractor'
+import { generate } from '@rosseta/generator'
 import { loadConfig, runtime, setupConfig } from '@rosseta/node'
+import { logger } from '@rosseta/logger'
 import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
-import { extractAndWrite } from '@rosseta/extractor'
 
 type InitOptions = {
   cwd: string
@@ -55,20 +55,19 @@ export async function main() {
       const done = logger.time.info('✨ Rosseta extraction')
 
       const config = await loadConfig(options)
-      console.log(config)
 
       logger.info('cli', `Rosseta v${pkg.version}\n`)
 
-      extractAndWrite(
-        [
-          '/Users/hugocxl/repos/rosseta/playground/src/test1.tsx',
-          '/Users/hugocxl/repos/rosseta/playground/src/test2.tsx'
-        ],
-        {
-          outFile: runtime.path.resolve(cwd, 'output.ts')
-        }
-      )
+      const files = runtime.fs.glob({
+        ...config,
+        cwd: options.cwd
+      })
 
+      const messages = await extract(files)
+      await generate(messages, {
+        ...config,
+        cwd: options.cwd
+      })
       done()
     })
 

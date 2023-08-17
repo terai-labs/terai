@@ -51,15 +51,15 @@ importers:
       '@rosseta/extractor':
         specifier: workspace:*
         version: link:../extractor
+      '@rosseta/generator':
+        specifier: workspace:*
+        version: link:../generator
       '@rosseta/logger':
         specifier: workspace:*
         version: link:../logger
       '@rosseta/node':
         specifier: workspace:*
         version: link:../node
-      '@rosseta/types':
-        specifier: workspace:*
-        version: link:../types
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -67,6 +67,9 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
     devDependencies:
+      '@rosseta/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/update-notifier':
         specifier: ^6.0.4
         version: 6.0.4
@@ -85,19 +88,26 @@ importers:
       '@rosseta/transformer':
         specifier: workspace:*
         version: link:../transformer
-      outdent:
-        specifier: ' ^0.8.0'
-        version: 0.8.0
-      typescript:
-        specifier: ^5.1.6
-        version: 5.1.6
+      '@rosseta/utils':
+        specifier: workspace:*
+        version: link:../utils
     devDependencies:
       '@rosseta/types':
         specifier: workspace:*
         version: link:../types
-      '@types/node':
-        specifier: ^20.5.0
-        version: 20.5.0
+
+  packages/generator:
+    dependencies:
+      '@rosseta/node':
+        specifier: workspace:*
+        version: link:../node
+      outdent:
+        specifier: ' ^0.8.0'
+        version: 0.8.0
+    devDependencies:
+      '@rosseta/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/logger:
     dependencies:
@@ -146,8 +156,6 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1
 
-  packages/shared: {}
-
   packages/transformer:
     dependencies:
       '@formatjs/icu-messageformat-parser':
@@ -177,6 +185,8 @@ importers:
         version: 20.5.0
 
   packages/types: {}
+
+  packages/utils: {}
 
   playground:
     dependencies:

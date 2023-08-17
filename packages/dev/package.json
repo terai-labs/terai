@@ -17,13 +17,14 @@
   },
   "dependencies": {
     "@rosseta/extractor": "workspace:*",
+    "@rosseta/generator": "workspace:*",
     "@rosseta/logger": "workspace:*",
     "@rosseta/node": "workspace:*",
-    "@rosseta/types": "workspace:*",
     "cac": "^6.7.14",
     "kleur": "^4.1.5"
   },
   "devDependencies": {
+    "@rosseta/types": "workspace:*",
     "@types/update-notifier": "^6.0.4",
     "update-notifier": "^6.0.2"
   },

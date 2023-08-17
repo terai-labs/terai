@@ -1,6 +1,6 @@
 // Dependencies
-import { transform } from '@rosseta/transformer'
 import * as ts from 'typescript'
+import { transform } from '@rosseta/transformer'
 
 // Types
 import type { Opts } from '@rosseta/transformer'
@@ -9,7 +9,7 @@ import type { ExtractedMessage } from '@rosseta/types'
 export async function processFile(
   source: string,
   fileName: string,
-  options: Opts
+  options: Opts = {}
 ): Promise<ExtractedMessage[]> {
   let messages: ExtractedMessage[] = []
 
