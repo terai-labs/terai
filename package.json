@@ -14,7 +14,7 @@
     "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test run",
     "prepare": "husky install && pnpm build",
     "clean": "pnpm -r --parallel exec rimraf node_modules dist *.log && rimraf node_modules",
-    "test": "vitest",
+    "test": "pnpm i",
     "test-watch": "vitest --watch -u",
     "lint": "eslint packages --ext .ts",
     "prettier": "prettier --check packages",
