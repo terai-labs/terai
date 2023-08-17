@@ -1,0 +1,23 @@
+{
+  "name": "@rosseta/react",
+  "description": "Rosseta for React",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "pnpm build --watch",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "client-only": "^0.0.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@rosseta/types": "workspace:*",
+    "@types/react": "^18.2.9",
+    "next": "^13.4.13",
+    "react": "^18.2.0"
+  }
+}

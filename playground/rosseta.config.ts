@@ -8,7 +8,7 @@ export default defineConfig({
   exclude: [],
 
   // The output directory for your locale system
-  outDir: 'other',
+  outDir: 'locale',
 
   // The extension for the emitted JavaScript files
   outExtension: '.ts'
