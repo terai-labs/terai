@@ -1,6 +1,9 @@
 export type LocaleValue = string | number | boolean | null | undefined | Date
 export type BaseLocale = Record<string, LocaleValue>
-export type ImportedLocales = Record<string, () => Promise<BaseLocale>>
+export type ImportedLocales = Record<
+  string,
+  () => Promise<{ default: BaseLocale }>
+>
 export type ExplicitLocales = Record<string, BaseLocale>
 
 export type LocaleKeys<

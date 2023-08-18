@@ -113,7 +113,8 @@ function objectLiteralExpressionToObj(
 function isMultipleMessageDecl(ts: TypeScript, node: ts.CallExpression) {
   return (
     ts.isIdentifier(node.expression) &&
-    node.expression.text === 'defineMessages'
+    // node.expression.text === 'defineMessages'
+    node.expression.text === 'tx'
   )
 }
 
@@ -125,7 +126,8 @@ function isSingularMessageDecl(
   const compNames = new Set([
     'a',
     'FormattedMessage',
-    'defineMessage',
+    'tx',
+    // 'defineMessage',
     'formatMessage',
     '$formatMessage',
     '$t',
@@ -345,6 +347,8 @@ function isMemberMethodFormatMessageCall(
   const fnNames = new Set([
     'formatMessage',
     '$formatMessage',
+    '$tx',
+    'tx',
     ...additionalFunctionNames
   ])
   const method = node.expression
