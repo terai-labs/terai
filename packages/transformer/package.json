@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "^2.6.0",
-    "chalk": "^4.0.0",
-    "typescript": "^5.1.6"
+    "chalk": "^4.0.0"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*"

@@ -16,8 +16,9 @@
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*",
-    "@types/react": "^18.2.9",
-    "next": "^13.4.13",
+    "@types/react": "^18.2.9"
+  },
+  "peerDependencies": {
     "react": "^18.2.0"
   }
 }
