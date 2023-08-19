@@ -1,4 +1,5 @@
 export default {
-  eoaoHg: 'Another message yohoo!',
-  cEVvCQ: 'This is my name',
+  eoaoHg: 'Otro mensage yohoo!',
+  cEVvCQ: 'Este es mi nombre',
+  iqMYHH: 'wah wah wah',
 } as const

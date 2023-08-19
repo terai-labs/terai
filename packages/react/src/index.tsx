@@ -33,5 +33,12 @@ export function getRosseta({
     return <>{tag}</>
   }
 
-  return { tx }
+  function changeLocale(locale: string) {
+    locales[locale]().then(loc => {
+      state.messages = ref(loc.default)
+      state.locale = locale
+    })
+  }
+
+  return { tx, changeLocale }
 }

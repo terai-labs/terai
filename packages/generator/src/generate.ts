@@ -7,14 +7,18 @@ import type { Config, ExtractedMessage } from '@rosetta.js/types'
 
 type GenerateOptions = {
   cwd: string
-} & Pick<Config, 'outDir' | 'outExtension'>
+} & Pick<Config, 'outDir' | 'outExtension' | 'baseLocale'>
 
 export async function generate(
   messages: Map<string, ExtractedMessage>,
-  { outExtension, cwd, outDir }: GenerateOptions
+  { outExtension, cwd, outDir, baseLocale }: GenerateOptions
 ) {
   const isTs = outExtension === '.ts'
-  const basePath = runtime.path.resolve(cwd, outDir, `es${outExtension}`)
+  const basePath = runtime.path.resolve(
+    cwd,
+    outDir,
+    `${baseLocale}${outExtension}`
+  )
   const messagesArray: { id: string; msg?: string }[] = []
 
   messages.forEach((msg, id) => {

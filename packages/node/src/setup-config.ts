@@ -5,14 +5,19 @@ import { logger } from '@rosetta.js/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 import getPackageManager from 'preferred-pm'
+import type { Config } from '@rosetta.js/types'
 
-type SetupOptions = {
+type SetupOptions = Pick<Config, 'outExtension' | 'baseLocale'> & {
   force?: boolean
-  outExtension?: string
   cwd: string
 }
 
-export async function setupConfig({ force, outExtension, cwd }: SetupOptions) {
+export async function setupConfig({
+  force,
+  outExtension,
+  baseLocale = 'en',
+  cwd
+}: SetupOptions) {
   const configFile = findConfig({ cwd })
   const pmResult = await getPackageManager(cwd)
   const pm = pmResult?.name ?? 'npm'
@@ -40,6 +45,9 @@ export async function setupConfig({ force, outExtension, cwd }: SetupOptions) {
 
         // Files to exclude
         exclude: [],
+
+        // The base locale used in your project
+        baseLocale: "${baseLocale}",
 
         // The output directory for your locale system
         outDir: "locale",

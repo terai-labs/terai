@@ -6,12 +6,12 @@ import { loadConfig, runtime, setupConfig } from '@rosetta.js/node'
 import { logger } from '@rosetta.js/logger'
 import pkg from '../package.json'
 import updateNotifier from 'update-notifier'
+import type { Config } from '@rosetta.js/types'
 
-type InitOptions = {
+type InitOptions = Pick<Config, 'outExtension' | 'baseLocale'> & {
   cwd: string
   force?: boolean
   silent?: boolean
-  outExtension?: string
 }
 
 type ExtractOptions = {
@@ -29,6 +29,7 @@ export async function main() {
 
   cli
     .command('init', "Initialize the Rosetta's config file")
+    .option('-b, --base-locale', 'Base locale used in your project')
     .option('-f, --force', 'Force overwrite existing config file')
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
