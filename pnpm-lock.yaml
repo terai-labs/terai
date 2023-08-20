@@ -85,9 +85,19 @@ importers:
       '@rosetta.js/transformer':
         specifier: workspace:*
         version: link:../transformer
-      '@rosetta.js/utils':
+    devDependencies:
+      '@rosetta.js/types':
         specifier: workspace:*
-        version: link:../utils
+        version: link:../types
+
+  packages/formatter:
+    dependencies:
+      '@rosetta.js/node':
+        specifier: workspace:*
+        version: link:../node
+      outdent:
+        specifier: ' ^0.8.0'
+        version: 0.8.0
     devDependencies:
       '@rosetta.js/types':
         specifier: workspace:*
@@ -158,6 +168,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@rosetta.js/formatter':
+        specifier: workspace:*
+        version: link:../formatter
       '@rosetta.js/utils':
         specifier: workspace:*
         version: link:../utils
@@ -183,9 +196,9 @@ importers:
 
   packages/transformer:
     dependencies:
-      '@formatjs/icu-messageformat-parser':
-        specifier: ^2.6.0
-        version: 2.6.0
+      '@rosetta.js/utils':
+        specifier: workspace:*
+        version: link:../utils
       chalk:
         specifier: ^4.0.0
         version: 4.1.2
@@ -1349,34 +1362,6 @@ packages:
   /@floating-ui/utils@0.1.1:
     resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
     dev: true
-
-  /@formatjs/ecma402-abstract@1.17.0:
-    resolution: {integrity: sha512-6ueQTeJZtwKjmh23bdkq/DMqH4l4bmfvtQH98blOSbiXv/OUiyijSW6jU22IT8BNM1ujCaEvJfTtyCYVH38EMQ==}
-    dependencies:
-      '@formatjs/intl-localematcher': 0.4.0
-      tslib: 2.6.1
-    dev: false
-
-  /@formatjs/icu-messageformat-parser@2.6.0:
-    resolution: {integrity: sha512-yT6at0qc0DANw9qM/TU8RZaCtfDXtj4pZM/IC2WnVU80yAcliS3KVDiuUt4jSQAeFL9JS5bc2hARnFmjPdA6qw==}
-    dependencies:
-      '@formatjs/ecma402-abstract': 1.17.0
-      '@formatjs/icu-skeleton-parser': 1.6.0
-      tslib: 2.6.1
-    dev: false
-
-  /@formatjs/icu-skeleton-parser@1.6.0:
-    resolution: {integrity: sha512-eMmxNpoX/J1IPUjPGSZwo0Wh+7CEvdEMddP2Jxg1gQJXfGfht/FdW2D5XDFj3VMbOTUQlDIdZJY7uC6O6gjPoA==}
-    dependencies:
-      '@formatjs/ecma402-abstract': 1.17.0
-      tslib: 2.6.1
-    dev: false
-
-  /@formatjs/intl-localematcher@0.4.0:
-    resolution: {integrity: sha512-bRTd+rKomvfdS4QDlVJ6TA/Jx1F2h/TBVO5LjvhQ7QPPHp19oPNMIum7W2CMEReq/zPxpmCeB31F9+5gl/qtvw==}
-    dependencies:
-      tslib: 2.6.1
-    dev: false
 
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}

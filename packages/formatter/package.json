@@ -1,6 +1,6 @@
 {
-  "name": "@rosetta.js/extractor",
-  "description": "Messages extractor for Rosetta.js",
+  "name": "@rosetta.js/formatter",
+  "description": "Code formatter for Rosetta.js",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -11,9 +11,8 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@rosetta.js/logger": "workspace:*",
     "@rosetta.js/node": "workspace:*",
-    "@rosetta.js/transformer": "workspace:*"
+    "outdent": " ^0.8.0"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*"

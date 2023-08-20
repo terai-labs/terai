@@ -3,13 +3,13 @@ import * as ts from 'typescript'
 import { transform } from '@rosetta.js/transformer'
 
 // Types
-import type { Opts } from '@rosetta.js/transformer'
+import type { TransformerOptions } from '@rosetta.js/transformer'
 import type { ExtractedMessage } from '@rosetta.js/types'
 
 export async function processFile(
   source: string,
   fileName: string,
-  options: Opts = {}
+  options: TransformerOptions = {}
 ): Promise<ExtractedMessage[]> {
   let messages: ExtractedMessage[] = []
 
@@ -29,10 +29,6 @@ export async function processFile(
           onMsgExtracted: (_, msgs) => {
             messages = messages.concat(msgs)
           }
-          // additionalComponentNames: [
-          //   '$formatMessage',
-          //   ...(options.additionalComponentNames || [])
-          // ],
         })
       ]
     }

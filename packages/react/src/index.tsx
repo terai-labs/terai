@@ -1,44 +1,67 @@
-import { proxy, ref, subscribe, useSnapshot } from 'valtio'
-import type { BaseLocale, ImportedLocales } from '@rosetta.js/types'
-import { toHash } from '@rosetta.js/utils'
+// Dependencies
+import { proxy, ref, useSnapshot } from 'valtio'
 
-export function getRosseta({
+// Types
+import type {
+  Dictionary,
+  ImportedDictionaries,
+  Locale
+} from '@rosetta.js/types'
+
+// Utils
+import { toHash } from '@rosetta.js/utils'
+import { format } from '@rosetta.js/formatter'
+
+export function setupRosetta({
   locale,
-  locales
+  dictionaries
 }: {
-  locale: string
-  locales: ImportedLocales
+  locale: Locale
+  dictionaries: ImportedDictionaries
 }) {
   const state = proxy<{
-    locale?: string
-    messages: BaseLocale
+    locale: Locale
+    dictionary: Dictionary
   }>({
-    locale: locale,
-    messages: {}
+    locale,
+    dictionary: {}
   })
 
-  locales[locale]().then(loc => (state.messages = ref(loc.default)))
+  dictionaries[locale]().then(loc => (state.dictionary = ref(loc.default)))
 
-  subscribe(state, () => console.log('state has changed to', state))
-
-  function tx({ defaultMessage }: { defaultMessage: string }) {
-    return <Label str={defaultMessage} />
+  function tx(msg: string) {
+    return <Msg str={msg} />
   }
 
-  function Label({ str }: { str: string }) {
+  function Msg({ str }: { str: string }) {
     const snap = useSnapshot(state)
     const id = toHash(str)
-    const tag = snap?.messages?.[id] || '__MISSING_TRANSLATION__'
+    const tag = snap?.dictionary?.[id] || '__MISSING_TRANSLATION__'
 
-    return <>{tag}</>
+    // @ts-ignore
+    return <>{format(locale, tag)}</>
   }
 
-  function changeLocale(locale: string) {
-    locales[locale]().then(loc => {
-      state.messages = ref(loc.default)
-      state.locale = locale
-    })
+  const useLocale = () => {
+    return useSnapshot(state)
   }
 
-  return { tx, changeLocale }
+  const useChangeLocale =
+    () => (locale: Locale | ((locale: Locale) => Locale)) => {
+      if (typeof locale === 'string') {
+        state.locale = locale
+      } else {
+        state.locale = locale(state.locale)
+      }
+
+      dictionaries[state.locale]().then(loc => {
+        state.dictionary = ref(loc.default)
+      })
+    }
+
+  return {
+    tx,
+    useLocale,
+    useChangeLocale
+  }
 }

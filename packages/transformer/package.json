@@ -11,7 +11,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "^2.6.0",
+    "@rosetta.js/utils": "workspace:*",
     "chalk": "^4.0.0"
   },
   "devDependencies": {

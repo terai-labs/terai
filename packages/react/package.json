@@ -11,6 +11,7 @@
     "build": "tsup"
   },
   "dependencies": {
+    "@rosetta.js/formatter": "workspace:*",
     "@rosetta.js/utils": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1",

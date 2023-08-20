@@ -1,29 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import { setupRosetta } from '@rosetta.js/react'
 
-import { getRosseta } from '@rosetta.js/react'
-import './App.css'
-
-const r = getRosseta({
+const { tx } = setupRosetta({
   locale: 'en',
-  locales: {
-    es: () => import('./locale/es.ts'),
-    en: () => import('./locale/en.ts')
+  dictionaries: {
+    // es: () => import('./locale/es.ts'),
+    en: () => import('../locale/en.ts')
   }
 })
 
-const work = r.tx({ defaultMessage: 'Another message yohoo!' })
-
-function App() {
+export default function App() {
   return (
     <div>
-      <button onClick={() => r.changeLocale('es')}>
-        {r.tx({ defaultMessage: 'woh woh woh' })}
-      </button>
-      <p>{r.tx({ defaultMessage: 'This is my name' })}</p>
-      <p>{work}</p>
+      <p>
+        {tx(
+          'This is my name: ${name}, and I got this money: #${10000}, when: @${new Date()}'
+        )}
+      </p>
     </div>
   )
 }
-
-export default App
