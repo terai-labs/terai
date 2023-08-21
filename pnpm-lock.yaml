@@ -63,6 +63,9 @@ importers:
       kleur:
         specifier: ^4.1.5
         version: 4.1.5
+      perfect-debounce:
+        specifier: ^1.0.0
+        version: 1.0.0
     devDependencies:
       '@rosetta.js/types':
         specifier: workspace:*
@@ -220,6 +223,9 @@ importers:
 
   playground/next:
     dependencies:
+      '@rosetta.js/react':
+        specifier: workspace:*
+        version: link:../../packages/react
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -228,11 +234,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@rosetta.js/dev':
-        specifier: link:../../packages/dev
+        specifier: workspace:*
         version: link:../../packages/dev
-      '@rosetta.js/react':
-        specifier: link:../../packages/react
-        version: link:../../packages/react
       '@types/node':
         specifier: 20.5.1
         version: 20.5.1
@@ -6615,7 +6618,6 @@ packages:
 
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
-    dev: true
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}

@@ -17,8 +17,6 @@ function extractMessageFromTxCall(
 ): ts.VisitResult<ts.TaggedTemplateExpression> {
   const value = prepareMessage(node.template.getText())
   const id = toHash(value)
-  console.log('value', value)
-  console.log('id', id)
 
   const msg: ExtractedMessage = {
     id,

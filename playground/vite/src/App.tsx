@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import { setupRosetta } from '@rosetta.js/react'
 
 const { tx, useChangeLocale } = setupRosetta({
@@ -27,8 +25,10 @@ export default function App() {
       <p>
         {tx`This is my name: !${name}, and I got this money: #${10000}, when: @${new Date()}`}
       </p>
+
       <p>{tx`This is another freaking message: !${name} here!`}</p>
       <p>{tx`Rosetta can translate anything`}</p>
+      <p>{tx`This is a new message`}</p>
 
       <div>
         <button onClick={() => changeLocale('es')}>ES</button>
