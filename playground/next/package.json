@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@rosetta.js/react": "workspace:*"
   },
   "devDependencies": {
-    "@rosetta.js/dev": "link:../../packages/dev",
-    "@rosetta.js/react": "link:../../packages/react",
+    "@rosetta.js/react": "workspace:*",
+    "@rosetta.js/dev": "workspace:*",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "^18.2.7",
