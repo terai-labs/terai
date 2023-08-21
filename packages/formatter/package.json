@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@rosetta.js/node": "workspace:*",
+    "@rosetta.js/utils": "workspace:*",
     "outdent": " ^0.8.0"
   },
   "devDependencies": {

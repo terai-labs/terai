@@ -17,5 +17,8 @@ function toPhash(h: number, x: string) {
 }
 
 export function toHash(value: string) {
-  return toName(toPhash(5381, value) >>> 0)
+  const sanitizedValue = value.replace(/[^\w]/g, '')
+
+  const hash = toName(toPhash(5381, sanitizedValue) >>> 0)
+  return hash
 }

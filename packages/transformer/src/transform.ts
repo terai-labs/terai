@@ -1,6 +1,8 @@
 // Dependencies
-import { toHash } from '@rosetta.js/utils'
+import { toHash, prepareMessage } from '@rosetta.js/utils'
 import * as ts from 'typescript'
+
+// Types
 import type { ExtractedMessage } from '@rosetta.js/types'
 import type { TransformerOptions } from './types'
 
@@ -9,29 +11,24 @@ type TypeScript = typeof ts
 function extractMessageFromTxCall(
   ts: TypeScript,
   factory: ts.NodeFactory,
-  node: ts.CallExpression,
+  node: ts.TaggedTemplateExpression,
   { onMsgExtracted }: TransformerOptions,
   sf: ts.SourceFile
-): ts.VisitResult<ts.CallExpression> {
-  const [expression] = node.arguments
-  const start = expression.pos
-  const end = expression.end
-  const chunk = sf.fileName.slice(0, start)
-  const lines = chunk.split('\n')
-  const lastLine = lines[lines.length - 1]
-  const value = expression.getText()
+): ts.VisitResult<ts.TaggedTemplateExpression> {
+  const value = prepareMessage(node.template.getText())
+  const id = toHash(value)
+  console.log('value', value)
+  console.log('id', id)
 
   const msg: ExtractedMessage = {
-    id: toHash(value),
+    id,
     value,
-    file: sf.fileName,
-    start,
-    end,
-    line: lines.length,
-    col: lastLine.length
+    file: sf.fileName
   }
 
-  if (typeof onMsgExtracted === 'function') onMsgExtracted(sf.fileName, [msg])
+  if (typeof onMsgExtracted === 'function') {
+    onMsgExtracted(sf.fileName, [msg])
+  }
 
   return node
 }
@@ -44,7 +41,9 @@ function getVisitor(
 ) {
   const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
     const isTxCall =
-      ts.isCallExpression(node) && node.expression.getText() === 'tx'
+      ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'tx'
+    // console.log('isTxCall', node.expression.getText() === 'tx')
+    // console.log('isTxCall', isTxCall)
 
     if (isTxCall) {
       extractMessageFromTxCall(ts, ctx.factory, node, opts, sf)

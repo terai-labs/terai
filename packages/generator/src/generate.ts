@@ -45,7 +45,7 @@ function getFileContent({
 }) {
   return outdent`
     export default {
-      ${messages.map(msg => `${msg.id}: ${msg.msg}`).join(',\n  ')},
+      ${messages.map(msg => `'${msg.id}': ${msg.msg}`).join(',\n  ')}
     }${isTs ? ' as const' : ''}
   `
 }

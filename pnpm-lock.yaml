@@ -95,6 +95,9 @@ importers:
       '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
+      '@rosetta.js/utils':
+        specifier: workspace:*
+        version: link:../utils
       outdent:
         specifier: ' ^0.8.0'
         version: 0.8.0
@@ -209,7 +212,11 @@ importers:
 
   packages/types: {}
 
-  packages/utils: {}
+  packages/utils:
+    dependencies:
+      '@rosetta.js/types':
+        specifier: workspace:*
+        version: link:../types
 
   playground/next:
     dependencies:

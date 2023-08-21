@@ -10,6 +10,9 @@
     "build": "tsup",
     "dev": "pnpm build --watch"
   },
+  "dependencies": {
+    "@rosetta.js/types": "workspace:*"
+  },
   "files": [
     "dist"
   ]

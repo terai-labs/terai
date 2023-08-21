@@ -1,6 +1,3 @@
-export const createRegex = (item: Array<string | RegExp>) => {
-  const regex = item
-    .map(item => (typeof item === 'string' ? item : item.source))
-    .join('|')
-  return new RegExp(`^${regex}$`)
-}
+export const TEXT_REGEX = /!\$({.*?})/g
+export const DATE_REGEX = /@\$({.*?})/g
+export const NUMBER_REGEX = /#\${(.*?)}/g
