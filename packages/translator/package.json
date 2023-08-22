@@ -1,6 +1,6 @@
 {
-  "name": "@rosetta.js/generator",
-  "description": "Code generator for Rosetta.js",
+  "name": "@rosetta.js/translator",
+  "description": "Code translator for Rosetta.js",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@rosetta.js/node": "workspace:*",
-    "@rosetta.js/translator": "workspace:*",
-    "outdent": " ^0.8.0"
+    "@rosetta.js/utils": "workspace:*",
+    "outdent": " ^0.8.0",
+    "openai": " ^4.0.1",
+    "dotenv": " ^16.3.1"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*"

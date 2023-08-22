@@ -7,7 +7,7 @@ import { runtime } from './runtime'
 import getPackageManager from 'preferred-pm'
 import type { Config } from '@rosetta.js/types'
 
-type SetupOptions = Pick<Config, 'outExtension' | 'baseLocale'> & {
+type SetupOptions = Pick<Config, 'outExtension' | 'projectLocale'> & {
   force?: boolean
   cwd: string
 }
@@ -15,7 +15,7 @@ type SetupOptions = Pick<Config, 'outExtension' | 'baseLocale'> & {
 export async function setupConfig({
   force,
   outExtension,
-  baseLocale = 'en',
+  projectLocale = 'en',
   cwd
 }: SetupOptions) {
   const configFile = findConfig({ cwd })
@@ -47,7 +47,7 @@ export async function setupConfig({
         exclude: [],
 
         // The base locale used in your project
-        baseLocale: "${baseLocale}",
+        projectLocale: "${projectLocale}",
 
         // The output directory for your locale system
         outDir: "locale",

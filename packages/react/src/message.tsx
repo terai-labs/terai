@@ -14,7 +14,7 @@ export const createMessageComponent =
     const msg = prepareMessage(message)
     const snap = useSnapshot(state)
     const id = toHash(msg)
-    const tag = snap?.dictionary?.[id] || '__MISSING_TRANSLATION__'
+    const tag = snap?.messages?.[id] || '__MISSING_TRANSLATION__'
 
     return <>{format(snap.locale, tag, vars)}</>
   }

@@ -9,7 +9,7 @@ export const createUseChangeLocale =
   (setupOptions: SetupOptions, state: State) => () => (locale: Locale) => {
     state.locale = locale
 
-    setupOptions.dictionaries[locale]().then(dynamicLocale => {
-      state.dictionary = ref(dynamicLocale.default)
+    setupOptions.messages[locale]().then(mod => {
+      state.messages = ref(mod.default)
     })
   }

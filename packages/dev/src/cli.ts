@@ -11,7 +11,7 @@ import updateNotifier from 'update-notifier'
 // Types
 import type { Config } from '@rosetta.js/types'
 
-type InitOptions = Pick<Config, 'outExtension' | 'baseLocale'> & {
+type InitOptions = Pick<Config, 'outExtension' | 'projectLocale'> & {
   cwd: string
   force?: boolean
   silent?: boolean

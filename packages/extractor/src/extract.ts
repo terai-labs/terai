@@ -1,11 +1,11 @@
 // Dependencies
-import { processFile } from './process'
+import { processFile } from './process-file'
 import { logger } from '@rosetta.js/logger'
 import { runtime } from '@rosetta.js/node'
 
 // Types
 import type { TransformerOptions } from '@rosetta.js/transformer'
-import type { ExtractedMessage } from '@rosetta.js/types'
+import type { ExtractedMessages } from '@rosetta.js/types'
 
 /**
  * Extract strings from source files
@@ -18,7 +18,7 @@ export async function extract(
   files: readonly string[],
   options?: TransformerOptions
 ) {
-  const extractedMessages = new Map<string, ExtractedMessage>()
+  const extractedMessages: ExtractedMessages = new Map()
 
   await Promise.all(
     files.map(async fileName => {

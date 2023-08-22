@@ -1,5 +1,6 @@
 export default {
-  dtyOWZ:
-    'Este es mi nombre: !${VAR}, I tengo este dinero: #${VAR}, cuando: @${VAR}',
-  ddmVlX: 'Esto es otro mensaje: !${VAR} tete!'
+  jLMcIA: "¡Hola, !${VAR}!",
+  gdJnGP: "No has revisado tu correo electrónico desde @${VAR}",
+  kLyuRU: "Tienes #${VAR} mensajes en tu bandeja de entrada de correo electrónico",
+  fWgSnP: "¡Estoy haciendo una demostración de producto en tiempo real!"
 } as const

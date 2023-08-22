@@ -2,37 +2,28 @@ import { setupRosetta } from '@rosetta.js/react'
 
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',
-  dictionaries: {
+  messages: {
     es: () => import('../locale/es.ts'),
-    en: () => import('../locale/en.ts')
+    en: () => import('../locale/en.ts'),
+    it: () => import('../locale/it.ts')
   }
 })
 
 export default function App() {
-  const name = 'Hugo'
   const changeLocale = useChangeLocale()
+  const name = 'Hugo'
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        height: '100dvh'
-      }}
-    >
-      <p>
-        {tx`This is my name: !${name}, and I got this money: #${10000}, when: @${new Date()}`}
-      </p>
+    <div>
+      <p>{tx`Hello, !${name}!`}</p>
+      <p>{tx`You haven't checked you email since @${new Date()}`}</p>
+      <p>{tx`You got #${10000} messages in your mail inbox`}</p>
+      <p>{tx`I am doing a real-time product demo!`}</p>
 
-      <p>{tx`This is another freaking message: !${name} here!`}</p>
-      <p>{tx`Rosetta can translate anything`}</p>
-      <p>{tx`This is a new message`}</p>
-
-      <div>
+      <div className={'buttons'}>
         <button onClick={() => changeLocale('es')}>ES</button>
         <button onClick={() => changeLocale('en')}>EN</button>
+        <button onClick={() => changeLocale('it')}>IT</button>
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ export default defineConfig({
   exclude: [],
 
   // The base locale used in your project
-  baseLocale: "en",
+  projectLocale: "en",
 
   // The output directory for your locale system
   outDir: "locale",

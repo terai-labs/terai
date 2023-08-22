@@ -14,15 +14,15 @@ import type { SetupOptions } from './types'
 export function setupRosetta(options: SetupOptions) {
   const state = createState({
     locale: options.locale,
-    dictionary: {}
+    messages: {}
   })
   const Message = createMessageComponent(state)
   const tx = createTx(Message)
   const useLocale = createUseLocale(state)
   const useChangeLocale = createUseChangeLocale(options, state)
 
-  options.dictionaries[options.locale]().then(
-    loc => (state.dictionary = ref(loc.default))
+  options.messages[options.locale]().then(
+    loc => (state.messages = ref(loc.default))
   )
 
   return {

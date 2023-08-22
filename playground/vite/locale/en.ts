@@ -1,6 +1,6 @@
 export default {
-  'dtyOWZ': 'This is my name: !${VAR}, and I got this money: #${VAR}, when: @${VAR}',
-  'ddmVlX': 'This is another freaking message: !${VAR} here!',
-  'dVQyWp': 'Rosetta can translate anything',
-  'hfSSyp': 'This is a new message'
+  jLMcIA: "Hello, !${VAR}!",
+  gdJnGP: "You haven't checked you email since @${VAR}",
+  kLyuRU: "You got #${VAR} messages in your mail inbox",
+  fWgSnP: "I am doing a real-time product demo!"
 } as const

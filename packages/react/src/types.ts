@@ -1,15 +1,11 @@
-import type {
-  Locale,
-  Dictionary,
-  ImportedDictionaries
-} from '@rosetta.js/types'
+import type { Locale, Messages, ImportedMessages } from '@rosetta.js/types'
 
 export type State = {
   locale: Locale
-  dictionary: Dictionary
+  messages: Messages
 }
 
 export type SetupOptions = {
   locale: Locale
-  dictionaries: ImportedDictionaries
+  messages: ImportedMessages
 }
