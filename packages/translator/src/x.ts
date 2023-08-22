@@ -1,11 +1,7 @@
-import * as dotenv from 'dotenv'
-
-dotenv.config({ path: '../.env' })
-
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: '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'
 })
 
 export async function getAiTranslation({

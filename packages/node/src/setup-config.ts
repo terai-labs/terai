@@ -52,6 +52,9 @@ export async function setupConfig({
         // The output directory for your locale system
         outDir: "locale",
 
+        // The output directory for your locale system
+        outLocales: [],
+
         // The extension for the emitted JavaScript files
         outExtension: "${outExtension || isTs ? '.ts' : '.js'}",
       })

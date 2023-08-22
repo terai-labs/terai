@@ -10,10 +10,11 @@
     "dev": "pnpm build:shared && pnpm -r --parallel --filter=./packages/** dev",
     "build-fast": "pnpm -r --parallel --filter=./packages/** build-fast",
     "build": "pnpm -r --filter=./packages/** build",
+    "update": "pnpm -r --filter=./packages/** upgrade",
     "build:shared": "pnpm --filter {./packages/shared}... build",
     "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test run",
     "prepare": "husky install && pnpm build",
-    "clean": "pnpm -r --parallel exec rimraf node_modules dist *.log && rimraf node_modules",
+    "clean": "pnpm -r --parallel exec rimraf node_modules dist .next out && rimraf node_modules",
     "test": "pnpm i",
     "test-watch": "vitest --watch -u",
     "lint": "eslint packages --ext .ts",
@@ -21,9 +22,7 @@
     "prettier-fix": "prettier --write packages",
     "typecheck": "tsc --noEmit",
     "release": "changeset publish",
-    "release-dev": "changeset version --snapshot dev && changeset publish --tag dev",
-    "website": "pnpm --filter=./website",
-    "mdx-check": "mdx-local-link-checker docs && mdx-local-link-checker website/pages/docs"
+    "release-dev": "changeset version --snapshot dev && changeset publish --tag dev"
   },
   "dependencies": {
     "tsup": "^7.2.0",
@@ -32,12 +31,13 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
-    "@types/node": "^20.4.5",
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.1",
+    "@types/node": "^20.5.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
     "husky": "^8.0.3",
-    "lint-staged": "^14.0.0",
-    "prettier": "^3.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.2",
     "rimraf": "^5.0.1"
   }
 }

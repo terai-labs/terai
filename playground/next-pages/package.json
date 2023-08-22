@@ -1,6 +1,6 @@
 {
-  "name": "@rosetta.js/playground-next-pages",
-  "version": "0.0.0",
+  "name": "next-pages",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,17 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@rosetta.js/react": "workspace:*"
-  },
-  "devDependencies": {
     "@rosetta.js/dev": "workspace:*",
+    "@rosetta.js/react": "workspace:*",
     "@types/node": "20.5.1",
-    "@types/react": "18.2.20",
     "@types/react-dom": "^18.2.7",
-    "eslint": "^8.46.0",
+    "@types/react": "18.2.20",
     "eslint-config-next": "^13.4.13",
-    "next": "^13.4.13"
+    "eslint": "^8.46.0",
+    "next": "^13.4.13",
+    "react-dom": "^18.2.0",
+    "react": "^18.2.0",
+    "typescript": "^5.1.6"
   }
 }

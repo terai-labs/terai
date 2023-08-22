@@ -15,11 +15,11 @@
     "@rosetta.js/utils": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1",
-    "valtio": "^1.11.1"
+    "valtio": "^1.11.2"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*",
-    "@types/react": "^18.2.9"
+    "@types/react": "^18.2.21"
   },
   "peerDependencies": {
     "react": "^18.2.0"

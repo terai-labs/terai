@@ -8,11 +8,11 @@ import type { Config, ExtractedMessages, Messages } from '@rosetta.js/types'
 
 type GenerateOptions = {
   cwd: string
-} & Pick<Config, 'outDir' | 'outExtension' | 'projectLocale'>
+} & Pick<Config, 'outDir' | 'outExtension' | 'projectLocale' | 'outLocales'>
 
 export async function generate(
   extractedMessages: ExtractedMessages,
-  { outExtension, cwd, outDir, projectLocale }: GenerateOptions
+  { outExtension, cwd, outDir, projectLocale, outLocales }: GenerateOptions
 ) {
   const isTs = outExtension === '.ts'
   const messages: Messages = {}
@@ -23,10 +23,10 @@ export async function generate(
 
   const translatedMessages = await translate(messages, {
     projectLocale,
-    outLocales: ['es', 'it']
+    outLocales
   })
 
-  const outputLocales = [projectLocale, 'es', 'it']
+  const outputLocales = [projectLocale, ...outLocales]
   const output = [messages, ...translatedMessages]
 
   return Promise.all(
