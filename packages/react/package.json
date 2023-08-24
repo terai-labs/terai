@@ -7,9 +7,9 @@
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
-    "dev": "pnpm build --watch",
+    "dev": "pnpm build-fast --watch",
     "build": "tsup",
-    "build-fast": "tsup --no-dts"
+    "build-fast": "tsup --format=esm --no-dts"
   },
   "dependencies": {
     "@rosetta.js/formatter": "workspace:*",

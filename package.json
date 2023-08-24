@@ -13,7 +13,7 @@
     "update": "pnpm -r --filter=./packages/** upgrade",
     "build:shared": "pnpm --filter {./packages/shared}... build",
     "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test run",
-    "prepare": "husky install && pnpm build",
+    "prepare": "husky install && pnpm build-fast",
     "clean": "pnpm -r --parallel exec rimraf node_modules dist .next out && rimraf node_modules",
     "test": "pnpm i",
     "test-watch": "vitest --watch -u",
