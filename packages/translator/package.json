@@ -13,8 +13,7 @@
   "dependencies": {
     "@rosetta.js/node": "workspace:*",
     "@rosetta.js/utils": "workspace:*",
-    "openai": "^4.0.1",
-    "outdent": "^0.8.0"
+    "openai": "^4.0.1"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*"

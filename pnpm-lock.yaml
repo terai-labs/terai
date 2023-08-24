@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      outdent:
+        specifier: ^0.8.0
+        version: 0.8.0
       tsup:
         specifier: ^7.2.0
         version: 7.2.0(typescript@5.1.6)
@@ -104,9 +107,6 @@ importers:
       '@rosetta.js/utils':
         specifier: workspace:*
         version: link:../utils
-      outdent:
-        specifier: ^0.8.0
-        version: 0.8.0
     devDependencies:
       '@rosetta.js/types':
         specifier: workspace:*
@@ -120,9 +120,6 @@ importers:
       '@rosetta.js/translator':
         specifier: workspace:*
         version: link:../translator
-      outdent:
-        specifier: ^0.8.0
-        version: 0.8.0
     devDependencies:
       '@rosetta.js/types':
         specifier: workspace:*
@@ -230,9 +227,6 @@ importers:
       openai:
         specifier: ^4.0.1
         version: 4.0.1
-      outdent:
-        specifier: ^0.8.0
-        version: 0.8.0
     devDependencies:
       '@rosetta.js/types':
         specifier: workspace:*
