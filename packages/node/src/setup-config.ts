@@ -61,10 +61,5 @@ export async function setupConfig({
     `
 
     runtime.fs.write(runtime.path.join(cwd, fileName), content)
-
-    logger.log(outdent`
-      🚀 Thanks for choosing Rosetta.
-      You are set up to start using it!
-    `)
   }
 }

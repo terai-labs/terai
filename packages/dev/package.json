@@ -13,7 +13,8 @@
   },
   "scripts": {
     "dev": "pnpm build --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "build-fast": "tsup --no-dts"
   },
   "dependencies": {
     "@rosetta.js/extractor": "workspace:*",

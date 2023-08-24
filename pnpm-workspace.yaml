@@ -1,4 +1,4 @@
 packages:
-  - "packages/**"
-  - "playground/**"
-  - "website"
+  - 'packages/**'
+  - 'playground/**'
+  - 'website'

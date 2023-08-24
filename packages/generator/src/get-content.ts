@@ -21,10 +21,7 @@ export function getContent({
     export default {
       ${output
         .map(msg => {
-          return `${msg.id}: "${msg.value.substring(
-            1,
-            msg.value.length - 1
-          )}"`
+          return `${msg.id}: "${msg.value.substring(1, msg.value.length - 1)}"`
         })
         .join(',\n  ')}
     }${isTs ? ' as const' : ''}

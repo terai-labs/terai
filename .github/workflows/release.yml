@@ -3,9 +3,9 @@ name: Publish
 on:
   push:
     paths:
-      - ".changeset/**"
-      - "packages/**"
-      - "extension/**"
+      - '.changeset/**'
+      - 'packages/**'
+      - 'extension/**'
     branches:
       - master
 
