@@ -1,16 +1,12 @@
 // @ts-nocheck
 
-import type { Locale, MessageValue } from '@rosetta.js/types'
+import type { Locale, MessageVars } from '@rosetta.js/types'
 import { formatDate } from './date'
 import { formatNumber } from './number'
 
 const formatText = (template: string) => template
 
-export function format(
-  locale: Locale,
-  message: string,
-  values: MessageValue[]
-) {
+export function format(locale: Locale, message: string, values: MessageVars[]) {
   let index = 0
   return message.replace(/(!|@|#)\${(\w+)}/g, (_, type) => {
     const value = values[index]

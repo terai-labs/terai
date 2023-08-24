@@ -1,7 +1,5 @@
-// Dependencies
-import { useSnapshot } from 'valtio'
-
 // Types
-import type { State } from './types'
+import type { ObservableState } from './types'
 
-export const createUseLocale = (state: State) => () => useSnapshot(state)
+export const createUseLocale = (state$: ObservableState) => () =>
+  state$.locale.get()

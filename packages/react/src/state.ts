@@ -1,9 +1,9 @@
 // Dependencies
-import { proxy } from 'valtio'
+import { observable } from '@legendapp/state'
 
 // Types
-import type { State } from './types'
+import type { ObservableState, State } from './types'
 
-export const createState = (initialState: State) => {
-  return proxy<State>(initialState)
+export const createState = (initialState: State): ObservableState => {
+  return observable<State>(initialState)
 }

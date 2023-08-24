@@ -2,19 +2,19 @@
 import { format } from '@rosetta.js/formatter'
 import { prepareMessage } from '@rosetta.js/utils'
 import { toHash } from '@rosetta.js/utils'
-import { useSnapshot } from 'valtio'
 
 // Types
-import type { MessageValue } from '@rosetta.js/types'
-import type { State } from './types'
+import type { MessageVars } from '@rosetta.js/types'
+import type { ObservableState } from './types'
 
 export const createMessageComponent =
-  (state: State) =>
-  ({ message, vars }: { message: string; vars: MessageValue[] }) => {
+  (state$: ObservableState) =>
+  ({ message, vars }: { message: string; vars: MessageVars[] }) => {
+    const locale = state$.locale.use()
+    const messages = state$.messages.use()
     const msg = prepareMessage(message)
-    const snap = useSnapshot(state)
     const id = toHash(msg)
-    const tag = snap?.messages?.[id] || '__MISSING_TRANSLATION__'
+    const tag = messages?.[locale]?.[id] || 'Missing message 😕'
 
-    return <>{format(snap.locale, tag, vars)}</>
+    return <>{format(locale, tag, vars)}</>
   }

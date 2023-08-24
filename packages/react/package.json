@@ -16,7 +16,7 @@
     "@rosetta.js/utils": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1",
-    "valtio": "^1.11.2"
+    "@legendapp/state": "^1.10.2"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*",

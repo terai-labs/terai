@@ -1,4 +1,5 @@
 import { setupRosetta } from '@rosetta.js/react'
+import { useState } from 'react'
 
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',
@@ -12,6 +13,7 @@ const { tx, useChangeLocale } = setupRosetta({
 export default function App() {
   const changeLocale = useChangeLocale()
   const name = 'Hugo'
+  const [state, setState] = useState(0)
 
   return (
     <div>
@@ -24,6 +26,7 @@ export default function App() {
         <button onClick={() => changeLocale('es')}>ES</button>
         <button onClick={() => changeLocale('en')}>EN</button>
         <button onClick={() => changeLocale('it')}>IT</button>
+        <button onClick={() => setState(stae => stae + 1)}>{state}</button>
       </div>
     </div>
   )

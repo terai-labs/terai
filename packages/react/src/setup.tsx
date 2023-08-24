@@ -1,28 +1,44 @@
-// Dependencies
-import { ref } from 'valtio'
-
 // Utils
 import { createState } from './state'
 import { createMessageComponent } from './message'
 import { createTx } from './tx'
 import { createUseLocale } from './use-locale'
 import { createUseChangeLocale } from './use-change-locale'
+import { enableReactUse } from '@legendapp/state/config/enableReactUse'
+import {
+  configureObservablePersistence,
+  persistObservable
+} from '@legendapp/state/persist'
+import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 
 // Types
 import type { SetupOptions } from './types'
 
+// Setup
+enableReactUse()
+configureObservablePersistence({
+  persistLocal: ObservablePersistLocalStorage
+})
+
 export function setupRosetta(options: SetupOptions) {
-  const state = createState({
+  const state$ = createState({
     locale: options.locale,
     messages: {}
   })
-  const Message = createMessageComponent(state)
-  const tx = createTx(Message)
-  const useLocale = createUseLocale(state)
-  const useChangeLocale = createUseChangeLocale(options, state)
 
-  options.messages[options.locale]().then(
-    loc => (state.messages = ref(loc.default))
+  persistObservable(state$, {
+    local: 'ROSETTA'
+  })
+
+  state$.locale.onChange(({ value }) => console.log('Locale changed to', value))
+
+  const Message = createMessageComponent(state$)
+  const tx = createTx(Message)
+  const useLocale = createUseLocale(state$)
+  const useChangeLocale = createUseChangeLocale(options, state$)
+
+  options.messages[options.locale]().then(loc =>
+    state$.messages[options.locale].set(loc.default)
   )
 
   return {
