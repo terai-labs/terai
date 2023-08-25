@@ -4,7 +4,6 @@ import { useState } from 'react'
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',
   messages: {
-    es: () => import('../locale/es.ts'),
     en: () => import('../locale/en.ts'),
     it: () => import('../locale/it.ts')
   }

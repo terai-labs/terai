@@ -41,10 +41,13 @@ export async function setupConfig({
 
       export default defineConfig({
         // Where to look for your locale declarations
-        include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
+        include: ["./src/**/*.{js,jsx,ts,tsx}"],
 
         // Files to exclude
         exclude: [],
+
+        // Your openai API key
+        openaiApiKey: PROCESS.env.OPENAI_API_KEY,
 
         // The base locale used in your project
         projectLocale: "${projectLocale}",
@@ -52,10 +55,10 @@ export async function setupConfig({
         // The output directory for your locale system
         outDir: "locale",
 
-        // The output directory for your locale system
+        // The output locales
         outLocales: [],
 
-        // The extension for the emitted JavaScript files
+        // The extension for the emitted locale files
         outExtension: "${outExtension || isTs ? '.ts' : '.js'}",
       })
     `

@@ -5,11 +5,11 @@ import { createTx } from './tx'
 import { createUseLocale } from './use-locale'
 import { createUseChangeLocale } from './use-change-locale'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
+import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 import {
   configureObservablePersistence,
   persistObservable
 } from '@legendapp/state/persist'
-import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 
 // Types
 import type { SetupOptions } from './types'

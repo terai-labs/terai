@@ -1,5 +1,11 @@
 # @rosetta.js/types
 
+## 0.1.2
+
+### Patch Changes
+
+- Enabled use personal OpenAI API Key
+
 ## 0.0.1
 
 ### Patch Changes

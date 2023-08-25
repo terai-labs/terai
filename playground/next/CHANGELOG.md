@@ -1,5 +1,13 @@
 # @rosetta.js/playground-next-pages
 
+## 0.1.2
+
+### Patch Changes
+
+- Enabled use personal OpenAI API Key
+- Updated dependencies
+  - @rosetta.js/react@0.1.2
+
 ## 0.0.1
 
 ### Patch Changes

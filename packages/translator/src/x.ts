@@ -7,14 +7,16 @@ import type { Locale } from '@rosetta.js/types'
 export async function getAiTranslation({
   messagesJson,
   projectLocale,
-  locale
+  locale,
+  openaiApiKey
 }: {
   messagesJson: string
   projectLocale: string
   locale: Locale
+  openaiApiKey: string
 }) {
   const openai = new OpenAI({
-    apiKey: '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'
+    apiKey: openaiApiKey
   })
 
   const response = await openai.chat.completions.create({

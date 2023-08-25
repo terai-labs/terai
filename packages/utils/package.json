@@ -1,6 +1,6 @@
 {
   "name": "@rosetta.js/utils",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Shared utilities for Rosetta.js",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

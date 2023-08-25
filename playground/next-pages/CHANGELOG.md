@@ -1,5 +1,15 @@
 # next-pages
 
+## 0.1.2
+
+### Patch Changes
+
+- Enabled use personal OpenAI API Key
+- Updated dependencies
+- Updated dependencies [07d9d25]
+  - @rosetta.js/react@0.1.2
+  - @rosetta.js/dev@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

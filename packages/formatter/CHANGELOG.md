@@ -1,5 +1,15 @@
 # @rosetta.js/formatter
 
+## 0.1.2
+
+### Patch Changes
+
+- Enabled use personal OpenAI API Key
+- Updated dependencies
+- Updated dependencies [07d9d25]
+  - @rosetta.js/node@0.1.2
+  - @rosetta.js/utils@0.1.2
+
 ## 0.0.1
 
 ### Patch Changes
