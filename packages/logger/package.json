@@ -1,6 +1,6 @@
 {
   "name": "@rosetta.js/logger",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The core Rosetta.js logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -1,26 +1,27 @@
-name: 'Install'
-description: 'Sets up Node.js and runs install'
+name: "Install"
+description: "Sets up Node.js and runs install"
 
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v2.2.4
+    - name: Setup PNPM
+      uses: pnpm/action-setup@master
       with:
         version: 8
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@main
       with:
-        node-version: 18.x
-        registry-url: 'https://registry.npmjs.org'
-        cache: 'pnpm'
+        node-version: 18
+        registry-url: https://registry.npmjs.org/
+        cache: "pnpm"
 
-    - name: Setup Git User
+    - name: Setup Git Configuration
       shell: bash
       run: |
         git config --global user.email "corta.hugo@gmail.com"
-        git config --global user.name "Hugo Corta"
+        git config --global user.name "hugocxl"
 
     - name: Install dependencies
       shell: bash
-      run: pnpm install --no-frozen-lockfile
+      run: pnpm i --no-frozen-lockfile
