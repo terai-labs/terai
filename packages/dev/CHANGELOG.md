@@ -1,5 +1,17 @@
 # @rosetta.js/dev
 
+## 0.1.4
+
+### Patch Changes
+
+- 9b0ba56: Adding support for React Server environments
+- Updated dependencies [9b0ba56]
+  - @rosetta.js/translator@0.1.4
+  - @rosetta.js/extractor@0.1.4
+  - @rosetta.js/utils@0.1.4
+  - @rosetta.js/node@0.1.4
+  - @rosetta.js/logger@0.1.4
+
 ## 0.1.3
 
 ### Patch Changes
