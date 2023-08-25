@@ -54,9 +54,6 @@ importers:
       '@rosetta.js/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@rosetta.js/generator':
-        specifier: workspace:*
-        version: link:../generator
       '@rosetta.js/logger':
         specifier: workspace:*
         version: link:../logger
@@ -73,6 +70,9 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
+      '@rosetta.js/generator':
+        specifier: workspace:*
+        version: link:../generator
       '@rosetta.js/types':
         specifier: workspace:*
         version: link:../types

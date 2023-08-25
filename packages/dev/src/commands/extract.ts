@@ -1,8 +1,8 @@
 // Dependencies
 import { debounce } from 'perfect-debounce'
 import { extract } from '@rosetta.js/extractor'
-import { generate } from '@rosetta.js/generator'
 import { loadConfig, runtime } from '@rosetta.js/node'
+import { generate } from '@rosetta.js/generator'
 import { logger } from '@rosetta.js/logger'
 
 // Types
