@@ -8,17 +8,17 @@ type TranslateOptions = Pick<
   Config,
   'projectLocale' | 'outLocales' | 'openaiApiKey'
 > & {
-  messages: Dictionary
+  dictionary: Dictionary
   locale: Locale
 }
 
 export async function translate({
-  messages,
+  dictionary,
   projectLocale,
   locale,
   openaiApiKey
 }: TranslateOptions) {
-  const messagesJson = JSON.stringify(messages)
+  const messagesJson = JSON.stringify(dictionary)
 
   const translation = await getAiTranslation({
     messagesJson,

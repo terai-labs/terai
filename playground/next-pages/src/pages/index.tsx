@@ -2,7 +2,7 @@ import { setupRosetta } from '@rosetta.js/react/client'
 
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',
-  messages: {
+  dictionaries: {
     en: () => import('../../locale/en.js'),
     de: () => import('../../locale/de.js'),
     da: () => import('../../locale/da_DK.js')

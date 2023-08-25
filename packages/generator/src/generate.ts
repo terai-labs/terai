@@ -7,12 +7,12 @@ import type { Config, Locale, Dictionary } from '@rosetta.js/types'
 
 type GenerateOptions = {
   cwd: string
-  messages: Dictionary
+  dictionary: Dictionary
   locale: Locale
 } & Pick<Config, 'outDir' | 'outExtension' | 'projectLocale' | 'outLocales'>
 
 export async function generate({
-  messages,
+  dictionary,
   outExtension,
   locale,
   cwd,
@@ -22,7 +22,7 @@ export async function generate({
   const basePath = runtime.path.resolve(cwd, outDir, `${locale}${outExtension}`)
 
   const content = getContent({
-    messages,
+    dictionary,
     isTs
   })
 

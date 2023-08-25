@@ -7,7 +7,7 @@ import { translate } from '@rosetta.js/translator'
 import { loadConfig, runtime, setupConfig } from '@rosetta.js/node'
 import { logger } from '@rosetta.js/logger'
 import { outdent } from 'outdent'
-import { toPlainMessages } from '@rosetta.js/utils'
+import { toPlainDictionary } from '@rosetta.js/utils'
 import updateNotifier from 'update-notifier'
 
 // Types
@@ -63,11 +63,11 @@ export async function main() {
         cwd: options.cwd
       })
       const extractedMessages = await extract({ filesPaths })
-      const messages = toPlainMessages(extractedMessages)
+      const dictionary = toPlainDictionary(extractedMessages)
       await generate({
         ...config,
         locale: config.projectLocale,
-        messages,
+        dictionary,
         cwd: options.cwd
       })
 
@@ -86,11 +86,11 @@ export async function main() {
             logger.info('cli:extract', 'files changed, extracting messages...')
 
             const extractedMessages = await extract({ filesPaths })
-            const messages = toPlainMessages(extractedMessages)
+            const dictionary = toPlainDictionary(extractedMessages)
             await generate({
               ...config,
               locale: config.projectLocale,
-              messages,
+              dictionary,
               cwd: options.cwd
             })
 
@@ -111,7 +111,7 @@ export async function main() {
       const done = logger.time.info('✨ Rosetta translation')
 
       const config = await loadConfig(options)
-      const messages = await runtime.import<Dictionary>({
+      const dictionary = await runtime.import<Dictionary>({
         cwd: options.cwd,
         filePath: runtime.path.resolve(
           options.cwd,
@@ -127,13 +127,13 @@ export async function main() {
           const tMessages = await translate({
             ...config,
             locale,
-            messages
+            dictionary
           })
 
           await generate({
             ...config,
             locale,
-            messages: tMessages,
+            dictionary: tMessages,
             cwd: options.cwd
           })
 

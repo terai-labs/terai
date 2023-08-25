@@ -3,17 +3,17 @@ import type { Dictionary } from '@rosetta.js/types'
 import { outdent } from 'outdent'
 
 export function getContent({
-  messages,
+  dictionary,
   isTs
 }: {
-  messages: Dictionary
+  dictionary: Dictionary
   isTs: boolean
 }) {
   const output = []
-  for (const msg in messages) {
+  for (const msg in dictionary) {
     output.push({
       id: msg,
-      value: messages[msg]
+      value: dictionary[msg]
     })
   }
 

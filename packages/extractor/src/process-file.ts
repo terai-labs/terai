@@ -11,7 +11,7 @@ export async function processFile(
   fileName: string,
   options: TransformerOptions = {}
 ): Promise<ExtractedMessage[]> {
-  let messages: ExtractedMessage[] = []
+  let extractedMessages: ExtractedMessage[] = []
 
   ts.transpileModule(source, {
     reportDiagnostics: true,
@@ -27,12 +27,12 @@ export async function processFile(
         transform({
           ...options,
           onMsgExtracted: (_, msgs) => {
-            messages = messages.concat(msgs)
+            extractedMessages = extractedMessages.concat(msgs)
           }
         })
       ]
     }
   })
 
-  return messages
+  return extractedMessages
 }

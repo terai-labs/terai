@@ -21,9 +21,9 @@ export async function extract({
     filesPaths.map(async fileName => {
       try {
         const source = runtime.fs.readFile(fileName)
-        const messages = await processFile(source, fileName, options)
+        const dictionary = await processFile(source, fileName, options)
 
-        for (const message of messages) {
+        for (const message of dictionary) {
           extractedMessages.set(message.id, message)
         }
       } catch (e) {

@@ -21,7 +21,7 @@ export const createUseChangeLocale =
           })
         }
       } catch (e) {
-        console.error('Error loading messages:', e)
+        console.error('Error loading dictionary:', e)
       }
     }
 
