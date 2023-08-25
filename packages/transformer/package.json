@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "pnpm build-fast --watch",
     "build": "tsup",
-    "build-fast": "tsup --format=esm --no-dts"
+    "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
     "@rosetta.js/utils": "workspace:*",

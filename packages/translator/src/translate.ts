@@ -2,27 +2,25 @@
 import { getAiTranslation } from './x'
 
 // Types
-import type { Config, Messages } from '@rosetta.js/types'
+import type { Config, Locale, Messages } from '@rosetta.js/types'
 
-type TranslateOptions = Pick<Config, 'projectLocale' | 'outLocales'>
+type TranslateOptions = Pick<Config, 'projectLocale' | 'outLocales'> & {
+  messages: Messages
+  locale: Locale
+}
 
-export async function translate(
-  messages: Messages,
-  { projectLocale, outLocales }: TranslateOptions
-) {
+export async function translate({
+  messages,
+  projectLocale,
+  locale
+}: TranslateOptions) {
   const messagesJson = JSON.stringify(messages)
 
-  const translations = await Promise.all(
-    outLocales.map(async locale => {
-      const translation = await getAiTranslation({
-        messagesJson,
-        locale,
-        projectLocale
-      })
+  const translation = await getAiTranslation({
+    messagesJson,
+    locale,
+    projectLocale
+  })
 
-      return JSON.parse(translation)
-    })
-  )
-
-  return translations
+  return JSON.parse(translation)
 }

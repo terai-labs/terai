@@ -1,6 +1,9 @@
 // Dependencies
 import OpenAI from 'openai'
 
+// Types
+import type { Locale } from '@rosetta.js/types'
+
 export async function getAiTranslation({
   messagesJson,
   projectLocale,
@@ -8,7 +11,7 @@ export async function getAiTranslation({
 }: {
   messagesJson: string
   projectLocale: string
-  locale: string
+  locale: Locale
 }) {
   const openai = new OpenAI({
     apiKey: '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'
@@ -16,14 +19,12 @@ export async function getAiTranslation({
 
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
-    // model: 'text-davinci-003',
     messages: [
       {
         role: 'system',
         content: [
           `Translate this JSON (now in locale: ${projectLocale}} into this locale: ${locale}`,
           'Do not translate the keys of the json',
-          'Keep white spaces and new lines',
           'Do not translate any of these ocurrences: @${VAR}, #${VAR}, !${VAR}, just leave them as they are'
         ].join('.\n')
       },

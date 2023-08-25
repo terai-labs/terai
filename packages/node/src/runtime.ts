@@ -1,6 +1,7 @@
+import { bundleNRequire } from 'bundle-n-require'
 import { logger } from '@rosetta.js/logger'
-import chokidar from 'chokidar'
 import { lookItUpSync } from 'look-it-up'
+import chokidar from 'chokidar'
 import glob from 'fast-glob'
 import {
   copySync,
@@ -26,6 +27,14 @@ import {
 export const runtime = {
   cwd: () => process.cwd(),
   env: (name: string) => process.env[name],
+  import: async <T>({ filePath, cwd }: { filePath: string; cwd: string }) => {
+    const { mod } = await bundleNRequire(filePath, {
+      cwd,
+      interopDefault: true
+    })
+
+    return (mod?.default ?? mod) as T
+  },
   path: {
     join,
     relative,

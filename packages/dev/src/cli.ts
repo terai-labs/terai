@@ -3,6 +3,7 @@ import { cac } from 'cac'
 import { debounce } from 'perfect-debounce'
 import { extract } from '@rosetta.js/extractor'
 import { generate } from '@rosetta.js/generator'
+import { translate } from '@rosetta.js/translator'
 import { loadConfig, runtime, setupConfig } from '@rosetta.js/node'
 import { logger } from '@rosetta.js/logger'
 import { outdent } from 'outdent'
@@ -13,6 +14,7 @@ import updateNotifier from 'update-notifier'
 import type { ExtractOptions, InitOptions } from './types'
 
 import pkg from '../package.json'
+import type { Messages } from '@rosetta.js/types'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -21,8 +23,9 @@ export async function main() {
   const cwd = runtime.cwd()
   const cli = cac('rosetta')
 
+  // Init
   cli
-    .command('init', "Initialize the Rosetta's config file")
+    .command('init', "Initialize Rosetta's config file")
     .option('-b, --base-locale', 'Base locale used in your project')
     .option('-f, --force', 'Force overwrite existing config file')
     .option('-s, --silent', 'Suppress all messages except errors')
@@ -44,8 +47,9 @@ export async function main() {
     `)
     })
 
+  // Extract
   cli
-    .command('extract', "Initialize the Rosetta's extraction")
+    .command('extract', "Initialize Rosetta's extraction")
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('-w, --watch', 'Watch files and rebuild')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
@@ -74,7 +78,6 @@ export async function main() {
         const configWatcher = runtime.fs.watch({
           ...config,
           ...options
-          // poll
         })
 
         configWatcher.on(
@@ -95,6 +98,53 @@ export async function main() {
           })
         )
       }
+    })
+
+  // Translate
+  cli
+    .command('translate', "Initialize Rosetta's translation")
+    .option('-s, --silent', 'Suppress all messages except errors')
+    // .option('-w, --watch', 'Watch files and rebuild')
+    .option('--cwd <cwd>', 'Current working directory', { default: cwd })
+    .action(async (options: ExtractOptions) => {
+      if (options.silent) logger.level = 'silent'
+      const done = logger.time.info('✨ Rosetta translation')
+
+      const config = await loadConfig(options)
+      const messages = await runtime.import<Messages>({
+        cwd: options.cwd,
+        filePath: runtime.path.resolve(
+          options.cwd,
+          config.outDir,
+          `${config.projectLocale}${config.outExtension}`
+        )
+      })
+
+      logger.info('cli:translation', `Initializing translation...`)
+
+      await Promise.all(
+        config.outLocales.map(async locale => {
+          const tMessages = await translate({
+            ...config,
+            locale,
+            messages
+          })
+
+          await generate({
+            ...config,
+            locale,
+            messages: tMessages,
+            cwd: options.cwd
+          })
+
+          logger.info(
+            'cli:translation',
+            `Translated files for locale: ${locale} ✅`
+          )
+        })
+      )
+
+      done()
     })
 
   cli.help()

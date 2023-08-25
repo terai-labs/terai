@@ -60,6 +60,9 @@ importers:
       '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
+      '@rosetta.js/translator':
+        specifier: workspace:*
+        version: link:../translator
       '@rosetta.js/utils':
         specifier: workspace:*
         version: link:../utils
