@@ -14,7 +14,7 @@ import updateNotifier from 'update-notifier'
 import type { ExtractOptions, InitOptions } from './types'
 
 import pkg from '../package.json'
-import type { Messages } from '@rosetta.js/types'
+import type { Dictionary } from '@rosetta.js/types'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -111,7 +111,7 @@ export async function main() {
       const done = logger.time.info('✨ Rosetta translation')
 
       const config = await loadConfig(options)
-      const messages = await runtime.import<Messages>({
+      const messages = await runtime.import<Dictionary>({
         cwd: options.cwd,
         filePath: runtime.path.resolve(
           options.cwd,

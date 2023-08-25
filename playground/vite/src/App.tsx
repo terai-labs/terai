@@ -1,10 +1,11 @@
-import { setupRosetta } from '@rosetta.js/react'
+import { setupRosetta } from '@rosetta.js/react/client'
 import { useState } from 'react'
 
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',
-  messages: {
+  dictionaries: {
     en: () => import('../locale/en.ts'),
+    es: () => import('../locale/es.ts'),
     it: () => import('../locale/it.ts')
   }
 })

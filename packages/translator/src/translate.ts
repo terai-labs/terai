@@ -2,13 +2,13 @@
 import { getAiTranslation } from './x'
 
 // Types
-import type { Config, Locale, Messages } from '@rosetta.js/types'
+import type { Config, Locale, Dictionary } from '@rosetta.js/types'
 
 type TranslateOptions = Pick<
   Config,
   'projectLocale' | 'outLocales' | 'openaiApiKey'
 > & {
-  messages: Messages
+  messages: Dictionary
   locale: Locale
 }
 

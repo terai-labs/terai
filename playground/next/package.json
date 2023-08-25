@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rosetta.js/react": "workspace:*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@rosetta.js/react": "workspace:*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@rosetta.js/dev": "workspace:*",
@@ -20,6 +20,6 @@
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.46.0",
     "eslint-config-next": "^13.4.13",
-    "next": "^13.4.13"
+    "next": "13.4.20-canary.8"
   }
 }

@@ -1,12 +1,12 @@
 // Dependencies
-import type { Messages } from '@rosetta.js/types'
+import type { Dictionary } from '@rosetta.js/types'
 import { outdent } from 'outdent'
 
 export function getContent({
   messages,
   isTs
 }: {
-  messages: Messages
+  messages: Dictionary
   isTs: boolean
 }) {
   const output = []

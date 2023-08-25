@@ -1,10 +1,14 @@
 import type { Observable } from '@legendapp/state'
-import type { Locale, Messages, ImportedMessages } from '@rosetta.js/types'
+import type {
+  Locale,
+  Dictionary,
+  ImportedDictionaries
+} from '@rosetta.js/types'
 
 export type State = {
   locale: Locale
-  messages: {
-    [key: string]: Messages
+  dictionaries: {
+    [key: string]: Dictionary
   }
 }
 
@@ -12,5 +16,5 @@ export type ObservableState = Observable<State>
 
 export type SetupOptions = {
   locale: Locale
-  messages: ImportedMessages
+  dictionaries: ImportedDictionaries
 }

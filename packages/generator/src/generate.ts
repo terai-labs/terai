@@ -3,11 +3,11 @@ import { runtime } from '@rosetta.js/node'
 import { getContent } from './get-content'
 
 // Types
-import type { Config, Locale, Messages } from '@rosetta.js/types'
+import type { Config, Locale, Dictionary } from '@rosetta.js/types'
 
 type GenerateOptions = {
   cwd: string
-  messages: Messages
+  messages: Dictionary
   locale: Locale
 } & Pick<Config, 'outDir' | 'outExtension' | 'projectLocale' | 'outLocales'>
 

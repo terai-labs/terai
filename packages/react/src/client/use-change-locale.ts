@@ -6,16 +6,16 @@ export const createUseChangeLocale =
   (setupOptions: SetupOptions, state$: ObservableState) => () => {
     async function changeLocale(locale: Locale) {
       try {
-        const messages = state$.messages.get()
+        const dictionaries = state$.dictionaries.get()
 
-        if (messages[locale]) {
+        if (dictionaries[locale]) {
           state$.locale.set(locale)
         } else {
-          const mod = await setupOptions.messages[locale]()
+          const mod = await setupOptions.dictionaries[locale]()
           state$.set({
             locale,
-            messages: {
-              ...messages,
+            dictionaries: {
+              ...dictionaries,
               [locale]: mod.default
             }
           })

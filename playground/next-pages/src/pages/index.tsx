@@ -1,4 +1,4 @@
-import { setupRosetta } from '@rosetta.js/react'
+import { setupRosetta } from '@rosetta.js/react/client'
 
 const { tx, useChangeLocale } = setupRosetta({
   locale: 'en',

@@ -1,7 +1,7 @@
-import type { ExtractedMessages, Messages } from '@rosetta.js/types'
+import type { ExtractedMessages, Dictionary } from '@rosetta.js/types'
 
 export function toPlainMessages(extractedMessages: ExtractedMessages) {
-  const messages: Messages = {}
+  const messages: Dictionary = {}
 
   extractedMessages.forEach((msg, id) => {
     messages[id] = msg.value || ''

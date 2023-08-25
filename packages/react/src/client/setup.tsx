@@ -1,7 +1,6 @@
 // Utils
-import { createState } from './state'
-import { createMessageComponent } from './message'
 import { createTx } from './tx'
+import { createState } from './state'
 import { createUseLocale } from './use-locale'
 import { createUseChangeLocale } from './use-change-locale'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
@@ -23,7 +22,7 @@ configureObservablePersistence({
 export function setupRosetta(options: SetupOptions) {
   const state$ = createState({
     locale: options.locale,
-    messages: {}
+    dictionaries: {}
   })
 
   persistObservable(state$, {
@@ -31,16 +30,15 @@ export function setupRosetta(options: SetupOptions) {
   })
 
   state$.locale.onChange(({ value }) =>
-    console.log('Locale changed to:', value)
+    console.log('Rosetta: locale changed to ', value)
   )
 
-  const Message = createMessageComponent(state$)
-  const tx = createTx(Message)
+  const tx = createTx(state$)
   const useLocale = createUseLocale(state$)
   const useChangeLocale = createUseChangeLocale(options, state$)
 
-  options.messages[options.locale]().then(loc =>
-    state$.messages[options.locale].set(loc.default)
+  options.dictionaries[options.locale]().then(loc =>
+    state$.dictionaries[options.locale].set(loc.default)
   )
 
   return {
