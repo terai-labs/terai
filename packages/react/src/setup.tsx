@@ -30,7 +30,9 @@ export function setupRosetta(options: SetupOptions) {
     local: 'ROSETTA'
   })
 
-  state$.locale.onChange(({ value }) => console.log('Locale changed to', value))
+  state$.locale.onChange(({ value }) =>
+    console.log('Locale changed to:', value)
+  )
 
   const Message = createMessageComponent(state$)
   const tx = createTx(Message)

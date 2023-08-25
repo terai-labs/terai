@@ -46,8 +46,8 @@ export async function setupConfig({
         // Files to exclude
         exclude: [],
 
-        // Your openai API key
-        openaiApiKey: PROCESS.env.OPENAI_API_KEY,
+        // Your OpenAI API key
+        openaiApiKey: '',
 
         // The base locale used in your project
         projectLocale: "${projectLocale}",

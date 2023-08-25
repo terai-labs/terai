@@ -1,5 +1,14 @@
 # next-pages
 
+## 0.1.3
+
+### Patch Changes
+
+- Fix error when reading OpenAI API Key
+- Updated dependencies
+  - @rosetta.js/react@0.1.3
+  - @rosetta.js/dev@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes

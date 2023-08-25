@@ -40,8 +40,6 @@ function getVisitor(
   const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
     const isTxCall =
       ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'tx'
-    // console.log('isTxCall', node.expression.getText() === 'tx')
-    // console.log('isTxCall', isTxCall)
 
     if (isTxCall) {
       extractMessageFromTxCall(ts, ctx.factory, node, opts, sf)

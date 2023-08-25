@@ -1,5 +1,11 @@
 # @rosetta.js/logger
 
+## 0.1.3
+
+### Patch Changes
+
+- Fix error when reading OpenAI API Key
+
 ## 0.1.2
 
 ### Patch Changes
