@@ -7,21 +7,18 @@ import { runtime } from '@rosetta.js/node'
 import type { TransformerOptions } from '@rosetta.js/transformer'
 import type { ExtractedMessages } from '@rosetta.js/types'
 
-/**
- * Extract strings from source files
- * @param files list of files
- * @param extractOpts extract options
- * @returns messages serialized as JSON string since key order
- * matters for some `format`
- */
-export async function extract(
-  files: readonly string[],
-  options?: TransformerOptions
-) {
+type ExtractOptions = TransformerOptions & {
+  filesPaths: readonly string[]
+}
+
+export async function extract({
+  filesPaths,
+  ...options
+}: ExtractOptions): Promise<ExtractedMessages> {
   const extractedMessages: ExtractedMessages = new Map()
 
   await Promise.all(
-    files.map(async fileName => {
+    filesPaths.map(async fileName => {
       try {
         const source = runtime.fs.readFile(fileName)
         const messages = await processFile(source, fileName, options)

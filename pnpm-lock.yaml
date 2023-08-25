@@ -60,6 +60,9 @@ importers:
       '@rosetta.js/node':
         specifier: workspace:*
         version: link:../node
+      '@rosetta.js/utils':
+        specifier: workspace:*
+        version: link:../utils
       cac:
         specifier: ^6.7.14
         version: 6.7.14

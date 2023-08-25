@@ -1,8 +1,5 @@
+// Dependencies
 import OpenAI from 'openai'
-
-const openai = new OpenAI({
-  apiKey: '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'
-})
 
 export async function getAiTranslation({
   messagesJson,
@@ -13,6 +10,10 @@ export async function getAiTranslation({
   projectLocale: string
   locale: string
 }) {
+  const openai = new OpenAI({
+    apiKey: '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'
+  })
+
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     // model: 'text-davinci-003',
