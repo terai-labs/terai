@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 import type { Locale, MessageVariables } from '@rosetta.js/types'
@@ -6,7 +7,11 @@ import { formatNumber } from './number'
 
 const formatText = (template: string) => template
 
-export function format(locale: Locale, message: string, values: MessageVariables[]) {
+export function format(
+  locale: Locale,
+  message: string,
+  values: MessageVariables[]
+) {
   let index = 0
   return message.replace(/(!|@|#)\${(\w+)}/g, (_, type) => {
     const value = values[index]

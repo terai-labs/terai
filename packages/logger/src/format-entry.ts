@@ -31,7 +31,7 @@ export const formatEntry = (entry: Entry) =>
 export const createEntry = (
   level: LogLevel | null,
   type: string,
-  data: any
+  data: unknown
 ) => {
   const msg = data instanceof Error ? colors.red(data.message) : data
   return { type, level, msg }

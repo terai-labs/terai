@@ -6,4 +6,6 @@ build
 pnpm-lock.yaml
 *.d.ts
 *.js
+*.md
+*.css
 *.cjs

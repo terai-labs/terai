@@ -53,7 +53,7 @@ export const runtime = {
     ensureDir: ensureDirSync,
     exists: existsSync,
     readDir: readdirSync,
-    readFile: (path: any) => readFileSync(path, 'utf8'),
+    readFile: (path: string) => readFileSync(path, 'utf8'),
     remove: removeSync,
     findUp: lookItUpSync,
     rename: renameSync,
