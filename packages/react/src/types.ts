@@ -1,3 +1,4 @@
+// Types
 import type { Observable } from '@legendapp/state'
 import type {
   Locale,

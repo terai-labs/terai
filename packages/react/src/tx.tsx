@@ -1,14 +1,17 @@
+// Dependencies
+import { txFormat } from '@rosetta.js/formatter'
+
 // Types
 import type { MessageVariables } from '@rosetta.js/types'
-import { getMessage } from '../shared/get-message'
+import type { ObservableState } from './types'
 
 export const createTx =
-  state$ =>
+  (state$: ObservableState) =>
   (strings: TemplateStringsArray, ...vars: MessageVariables[]) => {
     const { locale, dictionaries } = state$.use()
     const dictionary = dictionaries[locale]
 
-    return getMessage({
+    return txFormat({
       strings,
       vars,
       dictionary,

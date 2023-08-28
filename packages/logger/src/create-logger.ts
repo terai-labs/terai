@@ -3,7 +3,7 @@ import { match, Obj, pipe, when } from 'lil-fp'
 import { isMatch } from 'matcher'
 import { createEntry, formatEntry } from './format-entry'
 import { logLevels } from './levels'
-import { type Config, type LogLevel } from './utils'
+import { type Config, type Entry, type LogLevel } from './utils'
 
 const matches = (filters: string[], value: string) =>
   filters.some(search => isMatch(value, search))
@@ -40,7 +40,7 @@ export const createLogger = (conf: Config = {}) => {
               when(
                 ({ level, type }) => level != null && isValid(level, type),
                 entry => {
-                  const { msg, label } = formatEntry(entry) ?? {}
+                  const { msg, label } = formatEntry(entry as Entry) ?? {}
                   console.log(label, msg)
                 }
               ),

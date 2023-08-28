@@ -1,15 +1,8 @@
-import { setupRosetta } from '@rosetta.js/react/server'
-
-export const { tx } = await setupRosetta({
-  locale: 'en',
-  dictionaries: {
-    en: () => import('../../locale/en.js'),
-    es: () => import('../../locale/es.js')
-  }
-})
+import { getTx } from './rosetta/server'
 
 export default async function Home() {
   const name = 'Hugo'
+  const tx = await getTx()
 
   return (
     <div>

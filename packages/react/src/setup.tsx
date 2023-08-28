@@ -26,7 +26,7 @@ export function setupRosetta(options: SetupOptions) {
   })
 
   persistObservable(state$, {
-    local: 'ROSETTA'
+    local: 'rosetta'
   })
 
   state$.locale.onChange(({ value }) =>

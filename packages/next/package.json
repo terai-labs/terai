@@ -1,6 +1,6 @@
 {
-  "name": "@rosetta.js/react",
-  "description": "Rosetta.js for React",
+  "name": "@rosetta.js/next",
+  "description": "Rosetta.js for Next.js",
   "version": "0.1.4",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -12,16 +12,19 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@legendapp/state": "^1.10.2",
+    "@rosetta.js/types": "workspace:*",
+    "@rosetta.js/react": "workspace:*",
     "@rosetta.js/formatter": "workspace:*",
     "@rosetta.js/utils": "workspace:*",
-    "client-only": "^0.0.1"
+    "client-only": "^0.0.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@rosetta.js/types": "workspace:*",
     "@types/react": "^18.2.21"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "next": "^13.4.0"
   }
 }

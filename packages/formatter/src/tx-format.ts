@@ -1,8 +1,11 @@
-import { format } from '@rosetta.js/formatter'
-import { Dictionary, Locale, MessageVariables } from '@rosetta.js/types'
+// Dependencies
 import { prepareMessage, toHash } from '@rosetta.js/utils'
+import { format } from './format'
 
-export function getMessage({
+// Types
+import type { Dictionary, Locale, MessageVariables } from '@rosetta.js/types'
+
+export function txFormat({
   strings,
   vars,
   dictionary,
