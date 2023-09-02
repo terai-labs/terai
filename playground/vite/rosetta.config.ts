@@ -17,7 +17,7 @@ export default defineConfig({
   outDir: 'locale',
 
   // The output locales
-  outLocales: ['es'],
+  outLocales: ['es', 'it'],
 
   // The extension for the emitted locale files
   outExtension: '.ts'

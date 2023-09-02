@@ -1,1 +1,2 @@
-export * from './src'
+export * from './src/client'
+export * from './src/server'

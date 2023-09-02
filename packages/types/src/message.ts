@@ -1,10 +1,8 @@
-export type MessageId = string
-export type MessageValue = string
-export type MessageVariables = string | number | boolean | null | undefined | Date
-
 export type ExtractedMessage = {
-  id: MessageId
+  id: string
   value?: string
   file?: string
+  context?: string
 }
-export type ExtractedMessages = Map<MessageId, ExtractedMessage>
+
+export type ExtractedMessages = Map<string, ExtractedMessage>

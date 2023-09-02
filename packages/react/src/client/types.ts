@@ -8,9 +8,7 @@ import type {
 
 export type State = {
   locale: Locale
-  dictionaries: {
-    [key: string]: Dictionary
-  }
+  dictionary: Dictionary
 }
 
 export type ObservableState = Observable<State>

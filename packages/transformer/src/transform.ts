@@ -8,7 +8,7 @@ import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts
 
-function extractMessageFromTxCall(
+function extractMessageFromTemplateExpression(
   ts: TypeScript,
   factory: ts.NodeFactory,
   node: ts.TaggedTemplateExpression,
@@ -21,7 +21,46 @@ function extractMessageFromTxCall(
   const msg: ExtractedMessage = {
     id,
     value,
+    context: '',
     file: sf.fileName
+  }
+
+  if (typeof onMsgExtracted === 'function') {
+    onMsgExtracted(sf.fileName, [msg])
+  }
+
+  return node
+}
+
+function extractMessageFromCallExpression(
+  ts: TypeScript,
+  factory: ts.NodeFactory,
+  node: ts.CallExpression,
+  { onMsgExtracted }: TransformerOptions,
+  sf: ts.SourceFile
+): ts.VisitResult<ts.CallExpression> {
+  const expressionNode = node.parent as ts.TaggedTemplateExpression
+  const value = prepareMessage(expressionNode.template.getText())
+  let context = ''
+  const id = toHash(value)
+
+  // Extract context from first argument
+  if (node.arguments?.[0]) {
+    node.arguments?.[0].forEachChild(child => {
+      const key = child.getFirstToken()?.getText()
+
+      if (key === 'context') {
+        const contextValue = child.getLastToken()?.getText()
+        if (contextValue) context = contextValue
+      }
+    })
+  }
+
+  const msg: ExtractedMessage = {
+    id,
+    value,
+    file: sf.fileName,
+    context
   }
 
   if (typeof onMsgExtracted === 'function') {
@@ -38,11 +77,13 @@ function getVisitor(
   opts: TransformerOptions
 ) {
   const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
-    const isTxCall =
-      ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'tx'
-
-    if (isTxCall) {
-      extractMessageFromTxCall(ts, ctx.factory, node, opts, sf)
+    if (ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'tx') {
+      extractMessageFromTemplateExpression(ts, ctx.factory, node, opts, sf)
+    } else if (
+      ts.isCallExpression(node) &&
+      node.expression.getText() === 'tx'
+    ) {
+      extractMessageFromCallExpression(ts, ctx.factory, node, opts, sf)
     }
 
     return ts.visitEachChild(node, visitor, ctx)

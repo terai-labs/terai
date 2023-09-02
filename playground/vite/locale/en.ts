@@ -1,3 +1,3 @@
 export default {
-  fzAHYx: 'hola'
+  jLMcIA: "Hello, ${VAR}!"
 } as const

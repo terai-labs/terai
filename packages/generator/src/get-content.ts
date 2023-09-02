@@ -21,9 +21,9 @@ export function getContent({
     export default {
       ${output
         .map(msg => {
-          return `${msg.id}: \`${msg.value}\``
-            .replaceAll("`'", '`')
-            .replaceAll("'`", '`')
+          return `${msg.id}: "${msg.value}"`
+            .replaceAll(`"'`, '"')
+            .replaceAll(`'"`, '"')
         })
         .join(',\n  ')}
     }${isTs ? ' as const' : ''}

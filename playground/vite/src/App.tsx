@@ -1,7 +1,7 @@
-import { setupRosetta } from '@rosetta.js/react'
+import { setupRosetta } from '@rosetta.js/react/client'
 import { useState } from 'react'
 
-const { tx, useChangeLocale } = setupRosetta({
+const { tx, changeLocale } = setupRosetta({
   locale: 'en',
   dictionaries: {
     en: () => import('../locale/en.ts'),
@@ -11,12 +11,22 @@ const { tx, useChangeLocale } = setupRosetta({
 })
 
 export default function App() {
-  const changeLocale = useChangeLocale()
+  return (
+    <div>
+      <Another />
+      <Example />
+      <Third />
+    </div>
+  )
+}
+export function Another() {
   const [state, setState] = useState(0)
+  const name = 'Hugo'
 
   return (
     <div>
-      <p>{tx`hola`}</p>
+      <p>{'Hoola'}</p>
+      <p>{tx`Hello, ${name}!`}</p>
 
       <div className={'buttons'}>
         <button onClick={() => changeLocale('es')}>ES</button>
@@ -24,6 +34,29 @@ export default function App() {
         <button onClick={() => changeLocale('it')}>IT</button>
         <button onClick={() => setState(stae => stae + 1)}>{state}</button>
       </div>
+    </div>
+  )
+}
+
+function Example() {
+  return (
+    <div>
+      <p>{'Hoola'}</p>
+
+      <div className={'buttons'}>
+        <button onClick={() => changeLocale('es')}>ES</button>
+        <button onClick={() => changeLocale('en')}>EN</button>
+        <button onClick={() => changeLocale('it')}>IT</button>
+      </div>
+    </div>
+  )
+}
+
+function Third() {
+  return (
+    <div>
+      <p>{tx`This is a test!`}</p>
+      <p>{'This should not render'}</p>
     </div>
   )
 }

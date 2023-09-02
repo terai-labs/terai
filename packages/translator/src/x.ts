@@ -27,7 +27,7 @@ export async function getAiTranslation({
         content: [
           `Translate this JSON (now in locale: ${projectLocale}} into this locale: ${locale}`,
           'Do not translate the keys of the json',
-          'Do not translate any of these ocurrences: @${VAR}, #${VAR}, !${VAR}, just leave them as they are'
+          'Do not translate any of these ocurrences: ${VAR}, @${VAR}, #${VAR}, !${VAR}, just leave them as they are'
         ].join('.\n')
       },
       {
