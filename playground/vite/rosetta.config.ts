@@ -7,18 +7,15 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  // Your openai API key
-  openaiApiKey: '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',
-
   // The base locale used in your project
   projectLocale: 'en',
 
   // The output directory for your locale system
-  outDir: 'locale',
+  outDir: './locale',
 
   // The output locales
-  outLocales: ['es', 'it'],
+  locales: ['de', 'it'],
 
-  // The extension for the emitted locale files
-  outExtension: '.ts'
+  // Your OpenAI API key
+  openaiApiKey: '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'
 })

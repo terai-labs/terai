@@ -5,9 +5,9 @@ export function toPlainDictionary(
 ): Dictionary {
   const dictionary: Dictionary = {}
 
-  extractedMessages.forEach((msg, id) => {
-    dictionary[id] = msg.value || ''
-  })
+  for (const id in extractedMessages) {
+    dictionary[id] = extractedMessages[id].value || ''
+  }
 
   return dictionary
 }

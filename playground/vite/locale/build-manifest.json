@@ -1,0 +1,10 @@
+{
+  "messages": {
+    "jLMcIA": {
+      "id": "jLMcIA",
+      "value": "\"Hello, ${VAR}!\"",
+      "context": "",
+      "file": "/Users/hugocxl/repos/rosetta.js/playground/vite/src/App.tsx"
+    }
+  }
+}

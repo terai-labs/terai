@@ -11,52 +11,16 @@ const { tx, changeLocale } = setupRosetta({
 })
 
 export default function App() {
+  const name = 'Rosetta'
   return (
     <div>
-      <Another />
-      <Example />
-      <Third />
-    </div>
-  )
-}
-export function Another() {
-  const [state, setState] = useState(0)
-  const name = 'Hugo'
-
-  return (
-    <div>
-      <p>{'Hoola'}</p>
       <p>{tx`Hello, ${name}!`}</p>
 
       <div className={'buttons'}>
         <button onClick={() => changeLocale('es')}>ES</button>
         <button onClick={() => changeLocale('en')}>EN</button>
         <button onClick={() => changeLocale('it')}>IT</button>
-        <button onClick={() => setState(stae => stae + 1)}>{state}</button>
       </div>
-    </div>
-  )
-}
-
-function Example() {
-  return (
-    <div>
-      <p>{'Hoola'}</p>
-
-      <div className={'buttons'}>
-        <button onClick={() => changeLocale('es')}>ES</button>
-        <button onClick={() => changeLocale('en')}>EN</button>
-        <button onClick={() => changeLocale('it')}>IT</button>
-      </div>
-    </div>
-  )
-}
-
-function Third() {
-  return (
-    <div>
-      <p>{tx`This is a test!`}</p>
-      <p>{'This should not render'}</p>
     </div>
   )
 }

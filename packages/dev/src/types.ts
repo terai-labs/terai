@@ -5,10 +5,9 @@ export type ExtractOptions = {
   force?: boolean
   silent?: boolean
   watch?: boolean
-  outExtension?: string
 }
 
-export type InitOptions = Pick<Config, 'outExtension' | 'projectLocale'> & {
+export type InitOptions = Pick<Config, 'projectLocale'> & {
   cwd: string
   force?: boolean
   silent?: boolean

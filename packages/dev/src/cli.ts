@@ -9,12 +9,13 @@ import { logger } from '@rosetta.js/logger'
 import { outdent } from 'outdent'
 import { toPlainDictionary } from '@rosetta.js/utils'
 import updateNotifier from 'update-notifier'
+import { input } from '@inquirer/prompts'
 
 // Types
 import type { ExtractOptions, InitOptions } from './types'
 
 import pkg from '../package.json'
-import type { Dictionary } from '@rosetta.js/types'
+import type { Dictionary, Locale } from '@rosetta.js/types'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -23,21 +24,31 @@ export async function main() {
   const cwd = runtime.cwd()
   const cli = cac('rosetta')
 
-  // Init
   cli
     .command('init', "Initialize Rosetta's config file")
-    .option('-b, --base-locale', 'Base locale used in your project')
     .option('-f, --force', 'Force overwrite existing config file')
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
-    .option(
-      '--out-extension <ext>',
-      "The extension of the generated files (default: 'ts')"
-    )
     .action(async (options: InitOptions) => {
+      const projectLocale = (await input({
+        message: 'What locale do you use for development?',
+        default: 'en'
+      })) as Locale
+      const locales = (await input({
+        message: 'What locales will you be using? (e.g: fr,de)',
+        default: ''
+      }).then(res => res.replaceAll(' ', '').split(','))) as Locale[]
+      const outDir = await input({
+        message: 'Where do you want to place your generated files?',
+        default: './locale'
+      })
+
+      logger.clear()
+
       if (options.silent) logger.level = 'silent'
-      const done = logger.time.info('✨ Rosetta initialized')
-      await setupConfig(options)
+
+      const done = logger.time.info('🔥 Rosetta initialized')
+      await setupConfig({ ...options, projectLocale, locales, outDir })
 
       done()
 
@@ -47,7 +58,6 @@ export async function main() {
     `)
     })
 
-  // Extract
   cli
     .command('extract', "Initialize Rosetta's extraction")
     .option('-s, --silent', 'Suppress all messages except errors')
@@ -71,10 +81,15 @@ export async function main() {
         cwd: options.cwd
       })
 
+      runtime.fs.write(
+        runtime.path.resolve(cwd, config.outDir, `build-manifest.json`),
+        JSON.stringify({ messages: extractedMessages }, null, 2)
+      )
+
       done()
 
       if (options.watch) {
-        logger.info('cli:extract', 'watching files...')
+        logger.info('cli:extract', 'Watching files...')
         const configWatcher = runtime.fs.watch({
           ...config,
           ...options
@@ -83,7 +98,7 @@ export async function main() {
         configWatcher.on(
           'change',
           debounce(async () => {
-            logger.info('cli:extract', 'files changed, extracting messages...')
+            logger.info('cli:extract', 'Files changed, extracting messages...')
 
             const extractedMessages = await extract({ filesPaths })
             const dictionary = toPlainDictionary(extractedMessages)
@@ -94,17 +109,15 @@ export async function main() {
               cwd: options.cwd
             })
 
-            logger.info('cli:extract', 'translation files rebuilt ✅')
+            logger.info('cli:extract', 'Extracted messages ✅')
           })
         )
       }
     })
 
-  // Translate
   cli
     .command('translate', "Initialize Rosetta's translation")
     .option('-s, --silent', 'Suppress all messages except errors')
-    // .option('-w, --watch', 'Watch files and rebuild')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(async (options: ExtractOptions) => {
       if (options.silent) logger.level = 'silent'
@@ -116,14 +129,14 @@ export async function main() {
         filePath: runtime.path.resolve(
           options.cwd,
           config.outDir,
-          `${config.projectLocale}${config.outExtension}`
+          `${config.projectLocale}.json`
         )
       })
 
-      logger.info('cli:translation', `Initializing translation...`)
+      logger.info('cli:translate', `Initializing translation...`)
 
       await Promise.all(
-        config.outLocales.map(async locale => {
+        config.locales.map(async locale => {
           const tMessages = await translate({
             ...config,
             locale,
@@ -138,7 +151,7 @@ export async function main() {
           })
 
           logger.info(
-            'cli:translation',
+            'cli:translate',
             `Translated files for locale: ${locale} ✅`
           )
         })

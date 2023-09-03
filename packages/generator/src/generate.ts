@@ -1,6 +1,5 @@
 // Dependencies
 import { runtime } from '@rosetta.js/node'
-import { getContent } from './get-content'
 
 // Types
 import type { Config, Locale, Dictionary } from '@rosetta.js/types'
@@ -9,22 +8,22 @@ type GenerateOptions = {
   cwd: string
   dictionary: Dictionary
   locale: Locale
-} & Pick<Config, 'outDir' | 'outExtension' | 'projectLocale' | 'outLocales'>
+} & Pick<Config, 'outDir' | 'projectLocale' | 'locales'>
 
 export async function generate({
   dictionary,
-  outExtension,
   locale,
   cwd,
   outDir
 }: GenerateOptions) {
-  const isTs = outExtension === '.ts'
-  const basePath = runtime.path.resolve(cwd, outDir, `${locale}${outExtension}`)
+  const basePath = runtime.path.resolve(cwd, outDir, `${locale}.json`)
 
-  const content = getContent({
-    dictionary,
-    isTs
-  })
+  return runtime.fs.write(basePath, JSON.stringify(dictionary, replacer, 2))
+}
 
-  return runtime.fs.write(basePath, content)
+function replacer(key: unknown, value: unknown) {
+  if (typeof value === 'string') {
+    return value.slice(1, -1) // Remove the first and last character (single quotes)
+  }
+  return value
 }

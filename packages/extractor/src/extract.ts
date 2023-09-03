@@ -15,7 +15,7 @@ export async function extract({
   filesPaths,
   ...options
 }: ExtractOptions): Promise<ExtractedMessages> {
-  const extractedMessages: ExtractedMessages = new Map()
+  const extractedMessages: ExtractedMessages = {}
 
   await Promise.all(
     filesPaths.map(async fileName => {
@@ -24,7 +24,7 @@ export async function extract({
         const dictionary = await processFile(source, fileName, options)
 
         for (const message of dictionary) {
-          extractedMessages.set(message.id, message)
+          extractedMessages[message.id] = message
         }
       } catch (e) {
         logger.error('extract', `Error processing file ${fileName} ${e}`)

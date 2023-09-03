@@ -78,6 +78,7 @@ export const createLogger = (conf: Config = {}) => {
     set level(newLevel: LogLevel) {
       level = newLevel
     },
+    clear: () => console.clear(),
     warn: stdout('warn'),
     info: stdout('info'),
     debug: stdout('debug'),

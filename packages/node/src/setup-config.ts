@@ -5,18 +5,21 @@ import { logger } from '@rosetta.js/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 import getPackageManager from 'preferred-pm'
+
+// Types
 import type { Config } from '@rosetta.js/types'
 
-type SetupOptions = Pick<Config, 'outExtension' | 'projectLocale'> & {
+type SetupOptions = Pick<Config, 'projectLocale' | 'locales' | 'outDir'> & {
   force?: boolean
   cwd: string
 }
 
 export async function setupConfig({
   force,
-  outExtension,
-  projectLocale = 'en',
-  cwd
+  cwd,
+  projectLocale,
+  locales,
+  outDir
 }: SetupOptions) {
   const configFile = findConfig({ cwd })
   const pmResult = await getPackageManager(cwd)
@@ -25,11 +28,11 @@ export async function setupConfig({
   const isTs = findTsConfig()
   const fileName = isTs ? 'rosetta.config.ts' : 'rosetta.config.mjs'
 
-  logger.info('init:config', `creating rosetta config file: ${fileName}`)
+  logger.info('init:setup', `Creating Rosetta config file...`)
 
   if (!force && configFile) {
     logger.warn(
-      'init:config',
+      'init:setup',
       outdent`
         It looks like you already have rosetta created\`.
         You can now run '${cmd} rosetta --watch'.
@@ -45,21 +48,18 @@ export async function setupConfig({
 
         // Files to exclude
         exclude: [],
-
-        // Your OpenAI API key
-        openaiApiKey: '',
-
+        
         // The base locale used in your project
         projectLocale: "${projectLocale}",
-
+        
         // The output directory for your locale system
-        outDir: "locale",
-
+        outDir: "${outDir}",
+        
         // The output locales
-        outLocales: [],
+        locales: ${JSON.stringify(locales)},
 
-        // The extension for the emitted locale files
-        outExtension: "${outExtension || isTs ? '.ts' : '.js'}",
+        // Your OpenAI API key
+        openaiApiKey: "",
       })
     `
 

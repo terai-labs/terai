@@ -6,6 +6,5 @@ export type Config = {
   openaiApiKey: string
   projectLocale: Locale
   outDir: string
-  outLocales: Locale[]
-  outExtension: '.ts' | '.js'
+  locales: Locale[]
 }

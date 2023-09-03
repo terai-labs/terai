@@ -1,8 +1,9 @@
 export type ExtractedMessage = {
   id: string
-  value?: string
-  file?: string
-  context?: string
+  value: string
+  file: string
+  context: string
+  // group: string
 }
 
-export type ExtractedMessages = Map<string, ExtractedMessage>
+export type ExtractedMessages = Record<string, ExtractedMessage>

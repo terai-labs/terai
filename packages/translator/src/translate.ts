@@ -6,7 +6,7 @@ import type { Config, Locale, Dictionary } from '@rosetta.js/types'
 
 type TranslateOptions = Pick<
   Config,
-  'projectLocale' | 'outLocales' | 'openaiApiKey'
+  'projectLocale' | 'locales' | 'openaiApiKey'
 > & {
   dictionary: Dictionary
   locale: Locale
