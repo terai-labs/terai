@@ -1,4 +1,4 @@
-import { createMiddleware } from '@rosetta.js/next'
+import { createMiddleware } from '@rewordlabs/next'
 
 export const middleware = createMiddleware(['en', 'es'], 'es')
 

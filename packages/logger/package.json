@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/logger",
-  "version": "0.1.4",
-  "description": "The core Rosetta.js logger",
+  "name": "@rewordlabs/logger",
+  "version": "0.0.0",
+  "description": "The core rewordlabs logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

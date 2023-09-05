@@ -1,7 +1,7 @@
-import { setupRosetta } from '@rosetta.js/react/client'
+import { setupReword } from '@rewordlabs/react/client'
 import { useState } from 'react'
 
-const { tx, changeLocale } = setupRosetta({
+const { tx, changeLocale } = setupReword({
   locale: 'en',
   dictionaries: {
     en: () => import('../locale/en.ts'),
@@ -11,7 +11,7 @@ const { tx, changeLocale } = setupRosetta({
 })
 
 export default function App() {
-  const name = 'Rosetta'
+  const name = 'Reword'
   return (
     <div>
       <p>{tx`Hello, ${name}!`}</p>

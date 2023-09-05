@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/formatter",
-  "description": "Code formatter for Rosetta.js",
-  "version": "0.1.4",
+  "name": "@rewordlabs/formatter",
+  "description": "Code formatter for Reword",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,10 +12,10 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/node": "workspace:*",
-    "@rosetta.js/utils": "workspace:*"
+    "@rewordlabs/node": "workspace:*",
+    "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*"
+    "@rewordlabs/types": "workspace:*"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/next",
-  "description": "Rosetta.js for Next.js",
-  "version": "0.1.4",
+  "name": "@rewordlabs/next",
+  "description": "rewordlabs for Next.js",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,15 +12,15 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/types": "workspace:*",
-    "@rosetta.js/react": "workspace:*",
-    "@rosetta.js/formatter": "workspace:*",
-    "@rosetta.js/utils": "workspace:*",
+    "@rewordlabs/types": "workspace:*",
+    "@rewordlabs/react": "workspace:*",
+    "@rewordlabs/formatter": "workspace:*",
+    "@rewordlabs/utils": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*",
+    "@rewordlabs/types": "workspace:*",
     "@types/react": "^18.2.21"
   },
   "peerDependencies": {

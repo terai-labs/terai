@@ -1,4 +1,4 @@
-import type { ImportedDictionaries } from '@rosetta.js/types'
+import type { ImportedDictionaries } from '@rewordlabs/types'
 
 export type SetupOptions = {
   dictionaries: ImportedDictionaries

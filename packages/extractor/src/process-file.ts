@@ -1,10 +1,10 @@
 // Dependencies
 import * as ts from 'typescript'
-import { transform } from '@rosetta.js/transformer'
+import { transform } from '@rewordlabs/transformer'
 
 // Types
-import type { TransformerOptions } from '@rosetta.js/transformer'
-import type { ExtractedMessage } from '@rosetta.js/types'
+import type { TransformerOptions } from '@rewordlabs/transformer'
+import type { ExtractedMessage } from '@rewordlabs/types'
 
 export async function processFile(
   source: string,

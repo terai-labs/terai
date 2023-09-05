@@ -1,9 +1,9 @@
 // Dependencies
-import { toHash, prepareMessage } from '@rosetta.js/utils'
+import { toHash, prepareMessage } from '@rewordlabs/utils'
 import * as ts from 'typescript'
 
 // Types
-import type { ExtractedMessage } from '@rosetta.js/types'
+import type { ExtractedMessage } from '@rewordlabs/types'
 import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts

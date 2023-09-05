@@ -1,4 +1,4 @@
-import type { Config } from '@rosetta.js/types'
+import type { Config } from '@rewordlabs/types'
 
 export type ExtractOptions = {
   cwd: string

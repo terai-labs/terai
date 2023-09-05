@@ -1,11 +1,11 @@
 // Dependencies
 import { processFile } from './process-file'
-import { logger } from '@rosetta.js/logger'
-import { runtime } from '@rosetta.js/node'
+import { logger } from '@rewordlabs/logger'
+import { runtime } from '@rewordlabs/node'
 
 // Types
-import type { TransformerOptions } from '@rosetta.js/transformer'
-import type { ExtractedMessages } from '@rosetta.js/types'
+import type { TransformerOptions } from '@rewordlabs/transformer'
+import type { ExtractedMessages } from '@rewordlabs/types'
 
 type ExtractOptions = TransformerOptions & {
   filesPaths: readonly string[]

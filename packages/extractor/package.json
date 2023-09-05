@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/extractor",
-  "description": "Dictionary extractor for Rosetta.js",
-  "version": "0.1.4",
+  "name": "@rewordlabs/extractor",
+  "description": "Dictionary extractor for Reword",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,11 +12,11 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/logger": "workspace:*",
-    "@rosetta.js/node": "workspace:*",
-    "@rosetta.js/transformer": "workspace:*"
+    "@rewordlabs/logger": "workspace:*",
+    "@rewordlabs/node": "workspace:*",
+    "@rewordlabs/transformer": "workspace:*"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*"
+    "@rewordlabs/types": "workspace:*"
   }
 }

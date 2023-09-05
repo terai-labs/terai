@@ -1,13 +1,13 @@
 // Dependencies
 import { findConfig } from './find-config'
 import { findTsConfig } from './find-tsconfig'
-import { logger } from '@rosetta.js/logger'
+import { logger } from '@rewordlabs/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 import getPackageManager from 'preferred-pm'
 
 // Types
-import type { Config } from '@rosetta.js/types'
+import type { Config } from '@rewordlabs/types'
 
 type SetupOptions = Pick<Config, 'projectLocale' | 'locales' | 'outDir'> & {
   force?: boolean
@@ -26,21 +26,21 @@ export async function setupConfig({
   const pm = pmResult?.name ?? 'npm'
   const cmd = pm === 'npm' ? 'npm run' : pm
   const isTs = findTsConfig()
-  const fileName = isTs ? 'rosetta.config.ts' : 'rosetta.config.mjs'
+  const fileName = isTs ? 'reword.config.ts' : 'reword.config.mjs'
 
-  logger.info('init:setup', `Creating Rosetta config file...`)
+  logger.info('init:setup', `Creating Reword config file...`)
 
   if (!force && configFile) {
     logger.warn(
       'init:setup',
       outdent`
-        It looks like you already have rosetta created\`.
-        You can now run '${cmd} rosetta --watch'.
+        It looks like you already have reword created\`.
+        You can now run '${cmd} reword --watch'.
       `
     )
   } else {
     const content = outdent`
-      import { defineConfig } from "@rosetta.js/dev"
+      import { defineConfig } from "@rewordlabs/dev"
 
       export default defineConfig({
         // Where to look for your locale declarations

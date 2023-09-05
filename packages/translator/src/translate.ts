@@ -2,7 +2,7 @@
 import { getAiTranslation } from './x'
 
 // Types
-import type { Config, Locale, Dictionary } from '@rosetta.js/types'
+import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 
 type TranslateOptions = Pick<
   Config,

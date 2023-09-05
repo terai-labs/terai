@@ -1,13 +1,13 @@
 // Dependencies
 import { cac } from 'cac'
 import { debounce } from 'perfect-debounce'
-import { extract } from '@rosetta.js/extractor'
-import { generate } from '@rosetta.js/generator'
-import { translate } from '@rosetta.js/translator'
-import { loadConfig, runtime, setupConfig } from '@rosetta.js/node'
-import { logger } from '@rosetta.js/logger'
+import { extract } from '@rewordlabs/extractor'
+import { generate } from '@rewordlabs/generator'
+import { translate } from '@rewordlabs/translator'
+import { loadConfig, runtime, setupConfig } from '@rewordlabs/node'
+import { logger } from '@rewordlabs/logger'
 import { outdent } from 'outdent'
-import { toPlainDictionary } from '@rosetta.js/utils'
+import { toPlainDictionary } from '@rewordlabs/utils'
 import updateNotifier from 'update-notifier'
 import { input } from '@inquirer/prompts'
 
@@ -15,17 +15,17 @@ import { input } from '@inquirer/prompts'
 import type { ExtractOptions, InitOptions } from './types'
 
 import pkg from '../package.json'
-import type { Dictionary, Locale } from '@rosetta.js/types'
+import type { Dictionary, Locale } from '@rewordlabs/types'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
-  logger.info('cli', `Rosetta v${pkg.version}\n`)
+  logger.info('cli', `Reword v${pkg.version}\n`)
 
   const cwd = runtime.cwd()
-  const cli = cac('rosetta')
+  const cli = cac('reword')
 
   cli
-    .command('init', "Initialize Rosetta's config file")
+    .command('init', "Initialize Reword's config file")
     .option('-f, --force', 'Force overwrite existing config file')
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
@@ -47,25 +47,25 @@ export async function main() {
 
       if (options.silent) logger.level = 'silent'
 
-      const done = logger.time.info('🔥 Rosetta initialized')
+      const done = logger.time.info('🔥 Reword initialized')
       await setupConfig({ ...options, projectLocale, locales, outDir })
 
       done()
 
       logger.log(outdent`
-      ❤️ Thanks for choosing Rosetta.
+      ❤️ Thanks for choosing Reword.
       🚀 You are set up to start using it!
     `)
     })
 
   cli
-    .command('extract', "Initialize Rosetta's extraction")
+    .command('extract', "Initialize Reword's extraction")
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('-w, --watch', 'Watch files and rebuild')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(async (options: ExtractOptions) => {
       if (options.silent) logger.level = 'silent'
-      const done = logger.time.info('✨ Rosetta extraction')
+      const done = logger.time.info('✨ Reword extraction')
 
       const config = await loadConfig(options)
       const filesPaths = runtime.fs.glob({
@@ -116,12 +116,12 @@ export async function main() {
     })
 
   cli
-    .command('translate', "Initialize Rosetta's translation")
+    .command('translate', "Initialize Reword's translation")
     .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(async (options: ExtractOptions) => {
       if (options.silent) logger.level = 'silent'
-      const done = logger.time.info('✨ Rosetta translation')
+      const done = logger.time.info('✨ Reword translation')
 
       const config = await loadConfig(options)
       const dictionary = await runtime.import<Dictionary>({

@@ -1,6 +1,6 @@
 'use client'
 
-import { tx } from '../rosetta/client'
+import { tx } from '../reword/client'
 
 export default function Home() {
   const name = 'Hugo'

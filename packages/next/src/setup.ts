@@ -1,6 +1,6 @@
 // // Dependencies
-// import type { Dictionary, Locale, MessageVariables } from '@rosetta.js/types'
-// import { txFormat } from '@rosetta.js/formatter'
+// import type { Dictionary, Locale, MessageVariables } from '@rewordlabs/types'
+// import { txFormat } from '@rewordlabs/formatter'
 
 // // Types
 // import type { SetupOptions } from './types'

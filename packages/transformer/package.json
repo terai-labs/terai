@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/transformer",
-  "description": "Transformer for Rosetta.js",
-  "version": "0.1.4",
+  "name": "@rewordlabs/transformer",
+  "description": "Transformer for Reword",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,10 +12,10 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/utils": "workspace:*",
+    "@rewordlabs/utils": "workspace:*",
     "chalk": "^4.1.2"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*"
+    "@rewordlabs/types": "workspace:*"
   }
 }

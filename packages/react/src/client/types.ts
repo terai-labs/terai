@@ -4,7 +4,7 @@ import type {
   Locale,
   Dictionary,
   ImportedDictionaries
-} from '@rosetta.js/types'
+} from '@rewordlabs/types'
 
 export type State = {
   locale: Locale

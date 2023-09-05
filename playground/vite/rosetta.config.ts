@@ -1,4 +1,4 @@
-import { defineConfig } from '@rosetta.js/dev'
+import { defineConfig } from '@rewordlabs/dev'
 
 export default defineConfig({
   // Where to look for your locale declarations

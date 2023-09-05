@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/node",
-  "version": "0.1.4",
-  "description": "The Rosetta.js Node library",
+  "name": "@rewordlabs/node",
+  "version": "0.0.0",
+  "description": "The rewordlabs Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,8 +12,8 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/logger": "workspace:*",
-    "@rosetta.js/types": "workspace:*",
+    "@rewordlabs/logger": "workspace:*",
+    "@rewordlabs/types": "workspace:*",
     "bundle-n-require": "^1.0.1",
     "chokidar": "^3.5.3",
     "fast-glob": "^3.3.1",

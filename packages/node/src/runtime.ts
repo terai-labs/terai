@@ -1,5 +1,5 @@
 import { bundleNRequire } from 'bundle-n-require'
-import { logger } from '@rosetta.js/logger'
+import { logger } from '@rewordlabs/logger'
 import { lookItUpSync } from 'look-it-up'
 import chokidar from 'chokidar'
 import glob from 'fast-glob'

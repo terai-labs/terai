@@ -1,6 +1,6 @@
-import { setupRosetta } from '@rosetta.js/react/client'
+import { setupReword } from '@rewordlabs/react/client'
 
-const { tx, useChangeLocale } = setupRosetta({
+const { tx, useChangeLocale } = setupReword({
   locale: 'en',
   dictionaries: {
     en: () => import('../../locale/en.js'),

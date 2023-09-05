@@ -1,4 +1,4 @@
-import { setupServer } from '@rosetta.js/next'
+import { setupServer } from '@rewordlabs/next'
 
 export const { getTx } = setupServer({
   dictionaries: {

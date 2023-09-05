@@ -1,8 +1,8 @@
 {
-  "name": "rosetta.js",
+  "name": "rewordlabs",
   "version": "0.0.0",
   "private": false,
-  "description": "The localization framework for the web",
+  "description": "The open-source localization framework for developers",
   "keywords": [],
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",

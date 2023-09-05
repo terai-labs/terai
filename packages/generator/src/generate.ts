@@ -1,8 +1,8 @@
 // Dependencies
-import { runtime } from '@rosetta.js/node'
+import { runtime } from '@rewordlabs/node'
 
 // Types
-import type { Config, Locale, Dictionary } from '@rosetta.js/types'
+import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 
 type GenerateOptions = {
   cwd: string

@@ -1,9 +1,9 @@
 // Dependencies
-import { prepareMessage, toHash } from '@rosetta.js/utils'
+import { prepareMessage, toHash } from '@rewordlabs/utils'
 import { interpolate } from './interpolation'
 
 // Types
-import type { Dictionary, Locale } from '@rosetta.js/types'
+import type { Dictionary, Locale } from '@rewordlabs/types'
 import type { MessageExpression } from './types'
 
 type CreateTxOptions = {

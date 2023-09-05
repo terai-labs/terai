@@ -1,5 +1,5 @@
 // Types
-import type { Locale } from '@rosetta.js/types'
+import type { Locale } from '@rewordlabs/types'
 import type { MessageExpression } from '../types'
 
 // Utils

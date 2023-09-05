@@ -1,6 +1,6 @@
 {
-  "name": "@rosetta.js/website",
-  "version": "0.1.4",
+  "name": "@rewordlabs/website",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

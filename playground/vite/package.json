@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/playground-vite",
+  "name": "@rewordlabs/playground-vite",
   "private": true,
-  "version": "0.1.4",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,10 +12,10 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@rosetta.js/react": "workspace:*"
+    "@rewordlabs/react": "workspace:*"
   },
   "devDependencies": {
-    "@rosetta.js/dev": "workspace:*",
+    "@rewordlabs/dev": "workspace:*",
     "@types/react-dom": "^18.2.7",
     "@types/react": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "next-pages",
-  "version": "0.1.4",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rosetta.js/dev": "workspace:*",
-    "@rosetta.js/react": "workspace:*",
+    "@rewordlabs/dev": "workspace:*",
+    "@rewordlabs/react": "workspace:*",
     "@types/node": "20.5.1",
     "@types/react-dom": "^18.2.7",
     "@types/react": "18.2.20",

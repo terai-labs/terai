@@ -2,7 +2,7 @@
 import OpenAI from 'openai'
 
 // Types
-import type { Locale } from '@rosetta.js/types'
+import type { Locale } from '@rewordlabs/types'
 
 export async function getAiTranslation({
   messagesJson,

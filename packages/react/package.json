@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/react",
-  "description": "Rosetta.js for React",
-  "version": "0.1.4",
+  "name": "@rewordlabs/react",
+  "description": "rewordlabs for React",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -25,12 +25,12 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.10.2",
-    "@rosetta.js/formatter": "workspace:*",
-    "@rosetta.js/utils": "workspace:*",
+    "@rewordlabs/formatter": "workspace:*",
+    "@rewordlabs/utils": "workspace:*",
     "client-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*",
+    "@rewordlabs/types": "workspace:*",
     "@types/react": "^18.2.21"
   },
   "peerDependencies": {

@@ -1,4 +1,4 @@
-import { getTx } from '../rosetta/server'
+import { getTx } from '../reword/server'
 
 export default async function Home() {
   const name = 'Hugo'

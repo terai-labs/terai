@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/utils",
-  "version": "0.1.4",
-  "description": "Shared utilities for Rosetta.js",
+  "name": "@rewordlabs/utils",
+  "version": "0.0.0",
+  "description": "Shared utilities for Reword",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
     "dev": "pnpm build --watch"
   },
   "dependencies": {
-    "@rosetta.js/types": "workspace:*"
+    "@rewordlabs/types": "workspace:*"
   },
   "files": [
     "dist"

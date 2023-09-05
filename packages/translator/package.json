@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/translator",
-  "description": "Code translator for Rosetta.js",
-  "version": "0.1.4",
+  "name": "@rewordlabs/translator",
+  "description": "Code translator for Reword",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -12,11 +12,11 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rosetta.js/node": "workspace:*",
-    "@rosetta.js/utils": "workspace:*",
+    "@rewordlabs/node": "workspace:*",
+    "@rewordlabs/utils": "workspace:*",
     "openai": "^4.0.1"
   },
   "devDependencies": {
-    "@rosetta.js/types": "workspace:*"
+    "@rewordlabs/types": "workspace:*"
   }
 }

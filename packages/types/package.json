@@ -1,7 +1,7 @@
 {
-  "name": "@rosetta.js/types",
-  "version": "0.1.4",
-  "description": "Types definitions for Rosetta.js",
+  "name": "@rewordlabs/types",
+  "version": "0.0.0",
+  "description": "Types definitions for Reword",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

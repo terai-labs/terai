@@ -1,4 +1,4 @@
-# @rosetta.js/website
+# @rewordlabs/website
 
 ## 0.1.4
 

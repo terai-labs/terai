@@ -1,4 +1,4 @@
-import type { ExtractedMessage } from '@rosetta.js/types'
+import type { ExtractedMessage } from '@rewordlabs/types'
 
 export interface TransformerOptions {
   onMsgExtracted?: (filePath: string, msgs: ExtractedMessage[]) => void

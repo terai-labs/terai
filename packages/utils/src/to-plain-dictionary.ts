@@ -1,4 +1,4 @@
-import type { ExtractedMessages, Dictionary } from '@rosetta.js/types'
+import type { ExtractedMessages, Dictionary } from '@rewordlabs/types'
 
 export function toPlainDictionary(
   extractedMessages: ExtractedMessages

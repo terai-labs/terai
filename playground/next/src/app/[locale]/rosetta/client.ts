@@ -1,6 +1,6 @@
-import { setupRosetta } from '@rosetta.js/react'
+import { setupReword } from '@rewordlabs/react'
 
-export const { tx } = setupRosetta({
+export const { tx } = setupReword({
   locale: 'es',
   dictionaries: {
     en: () => import('../../../../locale/en.js'),

@@ -1,7 +1,7 @@
 import 'client-only'
 
 // Dependencies
-import { createTx } from '@rosetta.js/formatter'
+import { createTx } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
@@ -12,7 +12,7 @@ import {
 
 // Types
 import type { SetupOptions, State } from './types'
-import type { Locale } from '@rosetta.js/types'
+import type { Locale } from '@rewordlabs/types'
 
 // Setup
 enableReactUse()
@@ -20,7 +20,7 @@ configureObservablePersistence({
   persistLocal: ObservablePersistLocalStorage
 })
 
-export function setupRosetta(options: SetupOptions) {
+export function setupReword(options: SetupOptions) {
   const state$ = observable<State>({
     locale: options.locale,
     dictionary: {}
@@ -31,7 +31,7 @@ export function setupRosetta(options: SetupOptions) {
   )
 
   persistObservable(state$, {
-    local: 'rosetta'
+    local: 'reword'
   })
 
   const getLocale = () => state$.locale.use()

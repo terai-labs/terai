@@ -60,19 +60,19 @@ importers:
       '@inquirer/prompts':
         specifier: ^3.0.4
         version: 3.0.4
-      '@rosetta.js/extractor':
+      '@rewordlabs/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@rosetta.js/logger':
+      '@rewordlabs/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosetta.js/node':
+      '@rewordlabs/node':
         specifier: workspace:*
         version: link:../node
-      '@rosetta.js/translator':
+      '@rewordlabs/translator':
         specifier: workspace:*
         version: link:../translator
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
       cac:
@@ -88,10 +88,10 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
-      '@rosetta.js/generator':
+      '@rewordlabs/generator':
         specifier: workspace:*
         version: link:../generator
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
       '@types/update-notifier':
@@ -103,43 +103,43 @@ importers:
 
   packages/extractor:
     dependencies:
-      '@rosetta.js/logger':
+      '@rewordlabs/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosetta.js/node':
+      '@rewordlabs/node':
         specifier: workspace:*
         version: link:../node
-      '@rosetta.js/transformer':
+      '@rewordlabs/transformer':
         specifier: workspace:*
         version: link:../transformer
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
   packages/formatter:
     dependencies:
-      '@rosetta.js/node':
+      '@rewordlabs/node':
         specifier: workspace:*
         version: link:../node
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
   packages/generator:
     dependencies:
-      '@rosetta.js/node':
+      '@rewordlabs/node':
         specifier: workspace:*
         version: link:../node
-      '@rosetta.js/translator':
+      '@rewordlabs/translator':
         specifier: workspace:*
         version: link:../translator
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
@@ -158,16 +158,16 @@ importers:
 
   packages/next:
     dependencies:
-      '@rosetta.js/formatter':
+      '@rewordlabs/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@rosetta.js/react':
+      '@rewordlabs/react':
         specifier: workspace:*
         version: link:../react
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
       client-only:
@@ -189,10 +189,10 @@ importers:
 
   packages/node:
     dependencies:
-      '@rosetta.js/logger':
+      '@rewordlabs/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
       bundle-n-require:
@@ -229,10 +229,10 @@ importers:
       '@legendapp/state':
         specifier: ^1.10.2
         version: 1.10.2(react@18.2.0)
-      '@rosetta.js/formatter':
+      '@rewordlabs/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
       client-only:
@@ -242,7 +242,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
       '@types/react':
@@ -251,30 +251,30 @@ importers:
 
   packages/transformer:
     dependencies:
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
   packages/translator:
     dependencies:
-      '@rosetta.js/node':
+      '@rewordlabs/node':
         specifier: workspace:*
         version: link:../node
-      '@rosetta.js/utils':
+      '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
       openai:
         specifier: ^4.0.1
         version: 4.0.1
     devDependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
@@ -282,16 +282,16 @@ importers:
 
   packages/utils:
     dependencies:
-      '@rosetta.js/types':
+      '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
 
   playground/next:
     dependencies:
-      '@rosetta.js/next':
+      '@rewordlabs/next':
         specifier: workspace:*
         version: link:../../packages/next
-      '@rosetta.js/react':
+      '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
       react:
@@ -301,7 +301,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@rosetta.js/dev':
+      '@rewordlabs/dev':
         specifier: workspace:*
         version: link:../../packages/dev
       '@types/node':
@@ -325,10 +325,10 @@ importers:
 
   playground/next-pages:
     dependencies:
-      '@rosetta.js/dev':
+      '@rewordlabs/dev':
         specifier: workspace:*
         version: link:../../packages/dev
-      '@rosetta.js/react':
+      '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
       '@types/node':
@@ -361,7 +361,7 @@ importers:
 
   playground/vite:
     dependencies:
-      '@rosetta.js/react':
+      '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
       react:
@@ -371,7 +371,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@rosetta.js/dev':
+      '@rewordlabs/dev':
         specifier: workspace:*
         version: link:../../packages/dev
       '@types/react':

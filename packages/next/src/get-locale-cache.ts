@@ -3,7 +3,7 @@ import { cookies, headers } from 'next/headers'
 
 // Constants
 import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
-import type { Locale } from '@rosetta.js/types'
+import type { Locale } from '@rewordlabs/types'
 
 export const getLocaleCache = (): Locale | null => {
   let locale = null

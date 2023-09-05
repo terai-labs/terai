@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import type { Locale } from '@rosetta.js/types'
+import type { Locale } from '@rewordlabs/types'
 import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
 
 type CreateMiddlewareOptions = {
