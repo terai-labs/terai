@@ -6,7 +6,7 @@ import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
 import type { Locale } from '@rewordlabs/types'
 
 export const getLocaleCache = (): Locale | null => {
-  let locale = null
+  let locale: Locale | null = null
 
   locale = headers().get(LOCALE_HEADER) as Locale
 

@@ -12,7 +12,6 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rewordlabs/types": "workspace:*",
     "@rewordlabs/react": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/utils": "workspace:*",

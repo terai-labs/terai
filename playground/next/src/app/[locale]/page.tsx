@@ -1,8 +1,7 @@
-import { getTx } from './reword/server'
+import { tx } from './reword'
 
 export default async function Home() {
   const name = 'Hugo'
-  const tx = await getTx()
 
   return (
     <div>

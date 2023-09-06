@@ -1,30 +1,12 @@
-// // Dependencies
-// import type { Dictionary, Locale, MessageVariables } from '@rewordlabs/types'
-// import { txFormat } from '@rewordlabs/formatter'
+// Types
+import { getTx } from './tx'
 
-// // Types
-// import type { SetupOptions } from './types'
-// import { getLocaleCache } from './get-locale-cache'
+export type SetupOptions = {
+  loader: (locale: string, id: string) => Promise<string>
+}
 
-// export function setupServer({ dictionaries }: SetupOptions) {
-//   return {
-//     getTx: async () => {
-//       const locale = (await getLocaleCache()) ?? 'es'
-//       const dictionary = (await dictionaries[locale]()).default
-//       return createGetTx(dictionary, locale)
-//     }
-//   }
-// }
-
-// export const createGetTx =
-//   (dictionary: Dictionary, locale: Locale) =>
-//   (strings: TemplateStringsArray, ...vars: MessageVariables[]) => {
-//     return txFormat({
-//       strings,
-//       vars,
-//       dictionary,
-//       locale
-//     })
-//   }
-
-export {}
+export function setupServer({ loader }: SetupOptions) {
+  return {
+    tx: getTx({ loader })
+  }
+}
