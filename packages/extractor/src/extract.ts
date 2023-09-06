@@ -1,19 +1,21 @@
 // Dependencies
-import { processFile } from './process-file'
+import * as ts from 'typescript'
 import { logger } from '@rewordlabs/logger'
 import { runtime } from '@rewordlabs/node'
+import { transform } from '@rewordlabs/transformer'
 
 // Types
-import type { TransformerOptions } from '@rewordlabs/transformer'
-import type { ExtractedMessages } from '@rewordlabs/types'
+import type { Config, ExtractedMessages } from '@rewordlabs/types'
 
-type ExtractOptions = TransformerOptions & {
+type ExtractOptions = {
   filesPaths: readonly string[]
-}
+  cwd: string
+} & Pick<Config, 'codeSplitting'>
 
 export async function extract({
   filesPaths,
-  ...options
+  cwd,
+  codeSplitting
 }: ExtractOptions): Promise<ExtractedMessages> {
   const extractedMessages: ExtractedMessages = {}
 
@@ -21,11 +23,28 @@ export async function extract({
     filesPaths.map(async fileName => {
       try {
         const source = runtime.fs.readFile(fileName)
-        const dictionary = await processFile(source, fileName, options)
 
-        for (const message of dictionary) {
-          extractedMessages[message.id] = message
-        }
+        ts.transpileModule(source, {
+          reportDiagnostics: true,
+          fileName,
+          compilerOptions: {
+            allowJs: true,
+            target: ts.ScriptTarget.ESNext,
+            noEmit: true,
+            experimentalDecorators: true
+          },
+          transformers: {
+            before: [
+              transform({
+                cwd,
+                codeSplitting,
+                onMsgExtracted: (id, msg) => {
+                  extractedMessages[id] = msg
+                }
+              })
+            ]
+          }
+        })
       } catch (e) {
         logger.error('extract', `Error processing file ${fileName} ${e}`)
         return null

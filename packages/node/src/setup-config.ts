@@ -34,8 +34,8 @@ export async function setupConfig({
     logger.warn(
       'init:setup',
       outdent`
-        It looks like you already have reword created\`.
-        You can now run '${cmd} reword --watch'.
+        It looks like you already have reword created.
+        You can now run '${cmd} reword extract --watch'.
       `
     )
   } else {

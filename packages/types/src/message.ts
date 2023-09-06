@@ -3,7 +3,7 @@ export type ExtractedMessage = {
   value: string
   file: string
   context: string
-  // group: string
+  chunkId: string
 }
 
 export type ExtractedMessages = Record<string, ExtractedMessage>

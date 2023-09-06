@@ -1,13 +1,10 @@
 // Dependencies
 import { cac } from 'cac'
-import { debounce } from 'perfect-debounce'
 import { extract } from '@rewordlabs/extractor'
 import { generate } from '@rewordlabs/generator'
-import { translate } from '@rewordlabs/translator'
 import { loadConfig, runtime, setupConfig } from '@rewordlabs/node'
 import { logger } from '@rewordlabs/logger'
 import { outdent } from 'outdent'
-import { toPlainDictionary } from '@rewordlabs/utils'
 import updateNotifier from 'update-notifier'
 import { input } from '@inquirer/prompts'
 
@@ -15,7 +12,8 @@ import { input } from '@inquirer/prompts'
 import type { ExtractOptions, InitOptions } from './types'
 
 import pkg from '../package.json'
-import type { Dictionary, Locale } from '@rewordlabs/types'
+import type { Locale } from '@rewordlabs/types'
+import { debounce } from 'perfect-debounce'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -53,7 +51,7 @@ export async function main() {
       done()
 
       logger.log(outdent`
-      ❤️ Thanks for choosing Reword.
+      Thanks for choosing Reword.
       🚀 You are set up to start using it!
     `)
     })
@@ -72,20 +70,35 @@ export async function main() {
         ...config,
         cwd: options.cwd
       })
-      const extractedMessages = await extract({ filesPaths })
-      const dictionary = toPlainDictionary(extractedMessages)
-      await generate({
-        ...config,
-        locale: config.projectLocale,
-        dictionary,
-        cwd: options.cwd
-      })
 
-      runtime.fs.write(
-        runtime.path.resolve(cwd, config.outDir, `build-manifest.json`),
-        JSON.stringify({ messages: extractedMessages }, null, 2)
-      )
+      async function extractor() {
+        const extractedMessages = await extract({
+          ...config,
+          filesPaths,
+          cwd: options.cwd
+        })
 
+        runtime.fs.remove(
+          runtime.path.resolve(cwd, config.outDir, config.projectLocale)
+        )
+
+        await generate({
+          ...config,
+          locale: config.projectLocale,
+          extractedMessages,
+          cwd: options.cwd
+        })
+
+        runtime.fs.write(
+          runtime.path.resolve(cwd, config.outDir, `build-manifest.json`),
+          JSON.stringify({ messages: extractedMessages }, null, 2)
+        )
+      }
+
+      logger.info('cli:extract', 'Extracting messages from project...')
+      await extractor()
+
+      logger.info('cli:extract', 'Extracted messages ✅')
       done()
 
       if (options.watch) {
@@ -98,67 +111,61 @@ export async function main() {
         configWatcher.on(
           'change',
           debounce(async () => {
+            const done = logger.time.info('✨ Reword extraction')
             logger.info('cli:extract', 'Files changed, extracting messages...')
-
-            const extractedMessages = await extract({ filesPaths })
-            const dictionary = toPlainDictionary(extractedMessages)
-            await generate({
-              ...config,
-              locale: config.projectLocale,
-              dictionary,
-              cwd: options.cwd
-            })
+            await extractor()
 
             logger.info('cli:extract', 'Extracted messages ✅')
+            done()
           })
         )
       }
     })
 
-  cli
-    .command('translate', "Initialize Reword's translation")
-    .option('-s, --silent', 'Suppress all messages except errors')
-    .option('--cwd <cwd>', 'Current working directory', { default: cwd })
-    .action(async (options: ExtractOptions) => {
-      if (options.silent) logger.level = 'silent'
-      const done = logger.time.info('✨ Reword translation')
+  // cli
+  //   .command('translate', "Initialize Reword's translation")
+  //   .option('-s, --silent', 'Suppress all messages except errors')
+  //   .option('--cwd <cwd>', 'Current working directory', { default: cwd })
+  //   .action(async (options: ExtractOptions) => {
+  //     if (options.silent) logger.level = 'silent'
+  //     const done = logger.time.info('✨ Reword translation')
 
-      const config = await loadConfig(options)
-      const dictionary = await runtime.import<Dictionary>({
-        cwd: options.cwd,
-        filePath: runtime.path.resolve(
-          options.cwd,
-          config.outDir,
-          `${config.projectLocale}.json`
-        )
-      })
+  //     const config = await loadConfig(options)
+  //     const dictionary = await runtime.import<Dictionary>({
+  //       cwd: options.cwd,
+  //       filePath: runtime.path.resolve(
+  //         options.cwd,
+  //         config.outDir,
+  //         `${config.projectLocale}.json`
+  //       )
+  //     })
 
-      logger.info('cli:translate', `Initializing translation...`)
+  //     logger.info('cli:translate', `Initializing translation...`)
 
-      await Promise.all(
-        config.locales.map(async locale => {
-          const tMessages = await translate({
-            ...config,
-            locale,
-            dictionary
-          })
+  //     await Promise.all(
+  //       config.locales.map(async locale => {
+  //         const tMessages = await translate({
+  //           ...config,
+  //           locale,
+  //           dictionary
+  //         })
 
-          await generate({
-            ...config,
-            locale,
-            dictionary: tMessages,
-            cwd: options.cwd
-          })
+  //         await generate({
+  //           ...config,
+  //           locale,
+  //           dictionary: tMessages,
+  //           cwd: options.cwd
+  //         })
 
-          logger.info(
-            'cli:translate',
-            `Translated files for locale: ${locale} ✅`
-          )
-        })
-      )
+  //         logger.info(
+  //           'cli:translate',
+  //           `Translated files for locale: ${locale} ✅`
+  //         )
+  //       })
+  //     )
 
-      done()
-    })
+  //     done()
+  //   })
 
   cli.help()
   cli.version(pkg.version)

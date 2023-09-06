@@ -138,6 +138,9 @@ importers:
       '@rewordlabs/translator':
         specifier: workspace:*
         version: link:../translator
+      '@rewordlabs/utils':
+        specifier: workspace:*
+        version: link:../utils
     devDependencies:
       '@rewordlabs/types':
         specifier: workspace:*
@@ -235,6 +238,9 @@ importers:
       '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
+      '@tanstack/react-query':
+        specifier: ^4.33.0
+        version: 4.33.0(react@18.2.0)
       client-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -2131,6 +2137,27 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
     dev: true
+
+  /@tanstack/query-core@4.33.0:
+    resolution: {integrity: sha512-qYu73ptvnzRh6se2nyBIDHGBQvPY1XXl3yR769B7B6mIDD7s+EZhdlWHQ67JI6UOTFRaI7wupnTnwJ3gE0Mr/g==}
+    dev: false
+
+  /@tanstack/react-query@4.33.0(react@18.2.0):
+    resolution: {integrity: sha512-97nGbmDK0/m0B86BdiXzx3EW9RcDYKpnyL2+WwyuLHEgpfThYAnXFaMMmnTDuAO4bQJXEhflumIEUfKmP7ESGA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.33.0
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
 
   /@ts-morph/common@0.20.0:
     resolution: {integrity: sha512-7uKjByfbPpwuzkstL3L5MQyuXPSKdoNG93Fmi2JoDcTf3pEP731JdRFAduRVkOs8oqxPsXKA+ScrWkdQ8t/I+Q==}

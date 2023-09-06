@@ -7,4 +7,6 @@ export type Config = {
   projectLocale: Locale
   outDir: string
   locales: Locale[]
+  context?: string
+  codeSplitting?: 'file' | number
 }

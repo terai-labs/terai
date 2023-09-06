@@ -1,18 +1,21 @@
 import 'client-only'
 
 // Dependencies
-import { createTx } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
+import { QueryClient } from '@tanstack/react-query'
 import {
   configureObservablePersistence,
   persistObservable
 } from '@legendapp/state/persist'
 
 // Types
-import type { SetupOptions, State } from './types'
 import type { Locale } from '@rewordlabs/types'
+
+// Types
+import type { SetupOptions, State } from './types'
+import { createTx } from './tx'
 
 // Setup
 enableReactUse()
@@ -20,31 +23,27 @@ configureObservablePersistence({
   persistLocal: ObservablePersistLocalStorage
 })
 
-export function setupReword(options: SetupOptions) {
-  const state$ = observable<State>({
-    locale: options.locale,
-    dictionary: {}
+export function setupReword({ loader, locale }: SetupOptions) {
+  const locale$ = observable<State>(locale)
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+        staleTime: Infinity
+      }
+    }
   })
 
-  options.dictionaries[options.locale]().then(mod =>
-    state$.dictionary.set(mod.default)
-  )
-
-  persistObservable(state$, {
-    local: 'reword'
+  persistObservable(locale$, {
+    local: 'locale'
   })
 
-  const getLocale = () => state$.locale.use()
-  const changeLocale = (locale: Locale) => {
-    state$.locale.set(locale)
-    options.dictionaries[locale]().then(mod =>
-      state$.dictionary.set(mod.default)
-    )
-  }
-
+  const getLocale = () => locale$.use()
+  const changeLocale = (locale: Locale) => locale$.set(locale)
   const tx = createTx({
-    getLocale: () => state$.locale.use(),
-    getDictionary: () => state$.dictionary.use()
+    queryClient,
+    loader,
+    locale$
   })
 
   return {

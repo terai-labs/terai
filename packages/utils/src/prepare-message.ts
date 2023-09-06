@@ -2,7 +2,7 @@
 
 export function prepareMessage(message: string): string {
   const cleanedMessage = message
-    .replaceAll(/`/g, '"')
+    .replaceAll(/`/g, '')
     .replaceAll(/\$({.*?})/g, '${VAR}')
   // .replaceAll(TEXT_REGEX, '!${VAR}')
   // .replaceAll(DATE_REGEX, '@${VAR}')

@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@rewordlabs/node": "workspace:*",
-    "@rewordlabs/translator": "workspace:*"
+    "@rewordlabs/translator": "workspace:*",
+    "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"

@@ -27,6 +27,7 @@
     "@legendapp/state": "^1.10.2",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
+    "@tanstack/react-query": "^4.33.0",
     "client-only": "^0.0.1"
   },
   "devDependencies": {

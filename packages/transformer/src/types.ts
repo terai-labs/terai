@@ -1,5 +1,6 @@
-import type { ExtractedMessage } from '@rewordlabs/types'
+import type { Config, ExtractedMessage } from '@rewordlabs/types'
 
-export interface TransformerOptions {
-  onMsgExtracted?: (filePath: string, msgs: ExtractedMessage[]) => void
-}
+export type TransformerOptions = {
+  cwd: string
+  onMsgExtracted: (id: string, message: ExtractedMessage) => void
+} & Pick<Config, 'codeSplitting'>

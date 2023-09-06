@@ -1,33 +1,50 @@
 // Dependencies
-import { toHash, prepareMessage } from '@rewordlabs/utils'
 import * as ts from 'typescript'
+import { toHash, prepareMessage } from '@rewordlabs/utils'
 
 // Types
-import type { ExtractedMessage } from '@rewordlabs/types'
+import type { Config, ExtractedMessage } from '@rewordlabs/types'
 import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts
+
+function getChunkId(
+  cwd: string,
+  filePath: string,
+  codeSplitting: Config['codeSplitting']
+): string {
+  if (codeSplitting === 'file') return filePath
+
+  const relativePath = filePath.slice(cwd.length)
+  const pathParts = relativePath.split('/')
+  const truncatedPathParts = pathParts.slice(0, codeSplitting)
+  const transformedPath = truncatedPathParts.join('/')
+  const chunkId = toHash(transformedPath)
+
+  return chunkId
+}
 
 function extractMessageFromTemplateExpression(
   ts: TypeScript,
   factory: ts.NodeFactory,
   node: ts.TaggedTemplateExpression,
-  { onMsgExtracted }: TransformerOptions,
+  { onMsgExtracted, cwd, codeSplitting }: TransformerOptions,
   sf: ts.SourceFile
 ): ts.VisitResult<ts.TaggedTemplateExpression> {
   const value = prepareMessage(node.template.getText())
   const id = toHash(value)
+  const fileName = sf.fileName
+  const chunkId = getChunkId(cwd, fileName, codeSplitting)
 
   const msg: ExtractedMessage = {
     id,
     value,
     context: '',
-    file: sf.fileName
+    file: fileName,
+    chunkId
   }
 
-  if (typeof onMsgExtracted === 'function') {
-    onMsgExtracted(sf.fileName, [msg])
-  }
+  onMsgExtracted(id, msg)
 
   return node
 }
@@ -36,13 +53,15 @@ function extractMessageFromCallExpression(
   ts: TypeScript,
   factory: ts.NodeFactory,
   node: ts.CallExpression,
-  { onMsgExtracted }: TransformerOptions,
+  { onMsgExtracted, cwd, codeSplitting }: TransformerOptions,
   sf: ts.SourceFile
 ): ts.VisitResult<ts.CallExpression> {
   const expressionNode = node.parent as ts.TaggedTemplateExpression
   const value = prepareMessage(expressionNode.template.getText())
   let context = ''
+  const fileName = sf.fileName
   const id = toHash(value)
+  const chunkId = getChunkId(cwd, fileName, codeSplitting)
 
   // Extract context from first argument
   if (node.arguments?.[0]) {
@@ -59,13 +78,12 @@ function extractMessageFromCallExpression(
   const msg: ExtractedMessage = {
     id,
     value,
-    file: sf.fileName,
-    context
+    file: fileName,
+    context,
+    chunkId
   }
 
-  if (typeof onMsgExtracted === 'function') {
-    onMsgExtracted(sf.fileName, [msg])
-  }
+  onMsgExtracted(id, msg)
 
   return node
 }

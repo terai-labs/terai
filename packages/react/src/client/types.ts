@@ -1,19 +1,11 @@
 // Types
 import type { Observable } from '@legendapp/state'
-import type {
-  Locale,
-  Dictionary,
-  ImportedDictionaries
-} from '@rewordlabs/types'
+import type { Locale } from '@rewordlabs/types'
 
-export type State = {
-  locale: Locale
-  dictionary: Dictionary
-}
-
+export type State = Locale
 export type ObservableState = Observable<State>
 
 export type SetupOptions = {
   locale: Locale
-  dictionaries: ImportedDictionaries
+  loader: (locale: string, id: string) => Promise<string>
 }

@@ -3,12 +3,12 @@ import { prepareMessage, toHash } from '@rewordlabs/utils'
 import { interpolate } from './interpolation'
 
 // Types
-import type { Dictionary, Locale } from '@rewordlabs/types'
+import type { Locale } from '@rewordlabs/types'
 import type { MessageExpression } from './types'
 
 type CreateTxOptions = {
   getLocale: () => Locale
-  getDictionary: () => Dictionary
+  getMessage: (id: string) => string
 }
 
 type TxOptions = {
@@ -20,7 +20,7 @@ export interface Tx {
   (options: TxOptions): Tx
 }
 
-export function createTx(options: CreateTxOptions) {
+export function createTx(options: CreateTxOptions): Tx {
   function tx(
     stringsOrOptions: TemplateStringsArray,
     ...variables: MessageExpression[]
@@ -30,15 +30,13 @@ export function createTx(options: CreateTxOptions) {
     stringsOrOptions: TemplateStringsArray | TxOptions,
     ...variables: MessageExpression[]
   ): string | Tx {
-    const { getLocale, getDictionary } = options
-    const locale = getLocale()
-    const dictionary = getDictionary()
-
     if (isTemplateStringsArray(stringsOrOptions)) {
+      const locale = options.getLocale()
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
       const id = toHash(rawMessage)
-      let message = dictionary?.[id] || rawMessage
+      const msg = options.getMessage(id)
+      let message = typeof msg === 'string' ? msg : rawMessage
 
       message = interpolate({
         message,

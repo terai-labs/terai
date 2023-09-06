@@ -1,29 +1,31 @@
 // Dependencies
 import { runtime } from '@rewordlabs/node'
+import { toPlainDictionary } from '@rewordlabs/utils'
 
 // Types
-import type { Config, Locale, Dictionary } from '@rewordlabs/types'
+import type { Config, Locale, ExtractedMessages } from '@rewordlabs/types'
 
 type GenerateOptions = {
   cwd: string
-  dictionary: Dictionary
+  extractedMessages: ExtractedMessages
   locale: Locale
 } & Pick<Config, 'outDir' | 'projectLocale' | 'locales'>
 
 export async function generate({
-  dictionary,
+  extractedMessages,
   locale,
   cwd,
   outDir
 }: GenerateOptions) {
-  const basePath = runtime.path.resolve(cwd, outDir, `${locale}.json`)
+  const folderPath = runtime.path.resolve(cwd, outDir, locale)
 
-  return runtime.fs.write(basePath, JSON.stringify(dictionary, replacer, 2))
-}
+  for (const id in extractedMessages) {
+    const extractedMessagesChunk = extractedMessages[id]
+    const dictionary = toPlainDictionary({ [id]: extractedMessagesChunk })
 
-function replacer(key: unknown, value: unknown) {
-  if (typeof value === 'string') {
-    return value.slice(1, -1) // Remove the first and last character (single quotes)
+    runtime.fs.write(
+      runtime.path.resolve(folderPath, id + '.json'),
+      JSON.stringify(dictionary, null, 2)
+    )
   }
-  return value
 }

@@ -1,10 +1,25 @@
 {
   "messages": {
-    "jLMcIA": {
-      "id": "jLMcIA",
-      "value": "\"Hello, ${VAR}!\"",
+    "bWVCwm": {
+      "id": "bWVCwm",
+      "value": "Hi ${VAR}, this is is a dem s sso  sdf with React!",
       "context": "",
-      "file": "/Users/hugocxl/repos/rewordlabs/playground/vite/src/App.tsx"
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
+      "chunkId": "kKXtqj"
+    },
+    "ixzubt": {
+      "id": "ixzubt",
+      "value": "Hello, again!",
+      "context": "",
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/Button.tsx",
+      "chunkId": "dtkcRY"
+    },
+    "hKOdAh": {
+      "id": "hKOdAh",
+      "value": "Wait this is another file!",
+      "context": "",
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/Button.tsx",
+      "chunkId": "dtkcRY"
     }
   }
 }
