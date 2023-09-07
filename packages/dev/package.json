@@ -30,7 +30,7 @@
   "devDependencies": {
     "@rewordlabs/generator": "workspace:*",
     "@rewordlabs/types": "workspace:*",
-    "@types/update-notifier": "^6.0.4",
+    "@types/update-notifier": "^6.0.5",
     "update-notifier": "^6.0.2"
   },
   "files": [
