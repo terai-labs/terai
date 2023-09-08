@@ -4,12 +4,10 @@ import { getAiTranslation } from './x'
 // Types
 import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 
-type TranslateOptions = Pick<
-  Config,
-  'projectLocale' | 'locales' | 'openaiApiKey'
-> & {
+type TranslateOptions = Pick<Config, 'projectLocale' | 'openaiApiKey'> & {
   dictionary: Dictionary
   locale: Locale
+  locales: Locale[]
 }
 
 export async function translate({

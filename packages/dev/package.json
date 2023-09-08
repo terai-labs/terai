@@ -8,7 +8,8 @@
   "private": false,
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
-    "reword": "bin.js"
+    "reword": "bin.js",
+    "rw": "bin.js"
   },
   "scripts": {
     "dev": "pnpm build-fast --watch",
@@ -25,7 +26,8 @@
     "cac": "^6.7.14",
     "inquirer": "^9.2.10",
     "kleur": "^4.1.5",
-    "perfect-debounce": "^1.0.0"
+    "perfect-debounce": "^1.0.0",
+    "preferred-pm": "^3.1.2"
   },
   "devDependencies": {
     "@rewordlabs/generator": "workspace:*",

@@ -20,8 +20,7 @@
     "fs-extra": "^11.1.1",
     "look-it-up": "^2.1.0",
     "outdent": "^0.8.0",
-    "pathe": "^1.1.1",
-    "preferred-pm": "^3.1.2"
+    "pathe": "^1.1.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1"

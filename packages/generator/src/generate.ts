@@ -9,7 +9,7 @@ type GenerateOptions = {
   cwd: string
   extractedMessages: ExtractedMessages
   locale: Locale
-} & Pick<Config, 'outDir' | 'projectLocale' | 'locales'>
+} & Pick<Config, 'outDir' | 'projectLocale'>
 
 export async function generate({
   extractedMessages,

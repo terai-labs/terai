@@ -1,45 +1,27 @@
 // Dependencies
-import { findConfig } from './find-config'
 import { findTsConfig } from './find-tsconfig'
 import { logger } from '@rewordlabs/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
-import getPackageManager from 'preferred-pm'
 
 // Types
 import type { Config } from '@rewordlabs/types'
 
-type SetupOptions = Pick<Config, 'projectLocale' | 'locales' | 'outDir'> & {
-  force?: boolean
+type SetupOptions = Pick<Config, 'projectLocale' | 'outDir'> & {
   cwd: string
 }
 
 export async function setupConfig({
-  force,
-  cwd,
   projectLocale,
-  locales,
-  outDir
+  outDir,
+  cwd
 }: SetupOptions) {
-  const configFile = findConfig({ cwd })
-  const pmResult = await getPackageManager(cwd)
-  const pm = pmResult?.name ?? 'npm'
-  const cmd = pm === 'npm' ? 'npm run' : pm
   const isTs = findTsConfig()
   const fileName = isTs ? 'reword.config.ts' : 'reword.config.mjs'
 
-  logger.info('init:setup', `Creating Reword config file...`)
+  logger.info('init:setup', `Setting config file...`)
 
-  if (!force && configFile) {
-    logger.warn(
-      'init:setup',
-      outdent`
-        It looks like you already have reword created.
-        You can now run '${cmd} reword extract --watch'.
-      `
-    )
-  } else {
-    const content = outdent`
+  const content = outdent`
       import { defineConfig } from "@rewordlabs/dev"
 
       export default defineConfig({
@@ -54,15 +36,11 @@ export async function setupConfig({
         
         // The output directory for your locale system
         outDir: "${outDir}",
-        
-        // The output locales
-        locales: ${JSON.stringify(locales)},
 
         // Your OpenAI API key
         openaiApiKey: "",
       })
     `
 
-    runtime.fs.write(runtime.path.join(cwd, fileName), content)
-  }
+  runtime.fs.write(runtime.path.join(cwd, fileName), content)
 }
