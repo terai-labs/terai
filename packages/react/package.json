@@ -28,11 +28,11 @@
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
     "@tanstack/react-query": "^4.35.0",
-    "client-only": "^0.0.1"
+    "client-only": "^0.0.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rewordlabs/types": "workspace:*",
-    "@types/react": "^18.2.21"
+    "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0"

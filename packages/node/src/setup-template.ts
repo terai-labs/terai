@@ -44,6 +44,36 @@ function getTemplate(
       }
     ]
   }
+  if (framework === 'next') {
+    return [
+      {
+        fileName: `client.${isTs ? 'ts' : 'js'}`,
+        content: outdent`
+        import { setupClient } from '@rewordlabs/next'
+
+        export const { tx } = setupClient({
+          locale: 'en',
+          loader: (locale: string, id: string) =>
+            fetch(\`./locale/\${locale}/\${id}.json\`)
+              .then(res => res.json())
+              .then(msg => msg[id]),
+        })
+        `
+      },
+      {
+        fileName: `server.${isTs ? 'ts' : 'js'}`,
+        content: outdent`
+        import { setupServer } from '@rewordlabs/next'
+
+        export const { tx } = setupServer({
+          loader: (locale: string, id: string) =>
+            import(\`./locale/\${locale}/\${id}.json\`)
+              .then(mod => mod.default[id]),
+        })
+        `
+      }
+    ]
+  }
 
   return [
     {

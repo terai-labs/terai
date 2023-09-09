@@ -1,37 +1,40 @@
+'use client'
+
 // Dependencies
-import { memo } from 'react'
 import { interpolate } from '@rewordlabs/formatter'
 import { useQuery } from '@tanstack/react-query'
 
 // Types
+import type { MessageExpression } from '@rewordlabs/formatter'
+import type { SetupClientOptions } from './setup'
 import type { Locale } from '@rewordlabs/types'
-import { type MessageExpression } from '@rewordlabs/formatter'
-import type { SetupOptions } from './types'
 
 type TextProps = {
   id: string
-  loader: SetupOptions['loader']
+  loader: SetupClientOptions['loader']
   rawMessage: string
   variables: MessageExpression[]
-  locale: Locale
+  getLocale: () => Locale
 }
 
-export const Text = memo(
-  ({ id, loader, rawMessage, variables, locale }: TextProps) => {
-    const query = useQuery({
-      queryKey: [locale, id],
-      queryFn: () => loader(locale, id),
-      enabled: process.env.NODE_ENV !== 'development'
-    })
+export const Text = ({
+  id,
+  loader,
+  rawMessage,
+  getLocale,
+  variables
+}: TextProps) => {
+  const locale = getLocale()
+  const query = useQuery({
+    queryKey: [locale, id],
+    queryFn: () => loader(locale, id)
+  })
 
-    const message = interpolate({
-      message: typeof query?.data === 'string' ? query?.data : rawMessage,
-      locale,
-      variables
-    })
+  const message = interpolate({
+    message: typeof query?.data === 'string' ? query?.data : rawMessage,
+    locale,
+    variables
+  })
 
-    return <>{message}</>
-  },
-  (prevProps, nexProps) =>
-    prevProps.locale === nexProps.locale && prevProps.id === nexProps.id
-)
+  return <>{message}</>
+}

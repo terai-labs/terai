@@ -3,20 +3,23 @@ import { cookies, headers } from 'next/headers'
 
 // Constants
 import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
+
+// Types
 import type { Locale } from '@rewordlabs/types'
 
-export const getLocaleCache = (): Locale | null => {
-  let locale: Locale | null = null
+export const getLocaleCache = (): Locale => {
+  const localeFromHeaders = headers().get(LOCALE_HEADER)
 
-  locale = headers().get(LOCALE_HEADER) as Locale
-
-  if (!locale) {
-    locale = cookies().get(LOCALE_COOKIE)?.value as Locale
+  if (localeFromHeaders) {
+    return localeFromHeaders as Locale
   }
 
-  if (!locale) {
-    throw new Error('Could not get the locale from the headers or cookies.')
+  const localeFromCookies = cookies().get(LOCALE_COOKIE)?.value
+
+  if (localeFromCookies) {
+    return localeFromCookies as Locale
   }
 
-  return locale
+  console.error('Could not get the locale from the headers or cookies.')
+  return 'en'
 }

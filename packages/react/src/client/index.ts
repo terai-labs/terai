@@ -1,2 +1,3 @@
+import 'client-only'
+
 export * from './setup'
-export * from './types'

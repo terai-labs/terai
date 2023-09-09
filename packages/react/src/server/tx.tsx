@@ -4,9 +4,9 @@ import { Suspense } from 'react'
 import { Text } from './text'
 
 // Types
-import { type MessageExpression } from '@rewordlabs/formatter'
-import { type ReactNode } from 'react'
-import type { SetupOptions } from './setup'
+import type { MessageExpression } from '@rewordlabs/formatter'
+import type { ReactNode } from 'react'
+import type { CreateSetupServerOptions, SetupServerOptions } from './setup'
 
 export type TxOptions = {
   context: string
@@ -18,14 +18,15 @@ export interface Tx {
 }
 
 export type CreateTxOptions = {
-  loader: SetupOptions['loader']
+  loader: SetupServerOptions['loader']
+  getLocale: CreateSetupServerOptions['getLocale']
 }
 
 function isTemplateStringsArray(v: any): v is TemplateStringsArray {
   return v?.raw && v?.length
 }
 
-export function getTx(options: CreateTxOptions): Tx {
+export function createTx(options: CreateTxOptions): Tx {
   function tx(
     stringsOrOptions: TemplateStringsArray,
     ...variables: MessageExpression[]
@@ -36,23 +37,23 @@ export function getTx(options: CreateTxOptions): Tx {
     ...variables: MessageExpression[]
   ): ReactNode | Tx {
     if (isTemplateStringsArray(stringsOrOptions)) {
-      const { loader } = options
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
       const id = toHash(rawMessage)
 
       return (
         <Suspense>
+          {/* @ts-ignore */}
           <Text
+            {...options}
             id={id}
-            loader={loader}
             rawMessage={rawMessage}
             variables={variables}
           />
         </Suspense>
       )
     } else {
-      return getTx(options)
+      return createTx(options)
     }
   }
 

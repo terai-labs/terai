@@ -7,8 +7,9 @@ import { Text } from './text'
 
 // Types
 import type { MessageExpression } from '@rewordlabs/formatter'
-import type { ObservableState, SetupOptions } from './types'
 import type { ReactNode } from 'react'
+import type { SetupClientOptions } from './setup'
+import type { Locale } from '@rewordlabs/types'
 
 export type TxOptions = {
   context: string
@@ -21,8 +22,8 @@ export interface Tx {
 
 export type CreateTxOptions = {
   queryClient: QueryClient
-  loader: SetupOptions['loader']
-  locale$: ObservableState
+  loader: SetupClientOptions['loader']
+  getLocale: () => Locale
 }
 
 function isTemplateStringsArray(v: any): v is TemplateStringsArray {
@@ -30,7 +31,7 @@ function isTemplateStringsArray(v: any): v is TemplateStringsArray {
 }
 
 export function createTx(options: CreateTxOptions): Tx {
-  const { queryClient, loader, locale$ } = options
+  const { queryClient, loader, getLocale } = options
 
   function tx(
     stringsOrOptions: TemplateStringsArray,
@@ -42,7 +43,6 @@ export function createTx(options: CreateTxOptions): Tx {
     ...variables: MessageExpression[]
   ): ReactNode | Tx {
     if (isTemplateStringsArray(stringsOrOptions)) {
-      const locale = locale$.use()
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
       const id = toHash(rawMessage)
@@ -50,9 +50,9 @@ export function createTx(options: CreateTxOptions): Tx {
       return (
         <QueryClientProvider client={queryClient}>
           <Text
+            getLocale={getLocale}
             id={id}
             loader={loader}
-            locale={locale}
             rawMessage={rawMessage}
             variables={variables}
           />

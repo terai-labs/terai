@@ -1,5 +1,5 @@
 {
-  "name": "next-pages",
+  "name": "@rewordlabs/playground-next-pages",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rewordlabs/next": "workspace:*",
+    "@rewordlabs/react": "workspace:*"
+  },
+  "devDependencies": {
     "@rewordlabs/dev": "workspace:*",
-    "@rewordlabs/react": "workspace:*",
     "@types/node": "20.5.1",
     "@types/react-dom": "^18.2.7",
     "@types/react": "18.2.20",
     "eslint-config-next": "^13.4.13",
-    "eslint": "^8.46.0",
-    "next": "^13.4.13",
-    "react-dom": "^18.2.0",
-    "react": "^18.2.0",
-    "typescript": "^5.1.6"
+    "eslint": "^8.46.0"
   }
 }

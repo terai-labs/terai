@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "require": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
@@ -11,16 +12,32 @@
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "require": "./dist/server.js",
+      "import": "./dist/server.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "require": "./dist/client.js",
+      "import": "./dist/client.mjs"
+    }
+  },
   "dependencies": {
-    "@rewordlabs/react": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
+    "@rewordlabs/react": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rewordlabs/types": "workspace:*",
-    "@types/react": "^18.2.21"
+    "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

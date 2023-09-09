@@ -1,20 +1,28 @@
+'use server'
+
 // Dependencies
 import { interpolate } from '@rewordlabs/formatter'
-import { getLocaleCache } from './get-locale-cache'
 
 // Types
 import type { MessageExpression } from '@rewordlabs/formatter'
-import type { SetupOptions } from './setup'
+import type { CreateSetupServerOptions, SetupServerOptions } from './setup'
 
 type TextProps = {
   id: string
-  loader: SetupOptions['loader']
   rawMessage: string
   variables: MessageExpression[]
+  loader: SetupServerOptions['loader']
+  getLocale: CreateSetupServerOptions['getLocale']
 }
 
-export async function Text({ id, loader, rawMessage, variables }: TextProps) {
-  const locale = (await getLocaleCache()) ?? 'en'
+export async function Text({
+  id,
+  loader,
+  rawMessage,
+  variables,
+  getLocale
+}: TextProps) {
+  const locale = await getLocale()
   const json = await loader(locale, id)
   const message = interpolate({
     message: typeof json === 'string' ? json : rawMessage,

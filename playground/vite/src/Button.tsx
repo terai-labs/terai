@@ -1,4 +1,4 @@
-import { tx } from './reword'
+import { tx } from '../locale/client'
 
 export function Button() {
   return (

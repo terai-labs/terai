@@ -1,6 +1,8 @@
-import { tx } from '../reword'
+'use client'
 
-export default async function Home() {
+import { tx } from '../../../../locale/client'
+
+export default function ClientPage() {
   const name = 'Hugo'
 
   return (

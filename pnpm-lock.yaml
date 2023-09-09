@@ -11,6 +11,12 @@ importers:
       outdent:
         specifier: ^0.8.0
         version: 0.8.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       tsup:
         specifier: ^7.2.0
         version: 7.2.0(typescript@5.2.2)
@@ -27,6 +33,9 @@ importers:
       '@types/node':
         specifier: ^20.5.9
         version: 20.5.9
+      '@types/react':
+        specifier: ^18.2.21
+        version: 18.2.21
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.6.0
         version: 6.6.0(@typescript-eslint/parser@6.6.0)(eslint@8.48.0)(typescript@5.2.2)
@@ -45,6 +54,9 @@ importers:
       lint-staged:
         specifier: ^14.0.1
         version: 14.0.1
+      next:
+        specifier: ^13.4.0
+        version: 13.4.19(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -87,6 +99,9 @@ importers:
       perfect-debounce:
         specifier: ^1.0.0
         version: 1.0.0
+      preferred-pm:
+        specifier: ^3.1.2
+        version: 3.1.2
     devDependencies:
       '@rewordlabs/generator':
         specifier: workspace:*
@@ -186,9 +201,6 @@ importers:
       '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
 
   packages/node:
     dependencies:
@@ -219,9 +231,6 @@ importers:
       pathe:
         specifier: ^1.1.1
         version: 1.1.1
-      preferred-pm:
-        specifier: ^3.1.2
-        version: 3.1.2
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.1
@@ -240,20 +249,20 @@ importers:
         version: link:../utils
       '@tanstack/react-query':
         specifier: ^4.35.0
-        version: 4.35.0(react@18.2.0)
+        version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
       client-only:
         specifier: ^0.0.1
         version: 0.0.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
     devDependencies:
       '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
 
   packages/transformer:
     dependencies:
@@ -292,7 +301,7 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  playground/next:
+  playground/next-app:
     dependencies:
       '@rewordlabs/next':
         specifier: workspace:*
@@ -300,12 +309,6 @@ importers:
       '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*
@@ -325,18 +328,19 @@ importers:
       eslint-config-next:
         specifier: ^13.4.13
         version: 13.4.19(eslint@8.48.0)(typescript@5.2.2)
-      next:
-        specifier: ^13.4.0
-        version: 13.4.19(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
 
   playground/next-pages:
     dependencies:
-      '@rewordlabs/dev':
+      '@rewordlabs/next':
         specifier: workspace:*
-        version: link:../../packages/dev
+        version: link:../../packages/next
       '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
+    devDependencies:
+      '@rewordlabs/dev':
+        specifier: workspace:*
+        version: link:../../packages/dev
       '@types/node':
         specifier: 20.5.1
         version: 20.5.1
@@ -352,30 +356,12 @@ importers:
       eslint-config-next:
         specifier: ^13.4.13
         version: 13.4.19(eslint@8.48.0)(typescript@5.2.2)
-      next:
-        specifier: ^13.4.13
-        version: 13.4.19(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      typescript:
-        specifier: ^5.1.6
-        version: 5.2.2
 
   playground/vite:
     dependencies:
       '@rewordlabs/react':
         specifier: workspace:*
         version: link:../../packages/react
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*
@@ -2359,7 +2345,7 @@ packages:
     resolution: {integrity: sha512-4GMcKQuLZQi6RFBiBZNsLhl+hQGYScRZ5ZoVq8QAzfqz9M7vcGin/2YdSESwl7WaV+Qzsb5CZOAbMBes4lNTnA==}
     dev: false
 
-  /@tanstack/react-query@4.35.0(react@18.2.0):
+  /@tanstack/react-query@4.35.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-LLYDNnM9ewYHgjm2rzhk4KG/puN2rdoqCUD+N9+V7SwlsYwJk5ypX58rpkoZAhFyZ+KmFUJ7Iv2lIEOoUqydIg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -2373,6 +2359,7 @@ packages:
     dependencies:
       '@tanstack/query-core': 4.35.0
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
@@ -2511,7 +2498,7 @@ packages:
   /@types/node-fetch@2.6.4:
     resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
     dependencies:
-      '@types/node': 18.17.14
+      '@types/node': 20.5.9
       form-data: 3.0.1
     dev: false
 
@@ -2529,6 +2516,7 @@ packages:
 
   /@types/node@20.5.1:
     resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
+    dev: true
 
   /@types/node@20.5.9:
     resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
@@ -2555,6 +2543,7 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
+    dev: true
 
   /@types/react@18.2.21:
     resolution: {integrity: sha512-neFKG/sBAwGxHgXiIxnbm3/AAVQ/cMRS93hvBpg8xYRbeQSPVABp9U2bRnPf0iI4+Ucdv3plSxKK+3CW2ENJxA==}
@@ -2813,7 +2802,7 @@ packages:
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
       magic-string: 0.30.3
-      postcss: 8.4.27
+      postcss: 8.4.29
       source-map-js: 1.0.2
     dev: true
 
