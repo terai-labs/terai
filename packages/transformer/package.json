@@ -11,6 +11,13 @@
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@rewordlabs/utils": "workspace:*",
     "chalk": "^4.1.2"

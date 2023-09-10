@@ -11,6 +11,13 @@
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@rewordlabs/logger": "workspace:*",
     "@rewordlabs/types": "workspace:*",
@@ -24,8 +31,5 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

@@ -1,18 +1,29 @@
-import { observable } from '@legendapp/state'
-import { useSelector } from '@legendapp/state/react'
+import Link from 'next/link'
+import { tx, useLocaleSync } from '../../../locale/client'
 
-const state = observable({ selected: 1, theme: {} })
+export default function ClientPage({ locale }: { locale: string }) {
+  const name = 'Hugo'
+  useLocaleSync(locale)
 
-export default function Legend() {
-  return <Component />
+  return (
+    <div>
+      <p>{tx`Hello, ${name}!`}</p>
+      <p>{tx`You haven't checked you email since ${new Date()}`}</p>
+      <p>{tx`You got ${10000} messages in your mail inbox`}</p>
+
+      <Link href={'/'}>To Home</Link>
+    </div>
+  )
 }
 
-function Component() {
-  // Only re-renders if the return value changes
-  const isSelected = useSelector(() => state.selected.get())
-
-  // Get the raw value of an observable and listen to it
-  const theme = useSelector(state.theme)
-
-  return <p>{isSelected}</p>
+export const getServerSideProps = ({
+  params
+}: {
+  params: { locale: string }
+}) => {
+  return {
+    props: {
+      locale: params.locale
+    }
+  }
 }

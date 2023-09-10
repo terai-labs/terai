@@ -6,14 +6,18 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "pnpm build-fast --watch",
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "kleur": "^4.1.5",
     "lil-fp": "1.4.5"

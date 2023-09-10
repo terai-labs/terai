@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rewordlabs/next": "workspace:*",
-    "@rewordlabs/react": "workspace:*"
+    "@rewordlabs/next": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/dev": "workspace:*",

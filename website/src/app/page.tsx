@@ -33,9 +33,9 @@ export default function Home() {
         textAlign={'center'}
         fontSize={'lg'}
       >
-        Reword is a cutting-edge utility that pempower developers and
-        streamline the localization workflow. Say goodbye to cumbersome
-        localization challenges and hello to a seamless, intuitive solution.
+        Reword is a cutting-edge utility that pempower developers and streamline
+        the localization workflow. Say goodbye to cumbersome localization
+        challenges and hello to a seamless, intuitive solution.
       </styled.span>
 
       <styled.span color={'text.primary'}>COMING SOON</styled.span>

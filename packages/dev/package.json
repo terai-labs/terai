@@ -16,6 +16,14 @@
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
+  "files": [
+    "bin.js",
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@inquirer/prompts": "^3.0.4",
     "@rewordlabs/extractor": "workspace:*",
@@ -34,9 +42,5 @@
     "@rewordlabs/types": "workspace:*",
     "@types/update-notifier": "^6.0.5",
     "update-notifier": "^6.0.2"
-  },
-  "files": [
-    "dist",
-    "bin.js"
-  ]
+  }
 }

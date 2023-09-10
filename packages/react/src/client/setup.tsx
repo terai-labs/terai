@@ -15,14 +15,22 @@ import type { Locale } from '@rewordlabs/types'
 export type SetupClientOptions = {
   locale: Locale
   loader: (locale: string, id: string) => Promise<string>
+  usePersist?: boolean
 }
 
 export type State = Locale
 export type ObservableState = Observable<State>
 
 enableReactUse()
+configureObservablePersistence({
+  persistLocal: ObservablePersistLocalStorage
+})
 
-export function setupClient({ loader, locale }: SetupClientOptions) {
+export function setupClient({
+  loader,
+  locale,
+  usePersist = false
+}: SetupClientOptions) {
   const locale$ = observable<State>(locale)
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -34,25 +42,27 @@ export function setupClient({ loader, locale }: SetupClientOptions) {
     }
   })
 
-  configureObservablePersistence({
-    persistLocal: ObservablePersistLocalStorage
-  })
+  if (usePersist) {
+    persistObservable(locale$, {
+      local: 'locale'
+    })
+  }
 
-  persistObservable(locale$, {
-    local: 'locale'
-  })
-
-  const getLocale = () => locale$.get()
+  const getLocale = () => locale$.use()
   const changeLocale = (locale: Locale) => locale$.set(locale)
   const tx = createTx({
     queryClient,
     loader,
     getLocale
   })
+  const useLocaleSync = (locale: string) => {
+    locale$.set(locale as Locale)
+  }
 
   return {
     tx,
-    getLocale,
-    changeLocale
+    changeLocale,
+    useLocale: getLocale,
+    useLocaleSync
   }
 }
