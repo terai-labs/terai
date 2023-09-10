@@ -1,5 +1,5 @@
 {
-  "name": "@rewordlabs/playground-next-app",
+  "name": "playground-next-app",
   "version": "0.0.0",
   "private": true,
   "scripts": {
