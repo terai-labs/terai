@@ -1,8 +1,8 @@
 {
   "messages": {
-    "bWVCwm": {
-      "id": "bWVCwm",
-      "value": "Hi ${VAR}, this is is a dem s sso  sdf with React!",
+    "fCqzTW": {
+      "id": "fCqzTW",
+      "value": "Hi ${VAR}, this is is a dem s sso <i>sdf</i> with React!",
       "context": "",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"

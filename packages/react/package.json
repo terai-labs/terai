@@ -37,6 +37,7 @@
     "@rewordlabs/utils": "workspace:*",
     "@tanstack/react-query": "^4.35.0",
     "client-only": "^0.0.1",
+    "intl-messageformat": "^10.5.2",
     "server-only": "^0.0.1"
   },
   "devDependencies": {

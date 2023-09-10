@@ -1,9 +1,11 @@
+import 'client-only'
+
 // Dependencies
-import { createTx } from './tx'
+import { createTx } from '@rewordlabs/formatter'
 import { observable, type Observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-import { QueryClient } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   configureObservablePersistence,
   persistObservable
@@ -11,6 +13,10 @@ import {
 
 // Types
 import type { Locale } from '@rewordlabs/types'
+import type { ReactNode } from 'react'
+
+// Components
+import { Text } from './text'
 
 export type SetupClientOptions = {
   locale: Locale
@@ -49,15 +55,19 @@ export function setupClient({
   }
 
   const getLocale = () => locale$.use()
+  const useLocaleSync = (locale: string) => locale$.set(locale as Locale)
   const changeLocale = (locale: Locale) => locale$.set(locale)
-  const tx = createTx({
-    queryClient,
+  const tx = createTx<ReactNode>({
     loader,
-    getLocale
+    getLocale,
+    render: props => {
+      return (
+        <QueryClientProvider client={queryClient}>
+          <Text {...props} />
+        </QueryClientProvider>
+      )
+    }
   })
-  const useLocaleSync = (locale: string) => {
-    locale$.set(locale as Locale)
-  }
 
   return {
     tx,

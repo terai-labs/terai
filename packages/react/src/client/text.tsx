@@ -5,17 +5,7 @@ import { interpolate } from '@rewordlabs/formatter'
 import { useQuery } from '@tanstack/react-query'
 
 // Types
-import type { MessageExpression } from '@rewordlabs/formatter'
-import type { SetupClientOptions } from './setup'
-import type { Locale } from '@rewordlabs/types'
-
-type TextProps = {
-  id: string
-  loader: SetupClientOptions['loader']
-  rawMessage: string
-  variables: MessageExpression[]
-  getLocale: () => Locale
-}
+import type { TxRenderProps } from '@rewordlabs/formatter'
 
 export const Text = ({
   id,
@@ -23,7 +13,7 @@ export const Text = ({
   rawMessage,
   getLocale,
   variables
-}: TextProps) => {
+}: TxRenderProps) => {
   const locale = getLocale()
   const query = useQuery({
     queryKey: [locale, id],

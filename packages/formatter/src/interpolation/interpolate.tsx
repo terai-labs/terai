@@ -1,10 +1,10 @@
-// Types
-import type { Locale } from '@rewordlabs/types'
-import type { MessageExpression } from '../types'
-
 // Utils
 import { formatNumber } from './number'
 import { formatDate } from './date'
+
+// Types
+import type { Locale } from '@rewordlabs/types'
+import type { MessageExpression } from '../types'
 
 export type InterpolateOptions = {
   message: string

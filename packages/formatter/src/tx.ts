@@ -1,50 +1,55 @@
 // Dependencies
 import { prepareMessage, toHash } from '@rewordlabs/utils'
-import { interpolate } from './interpolation'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
 import type { MessageExpression } from './types'
 
-type CreateTxOptions = {
+export type TxRenderProps = {
+  id: string
+  rawMessage: string
+  variables: MessageExpression[]
   getLocale: () => Locale
-  getMessage: (id: string) => string
+  loader: (locale: string, id: string) => Promise<string>
 }
 
-type TxOptions = {
+export type CreateTxOptions<T> = {
+  getLocale: () => Locale
+  loader: (locale: string, id: string) => Promise<string>
+  render: (options: TxRenderProps) => T
+}
+
+export type TxOptions = {
   context: string
 }
 
-export interface Tx {
-  (strings: TemplateStringsArray, ...variables: MessageExpression[]): string
-  (options: TxOptions): Tx
+export interface Tx<T> {
+  (strings: TemplateStringsArray, ...variables: MessageExpression[]): T
+  (options: TxOptions): Tx<T>
 }
 
-export function createTx(options: CreateTxOptions): Tx {
+export function createTx<T>(options: CreateTxOptions<T>): Tx<T> {
   function tx(
     stringsOrOptions: TemplateStringsArray,
     ...variables: MessageExpression[]
-  ): string
-  function tx(stringsOrOptions: TxOptions): Tx
+  ): T
+  function tx(stringsOrOptions: TxOptions): Tx<T>
   function tx(
     stringsOrOptions: TemplateStringsArray | TxOptions,
     ...variables: MessageExpression[]
-  ): string | Tx {
+  ): T | Tx<T> {
     if (isTemplateStringsArray(stringsOrOptions)) {
-      const locale = options.getLocale()
+      const { render, ...restOfOptions } = options
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
       const id = toHash(rawMessage)
-      const msg = options.getMessage(id)
-      let message = typeof msg === 'string' ? msg : rawMessage
 
-      message = interpolate({
-        message,
-        locale,
+      return render({
+        ...restOfOptions,
+        id,
+        rawMessage,
         variables
       })
-
-      return message
     } else {
       return createTx(options)
     }
