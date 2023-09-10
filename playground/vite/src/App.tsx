@@ -7,7 +7,9 @@ export default function App() {
   return (
     <Suspense fallback={<h1>{'Loading...'}</h1>}>
       <div>
-        <h1>{tx`Hi ${name}, this is is a dem s sso <i>sdf</i> with React!`}</h1>
+        <h1>{tx({
+          context: 'react'
+        })`Hi ${name}, this is is a dem s sso <strong><i>sdf</i></strong> with React!`}</h1>
 
         <div className={'buttons'}>
           <button onClick={() => changeLocale('es')}>ES</button>

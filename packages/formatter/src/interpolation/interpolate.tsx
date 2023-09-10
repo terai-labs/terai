@@ -6,20 +6,23 @@ import { formatDate } from './date'
 import type { Locale } from '@rewordlabs/types'
 import type { MessageExpression } from '../types'
 
-export type InterpolateOptions = {
+export type InterpolateProps = {
   message: string
   variables: MessageExpression[]
   locale: Locale
 }
 
-export function interpolate({
-  message,
-  variables,
-  locale
-}: InterpolateOptions) {
+export type InterpolateOptions = {
+  plugins: ((a: unknown) => unknown)[]
+}
+
+export function interpolate(
+  { message, variables, locale }: InterpolateProps,
+  options?: InterpolateOptions
+) {
   let index = 0
 
-  return message.replace(/\${(\w+)}/g, () => {
+  const messageWithVars = message.replace(/\${(\w+)}/g, () => {
     const variable = variables[index]
     index++
 
@@ -45,4 +48,16 @@ export function interpolate({
 
     return variable
   })
+
+  if (options?.plugins) {
+    let output: string | unknown = messageWithVars
+
+    for (const plugin of options.plugins) {
+      output = plugin(output)
+    }
+
+    return output
+  }
+
+  return messageWithVars
 }

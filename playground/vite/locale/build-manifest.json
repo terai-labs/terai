@@ -1,10 +1,10 @@
 {
   "messages": {
-    "fCqzTW": {
-      "id": "fCqzTW",
-      "value": "Hi ${VAR}, this is is a dem s sso <i>sdf</i> with React!",
-      "context": "",
+    "kpKgVy": {
+      "id": "kpKgVy",
+      "value": "Hi ${VAR}, this is is a dem s sso <strong><i>sdf</i></strong> with React!",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
+      "context": "'react'",
       "chunkId": "kKXtqj"
     },
     "ixzubt": {

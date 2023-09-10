@@ -1,18 +1,21 @@
 'use server'
 
-// Dependencies
-import { interpolate } from '@rewordlabs/formatter'
-
 // Types
 import type { TxRenderProps } from '@rewordlabs/formatter'
+import type { InterpolateFn } from '../interpolate'
+
+type TextProps = TxRenderProps & {
+  interpolate: InterpolateFn
+}
 
 export async function Text({
+  getLocale,
   id,
+  interpolate,
   loader,
   rawMessage,
-  variables,
-  getLocale
-}: TxRenderProps) {
+  variables
+}: TextProps) {
   const locale = getLocale()
   const json = await loader(locale, id)
   const message = interpolate({
@@ -21,5 +24,5 @@ export async function Text({
     variables
   })
 
-  return message
+  return <>{message}</>
 }

@@ -1,18 +1,16 @@
-import 'server-only'
-
 // Dependencies
 import { Suspense, type ReactNode } from 'react'
-import { createTx, type Tx } from '@rewordlabs/formatter'
+import { createTx, type InterpolateOptions } from '@rewordlabs/formatter'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
 
 // Components
 import { Text } from './text'
+import { createInterpolate } from '../interpolate'
+import type { CommonSetupOptions } from '../types'
 
-export type SetupServerOptions = {
-  loader: (locale: string, id: string) => Promise<string>
-}
+export type SetupServerOptions = InterpolateOptions & CommonSetupOptions
 
 export type CreateSetupServerOptions = {
   getLocale: () => Locale
@@ -20,7 +18,16 @@ export type CreateSetupServerOptions = {
 
 export const createSetupServer =
   ({ getLocale }: CreateSetupServerOptions) =>
-  ({ loader }: SetupServerOptions): { tx: Tx<ReactNode> } => {
+  ({
+    loader,
+    components,
+    ...interpolateOptions
+  }: SetupServerOptions & InterpolateOptions) => {
+    const interpolate = createInterpolate({
+      locale: getLocale(),
+      components,
+      ...interpolateOptions
+    })
     const tx = createTx<ReactNode>({
       loader,
       getLocale,
@@ -28,7 +35,7 @@ export const createSetupServer =
         return (
           <Suspense>
             {/* @ts-ignore */}
-            <Text {...props} />
+            <Text {...props} interpolate={interpolate} />
           </Suspense>
         )
       }

@@ -28,7 +28,10 @@ export interface Tx<T> {
   (options: TxOptions): Tx<T>
 }
 
-export function createTx<T>(options: CreateTxOptions<T>): Tx<T> {
+export function createTx<T>(
+  options: CreateTxOptions<T>,
+  opts?: TxOptions
+): Tx<T> {
   function tx(
     stringsOrOptions: TemplateStringsArray,
     ...variables: MessageExpression[]
@@ -39,6 +42,7 @@ export function createTx<T>(options: CreateTxOptions<T>): Tx<T> {
     ...variables: MessageExpression[]
   ): T | Tx<T> {
     if (isTemplateStringsArray(stringsOrOptions)) {
+      console.log('tx', opts)
       const { render, ...restOfOptions } = options
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
@@ -51,7 +55,7 @@ export function createTx<T>(options: CreateTxOptions<T>): Tx<T> {
         variables
       })
     } else {
-      return createTx(options)
+      return createTx(options, stringsOrOptions)
     }
   }
 
