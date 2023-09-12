@@ -21,7 +21,7 @@
   "dependencies": {
     "@rewordlabs/node": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
-    "openai": "^4.5.0"
+    "openai": "^4.6.0"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
