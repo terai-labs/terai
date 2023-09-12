@@ -34,7 +34,8 @@
       "types": "./dist/server/index.d.ts",
       "require": "./dist/server/index.js",
       "import": "./dist/server/index.mjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "dependencies": {
     "@rewordlabs/react": "workspace:*",
@@ -47,7 +48,6 @@
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "next": "^13.4.0"
+    "next": "13.x"
   }
 }

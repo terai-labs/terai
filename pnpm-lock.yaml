@@ -191,9 +191,6 @@ importers:
       next:
         specifier: ^13.4.0
         version: 13.4.19(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -309,6 +306,9 @@ importers:
       '@rewordlabs/next':
         specifier: workspace:*
         version: link:../../packages/next
+      '@rewordlabs/react':
+        specifier: workspace:*
+        version: link:../../packages/react
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*

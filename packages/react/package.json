@@ -29,7 +29,8 @@
       "types": "./dist/server/index.d.ts",
       "require": "./dist/server/index.js",
       "import": "./dist/server/index.mjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "dependencies": {
     "@legendapp/state": "^1.11.1",
@@ -44,6 +45,6 @@
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "18.x"
   }
 }
