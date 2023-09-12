@@ -1,6 +1,6 @@
 {
   "name": "playground-next-pages",
-  "version": "0.0.0-dev-20230912123137",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
