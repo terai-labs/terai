@@ -4,7 +4,7 @@ import { prepareMessage, toHash } from '@rewordlabs/utils'
 // Types
 import type { Locale } from '@rewordlabs/types'
 import type { MessageExpression } from './types'
-import type { InterpolateOptions } from './interpolation'
+import type { InterpolateOptions } from './interpolate'
 
 export type TxRenderProps<P = unknown> = {
   id: string

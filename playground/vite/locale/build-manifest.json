@@ -1,8 +1,8 @@
 {
   "messages": {
-    "kFUPUC": {
-      "id": "kFUPUC",
-      "value": "Hi ${VAR}, this is is a dem s sso <Custom><i>sdf</i></Custom> with React!",
+    "jrmpMk": {
+      "id": "jrmpMk",
+      "value": "Hi ${VAR}, with React at ${VAR}!",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "context": "",
       "chunkId": "kKXtqj"

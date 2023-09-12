@@ -1,4 +1,4 @@
-const { setupClient } = require('@rewordlabs/next/client')
+import { setupClient } from '@rewordlabs/next/client'
 
 export const { tx, changeLocale } = setupClient({
   locale: 'en',

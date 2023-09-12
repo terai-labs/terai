@@ -1,7 +1,7 @@
 import 'client-only'
 
 // Dependencies
-import { createTx } from '@rewordlabs/formatter'
+import { createTx, format as formatter } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
@@ -80,6 +80,7 @@ export function setupClient({
     tx,
     changeLocale,
     useLocale: getLocale,
-    useLocaleSync
+    useLocaleSync,
+    format: formatter
   }
 }

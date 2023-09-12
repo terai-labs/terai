@@ -1,9 +1,5 @@
-import type {
-  FormatDateOptions,
-  FormatDateProps,
-  FormatNumberOptions,
-  FormatNumberProps
-} from './interpolation'
+import type { FormatDateProps, FormatDateOptions } from './date'
+import type { FormatNumberProps, FormatNumberOptions } from './number'
 
 type Config<A, B extends { value: any; options?: any }> = {
   format: A

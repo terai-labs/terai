@@ -4,7 +4,7 @@ import { formatDate } from './date'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
-import type { GlobalFormat, MessageExpression } from '../types'
+import type { GlobalFormat, MessageExpression } from './types'
 
 export type InterpolateProps = {
   message: string

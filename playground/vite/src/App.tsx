@@ -8,11 +8,13 @@ export default function App() {
     <Suspense fallback={<h1>{'Loading...'}</h1>}>
       <div>
         <h1>{tx({
-          components: {
-            Custom: children => <h1>{children}</h1>,
-            i: children => <code>{children}</code>
+          format: {
+            date: {
+              calendar: 'long',
+              dateStyle: 'long'
+            }
           }
-        })`Hi ${name}, this is is a dem s sso <Custom><i>sdf</i></Custom> with React!`}</h1>
+        })`Hi ${name}, with React at ${new Date()}!`}</h1>
 
         <div className={'buttons'}>
           <button onClick={() => changeLocale('es')}>ES</button>

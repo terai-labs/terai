@@ -1,6 +1,10 @@
 // Dependencies
 import { Suspense, type ReactNode } from 'react'
-import { createTx, type InterpolateOptions } from '@rewordlabs/formatter'
+import {
+  createTx,
+  type InterpolateOptions,
+  format as formatter
+} from '@rewordlabs/formatter'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
@@ -44,6 +48,7 @@ export const createSetupServer =
     })
 
     return {
-      tx
+      tx,
+      format: formatter
     }
   }
