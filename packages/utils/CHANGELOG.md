@@ -1,5 +1,16 @@
 # @rewordlabs/utils
 
+## 0.1.0
+
+### Minor Changes
+
+- fde906b: Update versions
+
+### Patch Changes
+
+- Updated dependencies [fde906b]
+  - @rewordlabs/types@0.1.0
+
 ## 0.0.0
 
 ### Patch Changes
