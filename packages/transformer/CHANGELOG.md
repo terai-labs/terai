@@ -1,5 +1,15 @@
 # @rewordlabs/transformer
 
+## 0.0.0
+
+### Patch Changes
+
+- 27a2f0c: feat: add custom options to tx instance:
+- c3b366e: WIP
+- Updated dependencies [27a2f0c]
+- Updated dependencies [c3b366e]
+  - @rewordlabs/utils@0.0.0
+
 ## 0.0.0-dev-20230912123137
 
 ### Patch Changes
