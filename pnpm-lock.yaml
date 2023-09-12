@@ -189,7 +189,7 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       next:
-        specifier: ^13.4.0
+        specifier: 13.x
         version: 13.4.19(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
       server-only:
         specifier: ^0.0.1
@@ -254,7 +254,7 @@ importers:
         specifier: ^10.5.2
         version: 10.5.2
       react:
-        specifier: ^18.2.0
+        specifier: 18.x
         version: 18.2.0
       server-only:
         specifier: ^0.0.1
