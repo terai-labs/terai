@@ -4,7 +4,7 @@ import { formatDate } from './date'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
-import type { MessageExpression } from '../types'
+import type { GlobalFormat, MessageExpression } from '../types'
 
 export type InterpolateProps = {
   message: string
@@ -13,12 +13,13 @@ export type InterpolateProps = {
 }
 
 export type InterpolateOptions = {
-  plugins: ((a: unknown) => unknown)[]
+  plugins?: ((a: unknown) => unknown)[]
+  format?: GlobalFormat
 }
 
 export function interpolate(
   { message, variables, locale }: InterpolateProps,
-  options?: InterpolateOptions
+  { plugins, format }: InterpolateOptions = {}
 ) {
   let index = 0
 
@@ -30,29 +31,46 @@ export function interpolate(
 
     if (typeof variable === 'string') return variable
     if (typeof variable === 'number' || typeof variable === 'bigint')
-      return formatNumber({ value: variable, locale })
+      return formatNumber({
+        value: variable,
+        locale,
+        options: format?.number
+      })
 
-    if (variable instanceof Date) return formatDate({ value: variable, locale })
+    if (variable instanceof Date)
+      return formatDate({
+        value: variable,
+        locale,
+        options: format?.date
+      })
 
     if (typeof variable === 'object') {
       if (variable.format === 'number') {
         const { value, ...options } = variable
-        return formatNumber({ value, options, locale })
+        return formatNumber({
+          value,
+          locale,
+          options: options || format?.number
+        })
       }
 
       if (variable.format === 'date') {
         const { value, ...options } = variable
-        return formatDate({ value, options, locale })
+        return formatDate({
+          value,
+          locale,
+          options: options || format?.number
+        })
       }
     }
 
     return variable
   })
 
-  if (options?.plugins) {
+  if (plugins) {
     let output: string | unknown = messageWithVars
 
-    for (const plugin of options.plugins) {
+    for (const plugin of plugins) {
       output = plugin(output)
     }
 

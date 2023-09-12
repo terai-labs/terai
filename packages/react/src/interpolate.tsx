@@ -1,18 +1,21 @@
 // Dependencies
-import IntlMessageFormat from 'intl-messageformat'
+import { IntlMessageFormat } from 'intl-messageformat'
 
 // Types
 import { interpolate } from '@rewordlabs/formatter'
 import type { ReactNode } from 'react'
-import type { InterpolateComponents } from './types'
 import type {
   InterpolateOptions,
   InterpolateProps
 } from '@rewordlabs/formatter'
 
 export type InterpolateFn = (props: InterpolateProps) => unknown
+export type InterpolateComponents = Record<
+  string,
+  (children: ReactNode) => ReactNode
+>
 
-export const createInterpolate =
+export const createReactInterpolate =
   ({
     locale,
     components = {},

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { Locale } from '@rewordlabs/types'
-import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
+import { LOCALE_COOKIE, LOCALE_HEADER } from './server/constants'
 
 type CreateMiddlewareOptions = {
   /**

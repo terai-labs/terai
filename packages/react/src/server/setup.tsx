@@ -4,13 +4,12 @@ import { createTx, type InterpolateOptions } from '@rewordlabs/formatter'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
+import type { CommonSetupOptions, TxReactOptions } from '../types'
 
 // Components
 import { Text } from './text'
-import { createInterpolate } from '../interpolate'
-import type { CommonSetupOptions } from '../types'
 
-export type SetupServerOptions = InterpolateOptions & CommonSetupOptions
+export type SetupServerOptions = CommonSetupOptions
 
 export type CreateSetupServerOptions = {
   getLocale: () => Locale
@@ -21,21 +20,24 @@ export const createSetupServer =
   ({
     loader,
     components,
-    ...interpolateOptions
+    format,
+    plugins
   }: SetupServerOptions & InterpolateOptions) => {
-    const interpolate = createInterpolate({
-      locale: getLocale(),
-      components,
-      ...interpolateOptions
-    })
-    const tx = createTx<ReactNode>({
+    const tx = createTx<ReactNode, TxReactOptions>({
       loader,
       getLocale,
       render: props => {
         return (
           <Suspense>
             {/* @ts-ignore */}
-            <Text {...props} interpolate={interpolate} />
+            <Text
+              {...props}
+              global={{
+                components,
+                format,
+                plugins
+              }}
+            />
           </Suspense>
         )
       }

@@ -1,5 +1,5 @@
 // Dependencies
-import { getLocaleCache } from '../get-locale-cache'
+import { getLocaleCache } from './get-locale-cache'
 import {
   createSetupServer,
   type SetupServerOptions
@@ -8,9 +8,10 @@ import {
 // Types
 import type { ReactNode } from 'react'
 import type { Tx } from '@rewordlabs/formatter'
+import type { TxReactOptions } from '@rewordlabs/react'
 
 export const setupServer: ({ loader }: SetupServerOptions) => {
-  tx: Tx<ReactNode>
+  tx: Tx<ReactNode, TxReactOptions>
 } = createSetupServer({
   getLocale: getLocaleCache
 })

@@ -2,24 +2,35 @@
 
 // Dependencies
 import { useQuery } from '@tanstack/react-query'
+import { createReactInterpolate } from '../interpolate'
 
 // Types
-import type { TxRenderProps } from '@rewordlabs/formatter'
-import type { InterpolateFn } from '../interpolate'
-
-type TextProps = TxRenderProps & {
-  interpolate: InterpolateFn
-}
+import type { TextProps } from '../types'
 
 export const Text = ({
   getLocale,
   id,
-  interpolate,
   loader,
   rawMessage,
-  variables
+  variables,
+  components,
+  format,
+  global
 }: TextProps) => {
   const locale = getLocale()
+
+  const interpolate = createReactInterpolate({
+    locale,
+    plugins: global.plugins,
+    components: {
+      ...global?.components,
+      ...components
+    },
+    format: {
+      ...global?.format,
+      ...format
+    }
+  })
   const query = useQuery({
     queryKey: [locale, id],
     queryFn: () => loader(locale, id)

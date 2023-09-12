@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "intl-messageformat": "^10.5.2",
     "@rewordlabs/next": "workspace:*",
     "@rewordlabs/react": "workspace:*"
   },

@@ -12,20 +12,17 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
-import type { InterpolateOptions } from '@rewordlabs/formatter'
 import type { Locale } from '@rewordlabs/types'
 import type { ReactNode } from 'react'
+import type { CommonSetupOptions, TxReactOptions } from '../types'
 
 // Components
 import { Text } from './text'
-import { createInterpolate } from '../interpolate'
-import type { CommonSetupOptions } from '../types'
 
 export type SetupClientOptions = {
   locale: Locale
   usePersist?: boolean
-} & CommonSetupOptions &
-  InterpolateOptions
+} & CommonSetupOptions
 
 enableReactUse()
 configureObservablePersistence({
@@ -37,7 +34,8 @@ export function setupClient({
   locale,
   usePersist = false,
   components,
-  ...interpolateOptions
+  format,
+  plugins
 }: SetupClientOptions) {
   const locale$ = observable(locale)
   const queryClient = new QueryClient({
@@ -56,21 +54,23 @@ export function setupClient({
     })
   }
 
-  const interpolate = createInterpolate({
-    locale,
-    components,
-    ...interpolateOptions
-  })
   const getLocale = () => locale$.use()
   const useLocaleSync = (locale: string) => locale$.set(locale as Locale)
   const changeLocale = (locale: Locale) => locale$.set(locale)
-  const tx = createTx<ReactNode>({
+  const tx = createTx<ReactNode, TxReactOptions>({
     loader,
     getLocale,
     render: props => {
       return (
         <QueryClientProvider client={queryClient}>
-          <Text {...props} interpolate={interpolate} />
+          <Text
+            {...props}
+            global={{
+              components,
+              format,
+              plugins
+            }}
+          />
         </QueryClientProvider>
       )
     }
