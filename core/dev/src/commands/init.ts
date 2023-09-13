@@ -1,7 +1,7 @@
 // Dependencies
 import { input, select } from '@inquirer/prompts'
 import { logger } from '@rewordlabs/logger'
-import { findConfig, setupConfig, setupTemplate } from '@rewordlabs/node'
+import { findConfig, setupConfig, setupTemplate } from '@rewordlabs/runtime'
 import { outdent } from 'outdent'
 import getPackageManager from 'preferred-pm'
 

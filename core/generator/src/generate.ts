@@ -1,5 +1,5 @@
 // Dependencies
-import { runtime } from '@rewordlabs/node'
+import { runtime } from '@rewordlabs/runtime'
 import { toPlainDictionary } from '@rewordlabs/utils'
 
 // Types

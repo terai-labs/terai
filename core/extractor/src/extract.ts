@@ -1,7 +1,7 @@
 // Dependencies
 import * as ts from 'typescript'
 import { logger } from '@rewordlabs/logger'
-import { runtime } from '@rewordlabs/node'
+import { runtime } from '@rewordlabs/runtime'
 import { transform } from '@rewordlabs/transformer'
 
 // Types

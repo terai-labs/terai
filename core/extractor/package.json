@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@rewordlabs/logger": "workspace:*",
-    "@rewordlabs/node": "workspace:*",
+    "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/transformer": "workspace:*"
   },
   "devDependencies": {

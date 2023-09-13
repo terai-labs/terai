@@ -67,7 +67,7 @@ importers:
         specifier: ^0.34.4
         version: 0.34.4
 
-  packages/dev:
+  core/dev:
     dependencies:
       '@inquirer/prompts':
         specifier: ^3.1.1
@@ -78,9 +78,9 @@ importers:
       '@rewordlabs/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rewordlabs/node':
+      '@rewordlabs/runtime':
         specifier: workspace:*
-        version: link:../node
+        version: link:../runtime
       '@rewordlabs/translator':
         specifier: workspace:*
         version: link:../translator
@@ -116,14 +116,14 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2
 
-  packages/extractor:
+  core/extractor:
     dependencies:
       '@rewordlabs/logger':
         specifier: workspace:*
         version: link:../logger
-      '@rewordlabs/node':
+      '@rewordlabs/runtime':
         specifier: workspace:*
-        version: link:../node
+        version: link:../runtime
       '@rewordlabs/transformer':
         specifier: workspace:*
         version: link:../transformer
@@ -132,11 +132,11 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/formatter:
+  core/formatter:
     dependencies:
-      '@rewordlabs/node':
+      '@rewordlabs/runtime':
         specifier: workspace:*
-        version: link:../node
+        version: link:../runtime
       '@rewordlabs/utils':
         specifier: workspace:*
         version: link:../utils
@@ -145,11 +145,11 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/generator:
+  core/generator:
     dependencies:
-      '@rewordlabs/node':
+      '@rewordlabs/runtime':
         specifier: workspace:*
-        version: link:../node
+        version: link:../runtime
       '@rewordlabs/translator':
         specifier: workspace:*
         version: link:../translator
@@ -161,7 +161,7 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/logger:
+  core/logger:
     dependencies:
       kleur:
         specifier: ^4.1.5
@@ -174,32 +174,7 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
 
-  packages/next:
-    dependencies:
-      '@rewordlabs/formatter':
-        specifier: workspace:*
-        version: link:../formatter
-      '@rewordlabs/react':
-        specifier: workspace:*
-        version: link:../react
-      '@rewordlabs/utils':
-        specifier: workspace:*
-        version: link:../utils
-      client-only:
-        specifier: ^0.0.1
-        version: 0.0.1
-      next:
-        specifier: 13.x
-        version: 13.4.19(@babel/core@7.22.17)(react-dom@18.2.0)(react@18.2.0)
-      server-only:
-        specifier: ^0.0.1
-        version: 0.0.1
-    devDependencies:
-      '@rewordlabs/types':
-        specifier: workspace:*
-        version: link:../types
-
-  packages/node:
+  core/runtime:
     dependencies:
       '@rewordlabs/logger':
         specifier: workspace:*
@@ -233,6 +208,68 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1
 
+  core/transformer:
+    dependencies:
+      '@rewordlabs/utils':
+        specifier: workspace:*
+        version: link:../utils
+      chalk:
+        specifier: ^4.1.2
+        version: 4.1.2
+    devDependencies:
+      '@rewordlabs/types':
+        specifier: workspace:*
+        version: link:../types
+
+  core/translator:
+    dependencies:
+      '@rewordlabs/runtime':
+        specifier: workspace:*
+        version: link:../runtime
+      '@rewordlabs/utils':
+        specifier: workspace:*
+        version: link:../utils
+      openai:
+        specifier: ^4.6.0
+        version: 4.6.0
+    devDependencies:
+      '@rewordlabs/types':
+        specifier: workspace:*
+        version: link:../types
+
+  core/types: {}
+
+  core/utils:
+    dependencies:
+      '@rewordlabs/types':
+        specifier: workspace:*
+        version: link:../types
+
+  packages/next:
+    dependencies:
+      '@rewordlabs/formatter':
+        specifier: workspace:*
+        version: link:../../core/formatter
+      '@rewordlabs/react':
+        specifier: workspace:*
+        version: link:../react
+      '@rewordlabs/utils':
+        specifier: workspace:*
+        version: link:../../core/utils
+      client-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+      next:
+        specifier: 13.x
+        version: 13.4.19(@babel/core@7.22.17)(react-dom@18.2.0)(react@18.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@rewordlabs/types':
+        specifier: workspace:*
+        version: link:../../core/types
+
   packages/react:
     dependencies:
       '@legendapp/state':
@@ -240,10 +277,10 @@ importers:
         version: 1.11.1(react@18.2.0)
       '@rewordlabs/formatter':
         specifier: workspace:*
-        version: link:../formatter
+        version: link:../../core/formatter
       '@rewordlabs/utils':
         specifier: workspace:*
-        version: link:../utils
+        version: link:../../core/utils
       '@tanstack/react-query':
         specifier: ^4.35.0
         version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
@@ -262,44 +299,7 @@ importers:
     devDependencies:
       '@rewordlabs/types':
         specifier: workspace:*
-        version: link:../types
-
-  packages/transformer:
-    dependencies:
-      '@rewordlabs/utils':
-        specifier: workspace:*
-        version: link:../utils
-      chalk:
-        specifier: ^4.1.2
-        version: 4.1.2
-    devDependencies:
-      '@rewordlabs/types':
-        specifier: workspace:*
-        version: link:../types
-
-  packages/translator:
-    dependencies:
-      '@rewordlabs/node':
-        specifier: workspace:*
-        version: link:../node
-      '@rewordlabs/utils':
-        specifier: workspace:*
-        version: link:../utils
-      openai:
-        specifier: ^4.6.0
-        version: 4.6.0
-    devDependencies:
-      '@rewordlabs/types':
-        specifier: workspace:*
-        version: link:../types
-
-  packages/types: {}
-
-  packages/utils:
-    dependencies:
-      '@rewordlabs/types':
-        specifier: workspace:*
-        version: link:../types
+        version: link:../../core/types
 
   playground/next-app:
     dependencies:
@@ -312,7 +312,7 @@ importers:
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*
-        version: link:../../packages/dev
+        version: link:../../core/dev
       '@types/node':
         specifier: 20.5.1
         version: 20.5.1
@@ -343,7 +343,7 @@ importers:
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*
-        version: link:../../packages/dev
+        version: link:../../core/dev
       '@types/node':
         specifier: 20.5.1
         version: 20.5.1
@@ -371,7 +371,7 @@ importers:
     devDependencies:
       '@rewordlabs/dev':
         specifier: workspace:*
-        version: link:../../packages/dev
+        version: link:../../core/dev
       '@types/react':
         specifier: ^18.2.15
         version: 18.2.21
@@ -2659,7 +2659,7 @@ packages:
   /@types/node-fetch@2.6.4:
     resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
     dependencies:
-      '@types/node': 18.17.15
+      '@types/node': 20.6.0
       form-data: 3.0.1
     dev: false
 

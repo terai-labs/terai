@@ -1,17 +1,11 @@
 {
-  "name": "@rewordlabs/node",
-  "description": "Reword for Node",
+  "name": "@rewordlabs/generator",
+  "description": "Code generator for Reword",
   "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "require": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
-  "scripts": {
-    "dev": "pnpm build-fast --watch",
-    "build": "tsup",
-    "build-fast": "tsup --format=esm,cjs --no-dts"
-  },
   "files": [
     "dist"
   ],
@@ -19,8 +13,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "dev": "pnpm build-fast --watch",
+    "build": "tsup",
+    "build-fast": "tsup --format=esm,cjs --no-dts"
+  },
   "dependencies": {
-    "@rewordlabs/formatter": "workspace:*",
+    "@rewordlabs/runtime": "workspace:*",
+    "@rewordlabs/translator": "workspace:*",
     "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {

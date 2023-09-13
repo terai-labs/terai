@@ -28,7 +28,7 @@
     "@inquirer/prompts": "^3.1.1",
     "@rewordlabs/extractor": "workspace:*",
     "@rewordlabs/logger": "workspace:*",
-    "@rewordlabs/node": "workspace:*",
+    "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/translator": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
     "cac": "^6.7.14",

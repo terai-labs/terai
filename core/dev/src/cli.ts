@@ -1,6 +1,6 @@
 // Dependencies
 import { cac } from 'cac'
-import { runtime } from '@rewordlabs/node'
+import { runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
 import updateNotifier from 'update-notifier'
 import pkg from '../package.json'

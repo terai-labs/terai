@@ -1,11 +1,16 @@
 {
-  "name": "@rewordlabs/formatter",
-  "description": "Code formatter for Reword",
+  "name": "@rewordlabs/translator",
+  "description": "Code translator for Reword",
   "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "pnpm build-fast --watch",
+    "build": "tsup",
+    "build-fast": "tsup --format=esm,cjs --no-dts"
+  },
   "files": [
     "dist"
   ],
@@ -13,14 +18,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "dev": "pnpm build-fast --watch",
-    "build": "tsup",
-    "build-fast": "tsup --format=esm,cjs --no-dts"
-  },
   "dependencies": {
-    "@rewordlabs/node": "workspace:*",
-    "@rewordlabs/utils": "workspace:*"
+    "@rewordlabs/runtime": "workspace:*",
+    "@rewordlabs/utils": "workspace:*",
+    "openai": "^4.6.0"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"

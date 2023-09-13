@@ -1,6 +1,6 @@
 {
-  "name": "@rewordlabs/generator",
-  "description": "Code generator for Reword",
+  "name": "@rewordlabs/formatter",
+  "description": "Code formatter for Reword",
   "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,8 +19,7 @@
     "build-fast": "tsup --format=esm,cjs --no-dts"
   },
   "dependencies": {
-    "@rewordlabs/node": "workspace:*",
-    "@rewordlabs/translator": "workspace:*",
+    "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {

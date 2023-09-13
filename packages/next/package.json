@@ -1,6 +1,6 @@
 {
   "name": "@rewordlabs/next",
-  "description": "rewordlabs for Next.js",
+  "description": "Reword for Next.js",
   "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -9,7 +9,7 @@
 ### Patch Changes
 
 - Updated dependencies [fde906b]
-  - @rewordlabs/node@0.1.0
+  - @rewordlabs/runtime@0.1.0
   - @rewordlabs/translator@0.1.0
   - @rewordlabs/utils@0.1.0
 
@@ -21,7 +21,7 @@
 - c3b366e: WIP
 - Updated dependencies [27a2f0c]
 - Updated dependencies [c3b366e]
-  - @rewordlabs/node@0.0.0
+  - @rewordlabs/runtime@0.0.0
   - @rewordlabs/translator@0.0.0
   - @rewordlabs/utils@0.0.0
 
@@ -33,6 +33,6 @@
 - c12aad6: First release
 - Updated dependencies [9f66323]
 - Updated dependencies [c12aad6]
-  - @rewordlabs/node@0.0.0-dev-20230912123137
+  - @rewordlabs/runtime@0.0.0-dev-20230912123137
   - @rewordlabs/translator@0.0.0-dev-20230912123137
   - @rewordlabs/utils@0.0.0-dev-20230912123137

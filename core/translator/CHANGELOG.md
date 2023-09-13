@@ -9,7 +9,7 @@
 ### Patch Changes
 
 - Updated dependencies [fde906b]
-  - @rewordlabs/node@0.1.0
+  - @rewordlabs/runtime@0.1.0
   - @rewordlabs/utils@0.1.0
 
 ## 0.0.0
@@ -20,7 +20,7 @@
 - c3b366e: WIP
 - Updated dependencies [27a2f0c]
 - Updated dependencies [c3b366e]
-  - @rewordlabs/node@0.0.0
+  - @rewordlabs/runtime@0.0.0
   - @rewordlabs/utils@0.0.0
 
 ## 0.0.0-dev-20230912123137
@@ -31,7 +31,7 @@
 - c12aad6: First release
 - Updated dependencies [9f66323]
 - Updated dependencies [c12aad6]
-  - @rewordlabs/node@0.0.0-dev-20230912123137
+  - @rewordlabs/runtime@0.0.0-dev-20230912123137
   - @rewordlabs/utils@0.0.0-dev-20230912123137
 
 ## 0.1.4
@@ -41,7 +41,7 @@
 - 9b0ba56: Adding support for React Server environments
 - Updated dependencies [9b0ba56]
   - @rewordlabs/utils@0.1.4
-  - @rewordlabs/node@0.1.4
+  - @rewordlabs/runtime@0.1.4
 
 ## 0.1.3
 
@@ -49,7 +49,7 @@
 
 - Fix error when reading OpenAI API Key
 - Updated dependencies
-  - @rewordlabs/node@0.1.3
+  - @rewordlabs/runtime@0.1.3
   - @rewordlabs/utils@0.1.3
 
 ## 0.1.2
@@ -60,7 +60,7 @@
 - 07d9d25: Code improvements
 - Updated dependencies
 - Updated dependencies [07d9d25]
-  - @rewordlabs/node@0.1.2
+  - @rewordlabs/runtime@0.1.2
   - @rewordlabs/utils@0.1.2
 
 ## 0.0.1
@@ -69,5 +69,5 @@
 
 - New version
 - Updated dependencies
-  - @rewordlabs/node@0.0.1
+  - @rewordlabs/runtime@0.0.1
   - @rewordlabs/utils@0.0.1

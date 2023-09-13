@@ -1,7 +1,7 @@
 {
-  "name": "@rewordlabs/translator",
-  "description": "Code translator for Reword",
+  "name": "@rewordlabs/runtime",
   "version": "0.1.0",
+  "description": "The rewordlabs Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -19,11 +19,17 @@
     "access": "public"
   },
   "dependencies": {
-    "@rewordlabs/node": "workspace:*",
-    "@rewordlabs/utils": "workspace:*",
-    "openai": "^4.6.0"
+    "@rewordlabs/logger": "workspace:*",
+    "@rewordlabs/types": "workspace:*",
+    "bundle-n-require": "^1.0.1",
+    "chokidar": "^3.5.3",
+    "fast-glob": "^3.3.1",
+    "fs-extra": "^11.1.1",
+    "look-it-up": "^2.1.0",
+    "outdent": "^0.8.0",
+    "pathe": "^1.1.1"
   },
   "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
+    "@types/fs-extra": "^11.0.1"
   }
 }

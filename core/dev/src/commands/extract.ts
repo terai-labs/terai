@@ -1,7 +1,7 @@
 // Dependencies
 import { generate } from '@rewordlabs/generator'
 import { logger } from '@rewordlabs/logger'
-import { loadConfig, runtime } from '@rewordlabs/node'
+import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { debounce } from 'perfect-debounce'
 import { extract } from '@rewordlabs/extractor'
 
