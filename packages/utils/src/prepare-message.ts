@@ -1,12 +1,9 @@
-// import { DATE_REGEX, NUMBER_REGEX, TEXT_REGEX } from './regex'
+import { memo } from './memo'
 
-export function prepareMessage(message: string): string {
-  const cleanedMessage = message
-    .replaceAll(/`/g, '')
-    .replaceAll(/\$({.*?})/g, '${VAR}')
-  // .replaceAll(TEXT_REGEX, '!${VAR}')
-  // .replaceAll(DATE_REGEX, '@${VAR}')
-  // .replaceAll(NUMBER_REGEX, '#${VAR}')
-
-  return cleanedMessage
-}
+export const prepareMessage = memo((message: string) => {
+  return message
+    .replaceAll(/\s+/g, ' ')
+    .replaceAll(/`|\n|\t|\b|\v/g, '')
+    .replaceAll(/\$\{[^}]*}/g, '${var}')
+    .replaceAll('${var}}', '${var}')
+})

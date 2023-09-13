@@ -1,26 +1,25 @@
 import { changeLocale, tx } from '../locale/client'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 
 export default function App() {
-  const name = 'Reword'
+  const date = new Date()
+  const [count, setCount] = useState(0)
 
   return (
-    <Suspense fallback={<h1>{'Loading...'}</h1>}>
+    <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
-        <h1>{tx({
-          format: {
-            date: {
-              calendar: 'long',
-              dateStyle: 'long'
-            }
-          }
-        })`Hi ${name}, with React at ${new Date()}!`}</h1>
+        <span>{tx`Hello world at ${'Hugo'}!`}</span>
 
         <div className={'buttons'}>
           <button onClick={() => changeLocale('es')}>ES</button>
           <button onClick={() => changeLocale('en')}>EN</button>
           <button onClick={() => changeLocale('it')}>IT</button>
         </div>
+      </div>
+
+      <div>
+        <span>{count}</span>
+        <button onClick={() => setCount(count + 1)}>+</button>
       </div>
     </Suspense>
   )

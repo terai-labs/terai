@@ -1,25 +1,11 @@
 {
   "messages": {
-    "jrmpMk": {
-      "id": "jrmpMk",
-      "value": "Hi ${VAR}, with React at ${VAR}!",
+    "cTHPzX": {
+      "id": "cTHPzX",
+      "value": "Hello world at ${var}!",
+      "context": "",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "context": "",
       "chunkId": "kKXtqj"
-    },
-    "ixzubt": {
-      "id": "ixzubt",
-      "value": "Hello, again!",
-      "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/Button.tsx",
-      "chunkId": "dtkcRY"
-    },
-    "hKOdAh": {
-      "id": "hKOdAh",
-      "value": "Wait this is another file!",
-      "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/Button.tsx",
-      "chunkId": "dtkcRY"
     }
   }
 }

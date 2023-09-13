@@ -1,3 +1,5 @@
+import { memo } from './memo'
+
 function toChar(code: number) {
   return String.fromCharCode(code + (code > 25 ? 39 : 97))
 }
@@ -16,9 +18,9 @@ function toPhash(h: number, x: string) {
   return h
 }
 
-export function toHash(value: string) {
+export const toHash = memo((value: string) => {
   const sanitizedValue = value.replace(/[^\w]/g, '')
 
   const hash = toName(toPhash(5381, sanitizedValue) >>> 0)
   return hash
-}
+})

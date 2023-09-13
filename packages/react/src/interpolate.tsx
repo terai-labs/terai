@@ -1,8 +1,9 @@
 // Dependencies
 import { IntlMessageFormat } from 'intl-messageformat'
+import { memo } from '@rewordlabs/utils'
+import { interpolate } from '@rewordlabs/formatter'
 
 // Types
-import { interpolate } from '@rewordlabs/formatter'
 import type { ReactNode } from 'react'
 import type {
   InterpolateOptions,
@@ -15,16 +16,15 @@ export type InterpolateComponents = Record<
   (children: ReactNode) => ReactNode
 >
 
-export const createReactInterpolate =
-  ({
-    locale,
-    components = {},
-    ...rest
-  }: {
-    locale: string
-    components?: InterpolateComponents
-  } & InterpolateOptions): InterpolateFn =>
-  (props: InterpolateProps) => {
+export function createReactInterpolate({
+  locale,
+  components = {},
+  ...rest
+}: {
+  locale: string
+  components?: InterpolateComponents
+} & InterpolateOptions): InterpolateFn {
+  return memo((props: InterpolateProps) => {
     return interpolate(props, {
       ...rest,
       plugins: [
@@ -142,4 +142,5 @@ export const createReactInterpolate =
           })
       ]
     })
-  }
+  })
+}

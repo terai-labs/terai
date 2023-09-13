@@ -1,5 +1,5 @@
 // Dependencies
-import { prepareMessage, toHash } from '@rewordlabs/utils'
+import { joinTemplateStrings, prepareMessage, toHash } from '@rewordlabs/utils'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
@@ -50,7 +50,7 @@ export function createTx<T, P = unknown>(
     if (isTemplateStringsArray(stringsOrOptions)) {
       const { render, ...restOfOptions } = options
       const strings = stringsOrOptions
-      const rawMessage = prepareMessage(strings.raw.join('${VAR}'))
+      const rawMessage = prepareMessage(joinTemplateStrings(strings.raw))
       const id = toHash(rawMessage)
 
       return render({

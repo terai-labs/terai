@@ -31,7 +31,8 @@ function extractMessageFromTemplateExpression(
   { onMsgExtracted, cwd, codeSplitting }: TransformerOptions,
   sf: ts.SourceFile
 ): ts.VisitResult<ts.TaggedTemplateExpression> {
-  const value = prepareMessage(node.template.getText())
+  const text = node.template.getText()
+  const value = prepareMessage(text)
   const id = toHash(value)
   const fileName = sf.fileName
   const chunkId = getChunkId(cwd, fileName, codeSplitting)
@@ -57,7 +58,8 @@ function extractMessageFromCallExpression(
   sf: ts.SourceFile
 ): ts.VisitResult<ts.CallExpression> {
   const expressionNode = node.parent as ts.TaggedTemplateExpression
-  const value = prepareMessage(expressionNode.template.getText())
+  const text = expressionNode.template.getText()
+  const value = prepareMessage(text)
   let context = ''
   const fileName = sf.fileName
   const id = toHash(value)

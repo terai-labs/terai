@@ -1,6 +1,6 @@
+export * from './join-template-strings'
 export * from './map-to-json'
 export * from './memo'
 export * from './prepare-message'
-export * from './regex'
 export * from './to-hash'
 export * from './to-plain-dictionary'

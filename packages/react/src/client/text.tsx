@@ -6,6 +6,7 @@ import { createReactInterpolate } from '../interpolate'
 
 // Types
 import type { TextProps } from '../types'
+import { useCallback } from 'react'
 
 export const Text = ({
   getLocale,
@@ -18,19 +19,22 @@ export const Text = ({
   global
 }: TextProps) => {
   const locale = getLocale()
+  const interpolate = useCallback(
+    createReactInterpolate({
+      locale,
+      plugins: global.plugins,
+      components: {
+        ...global?.components,
+        ...components
+      },
+      format: {
+        ...global?.format,
+        ...format
+      }
+    }),
+    []
+  )
 
-  const interpolate = createReactInterpolate({
-    locale,
-    plugins: global.plugins,
-    components: {
-      ...global?.components,
-      ...components
-    },
-    format: {
-      ...global?.format,
-      ...format
-    }
-  })
   const query = useQuery({
     queryKey: [locale, id],
     queryFn: () => loader(locale, id)
