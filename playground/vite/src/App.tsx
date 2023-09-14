@@ -1,25 +1,23 @@
 import { changeLocale, tx } from '../locale/client'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 
 export default function App() {
-  const date = new Date()
-  const [count, setCount] = useState(0)
-
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
-        <span>{tx`Hello world!`}</span>
+        <div className='messages'>
+          <p>{tx`Hello world!`}</p>
+          <p>{tx`Another hello world!`}</p>
+          <p>{tx`This is a sample message to show the capabilities of Reword`}</p>
+          <p>{tx`This is a message for Andrea: do not be so bossy!`}</p>
+          <p>{tx`We are going for shopping now to buy some very cool t-shirts!`}</p>
+        </div>
 
         <div className={'buttons'}>
-          <button onClick={() => changeLocale('es')}>ES</button>
-          <button onClick={() => changeLocale('en')}>EN</button>
-          <button onClick={() => changeLocale('it')}>IT</button>
+          <button onClick={() => changeLocale('es')}>{tx`Spanish`}</button>
+          <button onClick={() => changeLocale('en')}>{tx`English`}</button>
+          <button onClick={() => changeLocale('it')}>{tx`Italian`}</button>
         </div>
-      </div>
-
-      <div>
-        <span>{count}</span>
-        <button onClick={() => setCount(count + 1)}>+</button>
       </div>
     </Suspense>
   )

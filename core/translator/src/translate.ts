@@ -7,7 +7,6 @@ import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 type TranslateOptions = Pick<Config, 'projectLocale' | 'openaiApiKey'> & {
   dictionary: Dictionary
   locale: Locale
-  locales: Locale[]
 }
 
 export async function translate({
@@ -15,7 +14,7 @@ export async function translate({
   projectLocale,
   locale,
   openaiApiKey
-}: TranslateOptions) {
+}: TranslateOptions): Promise<Dictionary> {
   const messagesJson = JSON.stringify(dictionary)
 
   const translation = await getAiTranslation({

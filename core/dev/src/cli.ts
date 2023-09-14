@@ -4,7 +4,11 @@ import { runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
 import updateNotifier from 'update-notifier'
 import pkg from '../package.json'
-import { createExtractCommand, createInitCommand } from './commands'
+import {
+  createExtractCommand,
+  createInitCommand,
+  createTranslateCommand
+} from './commands'
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
@@ -15,6 +19,7 @@ export async function main() {
 
   createInitCommand(cli, cwd)
   createExtractCommand(cli, cwd)
+  createTranslateCommand(cli, cwd)
 
   cli.help()
   cli.version(pkg.version)

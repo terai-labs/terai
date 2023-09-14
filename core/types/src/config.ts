@@ -6,6 +6,7 @@ export type Config = {
   openaiApiKey: string
   projectLocale: Locale
   outDir: string
+  locales: Locale[]
   context?: string
   codeSplitting?: 'file' | number
 }

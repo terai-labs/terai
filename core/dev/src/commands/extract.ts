@@ -4,6 +4,7 @@ import { logger } from '@rewordlabs/logger'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { debounce } from 'perfect-debounce'
 import { extract } from '@rewordlabs/extractor'
+import { toPlainDictionary } from '@rewordlabs/utils'
 
 // Types
 import type { CAC } from 'cac'
@@ -40,6 +41,7 @@ export async function extractCmd(options: ExtractOptions) {
       filesPaths,
       cwd: options.cwd
     })
+    const dictionary = toPlainDictionary(extractedMessages)
 
     runtime.fs.remove(
       runtime.path.resolve(options.cwd, config.outDir, config.projectLocale)
@@ -47,8 +49,8 @@ export async function extractCmd(options: ExtractOptions) {
 
     await generate({
       ...config,
+      dictionary,
       locale: config.projectLocale,
-      extractedMessages,
       cwd: options.cwd
     })
 
