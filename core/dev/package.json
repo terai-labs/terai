@@ -9,7 +9,7 @@
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
     "reword": "bin.js",
-    "rw": "bin.js"
+    "rwd": "bin.js"
   },
   "scripts": {
     "dev": "pnpm build-fast --watch",

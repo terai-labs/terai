@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
-        <span>{tx`Hello world at ${'Hugo'}!`}</span>
+        <span>{tx`Hello world!`}</span>
 
         <div className={'buttons'}>
           <button onClick={() => changeLocale('es')}>ES</button>

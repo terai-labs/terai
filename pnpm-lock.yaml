@@ -270,6 +270,19 @@ importers:
         specifier: workspace:*
         version: link:../../core/types
 
+  packages/node:
+    dependencies:
+      '@rewordlabs/formatter':
+        specifier: workspace:*
+        version: link:../../core/formatter
+      '@rewordlabs/utils':
+        specifier: workspace:*
+        version: link:../../core/utils
+    devDependencies:
+      '@rewordlabs/types':
+        specifier: workspace:*
+        version: link:../../core/types
+
   packages/react:
     dependencies:
       '@legendapp/state':
@@ -300,6 +313,24 @@ importers:
       '@rewordlabs/types':
         specifier: workspace:*
         version: link:../../core/types
+
+  playground/cli:
+    dependencies:
+      '@rewordlabs/dev':
+        specifier: workspace:*
+        version: link:../../core/dev
+      '@rewordlabs/formatter':
+        specifier: workspace:*
+        version: link:../../core/formatter
+      '@rewordlabs/logger':
+        specifier: workspace:*
+        version: link:../../core/logger
+      '@rewordlabs/node':
+        specifier: workspace:*
+        version: link:../../packages/node
+      cac:
+        specifier: ^6.7.14
+        version: 6.7.14
 
   playground/next-app:
     dependencies:

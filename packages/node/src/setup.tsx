@@ -14,7 +14,7 @@ export type SetupOptions = InterpolateOptions & {
 }
 
 export const setup = ({ getLocale, loader, ...global }: SetupOptions) => {
-  const tx = createTx<Promise<string>>({
+  const tx = createTx<Promise<string>, unknown>({
     loader,
     getLocale,
     render: props => text({ ...props, global })
