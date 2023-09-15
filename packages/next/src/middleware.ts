@@ -29,6 +29,7 @@ export function createMiddleware(
 ) {
   return function (request: NextRequest) {
     const requestUrl = request.nextUrl.clone()
+    console.log('BEGGIN')
 
     const locale =
       localeFromRequest(locales, request, config?.resolveLocaleFromRequest) ??
@@ -59,6 +60,7 @@ export function createMiddleware(
     const requestLocale = (request.nextUrl.pathname.split('/')?.[1] ??
       locale) as Locale
 
+    console.log(requestLocale)
     if (locales.includes(requestLocale)) {
       return addLocaleToResponse(response, requestLocale)
     }

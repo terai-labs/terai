@@ -8,6 +8,15 @@ export default async function Home() {
         <Link href={'/server'}>{'Server Page'}</Link>
         <Link href={'/client'}>{'Client Page'}</Link>
       </div>
+
+      <div>
+        <Link locale={'es'} href={'es'}>
+          {'Spanish'}
+        </Link>
+        <Link locale={'en'} href={'en'}>
+          {'English'}
+        </Link>
+      </div>
     </div>
   )
 }
