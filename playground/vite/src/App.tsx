@@ -1,4 +1,4 @@
-import { changeLocale, tx } from '../locale/client'
+import { changeLocale, tx } from './reword'
 import { Suspense } from 'react'
 
 export default function App() {

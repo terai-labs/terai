@@ -19,32 +19,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    },
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "require": "./dist/client/index.js",
-      "import": "./dist/client/index.mjs"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "require": "./dist/server/index.js",
-      "import": "./dist/server/index.mjs"
-    },
-    "./package.json": "./package.json"
-  },
   "dependencies": {
     "@legendapp/state": "^1.11.1",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
-    "@tanstack/react-query": "^4.35.0",
-    "client-only": "^0.0.1",
-    "intl-messageformat": "^10.5.2",
-    "server-only": "^0.0.1"
+    "@tanstack/react-query": "^4.35.3",
+    "intl-messageformat": "^10.5.2"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"

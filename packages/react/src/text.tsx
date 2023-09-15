@@ -2,11 +2,11 @@
 
 // Dependencies
 import { useQuery } from '@tanstack/react-query'
-import { createReactInterpolate } from '../interpolate'
+import { createReactInterpolate } from './interpolate'
+import { useCallback } from 'react'
 
 // Types
-import type { TextProps } from '../types'
-import { useCallback } from 'react'
+import type { TextProps } from './types'
 
 export const Text = ({
   getLocale,

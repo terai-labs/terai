@@ -10,8 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rewordlabs/react": "workspace:*",
-    "@rewordlabs/next": "workspace:*"
+    "@rewordlabs/react": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/dev": "workspace:*",

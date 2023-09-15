@@ -1,4 +1,4 @@
-import { setupServer } from '@rewordlabs/next/server'
+import { setupServer } from '@rewordlabs/next'
 
 export const { tx } = setupServer({
   loader: (locale: string, id: string) =>

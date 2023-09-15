@@ -30,6 +30,6 @@
     "pathe": "^1.1.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.1"
+    "@types/fs-extra": "^11.0.2"
   }
 }

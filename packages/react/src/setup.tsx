@@ -1,5 +1,3 @@
-import 'client-only'
-
 // Dependencies
 import { createTx, format as formatter } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'
@@ -14,7 +12,7 @@ import {
 // Types
 import type { Locale } from '@rewordlabs/types'
 import type { ReactNode } from 'react'
-import type { CommonSetupOptions, TxReactOptions } from '../types'
+import type { CommonSetupOptions, TxReactOptions } from './types'
 
 // Components
 import { Text } from './text'
@@ -29,7 +27,7 @@ configureObservablePersistence({
   persistLocal: ObservablePersistLocalStorage
 })
 
-export function setupClient({
+export function setup({
   loader,
   locale,
   usePersist = false,

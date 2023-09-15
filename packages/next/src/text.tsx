@@ -1,10 +1,8 @@
-'use server'
-
 // Dependencies
-import { createReactInterpolate } from '../interpolate'
+import { createReactInterpolate } from '@rewordlabs/react'
 
 // Types
-import type { TextProps } from '../types'
+import type { TextProps } from '@rewordlabs/react'
 
 export async function Text({
   getLocale,

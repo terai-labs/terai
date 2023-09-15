@@ -19,35 +19,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    },
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "require": "./dist/client/index.js",
-      "import": "./dist/client/index.mjs"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "require": "./dist/server/index.js",
-      "import": "./dist/server/index.mjs"
-    },
-    "./package.json": "./package.json"
-  },
   "dependencies": {
-    "@rewordlabs/react": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
-    "@rewordlabs/utils": "workspace:*",
-    "client-only": "^0.0.1",
-    "server-only": "^0.0.1"
+    "@rewordlabs/react": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "next": "13.x"
+    "next": "13.x",
+    "react": "18.x"
   }
 }
