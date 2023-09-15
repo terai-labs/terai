@@ -84,9 +84,9 @@ export async function translateCmd(options: TranslateOptions) {
         })
       } catch (err) {
         if (err instanceof Error) {
-          logger.info(
+          logger.error(
             'cli:translate',
-            `Error translating to ${locale} ❌\nErr: ${err.message}`
+            `❌ Error translating to ${locale}:\n${err.message}\n`
           )
         }
       }
