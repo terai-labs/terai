@@ -1,5 +1,5 @@
 // Dependencies
-import { getAiTranslation } from './x'
+import { translateWithChatGpt } from './chat-gpt'
 
 // Types
 import type { Config, Locale, Dictionary } from '@rewordlabs/types'
@@ -17,7 +17,7 @@ export async function translate({
 }: TranslateOptions): Promise<Dictionary> {
   const messagesJson = JSON.stringify(dictionary)
 
-  const translation = await getAiTranslation({
+  const translation = await translateWithChatGpt({
     messagesJson,
     locale,
     projectLocale,

@@ -4,7 +4,7 @@ import OpenAI from 'openai'
 // Types
 import type { Locale } from '@rewordlabs/types'
 
-export async function getAiTranslation({
+export async function translateWithChatGpt({
   messagesJson,
   projectLocale,
   locale,
@@ -15,6 +15,10 @@ export async function getAiTranslation({
   locale: Locale
   openaiApiKey: string
 }) {
+  if (!openaiApiKey) {
+    throw new Error('You must provide an OpenAI API key')
+  }
+
   const openai = new OpenAI({
     apiKey: openaiApiKey
   })
