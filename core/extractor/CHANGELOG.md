@@ -1,5 +1,18 @@
 # @rewordlabs/extractor
 
+## 0.2.0
+
+### Minor Changes
+
+- 6e6435a: feat: add translation feature mvp
+
+### Patch Changes
+
+- Updated dependencies [6e6435a]
+  - @rewordlabs/logger@0.2.0
+  - @rewordlabs/runtime@0.2.0
+  - @rewordlabs/transformer@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
