@@ -37,6 +37,9 @@
     },
     "./package.json": "./package.json"
   },
+  "dependencies": {
+    "@rewordlabs/formatter": "workspace:*"
+  },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
   },

@@ -17,5 +17,13 @@
     "dev": "pnpm build-fast --watch",
     "build": "tsup",
     "build-fast": "tsup --format=esm,cjs --no-dts"
+  },
+  "dependencies": {
+    "@rewordlabs/runtime": "workspace:*",
+    "@rewordlabs/translator": "workspace:*",
+    "@rewordlabs/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@rewordlabs/types": "workspace:*"
   }
 }

@@ -6,6 +6,11 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "pnpm build-fast --watch",
+    "build": "tsup",
+    "build-fast": "tsup --format=esm,cjs --no-dts"
+  },
   "files": [
     "dist"
   ],
@@ -13,9 +18,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "dev": "pnpm build-fast --watch",
-    "build": "tsup",
-    "build-fast": "tsup --format=esm,cjs --no-dts"
+  "dependencies": {
+    "@rewordlabs/runtime": "workspace:*",
+    "@rewordlabs/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@rewordlabs/types": "workspace:*"
   }
 }
