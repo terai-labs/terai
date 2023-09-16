@@ -20,7 +20,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "next": "^13.4.0"
+    "react": "^18.x",
+    "next": ">=13.4.0"
   }
 }

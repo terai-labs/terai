@@ -206,10 +206,10 @@ importers:
   packages/next:
     dependencies:
       next:
-        specifier: ^13.4.0
+        specifier: '>=13.4.0'
         version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: ^18.2.0
+        specifier: ^18.x
         version: 18.2.0
 
   packages/node: {}
@@ -225,6 +225,9 @@ importers:
       intl-messageformat:
         specifier: ^10.5.2
         version: 10.5.2
+      react:
+        specifier: 18.x
+        version: 18.2.0
 
   playground/cli:
     dependencies:
