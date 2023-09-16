@@ -22,11 +22,6 @@ export type SetupClientOptions = {
   usePersist?: boolean
 } & CommonSetupOptions
 
-enableReactUse()
-configureObservablePersistence({
-  persistLocal: ObservablePersistLocalStorage
-})
-
 export function setup({
   loader,
   locale,
@@ -46,7 +41,12 @@ export function setup({
     }
   })
 
+  enableReactUse()
+
   if (usePersist) {
+    configureObservablePersistence({
+      persistLocal: ObservablePersistLocalStorage
+    })
     persistObservable(locale$, {
       local: 'locale'
     })

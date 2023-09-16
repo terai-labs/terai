@@ -1,22 +1,8 @@
 {
   "messages": {
-    "jLMcIA": {
-      "id": "jLMcIA",
-      "value": "Hello, !${var}!",
-      "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/next-pages/src/pages/index.tsx",
-      "chunkId": "huFRpQ"
-    },
-    "gdJnGP": {
-      "id": "gdJnGP",
-      "value": "You haven't checked you email since @${var}",
-      "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/next-pages/src/pages/index.tsx",
-      "chunkId": "huFRpQ"
-    },
-    "kLyuRU": {
-      "id": "kLyuRU",
-      "value": "You got #${var} messages in your mail inbox",
+    "gOngMQ": {
+      "id": "gOngMQ",
+      "value": "Hello, ${var}!",
       "context": "",
       "file": "/Users/hugocxl/repos/reword/playground/next-pages/src/pages/index.tsx",
       "chunkId": "huFRpQ"
