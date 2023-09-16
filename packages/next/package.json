@@ -19,6 +19,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@rewordlabs/types": "workspace:*"
+  },
   "peerDependencies": {
     "react": "^18.x",
     "next": ">=13.4.0"

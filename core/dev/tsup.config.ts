@@ -8,6 +8,5 @@ export default defineConfig({
   minify: true,
   shims: true,
   sourcemap: false,
-  splitting: false,
-  external: ['esbuild']
+  splitting: false
 })
