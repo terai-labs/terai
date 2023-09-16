@@ -1,3 +1,3 @@
-# rewordlabs
+# Reword
 
-The localization framework for the web.
+The localization framework for developers.
