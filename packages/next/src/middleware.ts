@@ -1,6 +1,11 @@
+// Dependencies
 import { NextRequest, NextResponse } from 'next/server'
-import type { Locale } from '@rewordlabs/types'
+
+// Constants
 import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
+
+// Types
+import type { Locale } from '@rewordlabs/types'
 
 type CreateMiddlewareOptions = {
   /**
@@ -29,7 +34,6 @@ export function createMiddleware(
 ) {
   return function (request: NextRequest) {
     const requestUrl = request.nextUrl.clone()
-    console.log('BEGGIN')
 
     const locale =
       localeFromRequest(locales, request, config?.resolveLocaleFromRequest) ??
@@ -60,7 +64,6 @@ export function createMiddleware(
     const requestLocale = (request.nextUrl.pathname.split('/')?.[1] ??
       locale) as Locale
 
-    console.log(requestLocale)
     if (locales.includes(requestLocale)) {
       return addLocaleToResponse(response, requestLocale)
     }
@@ -103,5 +106,6 @@ function noLocalePrefix(locales: readonly string[], pathname: string) {
 function addLocaleToResponse(response: NextResponse, locale: string) {
   response.headers.set(LOCALE_HEADER, locale)
   response.cookies.set(LOCALE_COOKIE, locale)
+
   return response
 }
