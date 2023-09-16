@@ -14,5 +14,7 @@ export default defineConfig({
   outDir: './locale',
 
   // Your OpenAI API key
-  openaiApiKey: ''
+  openaiApiKey: '',
+
+  locales: ['es']
 })

@@ -1,4 +1,4 @@
-import { tx } from './reword'
+import { tx } from '../reword'
 
 export default function Home() {
   const name = 'Hugo'
