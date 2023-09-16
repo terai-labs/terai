@@ -1,5 +1,12 @@
 # @rewordlabs/runtime
 
+## 0.2.1
+
+### Patch Changes
+
+- 234d3e3: New version
+- 23ec280: WIP
+
 ## 0.2.0
 
 ### Minor Changes
