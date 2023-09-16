@@ -23,7 +23,7 @@
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.x",
-    "next": ">=13.4.0"
+    "react": "^18.0.0",
+    "next": "^13.4.0"
   }
 }

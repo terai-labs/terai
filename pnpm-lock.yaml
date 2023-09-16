@@ -206,10 +206,10 @@ importers:
   packages/next:
     dependencies:
       next:
-        specifier: '>=13.4.0'
+        specifier: ^13.4.0
         version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: ^18.x
+        specifier: ^18.0.0
         version: 18.2.0
     devDependencies:
       '@rewordlabs/types':
