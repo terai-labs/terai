@@ -1,5 +1,14 @@
 # @rewordlabs/next
 
+## 0.2.2
+
+### Patch Changes
+
+- 8e264b3: Update dependencies
+- Updated dependencies [8e264b3]
+  - @rewordlabs/formatter@0.2.2
+  - @rewordlabs/react@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

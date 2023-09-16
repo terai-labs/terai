@@ -1,5 +1,14 @@
 # @rewordlabs/translator
 
+## 0.2.2
+
+### Patch Changes
+
+- 8e264b3: Update dependencies
+- Updated dependencies [8e264b3]
+  - @rewordlabs/runtime@0.2.2
+  - @rewordlabs/utils@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
