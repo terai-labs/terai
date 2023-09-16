@@ -1,5 +1,11 @@
 # @rewordlabs/runtime
 
+## 0.2.2
+
+### Patch Changes
+
+- 8e264b3: Update dependencies
+
 ## 0.2.1
 
 ### Patch Changes

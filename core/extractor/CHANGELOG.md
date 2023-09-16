@@ -1,5 +1,15 @@
 # @rewordlabs/extractor
 
+## 0.2.2
+
+### Patch Changes
+
+- 8e264b3: Update dependencies
+- Updated dependencies [8e264b3]
+  - @rewordlabs/logger@0.2.2
+  - @rewordlabs/runtime@0.2.2
+  - @rewordlabs/transformer@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
