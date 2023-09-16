@@ -1,5 +1,15 @@
 # @rewordlabs/next
 
+## 0.2.1
+
+### Patch Changes
+
+- 234d3e3: New version
+- 23ec280: WIP
+- Updated dependencies [234d3e3]
+- Updated dependencies [23ec280]
+  - @rewordlabs/react@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
