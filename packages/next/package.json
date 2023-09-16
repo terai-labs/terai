@@ -19,15 +19,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@rewordlabs/formatter": "workspace:*",
-    "@rewordlabs/react": "workspace:*"
-  },
-  "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
-  },
   "peerDependencies": {
-    "next": "13.x",
-    "react": "18.x"
+    "react": "^18.2.0",
+    "next": "^13.4.0"
   }
 }

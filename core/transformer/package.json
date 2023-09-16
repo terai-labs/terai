@@ -21,8 +21,5 @@
   "dependencies": {
     "@rewordlabs/utils": "workspace:*",
     "chalk": "^4.1.2"
-  },
-  "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
   }
 }

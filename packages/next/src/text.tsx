@@ -1,3 +1,5 @@
+'use server'
+
 // Dependencies
 import { createReactInterpolate } from '@rewordlabs/react'
 

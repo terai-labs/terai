@@ -19,8 +19,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@rewordlabs/logger": "workspace:*",
-    "@rewordlabs/types": "workspace:*",
     "bundle-n-require": "^1.0.1",
     "chokidar": "^3.5.3",
     "fast-glob": "^3.3.1",

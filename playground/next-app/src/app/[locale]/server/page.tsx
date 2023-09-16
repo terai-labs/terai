@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { tx } from '@locale/server'
+import { tx } from '../../../locale/server'
 
 export default async function Home() {
   const name = 'Hugo'

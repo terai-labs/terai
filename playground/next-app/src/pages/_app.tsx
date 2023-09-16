@@ -1,7 +1,7 @@
 import './globals.css'
 import type { AppProps } from 'next/app'
 import { Suspense } from 'react'
-import { useLocaleSync } from '../../locale/client'
+import { useLocaleSync } from '../locale/client'
 
 export default function App({ Component, pageProps }: AppProps) {
   useLocaleSync(pageProps.locale)

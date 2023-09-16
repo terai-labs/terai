@@ -18,12 +18,5 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@rewordlabs/formatter": "workspace:*",
-    "@rewordlabs/utils": "workspace:*"
-  },
-  "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
   }
 }

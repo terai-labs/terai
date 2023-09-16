@@ -7,17 +7,5 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  },
-  "dependencies": {
-    "@rewordlabs/next": "workspace:*",
-    "@rewordlabs/react": "workspace:*"
-  },
-  "devDependencies": {
-    "@rewordlabs/dev": "workspace:*",
-    "@types/node": "20.5.1",
-    "@types/react-dom": "^18.2.7",
-    "@types/react": "18.2.20",
-    "eslint-config-next": "^13.4.13",
-    "eslint": "^8.46.0"
   }
 }

@@ -26,11 +26,6 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^3.1.1",
-    "@rewordlabs/extractor": "workspace:*",
-    "@rewordlabs/logger": "workspace:*",
-    "@rewordlabs/runtime": "workspace:*",
-    "@rewordlabs/translator": "workspace:*",
-    "@rewordlabs/utils": "workspace:*",
     "cac": "^6.7.14",
     "inquirer": "^9.2.11",
     "kleur": "^4.1.5",
@@ -38,8 +33,6 @@
     "preferred-pm": "^3.1.2"
   },
   "devDependencies": {
-    "@rewordlabs/generator": "workspace:*",
-    "@rewordlabs/types": "workspace:*",
     "@types/update-notifier": "^6.0.5",
     "update-notifier": "^6.0.2"
   }

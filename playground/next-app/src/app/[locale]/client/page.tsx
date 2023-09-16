@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { tx, useLocaleSync } from '@locale/client'
+import { tx, useLocaleSync } from '../../../locale/client'
 
 export default function ClientPage({ params }: { params: { locale: string } }) {
   const name = 'Hugo'
