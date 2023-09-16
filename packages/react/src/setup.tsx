@@ -17,6 +17,11 @@ import type { CommonSetupOptions, TxReactOptions } from './types'
 // Components
 import { Text } from './text'
 
+enableReactUse()
+configureObservablePersistence({
+  persistLocal: ObservablePersistLocalStorage
+})
+
 export type SetupClientOptions = {
   locale: Locale
   usePersist?: boolean
@@ -41,12 +46,7 @@ export function setup({
     }
   })
 
-  enableReactUse()
-
   if (usePersist) {
-    configureObservablePersistence({
-      persistLocal: ObservablePersistLocalStorage
-    })
     persistObservable(locale$, {
       local: 'locale'
     })
