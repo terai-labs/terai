@@ -12,7 +12,6 @@ import type { CAC } from 'cac'
 export type InitOptions = Pick<Config, 'projectLocale'> & {
   cwd: string
   force?: boolean
-  silent?: boolean
 }
 
 export function createInitCommand(cli: CAC, cwd: string) {

@@ -12,7 +12,6 @@ import type { CAC } from 'cac'
 export type ExtractOptions = {
   cwd: string
   force?: boolean
-  silent?: boolean
   watch?: boolean
 }
 
