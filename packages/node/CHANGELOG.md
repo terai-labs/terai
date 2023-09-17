@@ -1,5 +1,12 @@
 # @rewordlabs/node
 
+## 0.2.4
+
+### Patch Changes
+
+- 8177d7b: fix: logger type check
+- f93fd45: Improved logger and fixes
+
 ## 0.2.3
 
 ### Patch Changes

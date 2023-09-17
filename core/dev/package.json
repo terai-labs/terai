@@ -1,6 +1,6 @@
 {
   "name": "@rewordlabs/dev",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "The user facing package for Reword",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
