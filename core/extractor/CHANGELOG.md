@@ -1,5 +1,17 @@
 # @rewordlabs/extractor
 
+## 0.2.4
+
+### Patch Changes
+
+- 8177d7b: fix: logger type check
+- f93fd45: Improved logger and fixes
+- Updated dependencies [8177d7b]
+- Updated dependencies [f93fd45]
+  - @rewordlabs/logger@0.2.4
+  - @rewordlabs/runtime@0.2.4
+  - @rewordlabs/transformer@0.2.4
+
 ## 0.2.3
 
 ### Patch Changes
