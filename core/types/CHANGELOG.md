@@ -1,5 +1,11 @@
 # @rewordlabs/types
 
+## 0.2.3
+
+### Patch Changes
+
+- 4db151e: WIP
+
 ## 0.2.2
 
 ### Patch Changes

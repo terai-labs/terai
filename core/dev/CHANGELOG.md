@@ -1,5 +1,17 @@
 # @rewordlabs/dev
 
+## 0.2.3
+
+### Patch Changes
+
+- 4db151e: WIP
+- Updated dependencies [4db151e]
+  - @rewordlabs/extractor@0.2.3
+  - @rewordlabs/logger@0.2.3
+  - @rewordlabs/runtime@0.2.3
+  - @rewordlabs/translator@0.2.3
+  - @rewordlabs/utils@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
