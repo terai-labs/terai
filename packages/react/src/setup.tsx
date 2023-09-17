@@ -54,7 +54,7 @@ export function setup({
 
   const getLocale = () => locale$.use()
   const useLocaleSync = (locale: string) => locale$.set(locale as Locale)
-  const changeLocale = (locale: Locale) => locale$.set(locale)
+  const setLocale = (locale: Locale) => locale$.set(locale)
   const tx = createTx<ReactNode, TxReactOptions>({
     loader,
     getLocale,
@@ -76,7 +76,7 @@ export function setup({
 
   return {
     tx,
-    changeLocale,
+    setLocale,
     useLocale: getLocale,
     useLocaleSync,
     format: formatter

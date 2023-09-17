@@ -1,6 +1,5 @@
 import process from 'node:process'
 import chalk from 'chalk'
-import pkg from '@rewordlabs/dev/package.json'
 
 function log(message: string) {
   return process.stdout.write(message + '\n')
@@ -12,8 +11,8 @@ function logError(message: string) {
 
 function logBullet(
   logger: typeof log | typeof logError,
-  colorizePrefix: <V>(v: V) => V,
-  colorizeText: <V>(v: V) => V,
+  colorizePrefix: chalk.Chalk,
+  colorizeText: chalk.Chalk,
   symbol: string,
   prefix: string,
   text?: string | string[]

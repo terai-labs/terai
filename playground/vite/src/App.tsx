@@ -1,4 +1,4 @@
-import { changeLocale, tx } from './reword'
+import { setLocale, tx } from './reword'
 import { Suspense } from 'react'
 
 export default function App() {
@@ -15,9 +15,9 @@ export default function App() {
         </div>
 
         <div className={'buttons'}>
-          <button onClick={() => changeLocale('es')}>{tx`Spanish`}</button>
-          <button onClick={() => changeLocale('en')}>{tx`English`}</button>
-          <button onClick={() => changeLocale('it')}>{tx`Italian`}</button>
+          <button onClick={() => setLocale('es')}>{tx`Spanish`}</button>
+          <button onClick={() => setLocale('en')}>{tx`English`}</button>
+          <button onClick={() => setLocale('it')}>{tx`Italian`}</button>
         </div>
       </div>
     </Suspense>

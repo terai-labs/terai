@@ -2,7 +2,7 @@
 
 import type { MetaFunction } from '@remix-run/node'
 import { Suspense } from 'react'
-import { changeLocale, tx } from '../reword'
+import { setLocale, tx } from '../reword'
 
 export const meta: MetaFunction = () => {
   return [
@@ -24,9 +24,9 @@ export default function Index() {
         </div>
 
         <div className={'buttons'}>
-          <button onClick={() => changeLocale('es')}>{tx`Spanish`}</button>
-          <button onClick={() => changeLocale('en')}>{tx`English`}</button>
-          <button onClick={() => changeLocale('it')}>{tx`Italian`}</button>
+          <button onClick={() => setLocale('es')}>{tx`Spanish`}</button>
+          <button onClick={() => setLocale('en')}>{tx`English`}</button>
+          <button onClick={() => setLocale('it')}>{tx`Italian`}</button>
         </div>
       </div>
     </Suspense>
