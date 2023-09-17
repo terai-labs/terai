@@ -1,6 +1,6 @@
 // Dependencies
 import process from 'node:process'
-import chalk, { type Chalk } from 'chalk'
+import chalk from 'chalk'
 
 function log(message: string) {
   return process.stdout.write(message + '\n')
@@ -12,8 +12,8 @@ function logError(message: string) {
 
 function logBullet(
   logger: typeof log | typeof logError,
-  colorizePrefix: Chalk,
-  colorizeText: Chalk,
+  colorizePrefix: typeof chalk,
+  colorizeText: typeof chalk,
   symbol: string,
   prefix: string,
   text?: string | string[]
