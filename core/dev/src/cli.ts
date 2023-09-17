@@ -12,7 +12,9 @@ import {
 
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
-  logger.info('cli', `Reword v${pkg.version}\n`)
+  logger.log(
+    `${logger.colors.bold('Reword')} ${logger.colors.cyan(`v${pkg.version}`)}`
+  )
 
   const cwd = runtime.cwd()
   const cli = cac('reword')
@@ -28,11 +30,7 @@ export async function main() {
   try {
     await cli.runMatchedCommand()
   } catch (error) {
-    logger.error('cli', error)
-
-    if (logger.isDebug) {
-      console.error(error)
-    }
+    if (error instanceof Error) logger.error(error.message)
 
     process.exit(1)
   }

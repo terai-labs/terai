@@ -8,9 +8,10 @@ export default function App() {
         <div className='messages'>
           <p>{tx`Hello world!`}</p>
           <p>{tx`Another hello world!`}</p>
+          <p>{tx`And another hello world!`}</p>
           <p>{tx`This is a sample message to show the capabilities of Reword`}</p>
           <p>{tx`This is a message for Andrea: do not be so bossy!`}</p>
-          <p>{tx`We are going for shopping now to buy some very cool t-shirts!`}</p>
+          <p>{tx`We are going or shopping now to buy some very cool t-shirts!`}</p>
         </div>
 
         <div className={'buttons'}>

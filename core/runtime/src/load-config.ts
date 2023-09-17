@@ -19,8 +19,6 @@ export async function loadConfig({
     throw new Error('Config not found')
   }
 
-  logger.debug('config:path', filePath)
-
   const parsedConfig = await bundle(config, cwd)
 
   if (typeof parsedConfig !== 'object') {

@@ -1,9 +1,9 @@
 // Dependencies
-import { generate } from '@rewordlabs/generator'
-import { logger } from '@rewordlabs/logger'
-import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { debounce } from 'perfect-debounce'
 import { extract } from '@rewordlabs/extractor'
+import { generate } from '@rewordlabs/generator'
+import { loadConfig, runtime } from '@rewordlabs/runtime'
+import { logger } from '@rewordlabs/logger'
 import { toPlainDictionary } from '@rewordlabs/utils'
 
 // Types
@@ -18,22 +18,23 @@ export type ExtractOptions = {
 
 export function createExtractCommand(cli: CAC, cwd: string) {
   return cli
-    .command('extract', "Initialize Reword's extraction")
-    .option('-s, --silent', 'Suppress all messages except errors')
+    .command('extract', 'Statically extract messages from your project')
     .option('-w, --watch', 'Watch files and rebuild')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(extractCmd)
 }
 
 export async function extractCmd(options: ExtractOptions) {
-  if (options.silent) logger.level = 'silent'
-  const done = logger.time.info('✨ Reword extraction')
+  logger.heading('extract', 'Statically extract messages from your project')
+  const done = logger.time.success()
 
   const config = await loadConfig(options)
   const filesPaths = runtime.fs.glob({
     ...config,
     cwd: options.cwd
   })
+
+  logger.info('Scan:', `Processing files...`)
 
   async function extractor() {
     const extractedMessages = await extract({
@@ -58,16 +59,19 @@ export async function extractCmd(options: ExtractOptions) {
       runtime.path.resolve(options.cwd, config.outDir, `build-manifest.json`),
       JSON.stringify({ messages: extractedMessages }, null, 2)
     )
+
+    return Object.keys(dictionary).length
   }
 
-  logger.info('cli:extract', 'Extracting messages from project...')
-  await extractor()
+  logger.info('Extraction:', 'Extracting messages...')
 
-  logger.info('cli:extract', 'Extracted messages ✅')
-  done()
+  const msgCount = await extractor()
+
+  done(`Extracted ${msgCount} messages`)
 
   if (options.watch) {
-    logger.info('cli:extract', 'Watching files...')
+    logger.log('')
+    logger.info('Watch:', 'Watching files for changes...\n')
     const configWatcher = runtime.fs.watch({
       ...config,
       ...options
@@ -76,12 +80,12 @@ export async function extractCmd(options: ExtractOptions) {
     configWatcher.on(
       'change',
       debounce(async () => {
-        const done = logger.time.info('✨ Reword extraction')
-        logger.info('cli:extract', 'Files changed, extracting messages...')
-        await extractor()
+        const done = logger.time.success()
+        logger.info('Extraction:', 'Files changed, processing messages...')
+        const msgCount = await extractor()
 
-        logger.info('cli:extract', 'Extracted messages ✅')
-        done()
+        done(`Extracted ${msgCount} messages`)
+        logger.log('')
       })
     )
   }

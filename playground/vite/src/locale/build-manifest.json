@@ -14,6 +14,13 @@
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"
     },
+    "jDJVcn": {
+      "id": "jDJVcn",
+      "value": "And another hello world!",
+      "context": "",
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
+      "chunkId": "kKXtqj"
+    },
     "jaDJBM": {
       "id": "jaDJBM",
       "value": "This is a sample message to show the capabilities of Reword",
@@ -28,9 +35,9 @@
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"
     },
-    "Uwjmv": {
-      "id": "Uwjmv",
-      "value": "We are going for shopping now to buy some very cool t-shirts!",
+    "cDhDJN": {
+      "id": "cDhDJN",
+      "value": "We are going or shopping now to buy some very cool t-shirts!",
       "context": "",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"

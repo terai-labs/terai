@@ -87,8 +87,6 @@ export const runtime = {
           : false
       })
 
-      logger.debug('watch:file', `watching [${include}]`)
-
       process.once('SIGINT', async () => {
         await watcher.close()
       })
@@ -101,11 +99,11 @@ export const runtime = {
 process.setMaxListeners(Infinity)
 
 process.on('unhandledRejection', reason => {
-  logger.error('❌', reason)
+  logger.error('Unhandled rejection', reason as string)
 })
 
 process.on('uncaughtException', reason => {
-  logger.error('❌', reason)
+  logger.error('Uncaught exception', reason?.message)
 })
 
 export type Runtime = typeof runtime

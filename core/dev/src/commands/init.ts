@@ -1,7 +1,7 @@
 // Dependencies
+import { findConfig, setupConfig, setupTemplate } from '@rewordlabs/runtime'
 import { input, select } from '@inquirer/prompts'
 import { logger } from '@rewordlabs/logger'
-import { findConfig, setupConfig, setupTemplate } from '@rewordlabs/runtime'
 import { outdent } from 'outdent'
 import getPackageManager from 'preferred-pm'
 
@@ -17,27 +17,24 @@ export type InitOptions = Pick<Config, 'projectLocale'> & {
 
 export function createInitCommand(cli: CAC, cwd: string) {
   return cli
-    .command('init', "Initialize Reword's config file")
+    .command('init', 'Initialize config file')
     .option('-f, --force', 'Force overwrite existing config files')
-    .option('-s, --silent', 'Suppress all messages except errors')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(initCmd)
 }
 
-export async function initCmd({ cwd, force, silent }: InitOptions) {
-  if (silent) logger.level = 'silent'
-
+export async function initCmd({ cwd, force }: InitOptions) {
+  logger.heading('init', 'Initialize config file')
   const configFile = findConfig({ cwd })
   const pmResult = await getPackageManager(cwd)
   const pm = pmResult?.name ?? 'npm'
   const cmd = pm === 'npm' ? 'npm run' : pm
 
   if (configFile && !force) {
-    return logger.warn(
-      'init:setup',
+    return logger.log(
       outdent`
         It looks like you already have reword created.
-        You can now run '${cmd} reword extract --watch'.
+        You can now run ${logger.colors.cyan(`'${cmd} reword extract --watch'`)}
       `
     )
   }
@@ -70,7 +67,7 @@ export async function initCmd({ cwd, force, silent }: InitOptions) {
     ]
   })) as 'next' | 'vite'
 
-  const done = logger.time.info('🔥 Reword initialized')
+  const done = logger.time.success()
 
   await setupConfig({ cwd, projectLocale, outDir })
 
@@ -78,7 +75,7 @@ export async function initCmd({ cwd, force, silent }: InitOptions) {
     await setupTemplate({ cwd, outDir, framework })
   }
 
-  done()
+  done('Config file created')
 
   logger.log(`🚀 You are set up to start using Reword! Thanks for choosing it.`)
 }
