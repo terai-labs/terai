@@ -1,3 +1,4 @@
+// Dependencies
 import process from 'node:process'
 import chalk, { type Chalk } from 'chalk'
 
