@@ -21,13 +21,8 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.11.1",
-    "@rewordlabs/formatter": "workspace:*",
-    "@rewordlabs/utils": "workspace:*",
     "@tanstack/react-query": "^4.35.3",
     "intl-messageformat": "^10.5.2"
-  },
-  "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "18.x"

@@ -37,12 +37,6 @@
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
-    "@rewordlabs/formatter": "workspace:*"
-  },
-  "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
-  },
   "peerDependencies": {
     "@rewordlabs/react": "workspace:*",
     "react": "^18.0.0",
