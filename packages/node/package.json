@@ -17,5 +17,8 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@legendapp/state": "^1.11.1"
   }
 }

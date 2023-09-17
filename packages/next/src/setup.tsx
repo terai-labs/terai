@@ -1,5 +1,5 @@
 // Dependencies
-import React, { Suspense, type ReactNode } from 'react'
+import { Suspense, type ReactNode } from 'react'
 import { createTx } from '@rewordlabs/formatter'
 
 // Types
@@ -14,9 +14,7 @@ export type SetupServerOptions = CommonSetupOptions
 
 export function setupServer({
   loader,
-  components,
-  format,
-  plugins
+  ...global
 }: SetupServerOptions & InterpolateOptions) {
   const tx = createTx<ReactNode, TxReactOptions>({
     loader,
@@ -25,14 +23,7 @@ export function setupServer({
       return (
         <Suspense>
           {/* @ts-ignore */}
-          <Text
-            {...props}
-            global={{
-              components,
-              format,
-              plugins
-            }}
-          />
+          <Text {...props} global={global} />
         </Suspense>
       )
     }
