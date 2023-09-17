@@ -1,5 +1,5 @@
 import process from 'node:process'
-import chalk from 'chalk'
+import chalk, { type Chalk } from 'chalk'
 
 function log(message: string) {
   return process.stdout.write(message + '\n')
@@ -11,8 +11,8 @@ function logError(message: string) {
 
 function logBullet(
   logger: typeof log | typeof logError,
-  colorizePrefix: chalk.Chalk,
-  colorizeText: chalk.Chalk,
+  colorizePrefix: Chalk,
+  colorizeText: Chalk,
   symbol: string,
   prefix: string,
   text?: string | string[]
