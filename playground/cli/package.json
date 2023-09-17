@@ -11,9 +11,8 @@
     "rwd": "bin.js"
   },
   "scripts": {
-    "dev": "pnpm build-fast --watch",
-    "build": "tsup",
-    "build-fast": "tsup --format=esm,cjs --no-dts"
+    "dev": "tsup --format=esm --no-dts --watch",
+    "build": "tsup"
   },
   "files": [
     "bin.js",

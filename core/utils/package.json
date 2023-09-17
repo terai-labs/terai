@@ -7,8 +7,8 @@
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
-    "build": "tsup",
-    "dev": "pnpm build --watch"
+    "dev": "tsup --format=esm --no-dts --watch",
+    "build": "tsup"
   },
   "files": [
     "dist"
