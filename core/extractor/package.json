@@ -1,7 +1,7 @@
 {
   "name": "@rewordlabs/extractor",
   "description": "Dictionary extractor for Reword",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -26,5 +26,3 @@
     "@rewordlabs/types": "workspace:*"
   }
 }
-
-
