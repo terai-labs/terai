@@ -1,5 +1,13 @@
 # @rewordlabs/next
 
+## 0.2.3
+
+### Patch Changes
+
+- 4db151e: WIP
+- Updated dependencies [4db151e]
+  - @rewordlabs/react@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
