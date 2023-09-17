@@ -16,8 +16,5 @@
   "scripts": {
     "dev": "tsup --format=esm --no-dts --watch",
     "build": "tsup"
-  },
-  "dependencies": {
-    "chalk": "^5.3.0"
   }
 }

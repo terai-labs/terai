@@ -2,13 +2,13 @@
 
 import { main } from './cli'
 import { isMainThread, parentPort } from 'worker_threads'
-import colors from 'kleur'
+import chalk from 'chalk'
 
 main().catch((error: any) => {
   if (error.loc) {
     console.error(
-      colors.bold(
-        colors.red(
+      chalk.bold(
+        chalk.red(
           `Error parsing: ${error.loc.file}:${error.loc.line}:${error.loc.column}`
         )
       )
@@ -16,10 +16,10 @@ main().catch((error: any) => {
   }
 
   if (error.frame) {
-    console.error(colors.red(error.message))
-    console.error(colors.dim(error.frame))
+    console.error(chalk.red(error.message))
+    console.error(chalk.dim(error.frame))
   } else {
-    console.error(colors.red(error.message))
+    console.error(chalk.red(error.message))
   }
 
   process.exitCode = 1

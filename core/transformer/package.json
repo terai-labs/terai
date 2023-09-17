@@ -18,8 +18,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@rewordlabs/utils": "workspace:*",
-    "chalk": "^4.1.2"
+    "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
