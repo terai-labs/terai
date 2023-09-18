@@ -14,7 +14,7 @@ export default defineConfig({
   outDir: './src/locale',
 
   // Your OpenAI API key
-  openaiApiKey: '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',
+  openaiApiKey: process.env.OPENAI_API_KEY as string,
 
   locales: ['es', 'it']
 })

@@ -135,6 +135,9 @@ importers:
       cac:
         specifier: ^6.7.14
         version: 6.7.14
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
       inquirer:
         specifier: ^9.2.11
         version: 9.2.11
@@ -234,6 +237,9 @@ importers:
       pathe:
         specifier: ^1.1.1
         version: 1.1.1
+      typescript-require:
+        specifier: ^0.3.0
+        version: 0.3.0
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.2
@@ -2549,6 +2555,10 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
+  /@types/node@14.18.61:
+    resolution: {integrity: sha512-1mFT4DqS4/s9tlZbdkwEB/EnSykA9MDeDLIk3FHApGvIMGY//qgstB2gu9GKGESWyW/qiRUO+jhlLJ9bBJ8j+Q==}
+    dev: false
+
   /@types/node@18.17.17:
     resolution: {integrity: sha512-cOxcXsQ2sxiwkykdJqvyFS+MLQPLvIdwh5l6gNg8qF6s+C7XSkEWOZjK+XhUZd+mYvHV/180g2cnCcIl4l06Pw==}
     dev: false
@@ -4051,7 +4061,6 @@ packages:
   /dotenv@16.3.1:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
-    dev: true
 
   /dotenv@8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
@@ -9023,6 +9032,19 @@ packages:
     dependencies:
       is-typedarray: 1.0.0
     dev: true
+
+  /typescript-require@0.3.0:
+    resolution: {integrity: sha512-mWHox/6LkZFeQyC0eXQFGbc8XZCZqSulyi5KUNfbJJIpFJnYBnJO9RELlGt9rFlCtfauxou+JcOMqeisBws92A==}
+    dependencies:
+      '@types/node': 14.18.61
+      typescript: 3.9.10
+    dev: false
+
+  /typescript@3.9.10:
+    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: false
 
   /typescript@5.2.2:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}

@@ -14,9 +14,23 @@
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"
     },
-    "jDJVcn": {
-      "id": "jDJVcn",
-      "value": "And another hello world!",
+    "fzDqGt": {
+      "id": "fzDqGt",
+      "value": "Test",
+      "context": "",
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
+      "chunkId": "kKXtqj"
+    },
+    "djODul": {
+      "id": "djODul",
+      "value": "How are you doing?",
+      "context": "",
+      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
+      "chunkId": "kKXtqj"
+    },
+    "gwRPlI": {
+      "id": "gwRPlI",
+      "value": "And hello world again!",
       "context": "",
       "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
       "chunkId": "kKXtqj"
