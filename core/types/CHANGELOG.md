@@ -1,5 +1,11 @@
 # @rewordlabs/types
 
+## 0.2.6
+
+### Patch Changes
+
+- c22bfd2: Add support for .env variables
+
 ## 0.2.5
 
 ### Patch Changes
