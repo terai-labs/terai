@@ -36,11 +36,11 @@
     }
   },
   "dependencies": {
+    "@rewordlabs/react": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
   "peerDependencies": {
-    "@rewordlabs/react": "workspace:*",
     "react": "^18.0.0",
     "next": "^13.4.0"
   }
