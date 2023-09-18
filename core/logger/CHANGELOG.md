@@ -1,5 +1,12 @@
 # @rewordlabs/logger
 
+## 0.2.5
+
+### Patch Changes
+
+- 99a4bae: Improved exports for react and next packages
+- fedce76: Review dependencies
+
 ## 0.2.4
 
 ### Patch Changes
