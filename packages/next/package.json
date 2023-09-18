@@ -25,16 +25,19 @@
       "import": "./dist/index.mjs"
     },
     "./client": {
-      "types": "./dist/client.d.ts",
-      "require": "./dist/client.js",
-      "import": "./dist/client.mjs"
+      "types": "./dist/client/index.d.ts",
+      "require": "./dist/client/index.js",
+      "import": "./dist/client/index.mjs"
     },
     "./server": {
-      "types": "./dist/server.d.ts",
-      "require": "./dist/server.js",
-      "import": "./dist/server.mjs"
-    },
-    "./package.json": "./package.json"
+      "types": "./dist/server/index.d.ts",
+      "require": "./dist/server/index.js",
+      "import": "./dist/server/index.mjs"
+    }
+  },
+  "dependencies": {
+    "client-only": "^0.0.1",
+    "server-only": "^0.0.1"
   },
   "peerDependencies": {
     "@rewordlabs/react": "workspace:*",

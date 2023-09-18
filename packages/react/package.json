@@ -18,9 +18,22 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./interpolate": {
+      "types": "./dist/interpolate.d.ts",
+      "require": "./dist/interpolate.js",
+      "import": "./dist/interpolate.mjs"
+    }
+  },
   "dependencies": {
     "@legendapp/state": "^1.11.1",
     "@tanstack/react-query": "^4.35.3",
+    "client-only": "^0.0.1",
     "intl-messageformat": "^10.5.2"
   },
   "peerDependencies": {

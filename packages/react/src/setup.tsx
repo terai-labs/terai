@@ -1,3 +1,7 @@
+'use client'
+
+import 'client-only'
+
 // Dependencies
 import { createTx, format } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'

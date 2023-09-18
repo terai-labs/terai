@@ -3,10 +3,10 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   clean: true,
   dts: true,
-  entry: ['src/index.ts', 'src/client.ts', 'src/server.ts'],
+  entry: ['src/index.ts', 'src/client', 'src/server'],
   format: ['esm', 'cjs'],
-  minify: false,
-  shims: false,
-  sourcemap: false,
+  minify: true,
+  shims: true,
+  sourcemap: true,
   splitting: true
 })

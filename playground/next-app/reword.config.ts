@@ -11,7 +11,7 @@ export default defineConfig({
   projectLocale: 'en',
 
   // The output directory for your locale system
-  outDir: './locale',
+  outDir: './src/locale',
 
   // Your OpenAI API key
   openaiApiKey: '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',

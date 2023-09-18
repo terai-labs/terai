@@ -1,3 +1,7 @@
+'use server'
+
+import 'server-only'
+
 // Dependencies
 import { Suspense, type ReactNode } from 'react'
 import { createTx } from '@rewordlabs/formatter'

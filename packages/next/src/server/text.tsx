@@ -1,5 +1,9 @@
+'use server'
+
+import 'server-only'
+
 // Dependencies
-import { createReactInterpolate } from '@rewordlabs/react'
+import { createReactInterpolate } from '@rewordlabs/react/interpolate'
 
 // Types
 import type { TextProps } from '@rewordlabs/react'
