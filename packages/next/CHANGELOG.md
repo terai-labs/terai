@@ -1,5 +1,13 @@
 # @rewordlabs/next
 
+## 0.2.6
+
+### Patch Changes
+
+- c22bfd2: Add support for .env variables
+- Updated dependencies [c22bfd2]
+  - @rewordlabs/react@0.2.6
+
 ## 0.2.5
 
 ### Patch Changes

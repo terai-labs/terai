@@ -1,6 +1,6 @@
 {
   "name": "@rewordlabs/runtime",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "The rewordlabs Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

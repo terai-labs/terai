@@ -1,5 +1,15 @@
 # @rewordlabs/extractor
 
+## 0.2.6
+
+### Patch Changes
+
+- c22bfd2: Add support for .env variables
+- Updated dependencies [c22bfd2]
+  - @rewordlabs/logger@0.2.6
+  - @rewordlabs/runtime@0.2.6
+  - @rewordlabs/transformer@0.2.6
+
 ## 0.2.5
 
 ### Patch Changes
