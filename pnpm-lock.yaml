@@ -123,9 +123,6 @@ importers:
       '@rewordlabs/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@rewordlabs/logger':
-        specifier: workspace:*
-        version: link:../logger
       '@rewordlabs/runtime':
         specifier: workspace:*
         version: link:../runtime
@@ -154,6 +151,9 @@ importers:
       '@rewordlabs/generator':
         specifier: workspace:*
         version: link:../generator
+      '@rewordlabs/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@rewordlabs/types':
         specifier: workspace:*
         version: link:../types

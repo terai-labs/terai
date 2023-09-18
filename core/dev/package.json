@@ -34,7 +34,6 @@
   "dependencies": {
     "@inquirer/prompts": "^3.1.1",
     "@rewordlabs/extractor": "workspace:*",
-    "@rewordlabs/logger": "workspace:*",
     "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/translator": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
@@ -46,6 +45,7 @@
   },
   "devDependencies": {
     "@rewordlabs/generator": "workspace:*",
+    "@rewordlabs/logger": "workspace:*",
     "@rewordlabs/types": "workspace:*",
     "@types/update-notifier": "^6.0.5",
     "update-notifier": "^6.0.2"
