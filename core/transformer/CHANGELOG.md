@@ -1,5 +1,15 @@
 # @rewordlabs/transformer
 
+## 0.2.5
+
+### Patch Changes
+
+- 99a4bae: Improved exports for react and next packages
+- fedce76: Review dependencies
+- Updated dependencies [99a4bae]
+- Updated dependencies [fedce76]
+  - @rewordlabs/utils@0.2.5
+
 ## 0.2.4
 
 ### Patch Changes
