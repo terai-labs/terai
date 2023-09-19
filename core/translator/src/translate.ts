@@ -1,28 +1,53 @@
 // Dependencies
 import { translateWithChatGpt } from './chat-gpt'
+import { translateWithGoogleCloud } from './google-cloud'
 
 // Types
 import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 
-type TranslateOptions = Pick<Config, 'projectLocale' | 'openaiApiKey'> & {
+type TranslateOptions = Pick<
+  Config,
+  | 'projectLocale'
+  | 'translationService'
+  | 'openaiApiKey'
+  | 'googleCloudCrendentials'
+> & {
   dictionary: Dictionary
   locale: Locale
 }
 
 export async function translate({
   dictionary,
+  translationService,
   projectLocale,
   locale,
-  openaiApiKey
+  openaiApiKey,
+  googleCloudCrendentials
 }: TranslateOptions): Promise<Dictionary> {
-  const messagesJson = JSON.stringify(dictionary)
+  if (translationService === 'OpenAI ChatGPT') {
+    if (!openaiApiKey) {
+      throw new Error('You need to provide your OpenAI API key')
+    }
 
-  const translation = await translateWithChatGpt({
-    messagesJson,
-    locale,
-    projectLocale,
-    openaiApiKey
-  })
+    return translateWithChatGpt({
+      dictionary,
+      locale,
+      projectLocale,
+      openaiApiKey
+    })
+  }
 
-  return JSON.parse(translation)
+  if (translationService === 'Google Cloud') {
+    if (!googleCloudCrendentials) {
+      throw new Error('You need to provide your Google Cloud credentials')
+    }
+
+    return translateWithGoogleCloud({
+      dictionary,
+      locale,
+      googleCloudCrendentials
+    })
+  }
+
+  throw new Error(`You need to select a translation provider`)
 }

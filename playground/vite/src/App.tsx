@@ -2,18 +2,13 @@ import { setLocale, tx } from './reword'
 import { Suspense } from 'react'
 
 export default function App() {
+  const name = 'Dominik'
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
         <div className='messages'>
           <p>{tx`Hello world!`}</p>
-          <p>{tx`Another hello world!`}</p>
-          <p>{tx`Test`}</p>
-          <p>{tx`How are you doing?`}</p>
-          <p>{tx`And hello world again!`}</p>
-          <p>{tx`This is a sample message to show the capabilities of Reword`}</p>
-          <p>{tx`This is a message for Andrea: do not be so bossy!`}</p>
-          <p>{tx`We are going or shopping now to buy some very cool t-shirts!`}</p>
+          <p>{tx`I am doing a show of the library I am creating!`}</p>
         </div>
 
         <div className={'buttons'}>

@@ -1,16 +1,15 @@
 // Dependencies
+import { generate } from '@rewordlabs/generator'
+import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
 import { translate } from '@rewordlabs/translator'
-import { loadConfig, runtime } from '@rewordlabs/runtime'
 
 // Types
 import type { CAC } from 'cac'
 import type { Dictionary } from '@rewordlabs/types'
-import { generate } from '@rewordlabs/generator'
 
 export type TranslateOptions = {
   cwd: string
-  force?: boolean
   watch?: boolean
 }
 
@@ -24,9 +23,16 @@ export function createTranslateCommand(cli: CAC, cwd: string) {
 
 export async function translateCmd(options: TranslateOptions) {
   logger.heading('translate', 'Translate messages from your project')
-  const done = logger.time.info()
+  const done = logger.time.success()
 
   const config = await loadConfig(options)
+
+  logger.info(
+    `Provider:`,
+    `Translating using ${logger.colors.white(config.translationService)}`
+  )
+  logger.info(`Scan:`, `Looking for untranslated messages...`)
+
   const buildManifest = runtime.fs.readFile(
     runtime.path.resolve(options.cwd, config.outDir, 'build-manifest.json')
   )
@@ -66,10 +72,9 @@ export async function translateCmd(options: TranslateOptions) {
         )
 
         const dictionary = await translate({
+          ...config,
           dictionary: untranslatedDictionary,
-          projectLocale: config.projectLocale,
-          locale,
-          openaiApiKey: config.openaiApiKey
+          locale
         })
 
         await generate({

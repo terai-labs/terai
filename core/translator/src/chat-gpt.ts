@@ -2,26 +2,28 @@
 import OpenAI from 'openai'
 
 // Types
-import type { Locale } from '@rewordlabs/types'
+import type {
+  ConfigOptionsChatGpt,
+  Dictionary,
+  Locale
+} from '@rewordlabs/types'
 
 export async function translateWithChatGpt({
-  messagesJson,
+  dictionary,
   projectLocale,
   locale,
   openaiApiKey
 }: {
-  messagesJson: string
+  dictionary: Dictionary
   projectLocale: string
   locale: Locale
-  openaiApiKey: string
+  openaiApiKey: ConfigOptionsChatGpt['openaiApiKey']
 }) {
-  if (!openaiApiKey) {
-    throw new Error('You must provide an OpenAI API key')
-  }
-
   const openai = new OpenAI({
     apiKey: openaiApiKey
   })
+
+  const messagesJson = JSON.stringify(dictionary)
 
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
@@ -40,10 +42,11 @@ export async function translateWithChatGpt({
       }
     ],
     temperature: 0.4,
-    // max_tokens: 256,
     frequency_penalty: -2.0,
     presence_penalty: -2.0
   })
 
-  return response?.choices?.[0]?.message?.content || '{}'
+  return JSON.parse(
+    response?.choices?.[0]?.message?.content || '{}'
+  ) as Dictionary
 }
