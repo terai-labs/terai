@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tsup --format=esm --no-dts --watch",
+    "dev": "tsup --format=esm,cjs --no-dts --watch",
     "build": "tsup"
   }
 }
