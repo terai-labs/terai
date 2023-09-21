@@ -1,5 +1,11 @@
 # @rewordlabs/logger
 
+## 0.3.0
+
+### Minor Changes
+
+- 25de28c: Support for chunk-based loading
+
 ## 0.2.6
 
 ### Patch Changes

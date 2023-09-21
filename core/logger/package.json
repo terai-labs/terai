@@ -1,6 +1,6 @@
 {
   "name": "@rewordlabs/logger",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "The core rewordlabs logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -1,5 +1,16 @@
 # @rewordlabs/utils
 
+## 0.3.0
+
+### Minor Changes
+
+- 25de28c: Support for chunk-based loading
+
+### Patch Changes
+
+- Updated dependencies [25de28c]
+  - @rewordlabs/types@0.3.0
+
 ## 0.2.6
 
 ### Patch Changes
