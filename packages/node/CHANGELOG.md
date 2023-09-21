@@ -1,5 +1,11 @@
 # @rewordlabs/node
 
+## 0.3.1
+
+### Patch Changes
+
+- 2cc501d: Update dependencies
+
 ## 0.3.0
 
 ### Minor Changes
