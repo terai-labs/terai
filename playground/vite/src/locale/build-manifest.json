@@ -3,37 +3,37 @@
     "dQxGBP": {
       "id": "dQxGBP",
       "value": "Hello world!",
+      "file": "vite/src/App.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "chunkId": "kKXtqj"
+      "chunkId": "test"
     },
-    "bvBBaY": {
-      "id": "bvBBaY",
-      "value": "I am doing a show of the library I am creating!",
+    "cILOUG": {
+      "id": "cILOUG",
+      "value": "I am doing a show of the ${var} I am creating!",
+      "file": "vite/src/App.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "chunkId": "kKXtqj"
+      "chunkId": "test"
     },
     "dBGRuB": {
       "id": "dBGRuB",
       "value": "Spanish",
+      "file": "vite/src/App.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "chunkId": "kKXtqj"
+      "chunkId": "dBGRuB"
     },
     "dBGuSN": {
       "id": "dBGuSN",
       "value": "English",
+      "file": "vite/src/App.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "chunkId": "kKXtqj"
+      "chunkId": "dBGuSN"
     },
     "ixqPRh": {
       "id": "ixqPRh",
       "value": "Italian",
+      "file": "vite/src/App.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/vite/src/App.tsx",
-      "chunkId": "kKXtqj"
+      "chunkId": "ixqPRh"
     }
   }
 }

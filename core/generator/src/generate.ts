@@ -19,9 +19,10 @@ export async function generate({
   const folderPath = runtime.path.resolve(cwd, outDir, locale)
 
   for (const id in dictionary) {
-    runtime.fs.write(
-      runtime.path.resolve(folderPath, id + '.json'),
-      JSON.stringify({ [id]: dictionary[id] }, null, 2)
-    )
+    const fileDir = runtime.path.resolve(folderPath, id + '.json')
+    const isChunk = typeof dictionary[id] !== 'string'
+    const fileContent = isChunk ? dictionary[id] : { [id]: dictionary[id] }
+
+    runtime.fs.write(fileDir, JSON.stringify(fileContent, null, 2))
   }
 }

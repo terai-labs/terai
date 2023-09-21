@@ -7,7 +7,6 @@ export type Config = {
   outDir: string
   locales: Locale[]
   context?: string
-  codeSplitting?: 'file' | number
   translationService: 'OpenAI ChatGPT' | 'Google Cloud'
   openaiApiKey?: ConfigOptionsChatGpt['openaiApiKey']
   googleCloudCrendentials?: ConfigOptionsGoogleCloud['googleCloudCrendentials']

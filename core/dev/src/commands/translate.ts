@@ -2,11 +2,12 @@
 import { generate } from '@rewordlabs/generator'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
+import { mergeDictionaries } from '@rewordlabs/utils'
 import { translate } from '@rewordlabs/translator'
 
 // Types
 import type { CAC } from 'cac'
-import type { Dictionary } from '@rewordlabs/types'
+import type { Dictionary, BuildManifest } from '@rewordlabs/types'
 
 export type TranslateOptions = {
   cwd: string
@@ -37,38 +38,65 @@ export async function translateCmd(options: TranslateOptions) {
     runtime.path.resolve(options.cwd, config.outDir, 'build-manifest.json')
   )
 
-  const { messages } = JSON.parse(buildManifest)
-  let totalMessagesTranslated = 0
+  const { messages } = JSON.parse(buildManifest) as BuildManifest
+
+  let totalTranslatedMsgs = 0
 
   await Promise.all(
     config.locales.map(async locale => {
       try {
-        const untranslatedKeys: string[] = []
+        const msgsToTranslate: string[] = []
         const untranslatedDictionary: Dictionary = {}
+        const translatedDictionary: Dictionary = {}
+
         const localeFolderPath = runtime.path.resolve(
           options.cwd,
           config.outDir,
           locale
         )
 
-        for (const messageKey in messages) {
-          const messagePath = runtime.path.resolve(
+        for (const msgId in messages) {
+          const { chunkId } = messages[msgId]
+          const chunkPath = runtime.path.resolve(
             localeFolderPath,
-            `${messageKey}.json`
+            `${chunkId}.json`
           )
 
-          if (!runtime.fs.exists(messagePath)) {
-            untranslatedKeys.push(messageKey)
-            untranslatedDictionary[messageKey] = messages[messageKey].value
-            totalMessagesTranslated++
+          if (runtime.fs.exists(chunkPath)) {
+            const chunk = runtime.fs.readFile(chunkPath)
+            const chunkMessages = JSON.parse(chunk) as Dictionary
+
+            if (!chunkMessages[msgId]) {
+              totalTranslatedMsgs++
+              msgsToTranslate.push(msgId)
+              untranslatedDictionary[chunkId] = {
+                // @ts-ignore
+                ...(untranslatedDictionary[chunkId] ?? {}),
+                [msgId]: messages[msgId].value
+              }
+            } else {
+              translatedDictionary[chunkId] = {
+                // @ts-ignore
+                ...(translatedDictionary[chunkId] ?? {}),
+                [msgId]: chunkMessages[msgId]
+              }
+            }
+          } else {
+            totalTranslatedMsgs++
+            msgsToTranslate.push(msgId)
+            untranslatedDictionary[chunkId] = {
+              // @ts-ignore
+              ...(untranslatedDictionary[chunkId] ?? {}),
+              [msgId]: messages[msgId].value
+            }
           }
         }
 
-        if (!untranslatedKeys.length) return
+        if (!msgsToTranslate.length) return
 
         logger.info(
           `${locale.toUpperCase()} Translator:`,
-          `Translating ${untranslatedKeys.length} messages...`
+          `Translating ${msgsToTranslate.length} messages...`
         )
 
         const dictionary = await translate({
@@ -79,7 +107,7 @@ export async function translateCmd(options: TranslateOptions) {
 
         await generate({
           ...config,
-          dictionary,
+          dictionary: mergeDictionaries(translatedDictionary, dictionary),
           locale,
           cwd: options.cwd
         })
@@ -94,9 +122,9 @@ export async function translateCmd(options: TranslateOptions) {
     })
   )
 
-  if (!totalMessagesTranslated) {
-    return logger.log('No messages translated, everything is up to date ✅')
+  if (!totalTranslatedMsgs) {
+    return done('No messages translated, everything is up to date')
   }
 
-  done(`Translated ${totalMessagesTranslated} messages`)
+  done(`Translated ${totalTranslatedMsgs} messages`)
 }

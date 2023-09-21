@@ -5,17 +5,16 @@ import { runtime } from '@rewordlabs/runtime'
 import { transform } from '@rewordlabs/transformer'
 
 // Types
-import type { Config, ExtractedMessages } from '@rewordlabs/types'
+import type { ExtractedMessages } from '@rewordlabs/types'
 
 type ExtractOptions = {
   filesPaths: readonly string[]
   cwd: string
-} & Pick<Config, 'codeSplitting'>
+}
 
 export async function extract({
   filesPaths,
-  cwd,
-  codeSplitting
+  cwd
 }: ExtractOptions): Promise<ExtractedMessages> {
   const extractedMessages: ExtractedMessages = {}
 
@@ -37,7 +36,6 @@ export async function extract({
             before: [
               transform({
                 cwd,
-                codeSplitting,
                 onMsgExtracted: (id, msg) => {
                   extractedMessages[id] = msg
                 }
