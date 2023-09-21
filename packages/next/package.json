@@ -36,9 +36,13 @@
     }
   },
   "dependencies": {
+    "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/react": "workspace:*",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.0.0",
