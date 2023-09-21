@@ -1,5 +1,19 @@
 # @rewordlabs/dev
 
+## 0.3.0
+
+### Minor Changes
+
+- 25de28c: Support for chunk-based loading
+
+### Patch Changes
+
+- Updated dependencies [25de28c]
+  - @rewordlabs/translator@0.3.0
+  - @rewordlabs/extractor@0.3.0
+  - @rewordlabs/runtime@0.3.0
+  - @rewordlabs/utils@0.3.0
+
 ## 0.2.6
 
 ### Patch Changes

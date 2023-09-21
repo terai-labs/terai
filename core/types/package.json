@@ -1,6 +1,6 @@
 {
   "name": "@rewordlabs/types",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "Types definitions for Reword",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
