@@ -3,46 +3,39 @@ import * as ts from 'typescript'
 import { toHash, prepareMessage } from '@rewordlabs/utils'
 
 // Types
-import type { Config, ExtractedMessage } from '@rewordlabs/types'
+import type { ExtractedMessage } from '@rewordlabs/types'
 import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts
 
-function getChunkId(
-  cwd: string,
-  filePath: string,
-  codeSplitting: Config['codeSplitting']
-): string {
-  if (codeSplitting === 'file') return filePath
+// https://esbuild.github.io/content-types/#direct-eval
+const nodeEval = eval
 
+function getRepoFilePath(cwd: string, filePath: string) {
+  const folderName = cwd.split('/').pop()
   const relativePath = filePath.slice(cwd.length)
-  const pathParts = relativePath.split('/')
-  const truncatedPathParts = pathParts.slice(0, codeSplitting)
-  const transformedPath = truncatedPathParts.join('/')
-  const chunkId = toHash(transformedPath)
 
-  return chunkId
+  return folderName + relativePath
 }
 
 function extractMessageFromTemplateExpression(
   ts: TypeScript,
   factory: ts.NodeFactory,
   node: ts.TaggedTemplateExpression,
-  { onMsgExtracted, cwd, codeSplitting }: TransformerOptions,
+  { onMsgExtracted, cwd }: TransformerOptions,
   sf: ts.SourceFile
 ): ts.VisitResult<ts.TaggedTemplateExpression> {
   const text = node.template.getText()
   const value = prepareMessage(text)
   const id = toHash(value)
-  const fileName = sf.fileName
-  const chunkId = getChunkId(cwd, fileName, codeSplitting)
+  const file = getRepoFilePath(cwd, sf.fileName)
 
   const msg: ExtractedMessage = {
     id,
     value,
+    file,
     context: '',
-    file: fileName,
-    chunkId
+    chunkId: id
   }
 
   onMsgExtracted(id, msg)
@@ -54,25 +47,28 @@ function extractMessageFromCallExpression(
   ts: TypeScript,
   factory: ts.NodeFactory,
   node: ts.CallExpression,
-  { onMsgExtracted, cwd, codeSplitting }: TransformerOptions,
+  { onMsgExtracted, cwd }: TransformerOptions,
   sf: ts.SourceFile
 ): ts.VisitResult<ts.CallExpression> {
   const expressionNode = node.parent as ts.TaggedTemplateExpression
   const text = expressionNode.template.getText()
   const value = prepareMessage(text)
-  let context = ''
-  const fileName = sf.fileName
+  const file = getRepoFilePath(cwd, sf.fileName)
   const id = toHash(value)
-  const chunkId = getChunkId(cwd, fileName, codeSplitting)
+  let context = ''
+  let chunkId = ''
+  const arg = node.arguments?.[0]
 
-  // Extract context from first argument
-  if (node.arguments?.[0]) {
-    node.arguments?.[0].forEachChild(child => {
+  if (arg) {
+    arg.forEachChild(child => {
       const key = child.getFirstToken()?.getText()
-
       if (key === 'context') {
         const contextValue = child.getLastToken()?.getText()
-        if (contextValue) context = contextValue
+        if (contextValue) context = nodeEval(contextValue)
+      }
+      if (key === 'chunkId') {
+        const chunkValue = child.getLastToken()?.getText()
+        if (chunkValue) chunkId = nodeEval(chunkValue)
       }
     })
   }
@@ -80,7 +76,7 @@ function extractMessageFromCallExpression(
   const msg: ExtractedMessage = {
     id,
     value,
-    file: fileName,
+    file,
     context,
     chunkId
   }
@@ -97,6 +93,14 @@ function getVisitor(
   opts: TransformerOptions
 ) {
   const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
+    // Store project variables
+    // TODO: This solution is temporal and needs to be reviewed
+    // const declaredVariables: Map<string, unknown> = new Map()
+    // if (ts.isVariableDeclaration(node)) {
+    //   const variableName = node.name.getText()
+    //   declaredVariables.set(variableName, node.getText())
+    // }
+
     if (ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'tx') {
       extractMessageFromTemplateExpression(ts, ctx.factory, node, opts, sf)
     } else if (

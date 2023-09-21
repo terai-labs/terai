@@ -6,7 +6,22 @@ export function toPlainDictionary(
   const dictionary: Dictionary = {}
 
   for (const id in extractedMessages) {
-    dictionary[id] = extractedMessages[id].value || ''
+    const { value, chunkId } = extractedMessages[id]
+
+    if (chunkId) {
+      if (dictionary[chunkId]) {
+        dictionary[chunkId] = {
+          ...(dictionary[chunkId] as Record<string, string>),
+          [id]: value
+        }
+      } else {
+        dictionary[chunkId] = {
+          [id]: value
+        }
+      }
+    } else {
+      dictionary[id] = value
+    }
   }
 
   return dictionary

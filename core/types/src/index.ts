@@ -1,4 +1,6 @@
 export * from './config'
 export * from './locale'
 export * from './message'
+export * from './loader'
 export * from './dictionary'
+export * from './manifest'

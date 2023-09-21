@@ -15,10 +15,11 @@ export async function text({
   rawMessage,
   variables,
   format,
-  global
+  global,
+  chunkId = id
 }: TextProps) {
   const locale = getLocale()
-  const json = await loader(locale, id)
+  const json = await loader(locale, chunkId, id)
   const message = interpolate(
     {
       message: typeof json === 'string' ? json : rawMessage,

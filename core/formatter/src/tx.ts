@@ -2,7 +2,7 @@
 import { joinTemplateStrings, prepareMessage, toHash } from '@rewordlabs/utils'
 
 // Types
-import type { Locale } from '@rewordlabs/types'
+import type { Locale, Loader } from '@rewordlabs/types'
 import type { MessageExpression } from './types'
 import type { InterpolateOptions } from './interpolate'
 
@@ -11,17 +11,18 @@ export type TxRenderProps<P = unknown> = {
   rawMessage: string
   variables: MessageExpression[]
   getLocale: () => Locale
-  loader: (locale: string, id: string) => Promise<string>
+  loader: Loader
 } & TxOptions<P>
 
 export type CreateTxOptions<T> = {
   getLocale: () => Locale
-  loader: (locale: string, id: string) => Promise<string>
+  loader: Loader
   render: (options: TxRenderProps) => T
 }
 
 export type TxOptions<P = unknown> = {
   context?: string
+  chunkId?: string
 } & InterpolateOptions &
   P
 

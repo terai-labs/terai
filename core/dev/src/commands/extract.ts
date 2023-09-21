@@ -8,6 +8,7 @@ import { toPlainDictionary } from '@rewordlabs/utils'
 
 // Types
 import type { CAC } from 'cac'
+import type { BuildManifest } from '@rewordlabs/types'
 
 export type ExtractOptions = {
   cwd: string
@@ -25,6 +26,7 @@ export function createExtractCommand(cli: CAC, cwd: string) {
 
 export async function extractCmd(options: ExtractOptions) {
   logger.heading('extract', 'Statically extract messages from your project')
+
   const done = logger.time.success()
 
   const config = await loadConfig(options)
@@ -54,9 +56,13 @@ export async function extractCmd(options: ExtractOptions) {
       cwd: options.cwd
     })
 
+    const manifest: BuildManifest = {
+      messages: extractedMessages
+    }
+
     runtime.fs.write(
       runtime.path.resolve(options.cwd, config.outDir, `build-manifest.json`),
-      JSON.stringify({ messages: extractedMessages }, null, 2)
+      JSON.stringify(manifest, null, 2)
     )
 
     return Object.keys(dictionary).length

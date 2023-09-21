@@ -16,10 +16,11 @@ export async function Text({
   variables,
   components,
   format,
-  global
+  global,
+  chunkId = id
 }: TextProps) {
   const locale = getLocale()
-  const json = await loader(locale, id)
+  const json = await loader(locale, chunkId, id)
   const interpolate = createReactInterpolate({
     locale,
     plugins: global.plugins,
