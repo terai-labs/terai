@@ -1,5 +1,16 @@
 # @rewordlabs/dev
 
+## 0.3.1
+
+### Patch Changes
+
+- 2cc501d: Update dependencies
+- Updated dependencies [2cc501d]
+  - @rewordlabs/translator@0.3.1
+  - @rewordlabs/extractor@0.3.1
+  - @rewordlabs/runtime@0.3.1
+  - @rewordlabs/utils@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
