@@ -1,5 +1,5 @@
 // Dependencies
-import { createTx, format } from '@rewordlabs/formatter'
+import { createTx } from '@rewordlabs/formatter'
 
 // Types
 import type { Locale } from '@rewordlabs/types'
@@ -21,7 +21,6 @@ export const setup = ({ getLocale, loader, ...global }: SetupOptions) => {
   })
 
   return {
-    tx,
-    format
+    tx
   }
 }

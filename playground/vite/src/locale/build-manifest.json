@@ -9,10 +9,10 @@
     },
     "cILOUG": {
       "id": "cILOUG",
-      "value": "I am doing a show of the ${var} I am creating!",
+      "value": "I am doing a show of the ${var} ]} I am creating!",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "test"
+      "chunkId": "cILOUG"
     },
     "dBGRuB": {
       "id": "dBGRuB",

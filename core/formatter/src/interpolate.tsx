@@ -1,14 +1,17 @@
-// Utils
-import { formatNumber } from './number'
-import { formatDate } from './date'
-
-// Types
+import { formatNumber, type FormatNumberProps } from './number'
+import { formatDate, type FormatDateProps } from './date'
 import type { Locale } from '@rewordlabs/types'
-import type { GlobalFormat, MessageExpression } from './types'
+import type { GlobalFormat, DynamicValue } from './types'
+import { formatList, type FormatListProps } from './list'
+import { formatDisplayName, type FormatDisplayNameProps } from './display-names'
+import {
+  formatRelativeTime,
+  type FormatRelativeTimeProps
+} from './relative-time'
 
 export type InterpolateProps = {
   message: string
-  variables: MessageExpression[]
+  variables: DynamicValue[]
   locale: Locale
 }
 
@@ -29,38 +32,77 @@ export function interpolate(
 
     if (!variable) return ''
 
-    if (typeof variable === 'string') return variable
-    if (typeof variable === 'number' || typeof variable === 'bigint')
+    if (typeof variable === 'string') {
+      return variable
+    }
+
+    if (typeof variable === 'number' || typeof variable === 'bigint') {
       return formatNumber({
         value: variable,
         locale,
         options: format?.number
       })
+    }
 
-    if (variable instanceof Date)
+    if (variable instanceof Date) {
       return formatDate({
         value: variable,
         locale,
         options: format?.date
       })
+    }
 
-    if (typeof variable === 'object') {
-      if (variable.format === 'number') {
-        const { value, ...options } = variable
-        return formatNumber({
-          value,
-          locale,
-          options: options || format?.number
-        })
-      }
+    if (Array.isArray(variable)) {
+      const [value, { format: type, ...options }] = variable
 
-      if (variable.format === 'date') {
-        const { value, ...options } = variable
-        return formatDate({
-          value,
-          locale,
-          options: options || format?.number
-        })
+      switch (type) {
+        case 'number': {
+          return formatNumber({
+            value: value as FormatNumberProps['value'],
+            locale,
+            options: (options as FormatNumberProps['options']) || format?.list
+          })
+        }
+
+        case 'date': {
+          return formatDate({
+            value: value as FormatDateProps['value'],
+            locale,
+            options: (options as FormatDateProps['options']) || format?.date
+          })
+        }
+
+        case 'list': {
+          return formatList({
+            value: value as FormatListProps['value'],
+            locale,
+            options: (options as FormatListProps['options']) || format?.list
+          })
+        }
+
+        case 'display-name': {
+          return formatDisplayName({
+            value: value as FormatDisplayNameProps['value'],
+            locale,
+            options:
+              (options as FormatDisplayNameProps['options']) ||
+              format?.displayName
+          }) as string
+        }
+
+        case 'relative-time': {
+          return formatRelativeTime({
+            value: value as FormatRelativeTimeProps['value'],
+            locale,
+            options:
+              (options as FormatRelativeTimeProps['options']) ||
+              format?.relativeTime
+          })
+        }
+
+        default: {
+          return ''
+        }
       }
     }
 
