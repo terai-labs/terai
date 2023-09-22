@@ -1,10 +1,10 @@
 import type { FormatDateProps, FormatDateOptions } from './date'
+import type { FormatListOptions, FormatListProps } from './list'
+import type { FormatNumberProps, FormatNumberOptions } from './number'
 import type {
   FormatDisplayNameOptions,
   FormatDisplayNameProps
 } from './display-names'
-import type { FormatListOptions, FormatListProps } from './list'
-import type { FormatNumberProps, FormatNumberOptions } from './number'
 import type {
   FormatRelativeTimeOptions,
   FormatRelativeTimeProps
@@ -18,21 +18,26 @@ export type GlobalFormat = {
   relativeTime?: FormatRelativeTimeOptions
 }
 
+export type DynamicEl<A, B extends { value: unknown; options?: unknown }> =
+  | [B['value'], A]
+  | [B['value'], A, B['options']]
+
+export type DynamicNumberValue = DynamicEl<'number', FormatNumberProps>
+export type DynamicDateValue = DynamicEl<'date', FormatDateProps>
+export type DynamicListValue = DynamicEl<'list', FormatListProps>
+export type DynamicRelativeTimeValue = DynamicEl<
+  'relative-time',
+  FormatRelativeTimeProps
+>
+export type DynamicDisplayNameValue = DynamicEl<
+  'display-name',
+  FormatDisplayNameProps
+>
+
 export type DynamicValue =
   | string
-  | FormatNumberProps['value']
-  | FormatDateProps['value']
-  | [
-      FormatNumberProps['value'],
-      { format: 'number' } & FormatNumberProps['options']
-    ]
-  | [FormatDateProps['value'], { format: 'date' } & FormatDateProps['options']]
-  | [FormatListProps['value'], { format: 'list' } & FormatListProps['options']]
-  | [
-      FormatDisplayNameProps['value'],
-      { format: 'display-name' } & FormatDisplayNameProps['options']
-    ]
-  | [
-      FormatRelativeTimeProps['value'],
-      { format: 'relative-time' } & FormatRelativeTimeProps['options']
-    ]
+  | DynamicNumberValue
+  | DynamicDateValue
+  | DynamicDisplayNameValue
+  | DynamicListValue
+  | DynamicRelativeTimeValue

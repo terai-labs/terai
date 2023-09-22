@@ -48,7 +48,6 @@ export function createTx<T, P = unknown>(
     stringsOrOptions: TemplateStringsArray | TxOptions<P>,
     ...variables: DynamicValue[]
   ): T | Tx<T, P> {
-    console.log(variables)
     if (isTemplateStringsArray(stringsOrOptions)) {
       const { render, ...restOfOptions } = options
       const strings = stringsOrOptions

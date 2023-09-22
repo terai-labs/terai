@@ -6,4 +6,5 @@ export const prepareMessage = memo((message: string) => {
     .replaceAll(/`|\n|\t|\b|\v/g, '')
     .replaceAll(/\$\{[^}]*}/g, '${var}')
     .replaceAll('${var}}', '${var}')
+    .replaceAll('${var} ]}', '${var}')
 })

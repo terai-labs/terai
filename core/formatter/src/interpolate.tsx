@@ -1,13 +1,13 @@
-import { formatNumber, type FormatNumberProps } from './number'
-import { formatDate, type FormatDateProps } from './date'
+import { formatNumber } from './number'
+import { formatDate } from './date'
 import type { Locale } from '@rewordlabs/types'
 import type { GlobalFormat, DynamicValue } from './types'
-import { formatList, type FormatListProps } from './list'
-import { formatDisplayName, type FormatDisplayNameProps } from './display-names'
+import { formatList } from './list'
 import {
-  formatRelativeTime,
-  type FormatRelativeTimeProps
-} from './relative-time'
+  formatDisplayName,
+  type FormatDisplayNameOptions
+} from './display-names'
+import { formatRelativeTime } from './relative-time'
 
 export type InterpolateProps = {
   message: string
@@ -53,50 +53,47 @@ export function interpolate(
     }
 
     if (Array.isArray(variable)) {
-      const [value, { format: type, ...options }] = variable
+      const [value, type, options] = variable
 
       switch (type) {
         case 'number': {
           return formatNumber({
-            value: value as FormatNumberProps['value'],
+            value: value,
             locale,
-            options: (options as FormatNumberProps['options']) || format?.list
+            options: options || format?.list
           })
         }
 
         case 'date': {
           return formatDate({
-            value: value as FormatDateProps['value'],
+            value: value,
             locale,
-            options: (options as FormatDateProps['options']) || format?.date
+            options: options || format?.date
           })
         }
 
         case 'list': {
           return formatList({
-            value: value as FormatListProps['value'],
+            value: value,
             locale,
-            options: (options as FormatListProps['options']) || format?.list
+            options: options || format?.list
           })
         }
 
         case 'display-name': {
           return formatDisplayName({
-            value: value as FormatDisplayNameProps['value'],
+            value: value,
             locale,
-            options:
-              (options as FormatDisplayNameProps['options']) ||
-              format?.displayName
+            options: (options ||
+              format?.displayName) as FormatDisplayNameOptions
           }) as string
         }
 
         case 'relative-time': {
           return formatRelativeTime({
-            value: value as FormatRelativeTimeProps['value'],
+            value: value,
             locale,
-            options:
-              (options as FormatRelativeTimeProps['options']) ||
-              format?.relativeTime
+            options: options || format?.relativeTime
           })
         }
 

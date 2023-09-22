@@ -1,5 +1,12 @@
 {
   "messages": {
+    "lnOAhD": {
+      "id": "lnOAhD",
+      "value": "I am doing a demo",
+      "file": "vite/src/App.tsx",
+      "context": "",
+      "chunkId": "lnOAhD"
+    },
     "dQxGBP": {
       "id": "dQxGBP",
       "value": "Hello world!",
@@ -9,31 +16,17 @@
     },
     "cILOUG": {
       "id": "cILOUG",
-      "value": "I am doing a show of the ${var} ]} I am creating!",
+      "value": "I am doing a show of the ${var} I am creating!",
       "file": "vite/src/App.tsx",
       "context": "",
       "chunkId": "cILOUG"
     },
-    "dBGRuB": {
-      "id": "dBGRuB",
-      "value": "Spanish",
+    "AxJKG": {
+      "id": "AxJKG",
+      "value": "${var}",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "dBGRuB"
-    },
-    "dBGuSN": {
-      "id": "dBGuSN",
-      "value": "English",
-      "file": "vite/src/App.tsx",
-      "context": "",
-      "chunkId": "dBGuSN"
-    },
-    "ixqPRh": {
-      "id": "ixqPRh",
-      "value": "Italian",
-      "file": "vite/src/App.tsx",
-      "context": "",
-      "chunkId": "ixqPRh"
+      "chunkId": "AxJKG"
     }
   }
 }

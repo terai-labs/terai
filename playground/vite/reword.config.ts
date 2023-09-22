@@ -17,7 +17,7 @@ export default defineConfig({
   openaiApiKey: process.env.OPENAI_API_KEY as string,
 
   // locales: ['es', 'it', 'pt', 'fr', 'ko', 'ja', 'de'],
-  locales: ['es'],
+  locales: ['es', 'it'],
   translationService: 'Google Cloud',
   googleCloudCrendentials: {
     projectId: 'reword-399419',
