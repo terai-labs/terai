@@ -4,11 +4,11 @@ import { extract } from '@rewordlabs/extractor'
 import { generate } from '@rewordlabs/generator'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
-import { toPlainDictionary } from '@rewordlabs/utils'
+import { toDictionary, stringify } from '@rewordlabs/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { BuildManifest } from '@rewordlabs/types'
+import type { BuildManifest, DictionaryPlain } from '@rewordlabs/types'
 
 export type ExtractOptions = {
   cwd: string
@@ -35,6 +35,17 @@ export async function extractCmd(options: ExtractOptions) {
     cwd: options.cwd
   })
 
+  const outDirPath = runtime.path.resolve(options.cwd, config.outDir)
+  const projectLocalePath = runtime.path.resolve(
+    outDirPath,
+    config.projectLocale
+  )
+  const manifestPath = runtime.path.resolve(
+    outDirPath,
+    '.tmu',
+    `build-manifest.json`
+  )
+
   logger.info('Scan:', `Processing files...`)
 
   async function extractor() {
@@ -43,11 +54,9 @@ export async function extractCmd(options: ExtractOptions) {
       filesPaths,
       cwd: options.cwd
     })
-    const dictionary = toPlainDictionary(extractedMessages)
+    const dictionary = toDictionary(extractedMessages)
 
-    runtime.fs.remove(
-      runtime.path.resolve(options.cwd, config.outDir, config.projectLocale)
-    )
+    runtime.fs.remove(runtime.path.resolve(projectLocalePath))
 
     await generate({
       ...config,
@@ -60,9 +69,16 @@ export async function extractCmd(options: ExtractOptions) {
       messages: extractedMessages
     }
 
+    runtime.fs.write(manifestPath, stringify(manifest))
+
+    const jsonLocale: DictionaryPlain = {}
+    Object.keys(extractedMessages).map(key => {
+      jsonLocale[key] = extractedMessages[key].value
+    })
+
     runtime.fs.write(
-      runtime.path.resolve(options.cwd, config.outDir, `build-manifest.json`),
-      JSON.stringify(manifest, null, 2)
+      runtime.path.resolve(projectLocalePath, `${config.projectLocale}.json`),
+      stringify(jsonLocale)
     )
 
     return Object.keys(dictionary).length

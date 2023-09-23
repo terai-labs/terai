@@ -2,23 +2,18 @@
 import OpenAI from 'openai'
 
 // Types
-import type {
-  ConfigOptionsChatGpt,
-  Dictionary,
-  Locale
-} from '@rewordlabs/types'
+import type { DictionaryPlain } from '@rewordlabs/types'
+import type { TranslateOptions } from './translate'
 
 export async function translateWithChatGpt({
   dictionary,
   projectLocale,
   locale,
   openaiApiKey
-}: {
-  dictionary: Dictionary
-  projectLocale: string
-  locale: Locale
-  openaiApiKey: ConfigOptionsChatGpt['openaiApiKey']
-}) {
+}: Pick<
+  TranslateOptions,
+  'projectLocale' | 'dictionary' | 'locale' | 'openaiApiKey'
+>) {
   const openai = new OpenAI({
     apiKey: openaiApiKey
   })
@@ -48,5 +43,5 @@ export async function translateWithChatGpt({
 
   return JSON.parse(
     response?.choices?.[0]?.message?.content || '{}'
-  ) as Dictionary
+  ) as DictionaryPlain
 }

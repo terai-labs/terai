@@ -2,12 +2,18 @@
 import { generate } from '@rewordlabs/generator'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
-import { mergeDictionaries } from '@rewordlabs/utils'
 import { translate } from '@rewordlabs/translator'
+import { merge, stringify } from '@rewordlabs/utils'
 
 // Types
-import type { CAC } from 'cac'
-import type { Dictionary, BuildManifest } from '@rewordlabs/types'
+import { type CAC } from 'cac'
+import type {
+  Dictionary,
+  BuildManifest,
+  DictionaryCache,
+  DictionaryPlain,
+  DictionaryChunk
+} from '@rewordlabs/types'
 
 export type TranslateOptions = {
   cwd: string
@@ -30,12 +36,13 @@ export async function translateCmd(options: TranslateOptions) {
 
   logger.info(
     `Provider:`,
-    `Translating using ${logger.colors.white(config.translationService)}`
+    `Translating using ${logger.colors.white(config.translationService)}...`
   )
-  logger.info(`Scan:`, `Looking for untranslated messages...`)
 
+  const outDirPath = runtime.path.resolve(options.cwd, config.outDir)
+  const tmuDirPath = runtime.path.resolve(options.cwd, config.outDir, '.tmu')
   const buildManifest = runtime.fs.readFile(
-    runtime.path.resolve(options.cwd, config.outDir, 'build-manifest.json')
+    runtime.path.resolve(tmuDirPath, 'build-manifest.json')
   )
 
   const { messages } = JSON.parse(buildManifest) as BuildManifest
@@ -45,72 +52,94 @@ export async function translateCmd(options: TranslateOptions) {
   await Promise.all(
     config.locales.map(async locale => {
       try {
-        const msgsToTranslate: string[] = []
-        const untranslatedDictionary: Dictionary = {}
-        const translatedDictionary: Dictionary = {}
-
-        const localeFolderPath = runtime.path.resolve(
-          options.cwd,
-          config.outDir,
-          locale
+        const idsToTranslate: string[] = []
+        const outDictionary: Dictionary = {}
+        const localeJson: DictionaryPlain = {}
+        const untranslatedMessages: DictionaryPlain = {}
+        let translatedMessages: DictionaryPlain = {}
+        const localeDirPath = runtime.path.resolve(outDirPath, locale)
+        const localeCachePath = runtime.path.resolve(
+          tmuDirPath,
+          'cache',
+          `${locale}.cache.json`
+        )
+        const cacheExists = runtime.fs.exists(localeCachePath)
+        const cache: DictionaryCache = JSON.parse(
+          cacheExists ? runtime.fs.readFile(localeCachePath) : '{}'
         )
 
-        for (const msgId in messages) {
-          const { chunkId } = messages[msgId]
+        let totalCacheMsgs = 0
+
+        for (const id in messages) {
+          const { value, chunkId } = messages[id]
           const chunkPath = runtime.path.resolve(
-            localeFolderPath,
+            localeDirPath,
             `${chunkId}.json`
           )
+          const existsChunk = runtime.fs.exists(chunkPath)
+          const chunk: DictionaryChunk = existsChunk
+            ? JSON.parse(runtime.fs.readFile(chunkPath))
+            : {}
+          const localeValue = chunk[id] ?? cache[id]
 
-          if (runtime.fs.exists(chunkPath)) {
-            const chunk = runtime.fs.readFile(chunkPath)
-            const chunkMessages = JSON.parse(chunk) as Dictionary
-
-            if (!chunkMessages[msgId]) {
-              totalTranslatedMsgs++
-              msgsToTranslate.push(msgId)
-              untranslatedDictionary[chunkId] = {
-                // @ts-ignore
-                ...(untranslatedDictionary[chunkId] ?? {}),
-                [msgId]: messages[msgId].value
-              }
-            } else {
-              translatedDictionary[chunkId] = {
-                // @ts-ignore
-                ...(translatedDictionary[chunkId] ?? {}),
-                [msgId]: chunkMessages[msgId]
-              }
-            }
-          } else {
+          if (!localeValue) {
+            untranslatedMessages[id] = value
+            idsToTranslate.push(id)
             totalTranslatedMsgs++
-            msgsToTranslate.push(msgId)
-            untranslatedDictionary[chunkId] = {
-              // @ts-ignore
-              ...(untranslatedDictionary[chunkId] ?? {}),
-              [msgId]: messages[msgId].value
-            }
+          } else {
+            translatedMessages[id] = localeValue
+            // Update cache in case local value is different
+            cache[id] = localeValue
+            totalCacheMsgs++
           }
         }
 
-        if (!msgsToTranslate.length) return
+        if (idsToTranslate.length > 0) {
+          const translation = await translate({
+            ...config,
+            dictionary: untranslatedMessages,
+            locale
+          })
 
-        logger.info(
-          `${locale.toUpperCase()} Translator:`,
-          `Translating ${msgsToTranslate.length} messages...`
-        )
+          translatedMessages = merge(translation, translatedMessages)
+        }
 
-        const dictionary = await translate({
-          ...config,
-          dictionary: untranslatedDictionary,
-          locale
-        })
+        for (const id in messages) {
+          const { chunkId } = messages[id]
+          const stringOrChunk = outDictionary[chunkId]
+          const isChunk = typeof stringOrChunk !== 'string'
+
+          if (isChunk) {
+            outDictionary[chunkId] = {
+              ...stringOrChunk,
+              [id]: translatedMessages[id]
+            }
+          } else {
+            outDictionary[chunkId] = translatedMessages[id]
+          }
+
+          localeJson[id] = translatedMessages[id]
+        }
+
+        runtime.fs.remove(localeDirPath)
 
         await generate({
           ...config,
-          dictionary: mergeDictionaries(translatedDictionary, dictionary),
+          dictionary: outDictionary,
           locale,
           cwd: options.cwd
         })
+
+        runtime.fs.write(localeCachePath, stringify(cache))
+        runtime.fs.write(
+          runtime.path.resolve(localeDirPath, `${locale}.json`),
+          stringify(localeJson)
+        )
+
+        logger.info(
+          `Locale ${locale.toUpperCase()}:`,
+          `${idsToTranslate.length} new messages translated, ${totalCacheMsgs} recovered from cache`
+        )
       } catch (err) {
         if (err instanceof Error) {
           logger.error(
@@ -123,7 +152,7 @@ export async function translateCmd(options: TranslateOptions) {
   )
 
   if (!totalTranslatedMsgs) {
-    return done('No messages translated, everything is up to date')
+    return done('Everything up-to-date')
   }
 
   done(`Translated ${totalTranslatedMsgs} messages`)

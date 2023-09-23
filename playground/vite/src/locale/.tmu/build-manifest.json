@@ -7,19 +7,19 @@
       "context": "",
       "chunkId": "test"
     },
-    "CnfXP": {
-      "id": "CnfXP",
-      "value": "I am doing a show on ${var}!",
+    "gOvqye": {
+      "id": "gOvqye",
+      "value": "I am on ${var}!",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "CnfXP"
+      "chunkId": "test"
     },
-    "AxJKG": {
-      "id": "AxJKG",
-      "value": "${var}",
+    "cLXyxN": {
+      "id": "cLXyxN",
+      "value": "I'm not sure what is this",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "AxJKG"
+      "chunkId": "cLXyxN"
     }
   }
 }

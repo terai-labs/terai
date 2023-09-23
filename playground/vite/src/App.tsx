@@ -13,7 +13,8 @@ export default function App() {
       <div>
         <div className='messages'>
           <p>{tx({ chunkId: 'test' })`Hello world!`}</p>
-          <p>{tx`I am doing a show on ${[new Date(), 'date']}!`}</p>
+          <p>{tx({ chunkId: 'test' })`I am on ${[new Date(), 'date']}!`}</p>
+          <p>{tx`I'm not sure what is this`}</p>
         </div>
 
         <div className={'buttons'}>

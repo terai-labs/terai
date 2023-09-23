@@ -1,6 +1,5 @@
-export type Dictionary = Record<string, string | Record<string, string>>
+export type DictionaryChunk = Record<string, string>
+export type Dictionary = Record<string, string | DictionaryChunk>
 export type Dictionaries = Record<string, Dictionary>
-export type ImportedDictionaries = Record<
-  string,
-  () => Promise<{ default: Dictionary }>
->
+export type DictionaryCache = Record<string, string>
+export type DictionaryPlain = Record<string, string>
