@@ -48,4 +48,5 @@ body > div {
   color: inherit;
   border-radius: 8px;
   margin-top: 1rem;
+  text-transform: capitalize;
 }

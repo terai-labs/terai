@@ -1,4 +1,5 @@
 export type Locale =
+  | string
   | 'aa'
   | 'aa_DJ'
   | 'aa_ER'

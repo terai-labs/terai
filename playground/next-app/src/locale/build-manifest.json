@@ -3,23 +3,23 @@
     "gOngMQ": {
       "id": "gOngMQ",
       "value": "Hello, ${var}!",
+      "file": "next-app/src/app/[locale]/server/page.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/next-app/src/app/[locale]/server/page.tsx",
-      "chunkId": "eqsveN"
+      "chunkId": "gOngMQ"
     },
     "gTcrmz": {
       "id": "gTcrmz",
       "value": "You haven't checked you email since ${var}",
+      "file": "next-app/src/app/[locale]/server/page.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/next-app/src/app/[locale]/server/page.tsx",
-      "chunkId": "eqsveN"
+      "chunkId": "gTcrmz"
     },
     "dzFFxU": {
       "id": "dzFFxU",
       "value": "You got ${var} messages in your mail inbox",
+      "file": "next-app/src/app/[locale]/server/page.tsx",
       "context": "",
-      "file": "/Users/hugocxl/repos/reword/playground/next-app/src/app/[locale]/server/page.tsx",
-      "chunkId": "eqsveN"
+      "chunkId": "dzFFxU"
     }
   }
 }

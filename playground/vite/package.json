@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@rewordlabs/react": "workspace:*",
+    "@rewordlabs/dev": "workspace:*",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",

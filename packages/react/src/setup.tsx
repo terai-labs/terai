@@ -3,7 +3,8 @@
 import 'client-only'
 
 // Dependencies
-import { createTx, format } from '@rewordlabs/formatter'
+import { createTx } from '@rewordlabs/tx'
+import { createFormat } from '@rewordlabs/formatter'
 import { observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
@@ -63,6 +64,7 @@ export function setup({
 
   const getLocale = () => locale$.get()
   const useLocale = () => locale$.use()
+  const useFormat = createFormat(useLocale)
   const useLocaleSync = (locale: string) => locale$.set(locale as Locale)
   const setLocale = (locale: Locale) => locale$.set(locale)
   const tx = createTx<ReactNode, TxReactOptions>({
@@ -78,11 +80,11 @@ export function setup({
   })
 
   return {
-    format,
     tx,
     useLocale,
     useLocaleSync,
     setLocale,
-    getLocale
+    getLocale,
+    useFormat
   }
 }

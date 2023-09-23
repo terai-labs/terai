@@ -1,14 +1,18 @@
-// Utils
+// Dependencies
 import { formatNumber } from './number'
 import { formatDate } from './date'
+import { formatList } from './list'
+import { formatRelativeTime } from './relative-time'
+import { formatDisplayName } from './display-names'
 
 // Types
+import type { FormatDisplayNameOptions } from './display-names'
+import type { GlobalFormat, DynamicValue } from './types'
 import type { Locale } from '@rewordlabs/types'
-import type { GlobalFormat, MessageExpression } from './types'
 
 export type InterpolateProps = {
   message: string
-  variables: MessageExpression[]
+  variables: DynamicValue[]
   locale: Locale
 }
 
@@ -29,38 +33,74 @@ export function interpolate(
 
     if (!variable) return ''
 
-    if (typeof variable === 'string') return variable
-    if (typeof variable === 'number' || typeof variable === 'bigint')
+    if (typeof variable === 'string') {
+      return variable
+    }
+
+    if (typeof variable === 'number' || typeof variable === 'bigint') {
       return formatNumber({
         value: variable,
         locale,
         options: format?.number
       })
+    }
 
-    if (variable instanceof Date)
+    if (variable instanceof Date) {
       return formatDate({
         value: variable,
         locale,
         options: format?.date
       })
+    }
 
-    if (typeof variable === 'object') {
-      if (variable.format === 'number') {
-        const { value, ...options } = variable
-        return formatNumber({
-          value,
-          locale,
-          options: options || format?.number
-        })
-      }
+    if (Array.isArray(variable)) {
+      const [value, type, options] = variable
 
-      if (variable.format === 'date') {
-        const { value, ...options } = variable
-        return formatDate({
-          value,
-          locale,
-          options: options || format?.number
-        })
+      switch (type) {
+        case 'number': {
+          return formatNumber({
+            value: value,
+            locale,
+            options: options || format?.list
+          })
+        }
+
+        case 'date': {
+          return formatDate({
+            value: value,
+            locale,
+            options: options || format?.date
+          })
+        }
+
+        case 'list': {
+          return formatList({
+            value: value,
+            locale,
+            options: options || format?.list
+          })
+        }
+
+        case 'display-name': {
+          return formatDisplayName({
+            value: value,
+            locale,
+            options: (options ||
+              format?.displayName) as FormatDisplayNameOptions
+          }) as string
+        }
+
+        case 'relative-time': {
+          return formatRelativeTime({
+            value: value,
+            locale,
+            options: options || format?.relativeTime
+          })
+        }
+
+        default: {
+          return ''
+        }
       }
     }
 

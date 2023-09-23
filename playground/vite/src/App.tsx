@@ -1,22 +1,27 @@
-import { setLocale, tx } from './reword'
+import { setLocale, tx, useFormat } from './reword'
 import { Suspense } from 'react'
 
 export default function App() {
-  const name = 'Hugo'
+  const format = useFormat()
+
+  function getLanguage(locale: string) {
+    return format.displayName(locale, { type: 'language' })
+  }
+
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
         <div className='messages'>
           <p>{tx({ chunkId: 'test' })`Hello world!`}</p>
-          <p>{tx({
-            chunkId: 'test'
-          })`I am doing a show of the ${name} I am creating!`}</p>
+          <p>{tx`I am doing a show on ${[new Date(), 'date']}!`}</p>
         </div>
 
         <div className={'buttons'}>
-          <button onClick={() => setLocale('es')}>{tx`Spanish`}</button>
-          <button onClick={() => setLocale('en')}>{tx`English`}</button>
-          <button onClick={() => setLocale('it')}>{tx`Italian`}</button>
+          {['en', 'es', 'it'].map(locale => (
+            <button onClick={() => setLocale(locale)}>
+              {getLanguage(locale)}
+            </button>
+          ))}
         </div>
       </div>
     </Suspense>

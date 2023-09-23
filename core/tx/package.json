@@ -1,7 +1,7 @@
 {
-  "name": "@rewordlabs/runtime",
+  "name": "@rewordlabs/tx",
+  "description": "Translation fn for Reword",
   "version": "0.3.1",
-  "description": "The rewordlabs Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,16 +18,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@rewordlabs/logger": "workspace:*",
-    "bundle-n-require": "^1.0.1",
-    "chokidar": "^3.5.3",
-    "fast-glob": "^3.3.1",
-    "fs-extra": "^11.1.1",
-    "look-it-up": "^2.1.0",
-    "outdent": "^0.8.0",
-    "pathe": "^1.1.1"
+    "@rewordlabs/utils": "workspace:*"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.2"
+    "@rewordlabs/formatter": "workspace:*",
+    "@rewordlabs/types": "workspace:*"
   }
 }

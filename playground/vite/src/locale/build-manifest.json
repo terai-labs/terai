@@ -7,33 +7,19 @@
       "context": "",
       "chunkId": "test"
     },
-    "cILOUG": {
-      "id": "cILOUG",
-      "value": "I am doing a show of the ${var} I am creating!",
+    "CnfXP": {
+      "id": "CnfXP",
+      "value": "I am doing a show on ${var}!",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "test"
+      "chunkId": "CnfXP"
     },
-    "dBGRuB": {
-      "id": "dBGRuB",
-      "value": "Spanish",
+    "AxJKG": {
+      "id": "AxJKG",
+      "value": "${var}",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "dBGRuB"
-    },
-    "dBGuSN": {
-      "id": "dBGuSN",
-      "value": "English",
-      "file": "vite/src/App.tsx",
-      "context": "",
-      "chunkId": "dBGuSN"
-    },
-    "ixqPRh": {
-      "id": "ixqPRh",
-      "value": "Italian",
-      "file": "vite/src/App.tsx",
-      "context": "",
-      "chunkId": "ixqPRh"
+      "chunkId": "AxJKG"
     }
   }
 }
