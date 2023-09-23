@@ -1,5 +1,17 @@
 # @rewordlabs/dev
 
+## 0.3.2
+
+### Patch Changes
+
+- 28f3a5e: Update format syntax
+- Updated dependencies [28f3a5e]
+- Updated dependencies [8d0188a]
+  - @rewordlabs/translator@0.3.2
+  - @rewordlabs/utils@0.3.2
+  - @rewordlabs/extractor@0.3.2
+  - @rewordlabs/runtime@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

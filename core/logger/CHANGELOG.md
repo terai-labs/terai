@@ -1,5 +1,11 @@
 # @rewordlabs/logger
 
+## 0.3.2
+
+### Patch Changes
+
+- 28f3a5e: Update format syntax
+
 ## 0.3.1
 
 ### Patch Changes
