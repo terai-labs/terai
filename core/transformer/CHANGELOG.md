@@ -1,5 +1,16 @@
 # @rewordlabs/transformer
 
+## 0.4.0
+
+### Minor Changes
+
+- 1aa50fc: Add translation cache
+
+### Patch Changes
+
+- Updated dependencies [1aa50fc]
+  - @rewordlabs/utils@0.4.0
+
 ## 0.3.2
 
 ### Patch Changes

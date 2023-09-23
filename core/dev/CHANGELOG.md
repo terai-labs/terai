@@ -1,5 +1,19 @@
 # @rewordlabs/dev
 
+## 0.4.0
+
+### Minor Changes
+
+- 1aa50fc: Add translation cache
+
+### Patch Changes
+
+- Updated dependencies [1aa50fc]
+  - @rewordlabs/translator@0.4.0
+  - @rewordlabs/extractor@0.4.0
+  - @rewordlabs/runtime@0.4.0
+  - @rewordlabs/utils@0.4.0
+
 ## 0.3.2
 
 ### Patch Changes
