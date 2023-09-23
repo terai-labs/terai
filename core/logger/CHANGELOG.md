@@ -1,5 +1,11 @@
 # @rewordlabs/logger
 
+## 0.4.0
+
+### Minor Changes
+
+- 1aa50fc: Add translation cache
+
 ## 0.3.2
 
 ### Patch Changes
