@@ -1,8 +1,6 @@
 import type { ExtractedMessages, Dictionary } from '@rewordlabs/types'
 
-export function toPlainDictionary(
-  extractedMessages: ExtractedMessages
-): Dictionary {
+export function toDictionary(extractedMessages: ExtractedMessages): Dictionary {
   const dictionary: Dictionary = {}
 
   for (const id in extractedMessages) {

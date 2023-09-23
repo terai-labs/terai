@@ -2,46 +2,27 @@
 import { v2 } from '@google-cloud/translate'
 
 // Types
-import type {
-  ConfigOptionsGoogleCloud,
-  Dictionary,
-  Locale
-} from '@rewordlabs/types'
+import type { DictionaryPlain } from '@rewordlabs/types'
+import type { TranslateOptions } from './translate'
 
 export async function translateWithGoogleCloud({
   dictionary,
   locale,
   googleCloudCrendentials
-}: {
-  dictionary: Dictionary
-  locale: Locale
-  googleCloudCrendentials: ConfigOptionsGoogleCloud['googleCloudCrendentials']
-}) {
+}: Pick<
+  TranslateOptions,
+  'dictionary' | 'locale' | 'googleCloudCrendentials'
+>) {
   const translate = new v2.Translate(googleCloudCrendentials)
-  const translatedOutput: Dictionary = {}
+  const translatedOutput: DictionaryPlain = {}
 
   await Promise.all(
-    Object.keys(dictionary).map(async dKey => {
-      const valueOrChunk = dictionary[dKey]
+    Object.keys(dictionary).map(async key => {
+      const value = dictionary[key]
 
-      if (typeof valueOrChunk === 'string') {
-        const value = valueOrChunk
-        const [translation] = await translate.translate(value, locale)
+      const [translation] = await translate.translate(value, locale)
 
-        translatedOutput[dKey] = translation
-      } else {
-        const chunk = valueOrChunk
-        const translatedChunk: Record<string, string> = {}
-
-        await Promise.all(
-          Object.keys(chunk).map(async cKey => {
-            const [translation] = await translate.translate(chunk[cKey], locale)
-            translatedChunk[cKey] = translation
-          })
-        )
-
-        translatedOutput[dKey] = translatedChunk
-      }
+      translatedOutput[key] = translation
     })
   )
 
