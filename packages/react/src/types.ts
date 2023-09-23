@@ -1,5 +1,6 @@
 import type { InterpolateComponents } from './interpolate'
-import type { InterpolateOptions, TxRenderProps } from '@rewordlabs/formatter'
+import type { TxRenderProps } from '@rewordlabs/tx'
+import type { InterpolateOptions } from '@rewordlabs/formatter'
 import type { Loader } from '@rewordlabs/types'
 
 export type TxReactOptions = {

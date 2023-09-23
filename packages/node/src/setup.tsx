@@ -1,5 +1,5 @@
 // Dependencies
-import { createTx } from '@rewordlabs/formatter'
+import { createTx } from '@rewordlabs/tx'
 
 // Types
 import type { Locale } from '@rewordlabs/types'

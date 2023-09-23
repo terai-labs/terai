@@ -1,7 +1,8 @@
 // Dependencies
-import { interpolate, type TxRenderProps } from '@rewordlabs/formatter'
+import { interpolate } from '@rewordlabs/formatter'
 
 // Types
+import type { TxRenderProps } from '@rewordlabs/tx'
 import type { SetupOptions } from './setup'
 
 export type TextProps = TxRenderProps & {

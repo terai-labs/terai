@@ -3,8 +3,7 @@ import { joinTemplateStrings, prepareMessage, toHash } from '@rewordlabs/utils'
 
 // Types
 import type { Locale, Loader } from '@rewordlabs/types'
-import type { DynamicValue } from './types'
-import type { InterpolateOptions } from './interpolate'
+import type { InterpolateOptions, DynamicValue } from '@rewordlabs/formatter'
 
 export type TxRenderProps<P = unknown> = {
   id: string

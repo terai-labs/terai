@@ -36,6 +36,8 @@ export type DynamicDisplayNameValue = DynamicEl<
 
 export type DynamicValue =
   | string
+  | number
+  | Date
   | DynamicNumberValue
   | DynamicDateValue
   | DynamicDisplayNameValue

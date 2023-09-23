@@ -1,12 +1,5 @@
 {
   "messages": {
-    "lnOAhD": {
-      "id": "lnOAhD",
-      "value": "I am doing a demo",
-      "file": "vite/src/App.tsx",
-      "context": "",
-      "chunkId": "lnOAhD"
-    },
     "dQxGBP": {
       "id": "dQxGBP",
       "value": "Hello world!",
@@ -14,12 +7,12 @@
       "context": "",
       "chunkId": "test"
     },
-    "cILOUG": {
-      "id": "cILOUG",
-      "value": "I am doing a show of the ${var} I am creating!",
+    "CnfXP": {
+      "id": "CnfXP",
+      "value": "I am doing a show on ${var}!",
       "file": "vite/src/App.tsx",
       "context": "",
-      "chunkId": "cILOUG"
+      "chunkId": "CnfXP"
     },
     "AxJKG": {
       "id": "AxJKG",

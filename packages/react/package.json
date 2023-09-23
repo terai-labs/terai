@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.11.1",
+    "@rewordlabs/tx": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
     "@tanstack/react-query": "^4.35.3",

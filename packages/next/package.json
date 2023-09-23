@@ -36,6 +36,7 @@
     }
   },
   "dependencies": {
+    "@rewordlabs/tx": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/react": "workspace:*",
     "client-only": "^0.0.1",

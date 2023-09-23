@@ -1,13 +1,14 @@
+// Dependencies
 import { formatNumber } from './number'
 import { formatDate } from './date'
-import type { Locale } from '@rewordlabs/types'
-import type { GlobalFormat, DynamicValue } from './types'
 import { formatList } from './list'
-import {
-  formatDisplayName,
-  type FormatDisplayNameOptions
-} from './display-names'
 import { formatRelativeTime } from './relative-time'
+import { formatDisplayName } from './display-names'
+
+// Types
+import type { FormatDisplayNameOptions } from './display-names'
+import type { GlobalFormat, DynamicValue } from './types'
+import type { Locale } from '@rewordlabs/types'
 
 export type InterpolateProps = {
   message: string

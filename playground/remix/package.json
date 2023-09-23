@@ -10,6 +10,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@rewordlabs/react": "workspace:*",
+    "@rewordlabs/dev": "workspace:*",
     "@remix-run/css-bundle": "^2.0.0",
     "@remix-run/node": "^2.0.0",
     "@remix-run/react": "^2.0.0",
