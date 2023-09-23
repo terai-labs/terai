@@ -47,10 +47,10 @@ body:
       description: 'The JS framework used in your project. Specify JS/TS.'
       placeholder: 'React (TS)'
   - type: 'input'
-    id: 'panda-version'
+    id: 'reword-version'
     attributes:
-      label: 'Panda CSS Version'
-      description: 'The version of Panda CSS you use.'
+      label: 'Reword Version'
+      description: 'The version of Reword you use.'
       placeholder: 'x.x.x'
     validations:
       required: true
