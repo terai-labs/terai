@@ -2,7 +2,7 @@
 import OpenAI from 'openai'
 
 // Types
-import type { DictionaryPlain } from '@rewordlabs/types'
+import type { Dictionary } from '@rewordlabs/types'
 import type { TranslateOptions } from './translate'
 
 export async function translateWithChatGpt({
@@ -43,5 +43,5 @@ export async function translateWithChatGpt({
 
   return JSON.parse(
     response?.choices?.[0]?.message?.content || '{}'
-  ) as DictionaryPlain
+  ) as Dictionary
 }

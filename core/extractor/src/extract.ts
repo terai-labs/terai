@@ -5,7 +5,7 @@ import { runtime } from '@rewordlabs/runtime'
 import { transform } from '@rewordlabs/transformer'
 
 // Types
-import type { ExtractedMessages } from '@rewordlabs/types'
+import type { ExtractedMessage, ExtractedMessages } from '@rewordlabs/types'
 
 type ExtractOptions = {
   filesPaths: readonly string[]
@@ -17,6 +17,19 @@ export async function extract({
   cwd
 }: ExtractOptions): Promise<ExtractedMessages> {
   const extractedMessages: ExtractedMessages = {}
+
+  function onMsgExtracted(id: string, msg: ExtractedMessage) {
+    if (extractedMessages[id]) {
+      extractedMessages[id] = {
+        ...extractedMessages[id],
+        ...msg,
+        chunksIds: [...extractedMessages[id].chunksIds, ...msg.chunksIds],
+        files: [...extractedMessages[id].files, ...msg.files]
+      }
+    } else {
+      extractedMessages[id] = msg
+    }
+  }
 
   await Promise.all(
     filesPaths.map(async fileName => {
@@ -36,9 +49,7 @@ export async function extract({
             before: [
               transform({
                 cwd,
-                onMsgExtracted: (id, msg) => {
-                  extractedMessages[id] = msg
-                }
+                onMsgExtracted
               })
             ]
           }

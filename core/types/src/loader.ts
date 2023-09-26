@@ -1,5 +1,6 @@
+import type { Dictionary } from './dictionary'
+
 export type Loader = (
   locale: string,
-  chunkId: string,
-  id: string
-) => Promise<string>
+  chunkId: string
+) => Promise<{ default: Dictionary }>

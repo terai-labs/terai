@@ -3,7 +3,7 @@ import { translateWithChatGpt } from './chat-gpt'
 import { translateWithGoogleCloud } from './google-cloud'
 
 // Types
-import type { Config, Locale, DictionaryPlain } from '@rewordlabs/types'
+import type { Config, Locale, Dictionary } from '@rewordlabs/types'
 
 export type TranslateOptions = Pick<
   Config,
@@ -12,7 +12,7 @@ export type TranslateOptions = Pick<
   | 'openaiApiKey'
   | 'googleCloudCrendentials'
 > & {
-  dictionary: DictionaryPlain
+  dictionary: Dictionary
   locale: Locale
 }
 
@@ -23,7 +23,7 @@ export async function translate({
   locale,
   openaiApiKey,
   googleCloudCrendentials
-}: TranslateOptions): Promise<DictionaryPlain> {
+}: TranslateOptions): Promise<Dictionary> {
   if (translationService === 'OpenAI ChatGPT') {
     if (!openaiApiKey) {
       throw new Error('You need to provide your OpenAI API key')

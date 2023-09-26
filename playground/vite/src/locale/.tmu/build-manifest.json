@@ -1,25 +1,101 @@
 {
   "messages": {
-    "dQxGBP": {
-      "id": "dQxGBP",
-      "value": "Hello world!",
-      "file": "vite/src/App.tsx",
+    "jVDQDr": {
+      "id": "jVDQDr",
+      "value": "Hello 2",
+      "files": [
+        "vite/src/App.tsx"
+      ],
       "context": "",
-      "chunkId": "test"
+      "chunksIds": []
+    },
+    "AxJKv": {
+      "id": "AxJKv",
+      "value": "Car",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "fzDpBq": {
+      "id": "fzDpBq",
+      "value": "Moto",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "fzzKqG": {
+      "id": "fzzKqG",
+      "value": "Bike",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "yPYux": {
+      "id": "yPYux",
+      "value": "Hello",
+      "files": [
+        "vite/src/App.tsx",
+        "vite/src/button.tsx"
+      ],
+      "context": "",
+      "chunksIds": [
+        "button"
+      ]
+    },
+    "fFdvjH": {
+      "id": "fFdvjH",
+      "value": "I am ${var}!",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "vMJeg": {
+      "id": "vMJeg",
+      "value": "I'm sure what is this",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "AxJKG": {
+      "id": "AxJKG",
+      "value": "${var}",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
     },
     "gOvqye": {
       "id": "gOvqye",
       "value": "I am on ${var}!",
-      "file": "vite/src/App.tsx",
+      "files": [
+        "vite/src/button.tsx"
+      ],
       "context": "",
-      "chunkId": "test"
+      "chunksIds": [
+        "button"
+      ]
     },
     "cLXyxN": {
       "id": "cLXyxN",
       "value": "I'm not sure what is this",
-      "file": "vite/src/App.tsx",
+      "files": [
+        "vite/src/button.tsx"
+      ],
       "context": "",
-      "chunkId": "cLXyxN"
+      "chunksIds": [
+        "button"
+      ]
     }
   }
 }

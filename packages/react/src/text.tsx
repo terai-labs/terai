@@ -1,24 +1,20 @@
 'use client'
 
 // Dependencies
-import { useQuery } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { createReactInterpolate } from './interpolate'
 
 // Types
 import type { TextProps } from './types'
 
-export const Text = ({
+export const text = ({
   getLocale,
-  id,
-  loader,
   rawMessage,
   variables,
   components,
   format,
-  global,
-  chunkId = id
-}: TextProps) => {
+  global
+}: TextProps): string => {
   const locale = getLocale()
   const interpolate = useCallback(
     createReactInterpolate({
@@ -36,16 +32,11 @@ export const Text = ({
     []
   )
 
-  const query = useQuery({
-    queryKey: [locale, chunkId, id],
-    queryFn: () => loader(locale, chunkId, id)
-  })
-
   const message = interpolate({
-    message: typeof query?.data === 'string' ? query?.data : rawMessage,
+    message: rawMessage,
     locale,
     variables
   })
 
-  return <>{message}</>
+  return message as string
 }

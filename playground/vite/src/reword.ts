@@ -1,7 +1,8 @@
 import { setup } from '@rewordlabs/react'
 
-export const { tx, setLocale, useFormat } = setup({
+export const { tx, setLocale, useFormat, useChunk } = setup({
   locale: 'en',
-  loader: async (locale: string, chunkId: string, id: string) =>
-    (await import(`./locale/${locale}/${chunkId}.json`))[id]
+  persist: true,
+  loader: (locale: string, chunkId: string) =>
+    import(`./locale/${locale}/${chunkId}.json`)
 })

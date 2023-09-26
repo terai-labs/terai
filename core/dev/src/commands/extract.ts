@@ -4,11 +4,15 @@ import { extract } from '@rewordlabs/extractor'
 import { generate } from '@rewordlabs/generator'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
-import { toDictionary, stringify } from '@rewordlabs/utils'
+import {
+  toDictionary,
+  stringify,
+  groupDictionaryByChunks
+} from '@rewordlabs/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { BuildManifest, DictionaryPlain } from '@rewordlabs/types'
+import type { BuildManifest } from '@rewordlabs/types'
 
 export type ExtractOptions = {
   cwd: string
@@ -48,38 +52,33 @@ export async function extractCmd(options: ExtractOptions) {
 
   logger.info('Scan:', `Processing files...`)
 
-  async function extractor() {
+  async function extractor(files = filesPaths) {
     const extractedMessages = await extract({
       ...config,
-      filesPaths,
+      filesPaths: files,
       cwd: options.cwd
     })
     const dictionary = toDictionary(extractedMessages)
+    const manifest: BuildManifest = {
+      messages: extractedMessages
+    }
+
+    const dictionaries = groupDictionaryByChunks(
+      dictionary,
+      manifest,
+      config.projectLocale
+    )
 
     runtime.fs.remove(runtime.path.resolve(projectLocalePath))
 
     await generate({
       ...config,
-      dictionary,
+      dictionaries,
       locale: config.projectLocale,
       cwd: options.cwd
     })
 
-    const manifest: BuildManifest = {
-      messages: extractedMessages
-    }
-
     runtime.fs.write(manifestPath, stringify(manifest))
-
-    const jsonLocale: DictionaryPlain = {}
-    Object.keys(extractedMessages).map(key => {
-      jsonLocale[key] = extractedMessages[key].value
-    })
-
-    runtime.fs.write(
-      runtime.path.resolve(projectLocalePath, `${config.projectLocale}.json`),
-      stringify(jsonLocale)
-    )
 
     return Object.keys(dictionary).length
   }
@@ -102,7 +101,8 @@ export async function extractCmd(options: ExtractOptions) {
       'change',
       debounce(async () => {
         const done = logger.time.success()
-        logger.info('Extraction:', 'Files changed, processing messages...')
+        logger.info('Extraction:', `Files changed, processing messages...`)
+
         const msgCount = await extractor()
 
         done(`Extracted ${msgCount} messages`)

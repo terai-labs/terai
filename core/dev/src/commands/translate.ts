@@ -3,60 +3,57 @@ import { generate } from '@rewordlabs/generator'
 import { loadConfig, runtime } from '@rewordlabs/runtime'
 import { logger } from '@rewordlabs/logger'
 import { translate } from '@rewordlabs/translator'
-import { merge, stringify } from '@rewordlabs/utils'
+import { merge, stringify, groupDictionaryByChunks } from '@rewordlabs/utils'
 
 // Types
-import { type CAC } from 'cac'
-import type {
-  Dictionary,
-  BuildManifest,
-  DictionaryCache,
-  DictionaryPlain,
-  DictionaryChunk
-} from '@rewordlabs/types'
+import type { CAC } from 'cac'
+import type { Dictionary, BuildManifest } from '@rewordlabs/types'
 
 export type TranslateOptions = {
   cwd: string
-  watch?: boolean
 }
 
 export function createTranslateCommand(cli: CAC, cwd: string) {
   return cli
     .command('translate', 'Translate messages from your project')
-    .option('-w, --watch', 'Watch files and rebuild')
     .option('--cwd <cwd>', 'Current working directory', { default: cwd })
     .action(translateCmd)
 }
 
-export async function translateCmd(options: TranslateOptions) {
+export async function translateCmd({ cwd }: TranslateOptions) {
   logger.heading('translate', 'Translate messages from your project')
   const done = logger.time.success()
 
-  const config = await loadConfig(options)
+  const config = await loadConfig({ cwd })
 
   logger.info(
     `Provider:`,
     `Translating using ${logger.colors.white(config.translationService)}...`
   )
 
-  const outDirPath = runtime.path.resolve(options.cwd, config.outDir)
-  const tmuDirPath = runtime.path.resolve(options.cwd, config.outDir, '.tmu')
-  const buildManifest = runtime.fs.readFile(
-    runtime.path.resolve(tmuDirPath, 'build-manifest.json')
-  )
+  const outDirPath = runtime.path.resolve(cwd, config.outDir)
+  const tmuDirPath = runtime.path.resolve(cwd, config.outDir, '.tmu')
+  const manifestPath = runtime.path.resolve(tmuDirPath, 'build-manifest.json')
+  const existsManifest = runtime.fs.exists(manifestPath)
+  if (!existsManifest) {
+    return logger.error(
+      'translate',
+      `No build-manifest.json found in ${tmuDirPath}. Please run "extract" first.`
+    )
+  }
 
-  const { messages } = JSON.parse(buildManifest) as BuildManifest
+  const buildManifest = JSON.parse(
+    runtime.fs.readFile(manifestPath)
+  ) as BuildManifest
 
   let totalTranslatedMsgs = 0
+  let totalCachedMsgs = 0
 
   await Promise.all(
     config.locales.map(async locale => {
       try {
-        const idsToTranslate: string[] = []
-        const outDictionary: Dictionary = {}
-        const localeJson: DictionaryPlain = {}
-        const untranslatedMessages: DictionaryPlain = {}
-        let translatedMessages: DictionaryPlain = {}
+        let translatedDictionary: Dictionary = {}
+        const untranslatedDictionary: Dictionary = {}
         const localeDirPath = runtime.path.resolve(outDirPath, locale)
         const localeCachePath = runtime.path.resolve(
           tmuDirPath,
@@ -64,81 +61,78 @@ export async function translateCmd(options: TranslateOptions) {
           `${locale}.cache.json`
         )
         const cacheExists = runtime.fs.exists(localeCachePath)
-        const cache: DictionaryCache = JSON.parse(
-          cacheExists ? runtime.fs.readFile(localeCachePath) : '{}'
-        )
+        let cache: Dictionary = cacheExists
+          ? JSON.parse(runtime.fs.readFile(localeCachePath))
+          : {}
 
-        let totalCacheMsgs = 0
+        let localeCachedMsgs = 0
+        let localeTranslatedMsgs = 0
 
-        for (const id in messages) {
-          const { value, chunkId } = messages[id]
-          const chunkPath = runtime.path.resolve(
-            localeDirPath,
-            `${chunkId}.json`
-          )
-          const existsChunk = runtime.fs.exists(chunkPath)
-          const chunk: DictionaryChunk = existsChunk
-            ? JSON.parse(runtime.fs.readFile(chunkPath))
-            : {}
-          const localeValue = chunk[id] ?? cache[id]
+        for (const id in buildManifest.messages) {
+          const { value, chunksIds } = buildManifest.messages[id]
+          const chnks = chunksIds.length ? chunksIds : [locale]
 
-          if (!localeValue) {
-            untranslatedMessages[id] = value
-            idsToTranslate.push(id)
-            totalTranslatedMsgs++
-          } else {
-            translatedMessages[id] = localeValue
-            // Update cache in case local value is different
-            cache[id] = localeValue
-            totalCacheMsgs++
+          for (const chunkId of chnks) {
+            const chunkPath = runtime.path.resolve(
+              localeDirPath,
+              `${chunkId}.json`
+            )
+            const existsChunk = runtime.fs.exists(chunkPath)
+            const chunk: Dictionary = existsChunk
+              ? JSON.parse(runtime.fs.readFile(chunkPath))
+              : {}
+            const localeValue = chunk[id] ?? cache[id]
+
+            if (!localeValue) {
+              untranslatedDictionary[id] = value
+              localeTranslatedMsgs++
+            } else {
+              translatedDictionary[id] = localeValue
+              // Update cache in case local value is different
+              cache[id] = localeValue
+              localeCachedMsgs++
+            }
           }
         }
 
-        if (idsToTranslate.length > 0) {
+        if (localeTranslatedMsgs > 0) {
           const translation = await translate({
             ...config,
-            dictionary: untranslatedMessages,
+            dictionary: untranslatedDictionary,
             locale
           })
 
-          translatedMessages = merge(translation, translatedMessages)
+          translatedDictionary = merge(translation, translatedDictionary)
         }
 
-        for (const id in messages) {
-          const { chunkId } = messages[id]
-          const stringOrChunk = outDictionary[chunkId]
-          const isChunk = typeof stringOrChunk !== 'string'
-
-          if (isChunk) {
-            outDictionary[chunkId] = {
-              ...stringOrChunk,
-              [id]: translatedMessages[id]
-            }
-          } else {
-            outDictionary[chunkId] = translatedMessages[id]
-          }
-
-          localeJson[id] = translatedMessages[id]
+        cache = {
+          ...cache,
+          ...translatedDictionary
         }
 
         runtime.fs.remove(localeDirPath)
 
+        const dictionaries = groupDictionaryByChunks(
+          translatedDictionary,
+          buildManifest,
+          locale
+        )
+
         await generate({
           ...config,
-          dictionary: outDictionary,
+          dictionaries: dictionaries,
           locale,
-          cwd: options.cwd
+          cwd
         })
 
         runtime.fs.write(localeCachePath, stringify(cache))
-        runtime.fs.write(
-          runtime.path.resolve(localeDirPath, `${locale}.json`),
-          stringify(localeJson)
-        )
+
+        totalTranslatedMsgs += localeTranslatedMsgs
+        totalCachedMsgs += localeCachedMsgs
 
         logger.info(
           `Locale ${locale.toUpperCase()}:`,
-          `${idsToTranslate.length} new messages translated, ${totalCacheMsgs} recovered from cache`
+          `${localeTranslatedMsgs} new messages translated, ${localeCachedMsgs} recovered from cache`
         )
       } catch (err) {
         if (err instanceof Error) {
@@ -155,5 +149,7 @@ export async function translateCmd(options: TranslateOptions) {
     return done('Everything up-to-date')
   }
 
-  done(`Translated ${totalTranslatedMsgs} messages`)
+  done(
+    `Translated ${totalTranslatedMsgs} messages, ${totalCachedMsgs} read from cache`
+  )
 }

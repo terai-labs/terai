@@ -1,3 +1,4 @@
+export * from './group-dictionaries-by-chunk'
 export * from './join-template-strings'
 export * from './map-to-json'
 export * from './memo'

@@ -1,8 +1,13 @@
 import { setLocale, tx, useFormat } from './reword'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
+import { Button } from './button'
 
 export default function App() {
   const format = useFormat()
+  const [state, setState] = useState(false)
+  const a = tx`Car`
+  const b = tx`Moto`
+  const c = tx`Bike`
 
   function getLanguage(locale: string) {
     return format.displayName(locale, { type: 'language' })
@@ -12,9 +17,12 @@ export default function App() {
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
         <div className='messages'>
-          <p>{tx({ chunkId: 'test' })`Hello world!`}</p>
-          <p>{tx({ chunkId: 'test' })`I am on ${[new Date(), 'date']}!`}</p>
-          <p>{tx`I'm not sure what is this`}</p>
+          <p>{tx`Hello`}</p>
+          <p>{tx`I am ${[new Date(), 'date']}!`}</p>
+          <p>{tx`I'm  sure what is this`}</p>
+          <p>{tx`${[[a, b, c], 'list']}`}</p>
+
+          <button onClick={() => setState(prev => !prev)}>Show</button>
         </div>
 
         <div className={'buttons'}>
@@ -25,6 +33,8 @@ export default function App() {
           ))}
         </div>
       </div>
+
+      {state && <Button />}
     </Suspense>
   )
 }

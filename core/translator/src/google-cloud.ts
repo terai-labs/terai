@@ -2,7 +2,7 @@
 import { v2 } from '@google-cloud/translate'
 
 // Types
-import type { DictionaryPlain } from '@rewordlabs/types'
+import type { Dictionary } from '@rewordlabs/types'
 import type { TranslateOptions } from './translate'
 
 export async function translateWithGoogleCloud({
@@ -14,7 +14,7 @@ export async function translateWithGoogleCloud({
   'dictionary' | 'locale' | 'googleCloudCrendentials'
 >) {
   const translate = new v2.Translate(googleCloudCrendentials)
-  const translatedOutput: DictionaryPlain = {}
+  const translatedOutput: Dictionary = {}
 
   await Promise.all(
     Object.keys(dictionary).map(async key => {

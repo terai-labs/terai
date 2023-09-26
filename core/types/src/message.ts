@@ -1,9 +1,9 @@
 export type ExtractedMessage = {
   id: string
   value: string
-  file: string
   context: string
-  chunkId: string
+  files: string[]
+  chunksIds: string[]
 }
 
 export type ExtractedMessages = Record<string, ExtractedMessage>

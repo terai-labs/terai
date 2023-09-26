@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Dependencies
 import { createTx } from '@rewordlabs/tx'
 

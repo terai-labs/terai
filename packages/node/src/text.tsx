@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // Dependencies
 import { interpolate } from '@rewordlabs/formatter'
 
