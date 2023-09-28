@@ -27,7 +27,7 @@ export default function App() {
 
         <div className={'buttons'}>
           {['en', 'es', 'it'].map(locale => (
-            <button onClick={() => setLocale(locale)}>
+            <button key={locale} onClick={() => setLocale(locale)}>
               {getLanguage(locale)}
             </button>
           ))}

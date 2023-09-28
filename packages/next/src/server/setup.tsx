@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use server'
 
 import 'server-only'
@@ -25,13 +24,16 @@ export function setupServer({
 }: SetupServerOptions & InterpolateOptions) {
   const useFormat = createFormat(getLocaleCache)
   const tx = createTx<ReactNode, TxReactOptions>({
-    loader,
-    getLocale: getLocaleCache,
     render: props => {
       return (
         <Suspense>
           {/* @ts-ignore */}
-          <Text {...props} global={global} />
+          <Text
+            {...props}
+            loader={loader}
+            getLocale={getLocaleCache}
+            global={global}
+          />
         </Suspense>
       )
     }

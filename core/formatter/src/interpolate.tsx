@@ -16,15 +16,16 @@ export type InterpolateProps = {
   locale: Locale
 }
 
+export type InterpolatePlugin<R = unknown> = <T>(msg: T) => R
+
 export type InterpolateOptions = {
-  plugins?: ((a: unknown) => unknown)[]
   format?: GlobalFormat
 }
 
-export function interpolate<T>(
+export function interpolate(
   { message, variables, locale }: InterpolateProps,
-  { plugins, format }: InterpolateOptions = {}
-): T {
+  { format }: InterpolateOptions = {}
+) {
   let index = 0
 
   const messageWithVars = message.replace(/\${(\w+)}/g, () => {
@@ -107,15 +108,5 @@ export function interpolate<T>(
     return variable
   })
 
-  if (plugins) {
-    let output: string | unknown = messageWithVars
-
-    for (const plugin of plugins) {
-      output = plugin(output)
-    }
-
-    return output as T
-  }
-
-  return messageWithVars as T
+  return messageWithVars
 }

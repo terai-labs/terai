@@ -4,28 +4,24 @@ import 'client-only'
 
 // Dependencies
 import { batch, observable } from '@legendapp/state'
+import { configureObservablePersistence } from '@legendapp/state/persist'
 import { createFormat } from '@rewordlabs/formatter'
 import { createReactInterpolate } from './core'
 import { createTx } from '@rewordlabs/tx'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-import { useCallback, useEffect, type ReactNode } from 'react'
-import {
-  configureObservablePersistence,
-  persistObservable
-} from '@legendapp/state/persist'
+import { persistObservable } from '@legendapp/state/persist'
+import { useCallback, useEffect } from 'react'
 
 // Types
-import type { TxReactOptions } from './core'
-import type { InterpolateOptions } from '@rewordlabs/formatter'
-import type { Dictionaries, Loader, Locale } from '@rewordlabs/types'
+import type { Dictionaries, Locale } from '@rewordlabs/types'
+import type { ReactNode } from 'react'
+import type { CommonSetupOptions, TxReactOptions } from './core'
 
-export type SetupClientOptions = {
+export type SetupClientOptions = CommonSetupOptions & {
   locale: Locale
-  loader: Loader
   persist?: boolean
-} & InterpolateOptions &
-  TxReactOptions
+}
 
 enableReactUse()
 
@@ -33,7 +29,6 @@ export function setup({
   loader,
   locale,
   persist = true,
-  plugins = [],
   components = {},
   format = {}
 }: SetupClientOptions) {
@@ -101,15 +96,13 @@ export function setup({
       variables,
       rawMessage,
       components: txComponents = {},
-      format: txFormat = {},
-      plugins: txPlugins = []
+      format: txFormat = {}
     }) => {
       const locale = state$.locale.use()
       const message = state$.dictionaries?.[locale]?.[id]?.get() ?? rawMessage
       const interpolate = useCallback(
         createReactInterpolate({
           locale,
-          plugins: [...plugins, ...txPlugins],
           components: {
             ...components,
             ...txComponents

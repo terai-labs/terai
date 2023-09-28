@@ -25,7 +25,6 @@ export async function Text({
   const json = await loader(locale, chunkId, id)
   const interpolate = createReactInterpolate({
     locale,
-    plugins: global.plugins,
     components: {
       ...global?.components,
       ...components
