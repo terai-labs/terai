@@ -21,10 +21,10 @@ export type InterpolateOptions = {
   format?: GlobalFormat
 }
 
-export function interpolate(
+export function interpolate<T>(
   { message, variables, locale }: InterpolateProps,
   { plugins, format }: InterpolateOptions = {}
-) {
+): T {
   let index = 0
 
   const messageWithVars = message.replace(/\${(\w+)}/g, () => {
@@ -114,8 +114,8 @@ export function interpolate(
       output = plugin(output)
     }
 
-    return output
+    return output as T
   }
 
-  return messageWithVars
+  return messageWithVars as T
 }

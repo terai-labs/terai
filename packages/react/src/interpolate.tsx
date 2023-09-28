@@ -10,7 +10,7 @@ import type {
   InterpolateProps
 } from '@rewordlabs/formatter'
 
-export type InterpolateFn = (props: InterpolateProps) => unknown
+export type InterpolateFn = (props: InterpolateProps) => string | ReactNode
 export type InterpolateComponents = Record<
   string,
   (children: ReactNode) => ReactNode
@@ -25,7 +25,7 @@ export function createReactInterpolate({
   components?: InterpolateComponents
 } & InterpolateOptions): InterpolateFn {
   return memo((props: InterpolateProps) => {
-    return interpolate(props, {
+    return interpolate<string | ReactNode>(props, {
       ...rest,
       plugins: [
         message =>

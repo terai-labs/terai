@@ -2,28 +2,25 @@
 import { joinTemplateStrings, prepareMessage, toHash } from '@rewordlabs/utils'
 
 // Types
-import type { Locale } from '@rewordlabs/types'
 import type { InterpolateOptions, DynamicValue } from '@rewordlabs/formatter'
 
-export type TxRenderProps<P = unknown> = {
+export type TxRenderProps<P> = {
   id: string
   rawMessage: string
   variables: DynamicValue[]
-  getLocale: () => Locale
 } & TxOptions<P>
 
-export type CreateTxOptions<T> = {
-  getLocale: () => Locale
-  render: (options: TxRenderProps) => T
+export type CreateTxOptions<T, P> = {
+  render: (options: TxRenderProps<P>) => T
 }
 
-export type TxOptions<P = unknown> = {
+export type TxOptions<P> = {
   context?: string
   chunkId?: string
 } & InterpolateOptions &
   P
 
-export interface Tx<T, P = unknown> {
+export interface Tx<T, P> {
   (strings: TemplateStringsArray, ...variables: DynamicValue[]): T
   (options: TxOptions<P>): Tx<T, P>
 }
@@ -32,8 +29,8 @@ function isTemplateStringsArray(v: any): v is TemplateStringsArray {
   return v?.raw && v?.length
 }
 
-export function createTx<T, P = unknown>(
-  options: CreateTxOptions<T>,
+export function createTx<T, P>(
+  options: CreateTxOptions<T, P>,
   opts?: TxOptions<P>
 ): Tx<T, P> {
   function tx(
@@ -51,6 +48,7 @@ export function createTx<T, P = unknown>(
       const rawMessage = prepareMessage(joinTemplateStrings(strings.raw))
       const id = toHash(rawMessage)
 
+      // @ts-ignore
       return render({
         ...restOfOptions,
         ...opts,

@@ -4,9 +4,9 @@ import 'client-only'
 
 // Dependencies
 import { createTx } from '@rewordlabs/tx'
-import { useEffect } from 'react'
+import { useCallback, useEffect, type ReactNode } from 'react'
 import { createFormat } from '@rewordlabs/formatter'
-import { observable } from '@legendapp/state'
+import { batch, observable } from '@legendapp/state'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 import {
@@ -19,23 +19,22 @@ import type { CommonSetupOptions, TxReactOptions } from './types'
 import type { Dictionaries, Locale } from '@rewordlabs/types'
 
 // Components
-import { text } from './text'
-
-enableReactUse()
-configureObservablePersistence({
-  persistLocal: ObservablePersistLocalStorage
-})
+import { createReactInterpolate } from './interpolate'
 
 export type SetupClientOptions = {
   locale: Locale
   persist?: boolean
 } & CommonSetupOptions
 
+enableReactUse()
+
 export function setup({
   loader,
   locale,
   persist = true,
-  ...global
+  plugins = [],
+  components = {},
+  format = {}
 }: SetupClientOptions) {
   const state$ = observable<{
     locale: Locale
@@ -46,43 +45,39 @@ export function setup({
   })
 
   if (persist) {
+    configureObservablePersistence({
+      persistLocal: ObservablePersistLocalStorage
+    })
     persistObservable(state$, {
       local: 'locale'
     })
   }
 
-  const getLocale = () => state$.locale.get()
+  const useLocale = (): [Locale, (locale: Locale) => Promise<void>] => [
+    state$.locale.use(),
+    setLocale
+  ]
 
-  const useLocale = () => state$.locale.use()
-
-  const getDictionaries = () => state$.dictionaries.get()
-
-  const useDictionaries = () => state$.dictionaries.use()
-
-  const useFormat = createFormat(useLocale)
-
-  const useSyncLocale = (locale: string) => {
-    useEffect(() => {
-      state$.locale.set(locale as Locale)
-    }, [locale])
-  }
+  const useFormat = createFormat(state$.locale.use)
 
   const setLocale = async (locale: string) => {
     try {
       const chunk = (await loader(locale, locale)).default
 
-      state$.locale.set(locale)
-      state$.dictionaries.set(prev => ({
-        ...prev,
-        [locale]: { ...(prev[locale] ?? {}), ...chunk }
-      }))
+      batch(() => {
+        state$.locale.set(locale)
+        state$.dictionaries[locale].set((prev = {}) => ({
+          ...prev,
+          ...chunk
+        }))
+      })
     } catch (err) {
       console.warn(err)
     }
   }
 
   const setChunk = async (chunkId: string) => {
-    const locale = getLocale()
+    const locale = state$.locale.get()
     const chunk = (await loader(locale, chunkId)).default
 
     state$.dictionaries.set(prev => ({
@@ -99,18 +94,37 @@ export function setup({
     }, [chunkId, locale])
   }
 
-  const tx = createTx<string, TxReactOptions>({
-    getLocale: useLocale,
-    render: ({ id, ...props }) => {
-      const dictionaries = getDictionaries()
-      const locale = useLocale()
-      const rawMessage = dictionaries[locale][id]
+  const tx = createTx<string | ReactNode, TxReactOptions>({
+    render: ({
+      id,
+      variables,
+      rawMessage,
+      components: txComponents = {},
+      format: txFormat = {},
+      plugins: txPlugins = []
+    }) => {
+      const locale = state$.locale.use()
+      const message = state$.dictionaries?.[locale]?.[id]?.get() ?? rawMessage
+      const interpolate = useCallback(
+        createReactInterpolate({
+          locale,
+          plugins: [...plugins, ...txPlugins],
+          components: {
+            ...components,
+            ...txComponents
+          },
+          format: {
+            ...format,
+            ...txFormat
+          }
+        }),
+        []
+      )
 
-      return text({
-        ...props,
-        ...(rawMessage && { rawMessage }),
-        global,
-        id
+      return interpolate({
+        message,
+        locale,
+        variables
       })
     }
   })
@@ -123,11 +137,8 @@ export function setup({
 
   return {
     tx,
-    useLocale,
-    useDictionaries,
-    useSyncLocale,
     setLocale,
-    getLocale,
+    useLocale,
     useFormat,
     useChunk
   }
