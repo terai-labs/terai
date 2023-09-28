@@ -3,28 +3,29 @@
 import 'client-only'
 
 // Dependencies
-import { createTx } from '@rewordlabs/tx'
-import { useCallback, useEffect, type ReactNode } from 'react'
-import { createFormat } from '@rewordlabs/formatter'
 import { batch, observable } from '@legendapp/state'
+import { createFormat } from '@rewordlabs/formatter'
+import { createReactInterpolate } from './core'
+import { createTx } from '@rewordlabs/tx'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
+import { useCallback, useEffect, type ReactNode } from 'react'
 import {
   configureObservablePersistence,
   persistObservable
 } from '@legendapp/state/persist'
 
 // Types
-import type { CommonSetupOptions, TxReactOptions } from './types'
-import type { Dictionaries, Locale } from '@rewordlabs/types'
-
-// Components
-import { createReactInterpolate } from './interpolate'
+import type { TxReactOptions } from './core'
+import type { InterpolateOptions } from '@rewordlabs/formatter'
+import type { Dictionaries, Loader, Locale } from '@rewordlabs/types'
 
 export type SetupClientOptions = {
   locale: Locale
+  loader: Loader
   persist?: boolean
-} & CommonSetupOptions
+} & InterpolateOptions &
+  TxReactOptions
 
 enableReactUse()
 

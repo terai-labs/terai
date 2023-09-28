@@ -1,12 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "server.ts",
-    "client.ts",
-    "../next/server",
-    "../next/src/server/setup.tsx"
-  ],
+  "include": ["src", "index.ts", "core.ts"],
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
     "jsx": "react-jsx"
