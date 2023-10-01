@@ -1,0 +1,34 @@
+{
+  "messages": {
+    "gOngMQ": {
+      "id": "gOngMQ",
+      "value": "Hello, ${var}!",
+      "files": [
+        "next-app/src/app/[locale]/client/page.tsx",
+        "next-app/src/app/[locale]/server/page.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "gTcrmz": {
+      "id": "gTcrmz",
+      "value": "You haven't checked you email since ${var}",
+      "files": [
+        "next-app/src/app/[locale]/client/page.tsx",
+        "next-app/src/app/[locale]/server/page.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "dzFFxU": {
+      "id": "dzFFxU",
+      "value": "You got ${var} messages in your mail inbox",
+      "files": [
+        "next-app/src/app/[locale]/client/page.tsx",
+        "next-app/src/app/[locale]/server/page.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    }
+  }
+}

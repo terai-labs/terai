@@ -12,6 +12,7 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@locale/*": ["./src/locale/*"]
     },
     "plugins": [
       {

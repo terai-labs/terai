@@ -1,39 +1,31 @@
-// @ts-nocheck
-
 'use server'
 
 import 'server-only'
 
 // Dependencies
-import { createReactInterpolate } from '@rewordlabs/react/interpolate'
+import { getLocaleCache } from './get-locale-cache'
+import { createReactInterpolate } from '@rewordlabs/react/core'
 
 // Types
-import type { TextProps } from '@rewordlabs/react'
+import type { TextProps } from '../types'
 
-export async function Text({
-  getLocale,
+export async function SSRText({
   id,
   loader,
   rawMessage,
   variables,
   components,
-  format,
-  global,
-  chunkId = id
-}: TextProps) {
-  const locale = getLocale()
-  const json = await loader(locale, chunkId, id)
+  format
+}: TextProps<Promise<string>>) {
+  const locale = getLocaleCache()
+  const json = (await loader(locale, locale)).default[id]
+
   const interpolate = createReactInterpolate({
     locale,
-    components: {
-      ...global?.components,
-      ...components
-    },
-    format: {
-      ...global?.format,
-      ...format
-    }
+    components,
+    format
   })
+
   const message = interpolate({
     message: typeof json === 'string' ? json : rawMessage,
     locale,

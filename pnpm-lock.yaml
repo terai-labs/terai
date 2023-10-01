@@ -270,6 +270,9 @@ importers:
       '@rewordlabs/tx':
         specifier: workspace:*
         version: link:../../core/tx
+      '@tanstack/react-query':
+        specifier: ^5.0.0-rc.2
+        version: 5.0.0-rc.2(react-dom@18.2.0)(react@18.2.0)
       client-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -2568,6 +2571,28 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
     dev: true
+
+  /@tanstack/query-core@5.0.0-rc.1:
+    resolution: {integrity: sha512-6jzPCwvEHS+Y3QCildpOlIrqJXXJ+v2EvbtCnbKUi6FpOrrfoSPacVB3nr0cjSBG/rCXnTB0aaevx9T8iT9CrQ==}
+    dev: false
+
+  /@tanstack/react-query@5.0.0-rc.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5NVAiJD+HlHHvA2WSTxQObgMCfNW2xNXUu+8Yx/mp3e/uip/41ejqwnpPB5V/LDG43A719JnOaQWC5wfFwjgIQ==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 5.0.0-rc.1
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@testing-library/dom@8.20.1:
     resolution: {integrity: sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==}

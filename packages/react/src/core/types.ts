@@ -6,6 +6,7 @@ export type TxReactOptions = {
   components?: InterpolateComponents
 }
 
-export type CommonSetupOptions = InterpolateOptions & {
-  loader: Loader
-} & TxReactOptions
+export type CommonSetupOptions = TxReactOptions &
+  InterpolateOptions & {
+    loader: Loader
+  }

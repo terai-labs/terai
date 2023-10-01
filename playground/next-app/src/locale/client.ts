@@ -1,7 +1,5 @@
-import { setupClient } from '@rewordlabs/next/client'
+const { setupClient } = require('@rewordlabs/next/client')
 
-export const { tx, setLocale, useLocaleSync } = setupClient({
-  locale: 'en',
-  loader: async (locale: string, chunkId: string, id: string) =>
-    (await import(`./${locale}/${chunkId}.json`))[id]
+export const { tx } = setupClient({
+  loader: (locale: string, id: string) => import(`./${locale}/${id}.json`)
 })

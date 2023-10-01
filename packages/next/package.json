@@ -36,9 +36,10 @@
     }
   },
   "dependencies": {
-    "@rewordlabs/tx": "workspace:*",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/react": "workspace:*",
+    "@rewordlabs/tx": "workspace:*",
+    "@tanstack/react-query": "^5.0.0-rc.2",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },

@@ -5,9 +5,17 @@ export default async function Home() {
     <div>
       <h1>Next.js demo</h1>
       <div>
-        <Link href={'/es/server'}>{'Server'}</Link>
-        <Link href={'/en/client'}>{'Client Page'}</Link>
-        <Link href={'/es/legend'}>{'Legend Page'}</Link>
+        <Link href={'/server'}>{'Server'}</Link>
+        <Link href={'/client'}>{'Client Page'}</Link>
+      </div>
+
+      <div>
+        <Link prefetch={false} href={'/es'}>
+          {'es'}
+        </Link>
+        <Link prefetch={false} href={'/en'}>
+          {'en'}
+        </Link>
       </div>
     </div>
   )

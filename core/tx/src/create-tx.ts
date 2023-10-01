@@ -16,7 +16,6 @@ export type CreateTxOptions<T, P> = {
 
 export type TxOptions<P> = {
   context?: string
-  chunkId?: string
 } & InterpolateOptions &
   P
 
