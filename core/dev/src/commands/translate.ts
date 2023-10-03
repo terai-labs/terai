@@ -26,11 +26,6 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 
   const config = await loadConfig({ cwd })
 
-  logger.info(
-    `Provider:`,
-    `Translating using ${logger.colors.white(config.translationService)}...`
-  )
-
   const outDirPath = runtime.path.resolve(cwd, config.outDir)
   const tmuDirPath = runtime.path.resolve(cwd, config.outDir, '.tmu')
   const manifestPath = runtime.path.resolve(tmuDirPath, 'build-manifest.json')

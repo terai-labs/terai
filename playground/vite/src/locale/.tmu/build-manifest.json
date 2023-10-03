@@ -1,14 +1,5 @@
 {
   "messages": {
-    "jVDQDr": {
-      "id": "jVDQDr",
-      "value": "Hello 2",
-      "files": [
-        "vite/src/App.tsx"
-      ],
-      "context": "",
-      "chunksIds": []
-    },
     "AxJKv": {
       "id": "AxJKv",
       "value": "Car",
@@ -30,6 +21,15 @@
     "fzzKqG": {
       "id": "fzzKqG",
       "value": "Bike",
+      "files": [
+        "vite/src/App.tsx"
+      ],
+      "context": "",
+      "chunksIds": []
+    },
+    "cZDYmU": {
+      "id": "cZDYmU",
+      "value": "Testing translators!",
       "files": [
         "vite/src/App.tsx"
       ],

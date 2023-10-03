@@ -17,6 +17,18 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./translators": {
+      "types": "./dist/translators/index.d.ts",
+      "require": "./dist/translators/index.js",
+      "import": "./dist/translators/index.mjs"
+    }
+  },
   "dependencies": {
     "@google-cloud/translate": "^8.0.2",
     "@rewordlabs/runtime": "workspace:*",
