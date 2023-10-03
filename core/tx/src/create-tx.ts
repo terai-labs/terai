@@ -4,60 +4,57 @@ import { joinTemplateStrings, prepareMessage, toHash } from '@rewordlabs/utils'
 // Types
 import type { InterpolateOptions, DynamicValue } from '@rewordlabs/formatter'
 
-export type TxRenderProps<P> = {
+export type CreateTxOptions<R, E> = {
+  render: (options: E) => R
+}
+
+export type TxRenderProps = TxOptions & {
   id: string
   rawMessage: string
   variables: DynamicValue[]
-} & TxOptions<P>
-
-export type CreateTxOptions<T, P> = {
-  render: (options: TxRenderProps<P>) => T
 }
 
-export type TxOptions<P> = {
+export type TxOptions = InterpolateOptions & {
   context?: string
-} & InterpolateOptions &
-  P
+}
 
-export interface Tx<T, P> {
-  (strings: TemplateStringsArray, ...variables: DynamicValue[]): T
-  (options: TxOptions<P>): Tx<T, P>
+export interface Tx<R, E> {
+  (strings: TemplateStringsArray, ...variables: DynamicValue[]): R
+  (options: TxOptions & E): Tx<R, E>
 }
 
 function isTemplateStringsArray(v: any): v is TemplateStringsArray {
   return v?.raw && v?.length
 }
 
-export function createTx<T, P>(
-  options: CreateTxOptions<T, P>,
-  opts?: TxOptions<P>
-): Tx<T, P> {
+export function createTx<R, E extends TxRenderProps>(
+  options: CreateTxOptions<R, E>,
+  opts?: E
+): Tx<R, E> {
   function tx(
     stringsOrOptions: TemplateStringsArray,
     ...variables: DynamicValue[]
-  ): T
-  function tx(stringsOrOptions: TxOptions<P>): Tx<T, P>
+  ): R
+  function tx(stringsOrOptions: E): Tx<R, E>
   function tx(
-    stringsOrOptions: TemplateStringsArray | TxOptions<P>,
+    stringsOrOptions: TemplateStringsArray | E,
     ...variables: DynamicValue[]
-  ): T | Tx<T, P> {
+  ): R | Tx<R, E> {
     if (isTemplateStringsArray(stringsOrOptions)) {
-      const { render, ...restOfOptions } = options
+      const { render } = options
       const strings = stringsOrOptions
       const rawMessage = prepareMessage(joinTemplateStrings(strings.raw))
       const id = toHash(rawMessage)
-
-      // TODO: Review types
-      // @ts-ignore
-      return render({
-        ...restOfOptions,
+      const args = {
         ...opts,
         id,
         rawMessage,
         variables
-      })
+      } as E
+
+      return render(args)
     } else {
-      return createTx<T, P>(options, stringsOrOptions)
+      return createTx<R, E>(options, stringsOrOptions)
     }
   }
 

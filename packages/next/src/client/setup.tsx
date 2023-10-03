@@ -7,8 +7,10 @@ import { QueryClient } from '@tanstack/react-query'
 import { useLocale } from './use-locale'
 
 // Types
-import type { ReactNode } from 'react'
-import type { CommonSetupOptions, TxReactOptions } from '@rewordlabs/react/core'
+import type {
+  CommonSetupOptions,
+  TxReactRenderProps
+} from '@rewordlabs/react/core'
 
 export const setupClient = ({
   loader,
@@ -18,10 +20,9 @@ export const setupClient = ({
   const queryClient = new QueryClient()
   const useFormat = createFormat(useLocale)
   const useDictionary = createUseDictionary(queryClient)
-  const tx = createTx<ReactNode, TxReactOptions>({
+  const tx = createTx<JSX.Element, TxReactRenderProps>({
     render: props => {
       return (
-        // @ts-ignore
         <CsrText
           {...props}
           useDictionary={useDictionary}

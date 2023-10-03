@@ -8,7 +8,6 @@ import { interpolate } from '@rewordlabs/formatter'
 
 // Types
 import type { TextProps } from '../types'
-import type { ReactNode } from 'react'
 
 export function CsrText({
   id,
@@ -17,7 +16,7 @@ export function CsrText({
   variables,
   useDictionary,
   format
-}: TextProps<ReactNode> & { useDictionary: any }) {
+}: TextProps & { useDictionary: any }) {
   const locale = useLocale()
   const dictionary = useDictionary({
     queryKey: [locale],

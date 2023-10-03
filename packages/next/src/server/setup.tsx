@@ -5,8 +5,7 @@ import { getLocale } from './get-locale'
 import { SsrText } from './text'
 
 // Types
-import type { ReactNode } from 'react'
-import type { CommonSetupOptions, TxReactOptions } from '@rewordlabs/react'
+import type { CommonSetupOptions, TxReactRenderProps } from '@rewordlabs/react'
 
 export function setupServer({
   loader,
@@ -14,10 +13,9 @@ export function setupServer({
   format = {}
 }: CommonSetupOptions) {
   const getFormat = createFormat(getLocale)
-  const tx = createTx<ReactNode, TxReactOptions>({
+  const tx = createTx<JSX.Element, TxReactRenderProps>({
     render: props => {
       return (
-        // @ts-ignore
         <SsrText
           {...props}
           loader={loader}

@@ -1,6 +1,3 @@
-import type { CommonSetupOptions, TxReactOptions } from '@rewordlabs/react'
-import type { TxRenderProps } from '@rewordlabs/tx'
+import type { CommonSetupOptions, TxReactRenderProps } from '@rewordlabs/react'
 
-export type TextProps<T> = CommonSetupOptions &
-  TxRenderProps<T> &
-  TxReactOptions
+export type TextProps = CommonSetupOptions & TxReactRenderProps

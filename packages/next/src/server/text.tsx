@@ -8,7 +8,6 @@ import { interpolate } from '@rewordlabs/formatter'
 
 // Types
 import type { TextProps } from '../types'
-import type { ReactNode } from 'react'
 
 export async function SsrText({
   id,
@@ -17,7 +16,7 @@ export async function SsrText({
   variables,
   // components,
   format
-}: TextProps<Promise<ReactNode>>) {
+}: TextProps) {
   const locale = getLocale()
   const message = (await loader(locale, locale)).default[id] ?? rawMessage
   const interpolatedMessage = interpolate(

@@ -16,7 +16,7 @@ import { useCallback, useEffect } from 'react'
 // Types
 import type { Dictionaries, Locale } from '@rewordlabs/types'
 import type { ReactNode } from 'react'
-import type { CommonSetupOptions, TxReactOptions } from './core'
+import type { CommonSetupOptions, TxReactRenderProps } from './core'
 
 export type SetupClientOptions = CommonSetupOptions & {
   locale: Locale
@@ -90,7 +90,7 @@ export function setup({
     }, [chunkId, locale])
   }
 
-  const tx = createTx<string | ReactNode, TxReactOptions>({
+  const tx = createTx<ReactNode, TxReactRenderProps>({
     render: ({
       id,
       variables,
