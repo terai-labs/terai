@@ -31,7 +31,7 @@
     }
   },
   "dependencies": {
-    "@legendapp/state": "^1.11.1",
+    "@legendapp/state": "^1.11.3",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/tx": "workspace:*",
     "@rewordlabs/utils": "workspace:*",

@@ -33,7 +33,7 @@
     "@google-cloud/translate": "^8.0.2",
     "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
-    "openai": "^4.10.0"
+    "openai": "^4.11.1"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"

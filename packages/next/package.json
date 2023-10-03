@@ -39,7 +39,7 @@
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/react": "workspace:*",
     "@rewordlabs/tx": "workspace:*",
-    "@tanstack/react-query": "^5.0.0-rc.2",
+    "@tanstack/react-query": "5.0.0-rc.4",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
@@ -47,7 +47,7 @@
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "next": "^13.4.0"
+    "next": "^13.4.0",
+    "react": "^18.0.0"
   }
 }
