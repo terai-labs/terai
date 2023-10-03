@@ -1,14 +1,10 @@
-'use client'
-
-import 'client-only'
-
 // Dependencies
-import { createUseDictionary } from './use-dictionary'
-import { createReactInterpolate } from '@rewordlabs/react/core'
 import { createFormat } from '@rewordlabs/formatter'
 import { createTx } from '@rewordlabs/tx'
-import { useLocale } from './use-locale'
+import { createUseDictionary } from './use-dictionary'
+import { CsrText } from './text'
 import { QueryClient } from '@tanstack/react-query'
+import { useLocale } from './use-locale'
 
 // Types
 import type { ReactNode } from 'react'
@@ -22,27 +18,24 @@ export const setupClient = ({
   const queryClient = new QueryClient()
   const useFormat = createFormat(useLocale)
   const useDictionary = createUseDictionary(queryClient)
-
   const tx = createTx<ReactNode, TxReactOptions>({
-    render: ({ rawMessage, id, variables }) => {
-      const locale = useLocale()
-      const dictionary = useDictionary({
-        queryKey: [locale],
-        queryFn: async () => (await loader(locale, locale)).default
-      })
-      const message = dictionary?.[id]
-
-      const interpolate = createReactInterpolate({
-        locale,
-        components,
-        format
-      })
-
-      return interpolate({
-        message: message ?? rawMessage,
-        locale,
-        variables
-      })
+    render: props => {
+      return (
+        // @ts-ignore
+        <CsrText
+          {...props}
+          useDictionary={useDictionary}
+          loader={loader}
+          components={{
+            ...components,
+            ...props.components
+          }}
+          format={{
+            ...format,
+            ...props.format
+          }}
+        />
+      )
     }
   })
 

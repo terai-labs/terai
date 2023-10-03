@@ -4,38 +4,34 @@ import 'client-only'
 
 // Dependencies
 import { useLocale } from './use-locale'
-import { createReactInterpolate } from '@rewordlabs/react/core'
-import { useQuery } from '@tanstack/react-query'
+import { interpolate } from '@rewordlabs/formatter'
 
 // Types
 import type { TextProps } from '../types'
-// import type { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
-export function CSRText({
+export function CsrText({
   id,
   loader,
   rawMessage,
   variables,
-  components,
+  useDictionary,
   format
-}: TextProps<string>) {
+}: TextProps<ReactNode> & { useDictionary: any }) {
   const locale = useLocale()
-  const { data: json } = useQuery({
+  const dictionary = useDictionary({
     queryKey: [locale],
-    queryFn: async () => loader(locale, locale).then(mod => mod.default)
+    queryFn: async () => (await loader(locale, locale)).default
   })
+  const message = dictionary?.[id] ?? rawMessage
+  const interpolatedMessage = interpolate(
+    {
+      message,
+      locale,
+      variables
+    },
+    { format }
+  )
 
-  const interpolate = createReactInterpolate({
-    locale,
-    components,
-    format
-  })
-
-  const message = interpolate({
-    message: typeof json?.[id] === 'string' ? json?.[id] : rawMessage,
-    locale,
-    variables
-  })
-
-  return <>{message}</>
+  return <>{interpolatedMessage}</>
 }

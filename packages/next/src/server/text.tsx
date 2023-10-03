@@ -4,33 +4,30 @@ import 'server-only'
 
 // Dependencies
 import { getLocale } from './get-locale'
-import { createReactInterpolate } from '@rewordlabs/react/core'
+import { interpolate } from '@rewordlabs/formatter'
 
 // Types
 import type { TextProps } from '../types'
+import type { ReactNode } from 'react'
 
-export async function SSRText({
+export async function SsrText({
   id,
   loader,
   rawMessage,
   variables,
-  components,
+  // components,
   format
-}: TextProps<Promise<string>>) {
+}: TextProps<Promise<ReactNode>>) {
   const locale = getLocale()
-  const json = (await loader(locale, locale)).default[id]
+  const message = (await loader(locale, locale)).default[id] ?? rawMessage
+  const interpolatedMessage = interpolate(
+    {
+      message,
+      locale,
+      variables
+    },
+    { format }
+  )
 
-  const interpolate = createReactInterpolate({
-    locale,
-    components,
-    format
-  })
-
-  const message = interpolate({
-    message: typeof json === 'string' ? json : rawMessage,
-    locale,
-    variables
-  })
-
-  return <>{message}</>
+  return <>{interpolatedMessage}</>
 }
