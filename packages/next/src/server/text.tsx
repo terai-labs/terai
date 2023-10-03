@@ -3,7 +3,7 @@
 import 'server-only'
 
 // Dependencies
-import { getLocaleCache } from './get-locale-cache'
+import { getLocale } from './get-locale'
 import { createReactInterpolate } from '@rewordlabs/react/core'
 
 // Types
@@ -17,7 +17,7 @@ export async function SSRText({
   components,
   format
 }: TextProps<Promise<string>>) {
-  const locale = getLocaleCache()
+  const locale = getLocale()
   const json = (await loader(locale, locale)).default[id]
 
   const interpolate = createReactInterpolate({

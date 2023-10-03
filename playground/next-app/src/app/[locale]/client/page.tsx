@@ -5,9 +5,6 @@ import { tx } from '@/locale/client'
 
 export default function Home() {
   const name = 'Hugo'
-  const a = tx`Hello, ${name}!`
-
-  debugger
 
   return (
     <div>

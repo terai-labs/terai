@@ -47,6 +47,7 @@ export function createTx<T, P>(
       const rawMessage = prepareMessage(joinTemplateStrings(strings.raw))
       const id = toHash(rawMessage)
 
+      // TODO: Review types
       // @ts-ignore
       return render({
         ...restOfOptions,
