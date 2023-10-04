@@ -1,5 +1,17 @@
 # @rewordlabs/formatter
 
+## 0.5.0
+
+### Minor Changes
+
+- 4faec3c: Code refactor and improvements
+
+### Patch Changes
+
+- Updated dependencies [4faec3c]
+  - @rewordlabs/runtime@0.5.0
+  - @rewordlabs/utils@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
