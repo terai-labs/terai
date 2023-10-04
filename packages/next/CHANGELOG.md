@@ -1,5 +1,16 @@
 # @rewordlabs/next
 
+## 0.5.0
+
+### Minor Changes
+
+- 4faec3c: Code refactor and improvements
+
+### Patch Changes
+
+- Updated dependencies [4faec3c]
+  - @rewordlabs/react@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes

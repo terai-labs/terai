@@ -1,5 +1,11 @@
 # @rewordlabs/logger
 
+## 0.5.0
+
+### Minor Changes
+
+- 4faec3c: Code refactor and improvements
+
 ## 0.4.0
 
 ### Minor Changes
