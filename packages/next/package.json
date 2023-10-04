@@ -36,15 +36,12 @@
     }
   },
   "dependencies": {
-    "@rewordlabs/react": "workspace:*",
-    "client-only": "^0.0.1",
-    "server-only": "^0.0.1"
+    "@rewordlabs/react": "workspace:*"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "next": "^13.4.0",
-    "react": "canary"
+    "next": "^13.4.0"
   }
 }

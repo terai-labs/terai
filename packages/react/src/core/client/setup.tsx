@@ -11,6 +11,7 @@ import type { CreateSetupOptions } from '../types'
 import type { SetupReactOptions, TxReactRenderProps } from '../types'
 
 export type SetupClient = ReturnType<typeof createSetupClient>
+export type SetupClientOptions = SetupReactOptions
 
 export function createSetupClient({ getLocale }: CreateSetupOptions) {
   return function createSetup({

@@ -32,7 +32,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@inquirer/prompts": "^3.1.2",
+    "@inquirer/prompts": "^3.2.0",
     "@rewordlabs/extractor": "workspace:*",
     "@rewordlabs/runtime": "workspace:*",
     "@rewordlabs/translator": "workspace:*",
