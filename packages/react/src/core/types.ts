@@ -7,7 +7,7 @@ export type TxReactRenderProps = TxRenderProps & {
   components: InterpolateComponents
 }
 
-export type CommonSetupOptions = TxReactRenderProps &
-  InterpolateOptions & {
-    loader: Loader
-  }
+export type CommonSetupOptions = InterpolateOptions & {
+  loader: Loader
+  components: InterpolateComponents
+}

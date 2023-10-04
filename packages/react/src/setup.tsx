@@ -5,17 +5,15 @@ import 'client-only'
 // Dependencies
 import { batch, observable } from '@legendapp/state'
 import { configureObservablePersistence } from '@legendapp/state/persist'
-import { createFormat } from '@rewordlabs/formatter'
-import { createReactInterpolate } from './core'
+import { createFormat, interpolate } from '@rewordlabs/formatter'
 import { createTx } from '@rewordlabs/tx'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 import { persistObservable } from '@legendapp/state/persist'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 
 // Types
 import type { Dictionaries, Locale } from '@rewordlabs/types'
-import type { ReactNode } from 'react'
 import type { CommonSetupOptions, TxReactRenderProps } from './core'
 
 export type SetupClientOptions = CommonSetupOptions & {
@@ -29,7 +27,6 @@ export function setup({
   loader,
   locale,
   persist = true,
-  components = {},
   format = {}
 }: SetupClientOptions) {
   const state$ = observable<{
@@ -90,36 +87,24 @@ export function setup({
     }, [chunkId, locale])
   }
 
-  const tx = createTx<ReactNode, TxReactRenderProps>({
-    render: ({
-      id,
-      variables,
-      rawMessage,
-      components: txComponents = {},
-      format: txFormat = {}
-    }) => {
+  const tx = createTx<string, TxReactRenderProps>({
+    render: ({ id, variables, rawMessage, ...props }) => {
       const locale = state$.locale.use()
       const message = state$.dictionaries?.[locale]?.[id]?.get() ?? rawMessage
-      const interpolate = useCallback(
-        createReactInterpolate({
+
+      return interpolate(
+        {
+          message,
           locale,
-          components: {
-            ...components,
-            ...txComponents
-          },
+          variables
+        },
+        {
           format: {
             ...format,
-            ...txFormat
+            ...props.format
           }
-        }),
-        []
+        }
       )
-
-      return interpolate({
-        message,
-        locale,
-        variables
-      })
     }
   })
 
