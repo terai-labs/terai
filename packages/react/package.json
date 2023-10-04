@@ -28,20 +28,30 @@
       "types": "./dist/core/index.d.ts",
       "require": "./dist/core/index.js",
       "import": "./dist/core/index.mjs"
+    },
+    "./core/server": {
+      "types": "./dist/core/server/index.d.ts",
+      "require": "./dist/core/server/index.js",
+      "import": "./dist/core/server/index.mjs"
+    },
+    "./core/client": {
+      "types": "./dist/core/client/index.d.ts",
+      "require": "./dist/core/client/index.js",
+      "import": "./dist/core/client/index.mjs"
     }
   },
   "dependencies": {
-    "@legendapp/state": "^1.11.3",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/tx": "workspace:*",
     "@rewordlabs/utils": "workspace:*",
+    "intl-messageformat": "^10.5.3",
     "client-only": "^0.0.1",
-    "intl-messageformat": "^10.5.3"
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@rewordlabs/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "canary"
   }
 }

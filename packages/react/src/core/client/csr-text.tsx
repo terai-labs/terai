@@ -1,24 +1,21 @@
-'use server'
-
-import 'server-only'
-
 // Dependencies
-import { getLocale } from './get-locale'
+import { use } from 'react'
 import { interpolate } from '@rewordlabs/formatter'
 
 // Types
 import type { TextProps } from '../types'
 
-export async function SsrText({
+export function CsrText({
   id,
   loader,
   rawMessage,
   variables,
-  // components,
-  format
+  format,
+  getLocale
 }: TextProps) {
   const locale = getLocale()
-  const message = (await loader(locale, locale)).default[id] ?? rawMessage
+  const dictionary = use(loader(locale, locale).then(mod => mod.default))
+  const message = dictionary?.[id] ?? rawMessage
   const interpolatedMessage = interpolate(
     {
       message,

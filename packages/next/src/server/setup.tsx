@@ -1,39 +1,10 @@
 // Dependencies
-import { createFormat } from '@rewordlabs/formatter'
-import { createTx } from '@rewordlabs/tx'
 import { getLocale } from './get-locale'
-import { SsrText } from './text'
+import { createSetupServer } from '@rewordlabs/react/core/server'
 
 // Types
-import type { CommonSetupOptions, TxReactRenderProps } from '@rewordlabs/react'
+import type { SetupServer } from '@rewordlabs/react/core/server'
 
-export function setupServer({
-  loader,
-  components = {},
-  format = {}
-}: CommonSetupOptions) {
-  const getFormat = createFormat(getLocale)
-  const tx = createTx<JSX.Element, TxReactRenderProps>({
-    render: props => {
-      return (
-        <SsrText
-          {...props}
-          loader={loader}
-          components={{
-            ...components,
-            ...props.components
-          }}
-          format={{
-            ...format,
-            ...props.format
-          }}
-        />
-      )
-    }
-  })
-
-  return {
-    tx,
-    getFormat
-  }
-}
+export const setupServer: SetupServer = createSetupServer({
+  getLocale
+})

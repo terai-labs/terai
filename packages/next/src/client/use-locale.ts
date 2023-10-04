@@ -1,5 +1,6 @@
 import { useParams } from 'next/navigation'
 import { LOCALE_SEGMENT_NAME } from '../constants'
+import type { Locale } from '@rewordlabs/types'
 
 export function useLocale(): string {
   let locale
@@ -9,5 +10,5 @@ export function useLocale(): string {
     return params[LOCALE_SEGMENT_NAME]
   }
 
-  return locale ?? 'es'
+  return (locale ?? 'es') as Locale
 }

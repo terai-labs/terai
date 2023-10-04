@@ -36,10 +36,7 @@
     }
   },
   "dependencies": {
-    "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/react": "workspace:*",
-    "@rewordlabs/tx": "workspace:*",
-    "@tanstack/react-query": "5.0.0-rc.4",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
@@ -48,6 +45,6 @@
   },
   "peerDependencies": {
     "next": "^13.4.0",
-    "react": "^18.0.0"
+    "react": "canary"
   }
 }
