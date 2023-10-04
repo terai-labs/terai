@@ -19,6 +19,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@legendapp/state": "^1.11.3",
     "@rewordlabs/formatter": "workspace:*",
     "@rewordlabs/tx": "workspace:*"
   },
