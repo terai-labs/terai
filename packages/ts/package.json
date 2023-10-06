@@ -1,0 +1,27 @@
+{
+  "name": "@tsmu/ts",
+  "description": "Translation fn for Tsmu",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "tsup --format=esm,cjs --no-dts --watch",
+    "build": "tsup"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tsmu/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@tsmu/formatter": "workspace:*",
+    "@tsmu/types": "workspace:*"
+  }
+}

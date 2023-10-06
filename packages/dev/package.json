@@ -1,0 +1,53 @@
+{
+  "name": "@tsmu/dev",
+  "version": "0.0.1",
+  "description": "The user facing package for Tsmu",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "bin": {
+    "tsmu": "bin.js"
+  },
+  "scripts": {
+    "dev": "tsup --format=esm,cjs --no-dts --watch",
+    "build": "tsup"
+  },
+  "files": [
+    "bin.js",
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^3.2.0",
+    "@tsmu/extractor": "workspace:*",
+    "@tsmu/runtime": "workspace:*",
+    "@tsmu/translator": "workspace:*",
+    "@tsmu/utils": "workspace:*",
+    "cac": "^6.7.14",
+    "dotenv": "^16.3.1",
+    "inquirer": "^9.2.11",
+    "kleur": "^4.1.5",
+    "perfect-debounce": "^1.0.0",
+    "preferred-pm": "^3.1.2"
+  },
+  "devDependencies": {
+    "@tsmu/generator": "workspace:*",
+    "@tsmu/logger": "workspace:*",
+    "@tsmu/types": "workspace:*",
+    "@types/update-notifier": "^6.0.5",
+    "update-notifier": "^6.0.2"
+  }
+}

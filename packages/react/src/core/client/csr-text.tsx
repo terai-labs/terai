@@ -1,6 +1,6 @@
 // Dependencies
 import { use } from 'react'
-import { interpolate } from '@rewordlabs/formatter'
+import { interpolate } from '@tsmu/formatter'
 
 // Types
 import type { TextProps } from '../types'

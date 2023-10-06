@@ -1,6 +1,6 @@
-import { setup } from '@rewordlabs/react'
+import { setup } from '@tsmu/react'
 
-export const { tx, setLocale, useFormat, useChunk } = setup({
+export const { ts, setLocale, useFormat, useChunk } = setup({
   // locale: 'en',
   // persist: false,
   loader: (locale: string, chunkId: string) =>

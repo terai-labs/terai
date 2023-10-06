@@ -1,8 +1,8 @@
 // Types
 import type { InterpolateComponents } from './interpolate'
-import type { InterpolateOptions } from '@rewordlabs/formatter'
-import type { TxRenderProps } from '@rewordlabs/tx'
-import type { Loader, Locale } from '@rewordlabs/types'
+import type { InterpolateOptions } from '@tsmu/formatter'
+import type { TsRenderProps } from '@tsmu/ts'
+import type { Loader, Locale } from '@tsmu/types'
 
 export type CreateSetupOptions = {
   getLocale: () => Locale
@@ -13,9 +13,9 @@ export type SetupReactOptions = InterpolateOptions & {
   components?: InterpolateComponents
 }
 
-export type TxReactRenderProps = TxRenderProps & {
+export type TsReactRenderProps = TsRenderProps & {
   components: InterpolateComponents
 }
 export type TextProps = SetupReactOptions &
-  TxReactRenderProps &
+  TsReactRenderProps &
   CreateSetupOptions

@@ -1,3 +1,3 @@
-# Reword
+# Tsmu
 
-The localization framework for developers.
+A modern localization framework for JS

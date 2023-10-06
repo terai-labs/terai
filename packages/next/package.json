@@ -1,7 +1,7 @@
 {
-  "name": "@rewordlabs/next",
-  "description": "Reword for Next.js",
-  "version": "0.5.0",
+  "name": "@tsmu/next",
+  "description": "Tsmu for Next.js",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
@@ -36,10 +36,10 @@
     }
   },
   "dependencies": {
-    "@rewordlabs/react": "workspace:*"
+    "@tsmu/react": "workspace:*"
   },
   "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
+    "@tsmu/types": "workspace:*"
   },
   "peerDependencies": {
     "next": "^13.4.0"

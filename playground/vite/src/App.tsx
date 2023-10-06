@@ -1,4 +1,4 @@
-import { tx } from './reword'
+import { ts } from './tsmu'
 import { Suspense } from 'react'
 
 export default function App() {
@@ -6,10 +6,10 @@ export default function App() {
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div>
         <div className='messages'>
-          <p>{tx`Testing translators!`}</p>
-          <p>{tx`Hello`}</p>
-          <p>{tx`I am ${[new Date(), 'date']}!`}</p>
-          <p>{tx`I'm  sure what is this`}</p>
+          <p>{ts`Testing translators!`}</p>
+          <p>{ts`Hello`}</p>
+          <p>{ts`I am ${[new Date(), 'date']}!`}</p>
+          <p>{ts`I'm  sure what is this`}</p>
         </div>
 
         {/* <div className={'buttons'}>

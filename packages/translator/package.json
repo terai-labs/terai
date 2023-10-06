@@ -1,0 +1,41 @@
+{
+  "name": "@tsmu/translator",
+  "description": "Code translator for Tsmu",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "tsup --format=esm,cjs --no-dts --watch",
+    "build": "tsup"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./translators": {
+      "types": "./dist/translators/index.d.ts",
+      "require": "./dist/translators/index.js",
+      "import": "./dist/translators/index.mjs"
+    }
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^8.0.2",
+    "@tsmu/runtime": "workspace:*",
+    "@tsmu/utils": "workspace:*",
+    "openai": "^4.11.1"
+  },
+  "devDependencies": {
+    "@tsmu/types": "workspace:*"
+  }
+}

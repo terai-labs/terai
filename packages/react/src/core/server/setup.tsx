@@ -1,12 +1,12 @@
 // Dependencies
-import { createFormat } from '@rewordlabs/formatter'
-import { createTx } from '@rewordlabs/tx'
+import { createFormat } from '@tsmu/formatter'
+import { createTs } from '@tsmu/ts'
 import { SsrText } from './ssr-text'
 
 // Types
 import type {
   SetupReactOptions,
-  TxReactRenderProps,
+  TsReactRenderProps,
   CreateSetupOptions
 } from '../types'
 
@@ -19,7 +19,7 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     format = {}
   }: SetupReactOptions) {
     const getFormat = createFormat(getLocale)
-    const tx = createTx<JSX.Element, TxReactRenderProps>({
+    const ts = createTs<JSX.Element, TsReactRenderProps>({
       render: props => {
         return (
           // @ts-ignore
@@ -42,7 +42,7 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     })
 
     return {
-      tx,
+      ts,
       getFormat
     }
   }

@@ -5,7 +5,7 @@ import { IntlMessageFormat } from 'intl-messageformat'
 
 // Types
 import type { ReactNode } from 'react'
-import type { Locale } from '@rewordlabs/types'
+import type { Locale } from '@tsmu/types'
 
 export type InterpolateComponents = Record<
   string,

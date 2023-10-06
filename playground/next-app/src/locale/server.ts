@@ -1,5 +1,5 @@
-import { setupServer } from '@rewordlabs/next/server'
+import { setupServer } from '@tsmu/next/server'
 
-export const { tx } = setupServer({
+export const { ts } = setupServer({
   loader: (locale: string, id: string) => import(`./${locale}/${id}.json`)
 })

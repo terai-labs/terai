@@ -1,0 +1,33 @@
+{
+  "name": "@tsmu/runtime",
+  "version": "0.0.1",
+  "description": "The tsmu Node library",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Hugo Corta <corta.hugo@gmail.com>",
+  "scripts": {
+    "dev": "tsup --format=esm,cjs --no-dts --watch",
+    "build": "tsup"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tsmu/logger": "workspace:*",
+    "bundle-n-require": "^1.0.1",
+    "chokidar": "^3.5.3",
+    "fast-glob": "^3.3.1",
+    "fs-extra": "^11.1.1",
+    "look-it-up": "^2.1.0",
+    "outdent": "^0.8.0",
+    "pathe": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.2"
+  }
+}

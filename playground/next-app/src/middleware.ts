@@ -1,4 +1,4 @@
-import { createMiddleware } from '@rewordlabs/next'
+import { createMiddleware } from '@tsmu/next'
 
 export const middleware = createMiddleware(['en', 'es'], 'en')
 

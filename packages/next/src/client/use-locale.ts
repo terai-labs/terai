@@ -1,6 +1,6 @@
 import { useParams } from 'next/navigation'
 import { LOCALE_SEGMENT_NAME } from '../constants'
-import type { Locale } from '@rewordlabs/types'
+import type { Locale } from '@tsmu/types'
 
 export function useLocale(): string {
   let locale

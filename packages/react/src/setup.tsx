@@ -3,7 +3,7 @@ import { observable } from '@legendapp/state'
 import { createSetupClient } from './core/client'
 
 // Types
-import type { Locale } from '@rewordlabs/types'
+import type { Locale } from '@tsmu/types'
 import type { SetupClientOptions } from './core/client'
 
 export const setup = (options: SetupClientOptions) => {

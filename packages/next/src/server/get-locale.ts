@@ -5,7 +5,7 @@ import { cookies, headers } from 'next/headers'
 import { LOCALE_COOKIE, LOCALE_HEADER } from '../constants'
 
 // Types
-import type { Locale } from '@rewordlabs/types'
+import type { Locale } from '@tsmu/types'
 
 export const getLocale = (): Locale => {
   const localeFromHeaders = headers().get(LOCALE_HEADER)

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { tx } from '@/locale/client'
+import { ts } from '@/locale/client'
 import { Suspense } from 'react'
 
 export default function Home() {
@@ -9,9 +9,9 @@ export default function Home() {
 
   return (
     <Suspense fallback={'Loading client...'}>
-      <p>{tx`Hello, ${name}!`}</p>
-      <p>{tx`You haven't checked you email since ${new Date()}`}</p>
-      <p>{tx`You got ${10000} messages in your mail inbox`}</p>
+      <p>{ts`Hello, ${name}!`}</p>
+      <p>{ts`You haven't checked you email since ${new Date()}`}</p>
+      <p>{ts`You got ${10000} messages in your mail inbox`}</p>
 
       <Link href={'/'}>To Home</Link>
     </Suspense>

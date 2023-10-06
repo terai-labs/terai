@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rewordlabs/next": "workspace:*",
-    "@rewordlabs/dev": "workspace:*"
+    "@tsmu/next": "workspace:*",
+    "@tsmu/dev": "workspace:*"
   }
 }

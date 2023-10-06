@@ -1,9 +1,9 @@
 // Dependencies
 import { getLocale } from './get-locale'
-import { createSetupServer } from '@rewordlabs/react/core/server'
+import { createSetupServer } from '@tsmu/react/core/server'
 
 // Types
-import type { SetupServer } from '@rewordlabs/react/core/server'
+import type { SetupServer } from '@tsmu/react/core/server'
 
 export const setupServer: SetupServer = createSetupServer({
   getLocale

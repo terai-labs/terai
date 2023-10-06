@@ -1,11 +1,11 @@
 // Dependencies
-import { createTx, type TxRenderProps } from '@rewordlabs/tx'
+import { createTs, type TsRenderProps } from '@tsmu/ts'
 import { observable } from '@legendapp/state'
-import { createFormat, interpolate } from '@rewordlabs/formatter'
+import { createFormat, interpolate } from '@tsmu/formatter'
 
 // Types
-import type { Dictionaries, Loader, Locale } from '@rewordlabs/types'
-import type { InterpolateOptions } from '@rewordlabs/formatter'
+import type { Dictionaries, Loader, Locale } from '@tsmu/types'
+import type { InterpolateOptions } from '@tsmu/formatter'
 
 export type SetupOptions = InterpolateOptions & {
   getLocale: () => Locale
@@ -13,7 +13,7 @@ export type SetupOptions = InterpolateOptions & {
   loader: Loader
 }
 
-type TxNodeRenderProps = TxRenderProps & { locale: Locale }
+type TsNodeRenderProps = TsRenderProps & { locale: Locale }
 
 export function setup({
   loader,
@@ -23,7 +23,7 @@ export function setup({
 }: SetupOptions) {
   const state$ = observable<Dictionaries>({})
   const getFormat = createFormat(getLocale)
-  const tx = createTx<string, TxNodeRenderProps>({
+  const ts = createTs<string, TsNodeRenderProps>({
     render: ({ id, variables, rawMessage, ...props }) => {
       const locale = props.locale ?? getLocale()
       const message = state$?.[locale]?.[id]?.get() ?? rawMessage
@@ -49,7 +49,7 @@ export function setup({
   })
 
   return {
-    tx,
+    ts,
     getFormat
   }
 }

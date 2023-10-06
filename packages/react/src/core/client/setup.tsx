@@ -2,13 +2,13 @@
 
 // Dependencies
 import 'client-only'
-import { createFormat } from '@rewordlabs/formatter'
-import { createTx } from '@rewordlabs/tx'
+import { createFormat } from '@tsmu/formatter'
+import { createTs } from '@tsmu/ts'
 import { CsrText } from './csr-text'
 
 // Types
 import type { CreateSetupOptions } from '../types'
-import type { SetupReactOptions, TxReactRenderProps } from '../types'
+import type { SetupReactOptions, TsReactRenderProps } from '../types'
 
 export type SetupClient = ReturnType<typeof createSetupClient>
 export type SetupClientOptions = SetupReactOptions
@@ -20,7 +20,7 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
     format = {}
   }: SetupReactOptions) {
     const useFormat = createFormat(getLocale)
-    const tx = createTx<JSX.Element, TxReactRenderProps>({
+    const ts = createTs<JSX.Element, TsReactRenderProps>({
       render: props => {
         return (
           <CsrText
@@ -41,7 +41,7 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
     })
 
     return {
-      tx,
+      ts,
       useFormat
     }
   }

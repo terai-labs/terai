@@ -1,7 +1,7 @@
 {
-  "name": "@rewordlabs/react",
-  "description": "Reword for React",
-  "version": "0.5.0",
+  "name": "@tsmu/react",
+  "description": "Tsmu for React",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
@@ -42,15 +42,15 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.11.3",
-    "@rewordlabs/formatter": "workspace:*",
-    "@rewordlabs/tx": "workspace:*",
-    "@rewordlabs/utils": "workspace:*",
+    "@tsmu/formatter": "workspace:*",
+    "@tsmu/ts": "workspace:*",
+    "@tsmu/utils": "workspace:*",
     "intl-messageformat": "^10.5.3",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@rewordlabs/types": "workspace:*"
+    "@tsmu/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "canary"

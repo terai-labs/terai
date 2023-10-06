@@ -47,10 +47,10 @@ body:
       description: 'The JS framework used in your project. Specify JS/TS.'
       placeholder: 'React (TS)'
   - type: 'input'
-    id: 'reword-version'
+    id: 'tsmu-version'
     attributes:
-      label: 'Reword Version'
-      description: 'The version of Reword you use.'
+      label: 'Tsmu Version'
+      description: 'The version of Tsmu you use.'
       placeholder: 'x.x.x'
     validations:
       required: true
