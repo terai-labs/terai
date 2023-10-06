@@ -2,10 +2,6 @@
   "name": "@tsmu/next",
   "description": "Tsmu for Next.js",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "require": "dist/index.js",
-  "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
@@ -23,6 +19,16 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
+    },
+    "./middleware": {
+      "types": "./dist/middleware/index.d.ts",
+      "require": "./dist/middleware/index.js",
+      "import": "./dist/middleware/index.mjs"
+    },
+    "./link": {
+      "types": "./dist/link/index.d.ts",
+      "require": "./dist/link/index.js",
+      "import": "./dist/link/index.mjs"
     },
     "./client": {
       "types": "./dist/client/index.d.ts",
@@ -42,6 +48,7 @@
     "@tsmu/types": "workspace:*"
   },
   "peerDependencies": {
-    "next": "^13.4.0"
+    "next": "^13.4.0",
+    "react": "18.x"
   }
 }

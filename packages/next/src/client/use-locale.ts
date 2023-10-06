@@ -1,14 +1,27 @@
+'use client'
+
+// Dependencies
 import { useParams } from 'next/navigation'
-import { LOCALE_SEGMENT_NAME } from '../constants'
+
+// Constants
+import { LOCALE_COOKIE, LOCALE_SEGMENT_NAME } from '../constants'
+
+// Types
 import type { Locale } from '@tsmu/types'
 
 export function useLocale(): string {
-  let locale
-  const params = useParams() as ReturnType<typeof useParams> | null
+  const params = useParams()
+  const paramsLocale = params[LOCALE_SEGMENT_NAME] as Locale
+  const cookieLocale = getCookieLocale()
 
-  if (typeof params?.[LOCALE_SEGMENT_NAME] === 'string') {
-    return params[LOCALE_SEGMENT_NAME]
-  }
+  return cookieLocale ?? paramsLocale
+}
 
-  return (locale ?? 'es') as Locale
+const getCookieLocale = () => {
+  if (typeof document === 'undefined') return null
+
+  return document.cookie
+    .split('; ')
+    .find(row => row.startsWith(`${LOCALE_COOKIE}=`))
+    ?.split('=')[1] as Locale
 }

@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "index.ts", "client.ts", "server.ts"],
+  "include": ["src", "middleware.ts", "client.ts", "server.ts"],
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo"
   }

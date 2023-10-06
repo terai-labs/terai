@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Constants
-import { LOCALE_COOKIE, LOCALE_HEADER } from './constants'
+import { LOCALE_COOKIE, LOCALE_HEADER } from '../constants'
 
 // Types
 import type { Locale } from '@tsmu/types'
@@ -13,7 +13,7 @@ type CreateMiddlewareOptions = {
    *
    * **redirect**: `https://example.com/products` -> *redirect* to `https://example.com/en/products` -> client sees the locale in the url
    *
-   * **rewrite**: `https://example.com/products` -> *rewrite* to `https://example.com/en/products` -> client doesn't see the locale in the url
+   * **rewrite**: `https://example.com/products` -> *rewrite* to `https://example.com/products` -> client doesn't see the locale in the url
    *
    * @default redirect
    */

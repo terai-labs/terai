@@ -1,23 +1,16 @@
-import Link from 'next/link'
+import { Link } from '@tsmu/next/link'
 
 export default async function Home() {
   return (
     <div>
       <h1>Next.js demo</h1>
-      <div>
-        <Link href={'/en/server'}>{'Server in English'}</Link>
-        <Link href={'/en/client'}>{'Client in English'}</Link>
-      </div>
-      <div>
-        <Link href={'/es/server'}>{'Server in Spanish'}</Link>
-        <Link href={'/es/client'}>{'Client in Spanish'}</Link>
-      </div>
-
-      <div>
-        <Link prefetch={false} href={'/es/'}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Link href={'/server'}>{'Server in English'}</Link>
+        <Link href={'/client'}>{'Client in English'}</Link>
+        <Link locale='es' prefetch={false} href={'/'}>
           {'es'}
         </Link>
-        <Link prefetch={false} href={'/en/'}>
+        <Link locale={'en'} prefetch={false} href={'/'}>
           {'en'}
         </Link>
       </div>

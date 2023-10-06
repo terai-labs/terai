@@ -21,13 +21,8 @@ export default function RootLayout({
     <html lang={locale}>
       <body className={inter.className}>
         <p>Next.js example</p>
-        <Suspense fallback={<SuspenseFallback />}>{children}</Suspense>
+        <Suspense fallback={'Loading...'}>{children}</Suspense>
       </body>
     </html>
   )
-}
-
-function SuspenseFallback() {
-  console.log('SuspenseFallback')
-  return 'Loading...'
 }

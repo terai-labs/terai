@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@tsmu/next/link'
 import { ts } from '@/locale/server'
 
 export default async function Home() {

@@ -8,16 +8,16 @@ import { LOCALE_COOKIE, LOCALE_HEADER } from '../constants'
 import type { Locale } from '@tsmu/types'
 
 export const getLocale = (): Locale => {
-  const localeFromHeaders = headers().get(LOCALE_HEADER)
-
-  if (localeFromHeaders) {
-    return localeFromHeaders as Locale
-  }
-
   const localeFromCookies = cookies().get(LOCALE_COOKIE)?.value
 
   if (localeFromCookies) {
     return localeFromCookies as Locale
+  }
+
+  const localeFromHeaders = headers().get(LOCALE_HEADER)
+
+  if (localeFromHeaders) {
+    return localeFromHeaders as Locale
   }
 
   console.error('Could not get the locale from the headers or cookies.')
