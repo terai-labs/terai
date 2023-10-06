@@ -1,6 +1,6 @@
 {
   "name": "@tsmu/dev",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The user facing package for Tsmu",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
