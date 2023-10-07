@@ -42,7 +42,8 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
 
     return {
       ts,
-      useFormat
+      useFormat,
+      useLocale: getLocale
     }
   }
 }

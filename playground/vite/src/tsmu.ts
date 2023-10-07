@@ -1,8 +1,8 @@
 import { setup } from '@tsmu/react'
 
 export const { ts, setLocale, useFormat, useChunk } = setup({
-  // locale: 'en',
-  // persist: false,
+  defaultLocale: 'en',
+  persist: true,
   loader: (locale: string, chunkId: string) =>
     import(`./locale/${locale}/${chunkId}.json`)
 })

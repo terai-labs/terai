@@ -1,9 +1,7 @@
-import { ts, useChunk } from './tsmu'
+import { ts } from './tsmu'
 import { Suspense } from 'react'
 
 export function Button() {
-  useChunk('button')
-
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div className='messages'>
