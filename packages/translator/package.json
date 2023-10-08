@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/translator",
-  "description": "Code translator for koi18n",
+  "description": "koi18n core translator",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

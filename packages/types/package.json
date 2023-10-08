@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/types",
   "version": "0.0.0",
-  "description": "Types definitions for koi18n",
+  "description": "koi18n types definitions",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

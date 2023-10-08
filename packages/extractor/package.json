@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/extractor",
-  "description": "Dictionary extractor for koi18n",
+  "description": "koi18n core extractor",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/generator",
-  "description": "Code generator for koi18n",
+  "description": "koi18n code generator",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
