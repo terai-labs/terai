@@ -3,8 +3,8 @@
 // Dependencies
 import { forwardRef } from 'react'
 import { useLocale } from '../client/use-locale'
-import { hasPathnamePrefixed, localizePathname } from '../utils'
-import { usePathname } from 'next/navigation'
+// import { hasPathnamePrefixed, localizePathname } from '../utils'
+// import { usePathname } from 'next/navigation'
 import NextLink from 'next/link'
 
 // Types
@@ -21,11 +21,13 @@ export const Link = forwardRef(
     ref: Props['ref']
   ) => {
     const currentLocale = useLocale()
-    const params = usePathname()
+    // const params = usePathname()
     const isChangingLocale = localeProp !== currentLocale
     const locale = localeProp ?? currentLocale
-    const hasPrefix = hasPathnamePrefixed(locale, params)
-    const localizedHref = hasPrefix ? localizePathname(locale, params) : href
+
+    const localizedHref = `/${locale}/${href}`
+    // const hasPrefix = hasPathnamePrefixed(locale, params)
+    // const localizedHref = hasPrefix ? localizePathname(locale, params) : href
 
     if (isChangingLocale) {
       if (prefetch && process.env.NODE_ENV !== 'production') {

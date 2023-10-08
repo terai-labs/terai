@@ -7,6 +7,7 @@ import { interpolate } from '@koi18n/formatter'
 
 // Types
 import type { TextProps } from '../types'
+import { useCanRender } from './use-can-render'
 
 export function CsrText({
   id,
@@ -16,6 +17,7 @@ export function CsrText({
   rawMessage,
   getLocale
 }: TextProps) {
+  const canRender = useCanRender()
   const locale = getLocale()
   // const dictionary = use(loader(locale, locale).then(mod => mod.default))
   const message =
@@ -32,6 +34,8 @@ export function CsrText({
     },
     { format }
   )
+
+  if (!canRender) return null
 
   return <>{interpolatedMessage}</>
 }

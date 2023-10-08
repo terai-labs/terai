@@ -7,12 +7,12 @@
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r --parallel --filter=./{packages}/** dev",
-    "build-fast": "pnpm -r --parallel --filter=./{packages}/** build-fast",
-    "build": "pnpm -r --filter=./{packages}/** build",
+    "dev": "pnpm -r --parallel --filter=./packages/** dev",
+    "build-fast": "pnpm -r --parallel --filter=./packages/** build-fast",
+    "build": "pnpm -r --filter=./packages/** build",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "update:deps": "pnpm up && pnpm -r --filter=./{packages}/** upgrade",
+    "update:deps": "pnpm up && pnpm -r --filter=./packages/** upgrade",
     "clean": "pnpm -r --parallel exec rimraf node_modules dist CHANGELOG.md && rimraf node_modules",
     "fix": "pnpm lint:fix . && pnpm format:fix .",
     "lint": "eslint --cache",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "next": "latest",
+    "next": "^13.5.4",
     "outdent": "^0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
