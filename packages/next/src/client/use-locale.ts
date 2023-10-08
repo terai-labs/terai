@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation'
 import { LOCALE_COOKIE, LOCALE_SEGMENT_NAME } from '../constants'
 
 // Types
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 
 export function useLocale(): string {
   const params = useParams()

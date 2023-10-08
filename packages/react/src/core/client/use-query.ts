@@ -11,7 +11,7 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
-import type { Dictionary } from '@tsmu/types'
+import type { Dictionary } from '@koi18n/types'
 
 configureObservablePersistence({
   persistLocal: ObservablePersistLocalStorage

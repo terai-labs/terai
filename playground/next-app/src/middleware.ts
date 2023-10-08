@@ -1,4 +1,4 @@
-import { createMiddleware } from '@tsmu/next/middleware'
+import { createMiddleware } from '@koi18n/next/middleware'
 
 export const middleware = createMiddleware(['en', 'es'], 'en', {
   // urlMappingStrategy: 'rewrite'

@@ -1,14 +1,14 @@
 {
-  "name": "@tsmu/dev",
-  "version": "0.0.2",
-  "description": "The user facing package for Tsmu",
+  "name": "@koi18n/dev",
+  "version": "0.0.0",
+  "description": "The user facing package for koi18n",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "private": false,
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
-    "tsmu": "bin.js"
+    "koi": "bin.js"
   },
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
@@ -32,10 +32,10 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^3.2.0",
-    "@tsmu/extractor": "workspace:*",
-    "@tsmu/runtime": "workspace:*",
-    "@tsmu/translator": "workspace:*",
-    "@tsmu/utils": "workspace:*",
+    "@koi18n/extractor": "workspace:*",
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/translator": "workspace:*",
+    "@koi18n/utils": "workspace:*",
     "cac": "^6.7.14",
     "dotenv": "^16.3.1",
     "inquirer": "^9.2.11",
@@ -44,9 +44,9 @@
     "preferred-pm": "^3.1.2"
   },
   "devDependencies": {
-    "@tsmu/generator": "workspace:*",
-    "@tsmu/logger": "workspace:*",
-    "@tsmu/types": "workspace:*",
+    "@koi18n/generator": "workspace:*",
+    "@koi18n/logger": "workspace:*",
+    "@koi18n/types": "workspace:*",
     "@types/update-notifier": "^6.0.5",
     "update-notifier": "^6.0.2"
   }

@@ -8,7 +8,7 @@ import {
 } from './index'
 
 // Types
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 import type {
   FormatDateProps,
   FormatDisplayNameProps,

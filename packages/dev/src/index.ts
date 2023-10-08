@@ -1,7 +1,7 @@
-import type { Config } from '@tsmu/types'
+import type { Config } from '@koi18n/types'
 
 export function defineConfig(config: Config) {
   return config
 }
 
-export * from '@tsmu/translator/translators'
+export * from '@koi18n/translator/translators'

@@ -1,4 +1,4 @@
-import { defineConfig, createChatGptTranslator } from '@tsmu/dev'
+import { defineConfig, createChatGptTranslator } from '@koi18n/dev'
 
 const translator = createChatGptTranslator({
   apiKey: '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'

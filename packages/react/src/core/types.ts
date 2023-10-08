@@ -1,8 +1,8 @@
 // Types
 import type { InterpolateComponents } from './interpolate'
-import type { InterpolateOptions } from '@tsmu/formatter'
-import type { TsRenderProps } from '@tsmu/ts'
-import type { Loader, Locale } from '@tsmu/types'
+import type { InterpolateOptions } from '@koi18n/formatter'
+import type { TsRenderProps } from '@koi18n/ts'
+import type { Loader, Locale } from '@koi18n/types'
 
 export type CreateSetupOptions = {
   getLocale: () => Locale

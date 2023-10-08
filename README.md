@@ -1,3 +1,3 @@
-# Tsmu
+# koi18n
 
-A modern localization framework for JS
+A modern localization framework for JavaScript

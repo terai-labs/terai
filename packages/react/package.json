@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/react",
-  "description": "Tsmu for React",
-  "version": "0.0.2",
+  "name": "@koi18n/react",
+  "description": "koi18n for React",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
@@ -42,15 +42,15 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.11.3",
-    "@tsmu/formatter": "workspace:*",
-    "@tsmu/ts": "workspace:*",
-    "@tsmu/utils": "workspace:*",
+    "@koi18n/formatter": "workspace:*",
+    "@koi18n/ts": "workspace:*",
+    "@koi18n/utils": "workspace:*",
     "intl-messageformat": "^10.5.3",
     "client-only": "^0.0.1",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "canary"

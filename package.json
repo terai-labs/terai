@@ -1,8 +1,8 @@
 {
-  "name": "tsmu",
+  "name": "koi18n",
   "version": "0.0.0",
   "private": true,
-  "description": "The localization framework for developers",
+  "description": "A modern localization framework for JavaScript",
   "keywords": [],
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "update": "pnpm -r --filter=./{packages,core}/** upgrade",
-    "clean": "pnpm -r --parallel exec rimraf node_modules dist && rimraf node_modules",
+    "clean": "pnpm -r --parallel exec rimraf node_modules dist CHANGELOG.md && rimraf node_modules",
     "fix": "pnpm lint:fix . && pnpm format:fix .",
     "lint": "eslint --cache",
     "lint:check": "pnpm lint",
@@ -41,7 +41,6 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
-    "@tsmu/types": "workspace:*",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",

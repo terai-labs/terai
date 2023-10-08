@@ -9,7 +9,7 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 import type { SetupClientOptions } from './core/client'
 
 enableReactUse()

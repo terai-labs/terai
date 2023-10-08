@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/formatter",
-  "description": "Code formatter for Tsmu",
-  "version": "0.0.2",
+  "name": "@koi18n/formatter",
+  "description": "Code formatter for koi18n",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,10 +18,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsmu/runtime": "workspace:*",
-    "@tsmu/utils": "workspace:*"
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/utils": "workspace:*"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   }
 }

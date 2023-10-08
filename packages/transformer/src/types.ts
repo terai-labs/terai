@@ -1,4 +1,4 @@
-import type { ExtractedMessage } from '@tsmu/types'
+import type { ExtractedMessage } from '@koi18n/types'
 
 export type TransformerOptions = {
   cwd: string

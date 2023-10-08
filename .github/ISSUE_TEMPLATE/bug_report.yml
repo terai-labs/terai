@@ -47,10 +47,10 @@ body:
       description: 'The JS framework used in your project. Specify JS/TS.'
       placeholder: 'React (TS)'
   - type: 'input'
-    id: 'tsmu-version'
+    id: 'koi18n-version'
     attributes:
-      label: 'Tsmu Version'
-      description: 'The version of Tsmu you use.'
+      label: 'koi18n Version'
+      description: 'The version of koi18n you use.'
       placeholder: 'x.x.x'
     validations:
       required: true

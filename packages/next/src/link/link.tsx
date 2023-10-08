@@ -9,7 +9,7 @@ import NextLink from 'next/link'
 
 // Types
 import type { ComponentProps } from 'react'
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 
 type Props = Omit<ComponentProps<typeof NextLink>, 'locale'> & {
   locale: Locale

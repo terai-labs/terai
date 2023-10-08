@@ -1,4 +1,4 @@
-import type { ExtractedMessages, Dictionary } from '@tsmu/types'
+import type { ExtractedMessages, Dictionary } from '@koi18n/types'
 
 export function toDictionary(extractedMessages: ExtractedMessages): Dictionary {
   const dictionary: Dictionary = {}

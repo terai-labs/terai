@@ -1,4 +1,4 @@
-import { setLocale, ts, useFormat } from './tsmu'
+import { setLocale, ts, useFormat } from './koi18n'
 import { Suspense, useState } from 'react'
 import { Button } from './button'
 

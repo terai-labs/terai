@@ -1,14 +1,14 @@
 // Dependencies
 import { debounce } from 'perfect-debounce'
-import { extract } from '@tsmu/extractor'
-import { generate } from '@tsmu/generator'
-import { loadConfig, runtime } from '@tsmu/runtime'
-import { logger } from '@tsmu/logger'
-import { toDictionary, stringify, groupDictionaryByChunks } from '@tsmu/utils'
+import { extract } from '@koi18n/extractor'
+import { generate } from '@koi18n/generator'
+import { loadConfig, runtime } from '@koi18n/runtime'
+import { logger } from '@koi18n/logger'
+import { toDictionary, stringify, groupDictionaryByChunks } from '@koi18n/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { BuildManifest } from '@tsmu/types'
+import type { BuildManifest } from '@koi18n/types'
 
 export type ExtractOptions = {
   cwd: string
@@ -42,7 +42,7 @@ export async function extractCmd(options: ExtractOptions) {
   )
   const manifestPath = runtime.path.resolve(
     outDirPath,
-    '.tsmu',
+    '.koi18n',
     `build-manifest.json`
   )
 

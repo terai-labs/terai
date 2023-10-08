@@ -1,11 +1,11 @@
 // Dependencies
 import { findTsConfig } from './find-tsconfig'
-import { logger } from '@tsmu/logger'
+import { logger } from '@koi18n/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 
 // Types
-import type { Config } from '@tsmu/types'
+import type { Config } from '@koi18n/types'
 
 type SetupOptions = Pick<Config, 'outDir'> & {
   cwd: string
@@ -31,9 +31,9 @@ function getTemplate(
       {
         fileName: `client.${isTs ? 'ts' : 'js'}`,
         content: outdent`
-        import { setupReword } from '@tsmu/react/client'
+        import { setupReword } from '@koi18n/react/client'
 
-        export const tsmu = setupReword({
+        export const koi18n = setupReword({
           locale: 'en',
           loader: (locale: string, id: string) =>
             fetch(\`./locale/\${locale}/\${id}.json\`)
@@ -49,7 +49,7 @@ function getTemplate(
       {
         fileName: `client.${isTs ? 'ts' : 'js'}`,
         content: outdent`
-        import { setupClient } from '@tsmu/next'
+        import { setupClient } from '@koi18n/next'
 
         export const { ts } = setupClient({
           locale: 'en',
@@ -63,7 +63,7 @@ function getTemplate(
       {
         fileName: `server.${isTs ? 'ts' : 'js'}`,
         content: outdent`
-        import { setupServer } from '@tsmu/next'
+        import { setupServer } from '@koi18n/next'
 
         export const { ts } = setupServer({
           loader: (locale: string, id: string) =>
@@ -79,9 +79,9 @@ function getTemplate(
     {
       fileName: `client.${isTs ? 'ts' : 'js'}`,
       content: outdent`
-        import { setupReword } from '@tsmu/react/client'
+        import { setupReword } from '@koi18n/react/client'
 
-        export const tsmu = setupReword({
+        export const koi18n = setupReword({
           locale: 'en',
           loader: (locale: string, id: string) =>
             fetch(\`./locale/\${locale}/\${id}.json\`)

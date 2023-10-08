@@ -1,8 +1,8 @@
 // Dependencies
-import { runtime } from '@tsmu/runtime'
+import { runtime } from '@koi18n/runtime'
 
 // Types
-import type { Config, Locale, Dictionaries } from '@tsmu/types'
+import type { Config, Locale, Dictionaries } from '@koi18n/types'
 
 type GenerateOptions = {
   cwd: string

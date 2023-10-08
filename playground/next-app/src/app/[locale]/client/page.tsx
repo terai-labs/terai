@@ -1,10 +1,10 @@
 'use client'
 
-import { Link } from '@tsmu/next/link'
+import { Link } from '@koi18n/next/link'
 import { ts } from '@/locale/client'
 import { Suspense } from 'react'
-const { useRouter, usePathname, useLocale } = require('@tsmu/next/client')
-// import { useRouter, usePathname, useLocale } from '@tsmu/next/client'
+const { useRouter, usePathname, useLocale } = require('@koi18n/next/client')
+// import { useRouter, usePathname, useLocale } from '@koi18n/next/client'
 
 export default function Home() {
   const name = 'Hugo'

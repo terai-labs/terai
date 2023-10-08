@@ -8,7 +8,7 @@ import { formatDisplayName } from './display-names'
 // Types
 import type { FormatDisplayNameOptions } from './display-names'
 import type { GlobalFormat, DynamicValue } from './types'
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 
 export type InterpolateProps = {
   message: string

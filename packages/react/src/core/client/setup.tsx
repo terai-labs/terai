@@ -2,8 +2,8 @@
 
 // Dependencies
 import 'client-only'
-import { createFormat } from '@tsmu/formatter'
-import { createTs } from '@tsmu/ts'
+import { createFormat } from '@koi18n/formatter'
+import { createTs } from '@koi18n/ts'
 import { CsrText } from './csr-text'
 
 // Types

@@ -1,4 +1,4 @@
-import { setupServer } from '@tsmu/next/server'
+import { setupServer } from '@koi18n/next/server'
 
 export const { ts } = setupServer({
   loader: (locale: string, id: string) => import(`./${locale}/${id}.json`)

@@ -1,13 +1,13 @@
 // Dependencies
-import { generate } from '@tsmu/generator'
-import { loadConfig, runtime } from '@tsmu/runtime'
-import { logger } from '@tsmu/logger'
-import { translate } from '@tsmu/translator'
-import { merge, stringify, groupDictionaryByChunks } from '@tsmu/utils'
+import { generate } from '@koi18n/generator'
+import { loadConfig, runtime } from '@koi18n/runtime'
+import { logger } from '@koi18n/logger'
+import { translate } from '@koi18n/translator'
+import { merge, stringify, groupDictionaryByChunks } from '@koi18n/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { Dictionary, BuildManifest } from '@tsmu/types'
+import type { Dictionary, BuildManifest } from '@koi18n/types'
 
 export type TranslateOptions = {
   cwd: string
@@ -27,7 +27,7 @@ export async function translateCmd({ cwd }: TranslateOptions) {
   const config = await loadConfig({ cwd })
 
   const outDirPath = runtime.path.resolve(cwd, config.outDir)
-  const tmuDirPath = runtime.path.resolve(cwd, config.outDir, '.tsmu')
+  const tmuDirPath = runtime.path.resolve(cwd, config.outDir, '.koi18n')
   const manifestPath = runtime.path.resolve(tmuDirPath, 'build-manifest.json')
   const existsManifest = runtime.fs.exists(manifestPath)
   if (!existsManifest) {

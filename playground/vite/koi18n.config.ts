@@ -1,4 +1,4 @@
-import { defineConfig, createGoogleCloudTranslator } from '@tsmu/dev'
+import { defineConfig, createGoogleCloudTranslator } from '@koi18n/dev'
 
 const translator = createGoogleCloudTranslator({
   projectId: 'reword-399419',

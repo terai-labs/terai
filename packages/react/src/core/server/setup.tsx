@@ -1,6 +1,6 @@
 // Dependencies
-import { createFormat } from '@tsmu/formatter'
-import { createTs } from '@tsmu/ts'
+import { createFormat } from '@koi18n/formatter'
+import { createTs } from '@koi18n/ts'
 import { SsrText } from './ssr-text'
 
 // Types

@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/node",
-  "description": "Tsmu for Node",
-  "version": "0.0.2",
+  "name": "@koi18n/node",
+  "description": "koi18n for Node",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@legendapp/state": "^1.11.3",
-    "@tsmu/formatter": "workspace:*",
-    "@tsmu/ts": "workspace:*"
+    "@koi18n/formatter": "workspace:*",
+    "@koi18n/ts": "workspace:*"
   },
   "devDependencies": {}
 }

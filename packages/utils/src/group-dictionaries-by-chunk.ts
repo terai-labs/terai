@@ -3,7 +3,7 @@ import type {
   BuildManifest,
   Locale,
   Dictionaries
-} from '@tsmu/types'
+} from '@koi18n/types'
 
 export function groupDictionaryByChunks(
   dictionary: Dictionary,

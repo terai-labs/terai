@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/ts",
-  "description": "Translation fn for Tsmu",
-  "version": "0.0.2",
+  "name": "@koi18n/ts",
+  "description": "Translation fn for koi18n",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,10 +18,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsmu/utils": "workspace:*"
+    "@koi18n/utils": "workspace:*"
   },
   "devDependencies": {
-    "@tsmu/formatter": "workspace:*",
-    "@tsmu/types": "workspace:*"
+    "@koi18n/formatter": "workspace:*",
+    "@koi18n/types": "workspace:*"
   }
 }

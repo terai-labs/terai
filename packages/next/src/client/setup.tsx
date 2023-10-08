@@ -2,10 +2,10 @@
 
 // Dependencies
 import { useLocale } from './use-locale'
-import { createSetupClient } from '@tsmu/react/core/client'
+import { createSetupClient } from '@koi18n/react/core/client'
 
 // Types
-import type { SetupClient } from '@tsmu/react/core/client'
+import type { SetupClient } from '@koi18n/react/core/client'
 
 export const setupClient: SetupClient = createSetupClient({
   getLocale: useLocale

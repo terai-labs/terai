@@ -3,7 +3,7 @@
 import 'server-only'
 
 // Dependencies
-import { interpolate } from '@tsmu/formatter'
+import { interpolate } from '@koi18n/formatter'
 
 // Types
 import type { TextProps } from '../types'

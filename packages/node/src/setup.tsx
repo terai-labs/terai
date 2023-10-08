@@ -1,11 +1,11 @@
 // Dependencies
-import { createTs, type TsRenderProps } from '@tsmu/ts'
+import { createTs, type TsRenderProps } from '@koi18n/ts'
 import { observable } from '@legendapp/state'
-import { createFormat, interpolate } from '@tsmu/formatter'
+import { createFormat, interpolate } from '@koi18n/formatter'
 
 // Types
-import type { Dictionaries, Loader, Locale } from '@tsmu/types'
-import type { InterpolateOptions } from '@tsmu/formatter'
+import type { Dictionaries, Loader, Locale } from '@koi18n/types'
+import type { InterpolateOptions } from '@koi18n/formatter'
 
 export type SetupOptions = InterpolateOptions & {
   getLocale: () => Locale

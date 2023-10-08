@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/translator",
-  "description": "Code translator for Tsmu",
-  "version": "0.0.2",
+  "name": "@koi18n/translator",
+  "description": "Code translator for koi18n",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^8.0.2",
-    "@tsmu/runtime": "workspace:*",
-    "@tsmu/utils": "workspace:*",
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/utils": "workspace:*",
     "openai": "^4.11.1"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   }
 }

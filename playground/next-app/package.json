@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tsmu/next": "workspace:*",
-    "@tsmu/dev": "workspace:*"
+    "@koi18n/next": "workspace:*",
+    "@koi18n/dev": "workspace:*"
   }
 }

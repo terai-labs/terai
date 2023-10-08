@@ -1,4 +1,4 @@
-import { setup } from '@tsmu/react'
+import { setup } from '@koi18n/react'
 
 export const { ts, setLocale, useFormat, useChunk } = setup({
   defaultLocale: 'en',

@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/next",
-  "description": "Tsmu for Next.js",
-  "version": "0.0.2",
+  "name": "@koi18n/next",
+  "description": "koi18n for Next.js",
+  "version": "0.0.0",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
@@ -42,10 +42,10 @@
     }
   },
   "dependencies": {
-    "@tsmu/react": "workspace:*"
+    "@koi18n/react": "workspace:*"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   },
   "peerDependencies": {
     "next": "^13.4.0",

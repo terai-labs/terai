@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/logger",
-  "version": "0.0.2",
-  "description": "The core tsmu logger",
+  "name": "@koi18n/logger",
+  "version": "0.0.0",
+  "description": "The core koi18n logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

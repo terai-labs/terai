@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/runtime",
-  "version": "0.0.2",
-  "description": "The tsmu Node library",
+  "name": "@koi18n/runtime",
+  "version": "0.0.0",
+  "description": "The koi18n Node library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsmu/logger": "workspace:*",
+    "@koi18n/logger": "workspace:*",
     "bundle-n-require": "^1.0.1",
     "chokidar": "^3.5.3",
     "fast-glob": "^3.3.1",

@@ -5,7 +5,7 @@ import { cookies, headers } from 'next/headers'
 import { LOCALE_COOKIE, LOCALE_HEADER } from '../constants'
 
 // Types
-import type { Locale } from '@tsmu/types'
+import type { Locale } from '@koi18n/types'
 
 export const getLocale = (): Locale => {
   const localeFromCookies = cookies().get(LOCALE_COOKIE)?.value

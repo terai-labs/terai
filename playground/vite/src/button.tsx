@@ -1,4 +1,4 @@
-import { ts } from './tsmu'
+import { ts } from './koi18n'
 import { Suspense } from 'react'
 
 export function Button() {

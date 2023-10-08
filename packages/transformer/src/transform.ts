@@ -1,9 +1,9 @@
 // Dependencies
 import * as ts from 'typescript'
-import { toHash, prepareMessage } from '@tsmu/utils'
+import { toHash, prepareMessage } from '@koi18n/utils'
 
 // Types
-import type { ExtractedMessage } from '@tsmu/types'
+import type { ExtractedMessage } from '@koi18n/types'
 import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts

@@ -1,8 +1,8 @@
 // Dependencies
-import { joinTemplateStrings, prepareMessage, toHash } from '@tsmu/utils'
+import { joinTemplateStrings, prepareMessage, toHash } from '@koi18n/utils'
 
 // Types
-import type { InterpolateOptions, DynamicValue } from '@tsmu/formatter'
+import type { InterpolateOptions, DynamicValue } from '@koi18n/formatter'
 
 export type CreateTsOptions<R, E> = {
   render: (options: E) => R

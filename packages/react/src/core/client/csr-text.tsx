@@ -3,7 +3,7 @@
 // Dependencies
 // import { use } from 'react'
 import { useQuery } from './use-query'
-import { interpolate } from '@tsmu/formatter'
+import { interpolate } from '@koi18n/formatter'
 
 // Types
 import type { TextProps } from '../types'

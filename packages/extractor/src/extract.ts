@@ -1,11 +1,11 @@
 // Dependencies
 import * as ts from 'typescript'
-import { logger } from '@tsmu/logger'
-import { runtime } from '@tsmu/runtime'
-import { transform } from '@tsmu/transformer'
+import { logger } from '@koi18n/logger'
+import { runtime } from '@koi18n/runtime'
+import { transform } from '@koi18n/transformer'
 
 // Types
-import type { ExtractedMessage, ExtractedMessages } from '@tsmu/types'
+import type { ExtractedMessage, ExtractedMessages } from '@koi18n/types'
 
 type ExtractOptions = {
   filesPaths: readonly string[]

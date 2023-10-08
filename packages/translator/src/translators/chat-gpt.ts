@@ -2,7 +2,7 @@
 import OpenAI, { type ClientOptions } from 'openai'
 
 // Types
-import type { Dictionary, Translator } from '@tsmu/types'
+import type { Dictionary, Translator } from '@koi18n/types'
 
 export const createChatGptTranslator = (openaiOptions: ClientOptions) => {
   const openai = new OpenAI(openaiOptions)

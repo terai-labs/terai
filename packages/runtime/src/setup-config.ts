@@ -1,11 +1,11 @@
 // Dependencies
 import { findTsConfig } from './find-tsconfig'
-import { logger } from '@tsmu/logger'
+import { logger } from '@koi18n/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 
 // Types
-import type { Config } from '@tsmu/types'
+import type { Config } from '@koi18n/types'
 
 type SetupOptions = Pick<Config, 'projectLocale' | 'outDir'> & {
   cwd: string
@@ -17,12 +17,12 @@ export async function setupConfig({
   cwd
 }: SetupOptions) {
   const isTs = findTsConfig()
-  const fileName = isTs ? 'tsmu.config.ts' : 'tsmu.config.mjs'
+  const fileName = isTs ? 'koi18n.config.ts' : 'koi18n.config.mjs'
 
   logger.info('init:setup', `Setting config file...`)
 
   const content = outdent`
-      import { defineConfig } from "@tsmu/dev"
+      import { defineConfig } from "@koi18n/dev"
 
       export default defineConfig({
         // Where to look for your locale declarations

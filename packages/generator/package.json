@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/generator",
-  "description": "Code generator for Tsmu",
-  "version": "0.0.2",
+  "name": "@koi18n/generator",
+  "description": "Code generator for koi18n",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,11 +18,11 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@tsmu/runtime": "workspace:*",
-    "@tsmu/translator": "workspace:*",
-    "@tsmu/utils": "workspace:*"
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/translator": "workspace:*",
+    "@koi18n/utils": "workspace:*"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   }
 }

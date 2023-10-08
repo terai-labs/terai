@@ -1,7 +1,7 @@
 {
-  "name": "@tsmu/extractor",
-  "description": "Dictionary extractor for Tsmu",
-  "version": "0.0.2",
+  "name": "@koi18n/extractor",
+  "description": "Dictionary extractor for koi18n",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,11 +18,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsmu/logger": "workspace:*",
-    "@tsmu/runtime": "workspace:*",
-    "@tsmu/transformer": "workspace:*"
+    "@koi18n/logger": "workspace:*",
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/transformer": "workspace:*"
   },
   "devDependencies": {
-    "@tsmu/types": "workspace:*"
+    "@koi18n/types": "workspace:*"
   }
 }

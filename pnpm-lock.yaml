@@ -30,7 +30,7 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.2
         version: 2.26.2
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:packages/types
       '@types/node':
@@ -84,16 +84,16 @@ importers:
       '@inquirer/prompts':
         specifier: ^3.2.0
         version: 3.2.0
-      '@tsmu/extractor':
+      '@koi18n/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@tsmu/runtime':
+      '@koi18n/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@tsmu/translator':
+      '@koi18n/translator':
         specifier: workspace:*
         version: link:../translator
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
       cac:
@@ -115,13 +115,13 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
     devDependencies:
-      '@tsmu/generator':
+      '@koi18n/generator':
         specifier: workspace:*
         version: link:../generator
-      '@tsmu/logger':
+      '@koi18n/logger':
         specifier: workspace:*
         version: link:../logger
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
       '@types/update-notifier':
@@ -133,46 +133,46 @@ importers:
 
   packages/extractor:
     dependencies:
-      '@tsmu/logger':
+      '@koi18n/logger':
         specifier: workspace:*
         version: link:../logger
-      '@tsmu/runtime':
+      '@koi18n/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@tsmu/transformer':
+      '@koi18n/transformer':
         specifier: workspace:*
         version: link:../transformer
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
   packages/formatter:
     dependencies:
-      '@tsmu/runtime':
+      '@koi18n/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
   packages/generator:
     dependencies:
-      '@tsmu/runtime':
+      '@koi18n/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@tsmu/translator':
+      '@koi18n/translator':
         specifier: workspace:*
         version: link:../translator
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
@@ -180,7 +180,7 @@ importers:
 
   packages/next:
     dependencies:
-      '@tsmu/react':
+      '@koi18n/react':
         specifier: workspace:*
         version: link:../react
       next:
@@ -190,7 +190,7 @@ importers:
         specifier: 18.x
         version: 18.2.0
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
@@ -199,10 +199,10 @@ importers:
       '@legendapp/state':
         specifier: ^1.11.3
         version: 1.11.3(react@18.2.0)
-      '@tsmu/formatter':
+      '@koi18n/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@tsmu/ts':
+      '@koi18n/ts':
         specifier: workspace:*
         version: link:../ts
 
@@ -211,13 +211,13 @@ importers:
       '@legendapp/state':
         specifier: ^1.11.3
         version: 1.11.3(react@18.3.0-canary-dddfe6882-20231005)
-      '@tsmu/formatter':
+      '@koi18n/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@tsmu/ts':
+      '@koi18n/ts':
         specifier: workspace:*
         version: link:../ts
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
       client-only:
@@ -233,13 +233,13 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
   packages/runtime:
     dependencies:
-      '@tsmu/logger':
+      '@koi18n/logger':
         specifier: workspace:*
         version: link:../logger
       bundle-n-require:
@@ -270,11 +270,11 @@ importers:
 
   packages/transformer:
     dependencies:
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
@@ -283,30 +283,30 @@ importers:
       '@google-cloud/translate':
         specifier: ^8.0.2
         version: 8.0.2
-      '@tsmu/runtime':
+      '@koi18n/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
       openai:
         specifier: ^4.11.1
         version: 4.11.1
     devDependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
   packages/ts:
     dependencies:
-      '@tsmu/utils':
+      '@koi18n/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@tsmu/formatter':
+      '@koi18n/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
@@ -314,26 +314,26 @@ importers:
 
   packages/utils:
     dependencies:
-      '@tsmu/types':
+      '@koi18n/types':
         specifier: workspace:*
         version: link:../types
 
   playground/next-app:
     dependencies:
-      '@tsmu/dev':
+      '@koi18n/dev':
         specifier: workspace:*
         version: link:../../packages/dev
-      '@tsmu/next':
+      '@koi18n/next':
         specifier: workspace:*
         version: link:../../packages/next
 
   playground/vite:
     dependencies:
-      '@tsmu/react':
+      '@koi18n/react':
         specifier: workspace:*
         version: link:../../packages/react
     devDependencies:
-      '@tsmu/dev':
+      '@koi18n/dev':
         specifier: workspace:*
         version: link:../../packages/dev
       '@vitejs/plugin-react':

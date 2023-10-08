@@ -12,9 +12,9 @@ export function findConfig({
   if (filePath) return runtime.path.resolve(cwd, filePath)
 
   for (const config of configs) {
-    // const path = runtime.path.resolve(cwd, `tsmu.config${config}`)
+    // const path = runtime.path.resolve(cwd, `koi18n.config${config}`)
     // const exists = runtime.fs.exists(path)
-    const exists = runtime.fs.findUp(`tsmu.config${config}`)
+    const exists = runtime.fs.findUp(`koi18n.config${config}`)
 
     if (exists) return exists
   }
