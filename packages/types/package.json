@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/types",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "koi18n types definitions",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
