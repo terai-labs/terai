@@ -18,10 +18,10 @@
     "access": "public"
   },
   "dependencies": {
+    "@koi18n/formatter": "workspace:*",
     "@koi18n/utils": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/formatter": "workspace:*",
     "@koi18n/types": "workspace:*"
   }
 }

@@ -2,10 +2,6 @@
   "name": "@koi18n/react",
   "description": "koi18n for React.js",
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "require": "dist/index.js",
-  "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
@@ -41,18 +37,18 @@
     }
   },
   "dependencies": {
-    "@legendapp/state": "^1.11.3",
     "@koi18n/formatter": "workspace:*",
     "@koi18n/ts": "workspace:*",
     "@koi18n/utils": "workspace:*",
-    "intl-messageformat": "^10.5.3",
+    "@legendapp/state": "^1.11.3",
     "client-only": "^0.0.1",
+    "intl-messageformat": "^10.5.3",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@koi18n/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "canary"
+    "react": "^18.x"
   }
 }

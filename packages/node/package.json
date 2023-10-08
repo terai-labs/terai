@@ -19,9 +19,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@legendapp/state": "^1.11.3",
     "@koi18n/formatter": "workspace:*",
-    "@koi18n/ts": "workspace:*"
+    "@koi18n/ts": "workspace:*",
+    "@legendapp/state": "^1.11.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@koi18n/types": "workspace:*"
+  }
 }

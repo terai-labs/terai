@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^8.0.2",
-    "@koi18n/runtime": "workspace:*",
-    "@koi18n/utils": "workspace:*",
     "openai": "^4.11.1"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@koi18n/runtime": "workspace:*",
+    "@koi18n/types": "workspace:*",
+    "@koi18n/utils": "workspace:*"
   }
 }

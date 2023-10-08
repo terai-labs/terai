@@ -28,6 +28,7 @@
     "pathe": "^1.1.1"
   },
   "devDependencies": {
+    "@koi18n/types": "workspace:*",
     "@types/fs-extra": "^11.0.2"
   }
 }
