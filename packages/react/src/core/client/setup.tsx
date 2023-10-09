@@ -15,7 +15,7 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
-import type { CreateSetupOptions } from '../types'
+import type { CreateSetupOptions, GetTsProps } from '../types'
 import type { SetupReactOptions, TsReactRenderProps } from '../types'
 import type { Dictionaries } from '@koi18n/types'
 
@@ -35,17 +35,24 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
   }: SetupClientOptions) {
     const dictionaries$ = observable<Dictionaries>({})
     const useFormat = createFormat(getLocale)
-    const useTs = () => {
+    const useTs = ({ chunkId }: GetTsProps = {}) => {
       const locale = getLocale()
-      const dictionary = dictionaries$[locale].use()
+      const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
+      const dictionary = dictionaries$[dictionaryId].use()
 
       if (!dictionary) {
-        throw loader(locale, locale).then(mod =>
-          dictionaries$[locale].set(prev => ({
-            ...prev,
-            ...mod.default
-          }))
-        )
+        throw loader(locale, chunkId ?? locale)
+          .then(mod =>
+            dictionaries$[dictionaryId].set(prev => ({
+              ...prev,
+              ...mod.default
+            }))
+          )
+          .catch(e => {
+            // TODO: Handle error
+            console.error(e)
+            // throw new Error('Error loading locale')
+          })
       }
 
       const ts = useCallback(

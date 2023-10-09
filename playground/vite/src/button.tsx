@@ -2,7 +2,7 @@ import { useTs } from './koi18n'
 import { Suspense } from 'react'
 
 export function Button() {
-  const ts = useTs()
+  const ts = useTs({ chunkId: 'chunk-demo-1' })
 
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>

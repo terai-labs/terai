@@ -10,7 +10,8 @@ import { tsRender } from '../ts-render'
 import type {
   SetupReactOptions,
   TsReactRenderProps,
-  CreateSetupOptions
+  CreateSetupOptions,
+  GetTsProps
 } from '../types'
 
 export type SetupServer = ReturnType<typeof createSetupServer>
@@ -22,9 +23,9 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     format = {}
   }: SetupReactOptions) {
     const getFormat = createFormat(getLocale)
-    const getTs = async () => {
+    const getTs = async ({ chunkId }: GetTsProps = {}) => {
       const locale = getLocale()
-      const dictionary = (await loader(locale, locale)).default
+      const dictionary = (await loader(locale, chunkId ?? locale)).default
 
       const ts = createTs<string, TsReactRenderProps>({
         render: props => {

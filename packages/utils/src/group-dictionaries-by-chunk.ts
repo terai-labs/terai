@@ -17,9 +17,9 @@ export function groupDictionaryByChunks(
 
   for (const id in messages) {
     const { chunksIds } = messages[id]
-    const chnks = chunksIds.length ? chunksIds : [locale]
 
-    for (const chunkId of chnks) {
+    for (let chunkId of chunksIds) {
+      if (chunkId === 'default') chunkId = locale
       const chunk = dictionaries[chunkId] ?? {}
 
       dictionaries[chunkId] = {

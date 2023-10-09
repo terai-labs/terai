@@ -30,7 +30,7 @@ function extractMessageFromTemplateExpression(
   const value = prepareMessage(text)
   const id = toHash(value)
   const file = getRepoFilePath(cwd, sf.fileName)
-  const chunksIds = chunks[file] ?? []
+  const chunksIds = chunks[file] ?? ['default']
 
   const msg: ExtractedMessage = {
     id,
@@ -59,7 +59,7 @@ function extractMessageFromCallExpression(
   const id = toHash(value)
   let context = ''
   const arg = node.arguments?.[0]
-  const chunksIds = chunks[file] ?? []
+  const chunksIds = chunks[file] ?? ['default']
 
   if (arg) {
     arg.forEachChild(child => {
@@ -92,11 +92,21 @@ function extractChunk(
   sf: ts.SourceFile
 ): ts.VisitResult<ts.CallExpression> {
   const file = getRepoFilePath(cwd, sf.fileName)
-  const args = nodeEval(node.arguments[0].getFullText())
+  const arg = node.arguments?.[0]
 
-  if (!chunks[file]) chunks[file] = []
+  if (arg) {
+    arg.forEachChild(child => {
+      const key = child.getFirstToken()?.getText()
 
-  chunks[file].push(args)
+      if (key === 'chunkId') {
+        const chunkValue = child.getLastToken()?.getText()
+        if (chunkValue) {
+          chunks[file] = chunks[file] ?? []
+          chunks[file].push(nodeEval(chunkValue))
+        }
+      }
+    })
+  }
 
   return node
 }
@@ -110,8 +120,8 @@ function getVisitor(
   const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
     if (
       ts.isCallExpression(node) &&
-      (node.expression.getText() === 'setChunk' ||
-        node.expression.getText() === 'useChunk')
+      (node.expression.getText() === 'getTs' ||
+        node.expression.getText() === 'useTs')
     ) {
       extractChunk(ts, cts.factory, node, opts, sf)
     }

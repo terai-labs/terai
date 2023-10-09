@@ -7,7 +7,9 @@
         "vite/src/App.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default"
+      ]
     },
     "yPYux": {
       "id": "yPYux",
@@ -17,7 +19,10 @@
         "vite/src/button.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default",
+        "chunk-demo-1"
+      ]
     },
     "fFdvjH": {
       "id": "fFdvjH",
@@ -26,7 +31,9 @@
         "vite/src/App.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default"
+      ]
     },
     "vMJeg": {
       "id": "vMJeg",
@@ -35,7 +42,9 @@
         "vite/src/App.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default"
+      ]
     },
     "gOvqye": {
       "id": "gOvqye",
@@ -44,7 +53,9 @@
         "vite/src/button.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "chunk-demo-1"
+      ]
     },
     "cLXyxN": {
       "id": "cLXyxN",
@@ -53,7 +64,9 @@
         "vite/src/button.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "chunk-demo-1"
+      ]
     }
   }
 }

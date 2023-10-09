@@ -16,3 +16,7 @@ export type SetupReactOptions = InterpolateOptions & {
 export type TsReactRenderProps = TsRenderProps & {
   components: InterpolateComponents
 }
+
+export type GetTsProps = {
+  chunkId?: string
+}

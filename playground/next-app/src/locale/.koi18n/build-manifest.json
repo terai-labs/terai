@@ -8,7 +8,10 @@
         "next-app/src/app/[locale]/server/page.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default",
+        "server"
+      ]
     },
     "gTcrmz": {
       "id": "gTcrmz",
@@ -18,7 +21,10 @@
         "next-app/src/app/[locale]/server/page.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default",
+        "server"
+      ]
     },
     "dzFFxU": {
       "id": "dzFFxU",
@@ -28,7 +34,21 @@
         "next-app/src/app/[locale]/server/page.tsx"
       ],
       "context": "",
-      "chunksIds": []
+      "chunksIds": [
+        "default",
+        "server"
+      ]
+    },
+    "dgGitA": {
+      "id": "dgGitA",
+      "value": "This is a server message!",
+      "files": [
+        "next-app/src/app/[locale]/server/page.tsx"
+      ],
+      "context": "",
+      "chunksIds": [
+        "server"
+      ]
     }
   }
 }
