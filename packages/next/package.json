@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/next",
   "description": "koi18n for Next.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
