@@ -1,9 +1,10 @@
-import { setLocale, ts, useFormat } from './koi18n'
+import { setLocale, useTs, useFormat } from './koi18n'
 import { Suspense, useState } from 'react'
 import { Button } from './button'
 
 export default function App() {
   const format = useFormat()
+  const ts = useTs()
   const [state, setState] = useState(false)
 
   function getLanguage(locale: string) {

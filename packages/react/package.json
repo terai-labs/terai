@@ -20,11 +20,6 @@
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
-    "./core": {
-      "types": "./dist/core/index.d.ts",
-      "require": "./dist/core/index.js",
-      "import": "./dist/core/index.mjs"
-    },
     "./core/server": {
       "types": "./dist/core/server/index.d.ts",
       "require": "./dist/core/server/index.js",

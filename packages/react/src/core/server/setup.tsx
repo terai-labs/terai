@@ -1,7 +1,10 @@
+'use server'
+
 // Dependencies
+import 'server-only'
 import { createFormat } from '@koi18n/formatter'
 import { createTs } from '@koi18n/ts'
-import { SsrText } from './ssr-text'
+import { tsRender } from '../ts-render'
 
 // Types
 import type {
@@ -19,30 +22,33 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     format = {}
   }: SetupReactOptions) {
     const getFormat = createFormat(getLocale)
-    const ts = createTs<JSX.Element, TsReactRenderProps>({
-      render: props => {
-        return (
-          // @ts-ignore
-          // @https://github.com/microsoft/TypeScript/pull/51328
-          <SsrText
-            {...props}
-            getLocale={getLocale}
-            loader={loader}
-            components={{
+    const getTs = async () => {
+      const locale = getLocale()
+      const dictionary = (await loader(locale, locale)).default
+
+      const ts = createTs<string, TsReactRenderProps>({
+        render: props => {
+          return tsRender({
+            ...props,
+            locale,
+            dictionary,
+            components: {
               ...components,
               ...props.components
-            }}
-            format={{
+            },
+            format: {
               ...format,
               ...props.format
-            }}
-          />
-        )
-      }
-    })
+            }
+          })
+        }
+      })
+
+      return ts
+    }
 
     return {
-      ts,
+      getTs,
       getFormat
     }
   }

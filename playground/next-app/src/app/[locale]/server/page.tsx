@@ -1,7 +1,8 @@
 import { Link } from '@koi18n/next/link'
-import { ts } from '@/locale/server'
+import { getTs } from '@/locale/server'
 
 export default async function Home() {
+  const ts = await getTs()
   const name = 'Hugo'
   const a = ts`Hello, ${name}!`
 

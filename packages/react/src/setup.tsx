@@ -16,10 +16,15 @@ enableReactUse()
 
 export const setup = ({
   defaultLocale,
-  persist,
+  persist = true,
   ...options
-}: SetupClientOptions & { defaultLocale: string; persist?: boolean }) => {
+}: SetupClientOptions & { defaultLocale: string }) => {
   const locale$ = observable<Locale>(defaultLocale)
+  const useLocale = () => locale$.use()
+  const setLocale = (locale: Locale) => locale$.set(locale)
+  const clientSetup = createSetupClient({
+    getLocale: useLocale
+  })(options)
 
   if (persist) {
     configureObservablePersistence({
@@ -30,21 +35,9 @@ export const setup = ({
     })
   }
 
-  function getLocale() {
-    return locale$.use()
-  }
-
-  function setLocale(locale: Locale) {
-    locale$.set(locale)
-  }
-
-  const setup = createSetupClient({
-    getLocale
-  })({ ...options })
-
   return {
-    ...setup,
+    ...clientSetup,
     setLocale,
-    useChunk: () => 'hola'
+    useLocale
   }
 }

@@ -7,49 +7,48 @@ import { createFormat, interpolate } from '@koi18n/formatter'
 import type { Dictionaries, Loader, Locale } from '@koi18n/types'
 import type { InterpolateOptions } from '@koi18n/formatter'
 
-export type SetupOptions = InterpolateOptions & {
-  getLocale: () => Locale
-  locales: Locale[]
+type SetupOptions = InterpolateOptions & {
   loader: Loader
 }
 
-type TsNodeRenderProps = TsRenderProps & { locale: Locale }
+export function setup({ loader, format = {} }: SetupOptions) {
+  const dictionaries$ = observable<Dictionaries>({})
+  const getFormat = (locale: Locale) => createFormat(() => locale)
+  const getTs = async ({ locale }: { locale: string }) => {
+    const dictionary = dictionaries$[locale].get()
 
-export function setup({
-  loader,
-  locales,
-  getLocale,
-  format = {}
-}: SetupOptions) {
-  const state$ = observable<Dictionaries>({})
-  const getFormat = createFormat(getLocale)
-  const ts = createTs<string, TsNodeRenderProps>({
-    render: ({ id, variables, rawMessage, ...props }) => {
-      const locale = props.locale ?? getLocale()
-      const message = state$?.[locale]?.[id]?.get() ?? rawMessage
-      return interpolate(
-        {
-          message,
-          locale,
-          variables
-        },
-        {
-          format: {
-            ...format,
-            ...props.format
-          }
-        }
+    if (!dictionary) {
+      await loader(locale, locale).then(mod =>
+        dictionaries$[locale].set(prev => ({
+          ...prev,
+          ...mod.default
+        }))
       )
     }
-  })
 
-  locales.map(async locale => {
-    const dic = (await loader(locale, locale)).default
-    state$[locale].set(dic)
-  })
+    createTs<string, TsRenderProps>({
+      render: ({ id, variables, rawMessage, ...props }) => {
+        const message = dictionary?.[id] ?? rawMessage
+
+        return interpolate(
+          {
+            message,
+            locale,
+            variables
+          },
+          {
+            format: {
+              ...format,
+              ...props.format
+            }
+          }
+        )
+      }
+    })
+  }
 
   return {
-    ts,
+    getTs,
     getFormat
   }
 }

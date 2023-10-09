@@ -1,7 +1,9 @@
-import { ts } from './koi18n'
+import { useTs } from './koi18n'
 import { Suspense } from 'react'
 
 export function Button() {
+  const ts = useTs()
+
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>
       <div className='messages'>
