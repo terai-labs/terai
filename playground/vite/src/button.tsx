@@ -1,4 +1,4 @@
-import { useTs } from './koi18n'
+import { useTs } from './locale'
 import { Suspense } from 'react'
 
 export function Button() {

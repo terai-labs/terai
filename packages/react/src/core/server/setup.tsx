@@ -25,7 +25,7 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     const getFormat = createFormat(getLocale)
     const getTs = async ({ chunkId }: GetTsProps = {}) => {
       const locale = getLocale()
-      const dictionary = (await loader(locale, chunkId ?? locale)).default
+      const dictionary = await loader(locale, chunkId ?? locale)
 
       const ts = createTs<string, TsReactRenderProps>({
         render: props => {

@@ -21,7 +21,7 @@ export function setup({ loader, format = {} }: SetupOptions) {
       await loader(locale, locale).then(mod =>
         dictionaries$[locale].set(prev => ({
           ...prev,
-          ...mod.default
+          ...mod
         }))
       )
     }

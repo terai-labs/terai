@@ -1,4 +1,4 @@
-import { setLocale, useTs, useFormat } from './koi18n'
+import { setLocale, useTs, useFormat } from './locale'
 import { Suspense, useState } from 'react'
 import { Button } from './button'
 
