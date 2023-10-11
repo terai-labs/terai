@@ -1,5 +1,15 @@
 # @koi18n/extractor
 
+## 0.0.3
+
+### Patch Changes
+
+- 380d6b2: Update package.json info
+- Updated dependencies [380d6b2]
+  - @koi18n/logger@0.0.3
+  - @koi18n/runtime@0.0.3
+  - @koi18n/transformer@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
