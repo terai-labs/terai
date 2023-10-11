@@ -1,5 +1,15 @@
 # @koi18n/next
 
+## 0.0.3
+
+### Patch Changes
+
+- 4985a65: Update package json info
+- 380d6b2: Update package.json info
+- Updated dependencies [4985a65]
+- Updated dependencies [380d6b2]
+  - @koi18n/react@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/runtime",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "koi18n node utilities",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
