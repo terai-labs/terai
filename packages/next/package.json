@@ -2,6 +2,10 @@
   "name": "@koi18n/next",
   "description": "koi18n for Next.js",
   "version": "0.0.2",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "require": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
