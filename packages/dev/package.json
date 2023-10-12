@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/dev",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "koi18n user-facing package",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
