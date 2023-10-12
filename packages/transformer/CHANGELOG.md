@@ -1,5 +1,13 @@
 # @koi18n/transformer
 
+## 0.0.4
+
+### Patch Changes
+
+- 6d9f2c5: Release 0.0.4
+- Updated dependencies [6d9f2c5]
+  - @koi18n/utils@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
