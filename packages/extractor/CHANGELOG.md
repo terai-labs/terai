@@ -1,5 +1,15 @@
 # @koi18n/extractor
 
+## 0.0.5
+
+### Patch Changes
+
+- 4477668: Improved next middleware
+- Updated dependencies [4477668]
+  - @koi18n/logger@0.0.5
+  - @koi18n/runtime@0.0.5
+  - @koi18n/transformer@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

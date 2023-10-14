@@ -1,5 +1,11 @@
 # @koi18n/logger
 
+## 0.0.5
+
+### Patch Changes
+
+- 4477668: Improved next middleware
+
 ## 0.0.4
 
 ### Patch Changes

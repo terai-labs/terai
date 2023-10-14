@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/extractor",
   "description": "koi18n core extractor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

@@ -1,5 +1,14 @@
 # @koi18n/node
 
+## 0.0.5
+
+### Patch Changes
+
+- 4477668: Improved next middleware
+- Updated dependencies [4477668]
+  - @koi18n/formatter@0.0.5
+  - @koi18n/ts@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
