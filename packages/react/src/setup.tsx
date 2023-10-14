@@ -22,9 +22,6 @@ export const setup = ({
   const locale$ = observable<Locale>(defaultLocale)
   const useLocale = () => locale$.use()
   const setLocale = (locale: Locale) => locale$.set(locale)
-  const clientSetup = createSetupClient({
-    getLocale: useLocale
-  })(options)
 
   if (persist) {
     configureObservablePersistence({
@@ -36,7 +33,9 @@ export const setup = ({
   }
 
   return {
-    ...clientSetup,
+    ...createSetupClient({
+      getLocale: useLocale
+    })(options),
     setLocale,
     useLocale
   }

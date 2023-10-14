@@ -1,18 +1,16 @@
 'use client'
 
 // Dependencies
+import NextLink from 'next/link'
 import { forwardRef } from 'react'
 import { useLocale } from '../client/use-locale'
-// import { hasPathnamePrefixed, localizePathname } from '../utils'
-// import { usePathname } from 'next/navigation'
-import NextLink from 'next/link'
 
 // Types
 import type { ComponentProps } from 'react'
 import type { Locale } from '@koi18n/types'
 
 type Props = Omit<ComponentProps<typeof NextLink>, 'locale'> & {
-  locale: Locale
+  locale?: Locale
 }
 
 export const Link = forwardRef(
@@ -21,21 +19,16 @@ export const Link = forwardRef(
     ref: Props['ref']
   ) => {
     const currentLocale = useLocale()
-    // const params = usePathname()
     const isChangingLocale = localeProp !== currentLocale
     const locale = localeProp ?? currentLocale
-
     const localizedHref = `/${locale}/${href}`
-    // const hasPrefix = hasPathnamePrefixed(locale, params)
-    // const localizedHref = hasPrefix ? localizePathname(locale, params) : href
 
-    if (isChangingLocale) {
-      if (prefetch && process.env.NODE_ENV !== 'production') {
+    if (isChangingLocale && prefetch) {
+      if (process.env.NODE_ENV !== 'production') {
         console.error(
           'The `prefetch` prop is currently not supported when using the `locale` prop on `Link` to switch the locale.`'
         )
       }
-
       prefetch = false
     }
 

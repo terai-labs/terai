@@ -1,7 +1,8 @@
 import { createMiddleware } from '@koi18n/next/middleware'
 
-export const middleware = createMiddleware(['en', 'es'], 'en', {
-  // urlMappingStrategy: 'rewrite'
+export const middleware = createMiddleware({
+  locales: ['en', 'es'],
+  defaultLocale: 'en'
 })
 
 export const config = {
