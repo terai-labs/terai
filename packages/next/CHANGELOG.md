@@ -1,5 +1,13 @@
 # @koi18n/next
 
+## 0.0.5
+
+### Patch Changes
+
+- 4477668: Improved next middleware
+- Updated dependencies [4477668]
+  - @koi18n/react@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
