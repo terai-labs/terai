@@ -43,7 +43,7 @@ export function createTs<R, E extends TsRenderProps>(
     if (isTemplateStringsArray(stringsOrOptions)) {
       const { render } = options
       const strings = stringsOrOptions
-      const rawMessage = prepareMessage(joinTemplateStrings(strings.raw))
+      const rawMessage = prepareMessage(joinTemplateStrings(strings))
       const id = toHash(rawMessage)
       const args = {
         ...opts,
