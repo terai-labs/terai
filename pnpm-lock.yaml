@@ -319,6 +319,12 @@ importers:
         specifier: workspace:*
         version: link:../types
 
+  packages/vite:
+    dependencies:
+      '@koi18n/react':
+        specifier: workspace:*
+        version: link:../react
+
   playground/next-app:
     dependencies:
       '@koi18n/next':
@@ -331,9 +337,9 @@ importers:
 
   playground/vite:
     dependencies:
-      '@koi18n/react':
+      '@koi18n/vite':
         specifier: workspace:*
-        version: link:../../packages/react
+        version: link:../../packages/vite
     devDependencies:
       '@koi18n/dev':
         specifier: workspace:*

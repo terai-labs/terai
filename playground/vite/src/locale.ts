@@ -1,4 +1,4 @@
-import { setup } from '@koi18n/react'
+import { setup } from '@koi18n/vite'
 
 export const { useTs, setLocale, useFormat } = setup({
   defaultLocale: 'en',
