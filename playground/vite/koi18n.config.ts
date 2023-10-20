@@ -15,7 +15,7 @@ export default defineConfig({
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
   exclude: [],
   projectLocale: 'en',
-  outDir: './src/locale',
+  outDir: './public/locale',
   locales: ['es', 'it'],
   translator
 })

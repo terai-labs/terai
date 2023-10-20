@@ -2,9 +2,9 @@ import { setup } from '@koi18n/react'
 
 export const { useTs, setLocale, useFormat } = setup({
   defaultLocale: 'en',
-  persist: false,
+  persist: true,
   loader: (locale: string, chunkId: string) =>
-    fetch(`./locale/${locale}/${chunkId}.json`, { cache: 'force-cache' }).then(
+    fetch(`./locale/${locale}/${chunkId}.json`, { cache: 'no-cache' }).then(
       res => res.json()
     )
 })
