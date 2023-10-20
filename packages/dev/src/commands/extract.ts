@@ -43,7 +43,7 @@ export async function extractCmd(options: ExtractOptions) {
   const manifestPath = runtime.path.resolve(
     outDirPath,
     '.koi18n',
-    `build-manifest.json`
+    `locale-manifest.json`
   )
 
   logger.info('Scan:', `Processing files...`)

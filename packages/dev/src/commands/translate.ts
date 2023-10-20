@@ -28,12 +28,12 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 
   const outDirPath = runtime.path.resolve(cwd, config.outDir)
   const tmuDirPath = runtime.path.resolve(cwd, config.outDir, '.koi18n')
-  const manifestPath = runtime.path.resolve(tmuDirPath, 'build-manifest.json')
+  const manifestPath = runtime.path.resolve(tmuDirPath, 'locale-manifest.json')
   const existsManifest = runtime.fs.exists(manifestPath)
   if (!existsManifest) {
     return logger.error(
       'translate',
-      `No build-manifest.json found in ${tmuDirPath}. Please run "extract" first.`
+      `No locale-manifest.json found in ${tmuDirPath}. Please run "extract" first.`
     )
   }
 
