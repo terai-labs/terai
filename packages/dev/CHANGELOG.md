@@ -1,5 +1,14 @@
 # @koi18n/dev
 
+## 0.0.7
+
+### Patch Changes
+
+- @koi18n/extractor@0.0.7
+- @koi18n/runtime@0.0.7
+- @koi18n/translator@0.0.7
+- @koi18n/utils@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

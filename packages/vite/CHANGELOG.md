@@ -1,5 +1,12 @@
 # @koi18n/vite
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [27bbdbe]
+  - @koi18n/react@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
