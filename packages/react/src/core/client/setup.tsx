@@ -56,28 +56,24 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
         }, [locale])
       }
 
-      const ts = useCallback(
-        createTs<string, TsReactRenderProps>({
-          render: props => {
-            return tsRender({
-              ...props,
-              locale,
-              dictionary,
-              components: {
-                ...components,
-                ...props.components
-              },
-              format: {
-                ...format,
-                ...props.format
-              }
-            })
-          }
-        }),
+      return useCallback(
+        createTs<string, TsReactRenderProps>(props =>
+          tsRender({
+            ...props,
+            locale,
+            dictionary,
+            components: {
+              ...components,
+              ...props.components
+            },
+            format: {
+              ...format,
+              ...props.format
+            }
+          })
+        ),
         [locale]
       )
-
-      return ts
     }
 
     if (persist) {

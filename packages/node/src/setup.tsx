@@ -26,8 +26,8 @@ export function setup({ loader, format = {} }: SetupOptions) {
       )
     }
 
-    createTs<string, TsRenderProps>({
-      render: ({ id, variables, rawMessage, ...props }) => {
+    return createTs<string, TsRenderProps>(
+      ({ id, variables, rawMessage, ...props }) => {
         const message = dictionary?.[id] ?? rawMessage
 
         return interpolate(
@@ -44,7 +44,7 @@ export function setup({ loader, format = {} }: SetupOptions) {
           }
         )
       }
-    })
+    )
   }
 
   return {
