@@ -1,5 +1,18 @@
 # @koi18n/dev
 
+## 0.0.6
+
+### Patch Changes
+
+- 59b1907: Support escape characters in ts
+- aca8fc4: feat: improved format in ts expressions
+- Updated dependencies [59b1907]
+- Updated dependencies [aca8fc4]
+  - @koi18n/extractor@0.0.6
+  - @koi18n/runtime@0.0.6
+  - @koi18n/translator@0.0.6
+  - @koi18n/utils@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
