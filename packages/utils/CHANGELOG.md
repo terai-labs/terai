@@ -1,5 +1,12 @@
 # @koi18n/utils
 
+## 0.0.6
+
+### Patch Changes
+
+- 59b1907: Support escape characters in ts
+- aca8fc4: feat: improved format in ts expressions
+
 ## 0.0.5
 
 ### Patch Changes
