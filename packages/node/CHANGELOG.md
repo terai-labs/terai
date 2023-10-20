@@ -1,5 +1,15 @@
 # @koi18n/node
 
+## 0.0.7
+
+### Patch Changes
+
+- 27bbdbe: Improved createTs API by passing a callback directly instead of an
+  object
+- Updated dependencies [27bbdbe]
+  - @koi18n/ts@0.0.7
+  - @koi18n/formatter@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

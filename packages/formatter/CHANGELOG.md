@@ -1,5 +1,11 @@
 # @koi18n/formatter
 
+## 0.0.7
+
+### Patch Changes
+
+- @koi18n/utils@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
