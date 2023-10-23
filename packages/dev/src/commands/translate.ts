@@ -45,7 +45,7 @@ export async function translateCmd({ cwd }: TranslateOptions) {
   let totalCachedMsgs = 0
 
   await Promise.all(
-    config.locales.map(async locale => {
+    config.outLocales.map(async locale => {
       try {
         let translatedDictionary: Dictionary = {}
         const untranslatedDictionary: Dictionary = {}

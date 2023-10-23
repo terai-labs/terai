@@ -22,7 +22,11 @@ export async function setupConfig({
   logger.info('init:setup', `Setting config file...`)
 
   const content = outdent`
-      import { defineConfig } from "@koi18n/dev"
+      import { defineConfig, createKoiTranslator } from "@koi18n/dev"
+
+      const translator = createKoiTranslator({
+        apiKey: '' // Your API key
+      })
 
       export default defineConfig({
         // Where to look for your locale declarations
@@ -34,11 +38,11 @@ export async function setupConfig({
         // The base locale used in your project
         projectLocale: "${projectLocale}",
         
+        // The aditional locales you want to support
+        outLocales: [],
+        
         // The output directory for your locale system
         outDir: "${outDir}",
-
-        // Your OpenAI API key
-        openaiApiKey: "",
       })
     `
 

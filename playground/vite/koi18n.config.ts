@@ -16,6 +16,6 @@ export default defineConfig({
   exclude: [],
   projectLocale: 'en',
   outDir: './public/locale',
-  locales: ['es', 'it'],
+  outLocales: ['es', 'it'],
   translator
 })

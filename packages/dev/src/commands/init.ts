@@ -45,7 +45,7 @@ export async function initCmd({ cwd, force }: InitOptions) {
 
   const outDir = await input({
     message: 'Where do you want to place your generated files?',
-    default: './locale'
+    default: './i18n'
   })
 
   const framework = (await select({
