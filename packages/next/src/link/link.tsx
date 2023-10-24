@@ -21,7 +21,7 @@ export const Link = forwardRef(
     const currentLocale = useLocale()
     const isChangingLocale = localeProp !== currentLocale
     const locale = localeProp ?? currentLocale
-    const localizedHref = `/${locale}/${href}`
+    const localizedHref = `/${locale}${href}`
 
     if (isChangingLocale && prefetch) {
       if (process.env.NODE_ENV !== 'production') {
