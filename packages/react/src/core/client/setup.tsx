@@ -15,9 +15,10 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
+import type { Dictionaries, Locale } from '@koi18n/types'
+import type { ReactNode } from 'react'
 import type { CreateSetupOptions, GetTsProps } from '../types'
 import type { SetupReactOptions, TsReactRenderProps } from '../types'
-import type { Dictionaries, Locale } from '@koi18n/types'
 
 export type SetupClient = ReturnType<typeof createSetupClient>
 export type SetupClientOptions = SetupReactOptions & {
@@ -57,7 +58,7 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
       }
 
       return useCallback(
-        createTs<string, TsReactRenderProps>(props =>
+        createTs<string | ReactNode, TsReactRenderProps>(props =>
           tsRender({
             ...props,
             locale,

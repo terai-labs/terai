@@ -7,6 +7,7 @@ import { createTs } from '@koi18n/ts'
 import { tsRender } from '../ts-render'
 
 // Types
+import type { ReactNode } from 'react'
 import type {
   SetupReactOptions,
   TsReactRenderProps,
@@ -26,7 +27,7 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
     const getTs = async ({ chunkId }: GetTsProps = {}) => {
       const locale = getLocale()
       const dictionary = await loader(locale, chunkId ?? locale)
-      return createTs<string, TsReactRenderProps>(props =>
+      return createTs<string | ReactNode, TsReactRenderProps>(props =>
         tsRender({
           ...props,
           locale,
