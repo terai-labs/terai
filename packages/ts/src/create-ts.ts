@@ -4,7 +4,7 @@ import { joinTemplateStrings, prepareMessage, toHash } from '@koi18n/utils'
 // Types
 import type { InterpolateOptions, DynamicValue } from '@koi18n/formatter'
 
-export type CreateTsCallback<R, E> = (options: E) => R
+export type TsRenderer<R, E> = (options: TsRenderProps & E) => R
 
 export type TsRenderProps = TsOptions & {
   id: string
@@ -25,8 +25,8 @@ function isTemplateStringsArray(v: any): v is TemplateStringsArray {
   return v?.raw && v?.length
 }
 
-export function createTs<R, E extends TsRenderProps>(
-  callback: CreateTsCallback<R, E>,
+export function createTs<R, E extends Record<string, unknown>>(
+  renderer: TsRenderer<R, E>,
   opts?: E
 ): Ts<R, E> {
   function ts(
@@ -47,11 +47,12 @@ export function createTs<R, E extends TsRenderProps>(
         id,
         rawMessage,
         variables
-      } as E
+      } as E & TsRenderProps
 
-      return callback(args)
+      // @ts-ignore
+      return renderer(args)
     } else {
-      return createTs<R, E>(callback, stringsOrOptions)
+      return createTs<R, E>(renderer, stringsOrOptions)
     }
   }
 

@@ -5,11 +5,13 @@ import { interpolate } from '@koi18n/formatter'
 import type { TsReactRenderProps } from './types'
 import type { Locale, Dictionary } from '@koi18n/types'
 import { interpolateComponents } from '.'
+import type { TsRenderProps } from '@koi18n/ts'
 
-export type TsOutputProps = TsReactRenderProps & {
-  locale: Locale
-  dictionary: Dictionary
-}
+export type TsOutputProps = TsRenderProps &
+  TsReactRenderProps & {
+    locale: Locale
+    dictionary: Dictionary
+  }
 
 export function tsRender({
   id,

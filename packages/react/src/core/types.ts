@@ -1,7 +1,6 @@
 // Types
 import type { InterpolateComponents } from './interpolate'
 import type { InterpolateOptions } from '@koi18n/formatter'
-import type { TsRenderProps } from '@koi18n/ts'
 import type { Loader, Locale } from '@koi18n/types'
 
 export type CreateSetupOptions = {
@@ -13,7 +12,7 @@ export type SetupReactOptions = InterpolateOptions & {
   components?: InterpolateComponents
 }
 
-export type TsReactRenderProps = TsRenderProps & {
+export type TsReactRenderProps = {
   components: InterpolateComponents
 }
 
