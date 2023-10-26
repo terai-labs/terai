@@ -1,4 +1,5 @@
-import { Link } from '@koi18n/next/link'
+// import { Link } from '@koi18n/next/client'
+const { Link } = require('@koi18n/next/client')
 import { getTs } from '@/locale/server'
 
 export default async function Home() {

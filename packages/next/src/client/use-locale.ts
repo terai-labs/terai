@@ -3,11 +3,10 @@
 // Dependencies
 import { useParams } from 'next/navigation'
 
-// Constants
-import { LOCALE_SEGMENT_NAME } from '../constants'
-
 // Types
 import type { Locale } from '@koi18n/types'
+
+const LOCALE_SEGMENT_NAME = 'locale'
 
 export function useLocale(): string {
   const params = useParams()

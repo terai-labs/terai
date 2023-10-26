@@ -3,7 +3,7 @@
 // Dependencies
 import NextLink from 'next/link'
 import { forwardRef } from 'react'
-import { useLocale } from '../client/use-locale'
+import { useLocale } from './use-locale'
 
 // Types
 import type { ComponentProps } from 'react'

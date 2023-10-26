@@ -19,6 +19,7 @@
     "access": "public"
   },
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",

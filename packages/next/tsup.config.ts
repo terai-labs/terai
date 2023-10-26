@@ -7,7 +7,6 @@ export default defineConfig({
     'src/index.ts',
     'src/client/index.ts',
     'src/server/index.ts',
-    'src/link/index.ts',
     'src/middleware/index.ts'
   ],
   format: ['esm', 'cjs'],

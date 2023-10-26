@@ -1,19 +1,13 @@
 'use client'
 
-import { Link } from '@koi18n/next/link'
 import { useTs } from '@/locale/client'
 import { Suspense } from 'react'
-const { useRouter, usePathname, useLocale } = require('@koi18n/next/client')
-// import { useRouter, usePathname, useLocale } from '@koi18n/next/client'
+// import { Link } from '@koi18n/next/client'
+const { Link } = require('@koi18n/next/client')
 
 export default function Home() {
   const name = 'Hugo'
-  const router = useRouter()
-  const pathname = usePathname()
-  const locale = useLocale()
   const ts = useTs()
-
-  console.log(pathname, locale, router)
 
   return (
     <Suspense fallback={'Loading client...'}>
