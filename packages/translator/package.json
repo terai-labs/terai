@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^8.0.2",
-    "openai": "^4.12.1"
+    "openai": "^4.14.0"
   },
   "devDependencies": {
     "@koi18n/runtime": "workspace:*",

@@ -42,7 +42,7 @@
     "@koi18n/utils": "workspace:*",
     "@legendapp/state": "^1.11.3",
     "client-only": "^0.0.1",
-    "intl-messageformat": "^10.5.3",
+    "intl-messageformat": "^10.5.4",
     "server-only": "^0.0.1"
   },
   "devDependencies": {

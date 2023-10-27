@@ -47,7 +47,7 @@
     "@koi18n/generator": "workspace:*",
     "@koi18n/logger": "workspace:*",
     "@koi18n/types": "workspace:*",
-    "@types/update-notifier": "^6.0.5",
+    "@types/update-notifier": "^6.0.6",
     "update-notifier": "^6.0.2"
   }
 }
