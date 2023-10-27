@@ -12,16 +12,16 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       next:
-        specifier: ^14.0.0
+        specifier: ^14
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
       outdent:
         specifier: ^0.8.0
         version: 0.8.0
       react:
-        specifier: ^18.2.0
+        specifier: ^18
         version: 18.2.0
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@changesets/changelog-github':
@@ -178,10 +178,10 @@ importers:
         specifier: workspace:*
         version: link:../react
       next:
-        specifier: ^14.x
+        specifier: ^14
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: 18.x
+        specifier: ^18
         version: 18.2.0
     devDependencies:
       '@koi18n/types':
@@ -334,6 +334,12 @@ importers:
       '@koi18n/dev':
         specifier: workspace:*
         version: link:../../packages/dev
+
+  playground/nextra:
+    dependencies:
+      '@koi18n/next':
+        specifier: workspace:*
+        version: link:../../packages/next
 
   playground/vite:
     dependencies:
