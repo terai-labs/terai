@@ -40,15 +40,12 @@
     "@koi18n/formatter": "workspace:*",
     "@koi18n/ts": "workspace:*",
     "@koi18n/utils": "workspace:*",
-    "@legendapp/state": "^1.11.3",
-    "client-only": "^0.0.1",
-    "intl-messageformat": "^10.5.4",
-    "server-only": "^0.0.1"
+    "intl-messageformat": "^10"
   },
   "devDependencies": {
     "@koi18n/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.x"
+    "react": "^18"
   }
 }

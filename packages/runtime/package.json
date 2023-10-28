@@ -19,16 +19,16 @@
   },
   "dependencies": {
     "@koi18n/logger": "workspace:*",
-    "bundle-n-require": "^1.0.1",
-    "chokidar": "^3.5.3",
-    "fast-glob": "^3.3.1",
-    "fs-extra": "^11.1.1",
-    "look-it-up": "^2.1.0",
-    "outdent": "^0.8.0",
-    "pathe": "^1.1.1"
+    "bundle-n-require": "^1",
+    "chokidar": "^3",
+    "fast-glob": "^3",
+    "fs-extra": "^1",
+    "look-it-up": "^2",
+    "outdent": "^0",
+    "pathe": "^1"
   },
   "devDependencies": {
     "@koi18n/types": "workspace:*",
-    "@types/fs-extra": "^11.0.3"
+    "@types/fs-extra": "^11"
   }
 }
