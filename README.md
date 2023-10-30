@@ -9,11 +9,57 @@
 
 </div>
 
-<p align="center">
-<strong>Koi18n</strong> is a developer-first open-source localization framework written for JavaScript.
-</p>
+<div align="center">
+  <h3><strong>A developer-first open-source localization framework for JavaScript</strong></h3>
+</div>
 
-## Features
+<div align="center">
+  <h3>
+    <a href="https://koi18n.dev">
+      Website
+    </a>
+    <span> | </span>
+    <a href="https://koi18n.dev/docs">
+      Documentation
+    </a>
+    <span> | </span>
+    <a href="https://github.dev/koi18n/koi18n/issues">
+      Issues
+    </a>
+    <span> | </span>
+    <a href="https://koi18n.dev/docs/contributing">
+      Contributing
+    </a>
+    <span> | </span>
+    <a href="https://github.dev/koi18n/koi18n/blob/main/CHANGELOG.md">
+      Changelog
+    </a>
+  </h3>
+</div>
+
+<div align="center">
+  <sub>Built by
+  <a href="https://twitter.com/hugocxl">@hugocxl</a> and
+  <a href="https://github.com/koi18n/koi18n/graphs/contributors">
+    contributors
+  </a>
+</div>
+
+***
+
+# What is Koi18n?
+
+Koi18n is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
+
+Workflow can be broken down into 3 steps:
+
+- 1️⃣ **Development**: Start by incorporating your translation source messages into your project using our dedicated SDK. Explore our comprehensive guides for specific frameworks to get started.
+- 2️⃣ **Extraction**: Koi18n streamlines the extraction process by automatically gathering all the messages within your project.
+- 3️⃣ **Translation**: Once the messages are extracted, proceed to translate them into your desired locales using the translator you've defined.
+
+More documentation available at [https://koi18n.dev](https://koi18n.dev).
+
+Supported features:
 
 - 🚀 **Speed**: Remove the pain in the localization process. Translate your products **10x faster**.
 - 🧑‍💻 **Developer-focused**: One of our main goal was improving the developer experience. No more looking for keys in your source code, no more editing localisation files, and no more manual exporting data for translators.
@@ -27,15 +73,15 @@
 - 💎 **TypeScript**: Full-written in TypeScript.
 - ⭐️ **MIT Licensed**: Free for personal and commercial use.
 
-## Packages
+Packages:
 
-| Package | Version | Size | Downloads |
-| :------ | :-----: | :--: | :-------: |
-| `@koi18n/dev` | [![Version](https://img.shields.io/npm/v/@koi18n/dev.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/dev)](https://bundlephobia.com/result?p=@koi18n/dev) | [![NPM](https://img.shields.io/npm/dm/@koi18n/dev.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/dev) |
-| `@koi18n/react` | [![Version](https://img.shields.io/npm/v/@koi18n/react.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/react)](https://bundlephobia.com/result?p=@koi18n/react) | [![NPM](https://img.shields.io/npm/dm/@koi18n/react.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/react) |
-| `@koi18n/vite` | [![Version](https://img.shields.io/npm/v/@koi18n/vite.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/vite)](https://bundlephobia.com/result?p=@koi18n/vite) | [![NPM](https://img.shields.io/npm/dm/@koi18n/vite.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/vite) |
-| `@koi18n/next` | [![Version](https://img.shields.io/npm/v/@koi18n/next.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/next)](https://bundlephobia.com/result?p=@koi18n/next) | [![NPM](https://img.shields.io/npm/dm/@koi18n/next.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/next) |
-| `@koi18n/node` | [![Version](https://img.shields.io/npm/v/@koi18n/node.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/node)](https://bundlephobia.com/result?p=@koi18n/node) | [![NPM](https://img.shields.io/npm/dm/@koi18n/node.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/node) |
+| Package | Description | Version | Size | Downloads |
+| :------ | :---- |  :-----: | :--: | :-------: |
+| `@koi18n/dev` | The user-facing package for Koi18n | [![Version](https://img.shields.io/npm/v/@koi18n/dev.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/dev)](https://bundlephobia.com/result?p=@koi18n/dev) | [![NPM](https://img.shields.io/npm/dm/@koi18n/dev.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/dev) |
+| `@koi18n/react` | Koi18n for React.js | [![Version](https://img.shields.io/npm/v/@koi18n/react.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/react)](https://bundlephobia.com/result?p=@koi18n/react) | [![NPM](https://img.shields.io/npm/dm/@koi18n/react.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/react) |
+| `@koi18n/vite` | Koi18n for Vite | [![Version](https://img.shields.io/npm/v/@koi18n/vite.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/vite)](https://bundlephobia.com/result?p=@koi18n/vite) | [![NPM](https://img.shields.io/npm/dm/@koi18n/vite.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/vite) |
+| `@koi18n/next` | Koi18n for Next.js | [![Version](https://img.shields.io/npm/v/@koi18n/next.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/next)](https://bundlephobia.com/result?p=@koi18n/next) | [![NPM](https://img.shields.io/npm/dm/@koi18n/next.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/next) |
+| `@koi18n/node` | Koi18n for Node.js | [![Version](https://img.shields.io/npm/v/@koi18n/node.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/node)](https://bundlephobia.com/result?p=@koi18n/node) | [![NPM](https://img.shields.io/npm/dm/@koi18n/node.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/node) |
 
 ## Getting Started
 
