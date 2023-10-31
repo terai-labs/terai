@@ -14,7 +14,7 @@
 </div>
 
 <div align="center">
-  <h3>
+  <h4>
     <a href="https://koi18n.dev">
       Website
     </a>
@@ -34,15 +34,7 @@
     <a href="https://github.dev/koi18n/koi18n/blob/main/CHANGELOG.md">
       Changelog
     </a>
-  </h3>
-</div>
-
-<div align="center">
-  <sub>Built by
-  <a href="https://twitter.com/hugocxl">@hugocxl</a> and
-  <a href="https://github.com/koi18n/koi18n/graphs/contributors">
-    contributors
-  </a>
+  </h4>
 </div>
 
 ***
