@@ -1,5 +1,6 @@
 // Dependencies
 import { runtime } from '@koi18n/runtime'
+import { stringify } from '@koi18n/utils'
 
 // Types
 import type { Config, Locale, Dictionaries } from '@koi18n/types'
@@ -8,7 +9,7 @@ type GenerateOptions = {
   cwd: string
   locale: Locale
   dictionaries: Dictionaries
-} & Pick<Config, 'outDir' | 'projectLocale'>
+} & Pick<Config, 'outDir'>
 
 export async function generate({
   dictionaries,
@@ -17,11 +18,17 @@ export async function generate({
   outDir
 }: GenerateOptions) {
   const folderPath = runtime.path.resolve(cwd, outDir, locale)
+  const output = []
 
   for (const id in dictionaries) {
     const fileDir = runtime.path.resolve(folderPath, id + '.json')
     const fileContent = dictionaries[id]
+    const idOutput = stringify(fileContent)
 
-    runtime.fs.write(fileDir, JSON.stringify(fileContent, null, 2))
+    runtime.fs.write(fileDir, idOutput)
+
+    output.push(idOutput)
   }
+
+  return output
 }
