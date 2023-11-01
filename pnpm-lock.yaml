@@ -332,16 +332,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/dev
 
-  playground/nextra:
-    dependencies:
-      '@koi18n/next':
-        specifier: workspace:*
-        version: link:../../packages/next
-    devDependencies:
-      '@koi18n/dev':
-        specifier: workspace:*
-        version: link:../../packages/dev
-
   playground/vite:
     dependencies:
       '@koi18n/vite':
