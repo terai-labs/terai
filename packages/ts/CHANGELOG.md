@@ -1,5 +1,16 @@
 # @koi18n/ts
 
+## 0.0.8
+
+### Patch Changes
+
+- 3dc3bc8: Update
+- fe05f60: Add support for React components in messages
+- Updated dependencies [3dc3bc8]
+- Updated dependencies [fe05f60]
+  - @koi18n/formatter@0.0.8
+  - @koi18n/utils@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
