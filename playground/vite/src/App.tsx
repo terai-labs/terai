@@ -1,7 +1,7 @@
 import { useTs, setLocale } from './locale'
 
 export default function App() {
-  const ts = useTs()
+  const { ts } = useTs()
 
   return (
     <div>

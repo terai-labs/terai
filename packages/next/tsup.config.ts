@@ -4,7 +4,7 @@ const commonOptions = {
   clean: true,
   dts: true,
   format: ['esm', 'cjs'] as Format[],
-  minify: false,
+  minify: true,
   shims: true,
   sourcemap: true,
   splitting: false

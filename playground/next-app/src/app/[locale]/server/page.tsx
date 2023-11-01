@@ -1,9 +1,10 @@
 // import { Link } from '@koi18n/next/client'
-const { Link } = require('@koi18n/next/client')
+// const { Link } = require('@koi18n/next/client')
 import { getTs } from '@/locale/server'
+import Link from 'next/link'
 
 export default async function Home() {
-  const ts = await getTs({ chunkId: 'server' })
+  const { ts } = await getTs({ chunkId: 'server' })
   const name = 'Hugo'
   const a = ts`Hello, ${name}!`
 

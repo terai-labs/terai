@@ -1,10 +1,8 @@
-'use server'
-
 // Dependencies
-import 'server-only'
 import { createFormat } from '@koi18n/formatter'
 import { createTs } from '@koi18n/ts'
 import { tsRender } from '../ts-render'
+import { tsrRender } from '../tsr-render'
 
 // Types
 import type { ReactNode } from 'react'
@@ -17,18 +15,27 @@ import type {
 
 export type SetupServer = ReturnType<typeof createSetupServer>
 
-export function createSetupServer({ getLocale }: CreateSetupOptions) {
-  return function setupServer({
-    loader,
-    components = {},
-    format = {}
-  }: SetupReactOptions) {
+export const createSetupServer =
+  ({ getLocale }: CreateSetupOptions) =>
+  ({ loader, components = {}, format = {} }: SetupReactOptions) => {
     const getFormat = createFormat(getLocale)
     const getTs = async ({ chunkId }: GetTsProps = {}) => {
       const locale = getLocale()
       const dictionary = await loader(locale, chunkId ?? locale)
-      return createTs<string | ReactNode, TsReactRenderProps>(props =>
+      const ts = createTs<string, {}>(props =>
         tsRender({
+          ...props,
+          locale,
+          dictionary,
+          format: {
+            ...format,
+            ...props.format
+          }
+        })
+      )
+
+      const tsr = createTs<ReactNode, TsReactRenderProps>(props =>
+        tsrRender({
           ...props,
           locale,
           dictionary,
@@ -42,6 +49,11 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
           }
         })
       )
+
+      return {
+        ts,
+        tsr
+      }
     }
 
     return {
@@ -49,4 +61,3 @@ export function createSetupServer({ getLocale }: CreateSetupOptions) {
       getFormat
     }
   }
-}
