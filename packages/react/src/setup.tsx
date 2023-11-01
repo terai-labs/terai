@@ -14,7 +14,7 @@ import type { SetupClientOptions } from './core/client'
 
 enableReactUse()
 
-export const setup = ({
+export const setupClient = ({
   defaultLocale,
   persist = true,
   ...options
@@ -32,10 +32,12 @@ export const setup = ({
     })
   }
 
+  const coreOutput = createSetupClient({
+    getLocale: useLocale
+  })(options)
+
   return {
-    ...createSetupClient({
-      getLocale: useLocale
-    })(options),
+    ...coreOutput,
     setLocale,
     useLocale
   }

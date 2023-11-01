@@ -7,7 +7,7 @@ const { Link } = require('@koi18n/next/client')
 
 export default function Home() {
   const name = 'Hugo'
-  const ts = useTs()
+  const { ts } = useTs()
 
   return (
     <Suspense fallback={'Loading client...'}>

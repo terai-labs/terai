@@ -1,12 +1,11 @@
 'use client'
 
 // Dependencies
-import 'client-only'
 import { createFormat } from '@koi18n/formatter'
 import { createTs } from '@koi18n/ts'
 import { tsRender } from '../ts-render'
+import { tsrRender } from '../tsr-render'
 import { observable } from '@legendapp/state'
-import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 import { useCallback, useEffect } from 'react'
 import {
@@ -25,15 +24,9 @@ export type SetupClientOptions = SetupReactOptions & {
   persist?: boolean
 }
 
-enableReactUse()
-
-export function createSetupClient({ getLocale }: CreateSetupOptions) {
-  return function createSetup({
-    loader,
-    components = {},
-    format = {},
-    persist
-  }: SetupClientOptions) {
+export const createSetupClient =
+  ({ getLocale }: CreateSetupOptions) =>
+  ({ loader, components = {}, format = {}, persist }: SetupClientOptions) => {
     const dictionaries$ = observable<Dictionaries>({})
     const loadDictionary = (locale: Locale, chunkId: string, id: string) =>
       loader(locale, chunkId).then(dic =>
@@ -57,9 +50,24 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
         }, [locale])
       }
 
-      return useCallback(
-        createTs<string | ReactNode, TsReactRenderProps>(props =>
+      const ts = useCallback(
+        createTs<string, {}>(props =>
           tsRender({
+            ...props,
+            locale,
+            dictionary,
+            format: {
+              ...format,
+              ...props.format
+            }
+          })
+        ),
+        [locale]
+      )
+
+      const tsr = useCallback(
+        createTs<ReactNode, TsReactRenderProps>(props =>
+          tsrRender({
             ...props,
             locale,
             dictionary,
@@ -75,6 +83,8 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
         ),
         [locale]
       )
+
+      return { ts, tsr }
     }
 
     if (persist) {
@@ -92,4 +102,3 @@ export function createSetupClient({ getLocale }: CreateSetupOptions) {
       useLocale: getLocale
     }
   }
-}

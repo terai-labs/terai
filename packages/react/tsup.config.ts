@@ -12,5 +12,5 @@ export default defineConfig({
   minify: true,
   shims: true,
   sourcemap: true,
-  splitting: false
+  splitting: true
 })

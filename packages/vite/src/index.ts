@@ -1,1 +1,1 @@
-export * from '@koi18n/react'
+export { setupClient } from '@koi18n/react'
