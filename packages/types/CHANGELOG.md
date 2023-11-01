@@ -1,5 +1,12 @@
 # @koi18n/types
 
+## 0.0.8
+
+### Patch Changes
+
+- 3dc3bc8: Update
+- fe05f60: Add support for React components in messages
+
 ## 0.0.7
 
 ## 0.0.6

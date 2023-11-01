@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/utils",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "koi18n shared utils",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
