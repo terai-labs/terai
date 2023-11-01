@@ -4,7 +4,11 @@ import { extract } from '@koi18n/extractor'
 import { generate } from '@koi18n/generator'
 import { loadConfig, runtime } from '@koi18n/runtime'
 import { logger } from '@koi18n/logger'
-import { toDictionary, stringify, groupDictionaryByChunks } from '@koi18n/utils'
+import {
+  convertExtractedMessagesToDictionary,
+  stringify,
+  groupDictionaryByChunks
+} from '@koi18n/utils'
 
 // Types
 import type { CAC } from 'cac'
@@ -54,7 +58,7 @@ export async function extractCmd(options: ExtractOptions) {
       filesPaths: files,
       cwd: options.cwd
     })
-    const dictionary = toDictionary(extractedMessages)
+    const dictionary = convertExtractedMessagesToDictionary(extractedMessages)
     const manifest: BuildManifest = {
       messages: extractedMessages
     }

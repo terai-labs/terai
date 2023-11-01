@@ -1,6 +1,8 @@
 import type { ExtractedMessages, Dictionary } from '@koi18n/types'
 
-export function toDictionary(extractedMessages: ExtractedMessages): Dictionary {
+export function convertExtractedMessagesToDictionary(
+  extractedMessages: ExtractedMessages
+): Dictionary {
   const dictionary: Dictionary = {}
 
   for (const id in extractedMessages) {
