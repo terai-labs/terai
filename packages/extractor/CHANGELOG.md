@@ -1,5 +1,15 @@
 # @koi18n/extractor
 
+## 0.0.9
+
+### Patch Changes
+
+- 15be323: WIP
+- Updated dependencies [15be323]
+  - @koi18n/logger@0.0.9
+  - @koi18n/runtime@0.0.9
+  - @koi18n/transformer@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

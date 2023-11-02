@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/node",
   "description": "Koi18n for Node.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",

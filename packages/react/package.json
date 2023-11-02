@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/react",
   "description": "Koi18n for React.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
