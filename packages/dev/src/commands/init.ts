@@ -45,11 +45,11 @@ export async function initCmd({ cwd, force }: InitOptions) {
 
   const outDir = await input({
     message: 'Where do you want to place your generated files?',
-    default: './i18n'
+    default: './locale-system'
   })
 
   const framework = (await select({
-    message: 'Are you using any framework?',
+    message: 'Would you like to use any of these templates? (recommended)',
     choices: [
       {
         name: 'No',

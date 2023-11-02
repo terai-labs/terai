@@ -14,7 +14,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@locale/*": ["./src/locale/*"]
+      "@locale-system/*": ["./locale-system/*"]
     },
 
     /* Linting */
@@ -23,6 +23,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/locale"],
+  "include": ["src", "./locale-system"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

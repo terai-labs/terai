@@ -43,6 +43,9 @@ export async function setupConfig({
         
         // The output directory for your locale system
         outDir: "${outDir}",
+
+        // The translator for your messages
+        translator,
       })
     `
 

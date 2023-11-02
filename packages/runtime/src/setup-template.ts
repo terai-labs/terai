@@ -31,19 +31,22 @@ function getTemplate(
       {
         fileName: `client.${isTs ? 'ts' : 'js'}`,
         content: outdent`
-        import { setupReword } from '@koi18n/react/client'
+        import { setupClient } from '@koi18n/vite'
 
-        export const koi18n = setupReword({
-          locale: 'en',
-          loader: (locale: string, id: string) =>
-            fetch(\`./locale/\${locale}/\${id}.json\`)
-              .then(res => res.json())
-              .then(msg => msg[id]),
+        export const { useTs, setLocale, useFormat } = setupClient({
+          defaultLocale: 'en',
+          persist: true,
+          loader: (locale: string, chunkId: string) =>
+            fetch(\`./locale/\${locale}/\${chunkId}.json\`, { cache: 'no-cache' }).then(
+              res => res.json()
+            )
         })
+
         `
       }
     ]
   }
+
   if (framework === 'next') {
     return [
       {

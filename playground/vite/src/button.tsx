@@ -1,4 +1,4 @@
-import { useTs } from './locale'
+import { useTs } from '../locale-system/client'
 import { Suspense } from 'react'
 
 export function Button() {

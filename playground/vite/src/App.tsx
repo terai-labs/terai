@@ -1,4 +1,4 @@
-import { useTs, setLocale } from './locale'
+import { useTs, setLocale } from '../locale-system/client'
 
 export default function App() {
   const { ts } = useTs()
