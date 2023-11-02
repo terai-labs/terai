@@ -45,9 +45,9 @@
 
 Workflow can be broken down into 3 steps:
 
-- 1️⃣ **Developt**: Start by incorporating your translation source messages into your project using our dedicated SDK.
+- 1️⃣ **Develop**: incorporate your translation source messages into your project using our dedicated SDKs.
 - 2️⃣ **Extract**: streamline your extraction process by automatically gathering all the messages within your project.
-- 3️⃣ **Translate**: translate your messages using your defined translator.
+- 3️⃣ **Translate**: use your defined translator to get your localized messages.
 
 More documentation available at [https://koi18n.dev](https://koi18n.dev).
 
