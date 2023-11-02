@@ -1,14 +1,18 @@
 import type { Dictionaries } from '@koi18n/types'
 import { generate } from '../src'
-import { describe, expect, test } from 'vitest'
+import { afterAll, describe, expect, test } from 'vitest'
 import { runtime } from '@koi18n/runtime'
 
+const locale = 'en'
+const basePath = __dirname
+const outDir = __dirname
+
 describe('generate', () => {
+  afterAll(() => {
+    runtime.fs.remove(runtime.path.join(outDir, locale))
+  })
   test('should generate dictionaries', async () => {
     const sut = generate
-    const locale = 'en'
-    const basePath = __dirname
-    const outDir = __dirname
     const dictionaries: Dictionaries = {
       dictionary1: {
         test1: 'value1'
