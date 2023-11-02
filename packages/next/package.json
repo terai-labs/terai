@@ -1,7 +1,7 @@
 {
   "name": "@koi18n/next",
   "description": "Koi18n for Next.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
