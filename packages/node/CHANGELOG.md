@@ -1,5 +1,14 @@
 # @koi18n/node
 
+## 0.0.10
+
+### Patch Changes
+
+- 023df7c: Update API
+- Updated dependencies [023df7c]
+  - @koi18n/formatter@0.0.10
+  - @koi18n/ts@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes

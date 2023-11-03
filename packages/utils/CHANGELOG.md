@@ -1,5 +1,11 @@
 # @koi18n/utils
 
+## 0.0.10
+
+### Patch Changes
+
+- 023df7c: Update API
+
 ## 0.0.9
 
 ### Patch Changes

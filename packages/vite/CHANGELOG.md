@@ -1,5 +1,15 @@
 # @koi18n/vite
 
+## 0.0.10
+
+### Patch Changes
+
+- 023df7c: Update API
+- 19d64b9: Update API
+- Updated dependencies [023df7c]
+- Updated dependencies [19d64b9]
+  - @koi18n/react@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
