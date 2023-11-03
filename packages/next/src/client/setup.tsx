@@ -14,5 +14,7 @@ export type SetupClient = {
 export const setup$ = observable<SetupClient>()
 
 export const setupClient = (options: SetupClient) => {
+  console.log('setup client', options)
   setup$.set(options)
+  return options
 }

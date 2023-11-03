@@ -5,21 +5,13 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@locale/*": [
-        "./src/locale/*"
-      ]
+      "@/*": ["./src/*"],
+      "@locale/*": ["./src/locale/*"]
     },
     "plugins": [
       {
@@ -31,13 +23,6 @@
     "strict": true,
     "target": "es5"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }

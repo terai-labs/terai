@@ -22,6 +22,7 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
   const dictionary = dictionaries$[dictionaryId].get()
   const loaderId = chunkId ?? locale
 
+  console.log('Use ts', setup)
   if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
 
   if (setup.persist) {

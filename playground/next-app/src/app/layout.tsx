@@ -1,12 +1,17 @@
-import { setupServer } from '@koi18n/next'
+import { setupClient, setupServer } from '@koi18n/next'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Suspense } from 'react'
+// import { SetupComponent } from './setup'
 
 const inter = Inter({ subsets: ['latin'] })
 
 setupServer({
+  loader: (locale: string, id: string) =>
+    import(`../locale/${locale}/${id}.json`)
+})
+setupClient({
   loader: (locale: string, id: string) =>
     import(`../locale/${locale}/${id}.json`)
 })
@@ -26,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
+        {/* <SetupComponent /> */}
         <p>Next.js example</p>
         <Suspense fallback={'Loading...'}>{children}</Suspense>
       </body>
