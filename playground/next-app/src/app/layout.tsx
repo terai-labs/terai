@@ -1,9 +1,15 @@
+import { setupServer } from '@koi18n/next'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
+
+setupServer({
+  loader: (locale: string, id: string) =>
+    import(`../locale/${locale}/${id}.json`)
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',

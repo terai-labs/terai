@@ -155,3 +155,5 @@ common/autoinstallers/*/.npmrc
 
 __generated__
 .env*.local
+
+.rollup.cache

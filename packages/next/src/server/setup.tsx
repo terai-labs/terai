@@ -1,10 +1,17 @@
-// Dependencies
-import { getLocale } from './get-locale'
-import { createSetupServer } from '@koi18n/react/core/server'
+// Depedencies
+import { observable } from '@legendapp/state'
 
 // Types
-import type { SetupServer } from '@koi18n/react/core/server'
+import type { Loader } from '@koi18n/types'
+import type { GlobalFormat } from '@koi18n/formatter'
 
-export const setupServer: SetupServer = createSetupServer({
-  getLocale
-})
+export type Setup = {
+  loader: Loader
+  format?: GlobalFormat
+}
+
+export const setup$ = observable<Setup>()
+
+export const setupServer = (options: Setup) => {
+  setup$.set(options)
+}

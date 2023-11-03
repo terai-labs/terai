@@ -1,7 +1,7 @@
 'use client'
 
 // Dependencies
-import { hasPathnamePrefixed, unlocalizePathname } from '../utils'
+import { hasPathnamePrefixed, unlocalizePathname } from './utils'
 import { useLocale } from './use-locale'
 import { useMemo } from 'react'
 import { usePathname as useNextPathname } from 'next/navigation'

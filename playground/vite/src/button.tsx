@@ -1,4 +1,4 @@
-import { useTs } from '../locale-system/client'
+import { useTs } from '@koi18n/react'
 import { Suspense } from 'react'
 
 export function Button() {

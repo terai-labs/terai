@@ -8,8 +8,8 @@
   "types": "dist/index.d.ts",
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "scripts": {
-    "dev": "tsup --format=esm,cjs --no-dts --watch",
-    "build": "tsup"
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
   },
   "files": [
     "dist"
@@ -18,28 +18,24 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    "./middleware": {
-      "types": "./dist/middleware/index.d.ts",
-      "require": "./dist/middleware/index.js",
-      "import": "./dist/middleware/index.mjs"
-    },
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "require": "./dist/client/index.js",
-      "import": "./dist/client/index.mjs"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "require": "./dist/server/index.js",
-      "import": "./dist/server/index.mjs"
-    }
-  },
   "dependencies": {
-    "@koi18n/react": "workspace:*"
+    "@koi18n/ts": "workspace:*",
+    "@koi18n/react": "workspace:*",
+    "@koi18n/formatter": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@koi18n/types": "workspace:*",
+    "@babel/plugin-transform-runtime": "^7",
+    "@babel/preset-env": "^7",
+    "@babel/preset-react": "^7",
+    "@rollup/plugin-alias": "^5",
+    "@rollup/plugin-typescript": "^11",
+    "@rollup/plugin-babel": "^6",
+    "@rollup/plugin-commonjs": "^25",
+    "@rollup/plugin-node-resolve": "^15",
+    "@rollup/plugin-terser": "^0",
+    "rollup": "^4",
+    "rollup-plugin-preserve-directives": "^0"
   },
   "peerDependencies": {
     "next": "^14",

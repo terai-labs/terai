@@ -1,7 +1,7 @@
 'use client'
 
 // Dependencies
-import { localizeHref } from '../utils'
+import { localizeHref } from './utils'
 import { useLocale } from './use-locale'
 import { useMemo } from 'react'
 import { useRouter as useNextRouter } from 'next/navigation'

@@ -1,9 +1,7 @@
 'use client'
 
-import { useTs } from '@/locale/client'
 import { Suspense } from 'react'
-// import { Link } from '@koi18n/next/client'
-const { Link } = require('@koi18n/next/client')
+import { Link, useTs } from '@koi18n/next'
 
 export default function Home() {
   const name = 'Hugo'

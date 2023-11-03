@@ -23,23 +23,11 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
-    },
-    "./core/server": {
-      "types": "./dist/core/server/index.d.ts",
-      "require": "./dist/core/server/index.js",
-      "import": "./dist/core/server/index.mjs"
-    },
-    "./core/client": {
-      "types": "./dist/core/client/index.d.ts",
-      "require": "./dist/core/client/index.js",
-      "import": "./dist/core/client/index.mjs"
     }
   },
   "dependencies": {
     "@koi18n/formatter": "workspace:*",
-    "@koi18n/ts": "workspace:*",
-    "@koi18n/utils": "workspace:*",
-    "intl-messageformat": "^10"
+    "@koi18n/ts": "workspace:*"
   },
   "devDependencies": {
     "@koi18n/types": "workspace:*"

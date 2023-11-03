@@ -13,7 +13,7 @@
     "test": "vitest run",
     "test:dev": "vitest dev -u",
     "test:coverage": "vitest run --coverage",
-    "clean": "pnpm -r --parallel exec rimraf node_modules dist CHANGELOG.md && rimraf node_modules",
+    "clean": "pnpm -r --parallel exec rimraf node_modules dist && rimraf node_modules",
     "fix": "pnpm lint:fix . && pnpm format:fix .",
     "lint": "eslint --cache",
     "lint:check": "pnpm lint",

@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@koi18n/vite": "workspace:*"
+    "@koi18n/react": "workspace:*"
   },
   "devDependencies": {
     "@koi18n/dev": "workspace:*",

@@ -1,12 +1,18 @@
-'use client'
-
-// Dependencies
-import { useLocale } from './use-locale'
-import { createSetupClient } from '@koi18n/react/core/client'
+// Depedencies
+import { observable } from '@legendapp/state'
 
 // Types
-import type { SetupClient } from '@koi18n/react/core/client'
+import type { Loader } from '@koi18n/types'
+import type { GlobalFormat } from '@koi18n/formatter'
 
-export const setupClient: SetupClient = createSetupClient({
-  getLocale: useLocale
-})
+export type SetupClient = {
+  loader: Loader
+  format?: GlobalFormat
+  persist?: boolean
+}
+
+export const setup$ = observable<SetupClient>()
+
+export const setupClient = (options: SetupClient) => {
+  setup$.set(options)
+}

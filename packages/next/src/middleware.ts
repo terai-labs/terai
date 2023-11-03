@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 // Constants
-import { LOCALE_COOKIE } from '../constants'
+import { LOCALE_COOKIE } from './constants'
 
 // Types
 import type { Locale } from '@koi18n/types'

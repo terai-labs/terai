@@ -1,4 +1,4 @@
-import { useTs, setLocale } from '../locale-system/client'
+import { useTs, setLocale } from '@koi18n/react'
 
 export default function App() {
   const { ts } = useTs()
