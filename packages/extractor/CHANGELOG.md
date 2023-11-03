@@ -1,5 +1,15 @@
 # @koi18n/extractor
 
+## 0.0.10
+
+### Patch Changes
+
+- 023df7c: Update API
+- Updated dependencies [023df7c]
+  - @koi18n/logger@0.0.10
+  - @koi18n/runtime@0.0.10
+  - @koi18n/transformer@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes

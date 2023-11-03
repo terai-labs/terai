@@ -1,6 +1,6 @@
 {
   "name": "@koi18n/logger",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "koi18n core logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
