@@ -77,7 +77,7 @@ More documentation available at [https://koi18n.dev](https://koi18n.dev).
 
 ## Activity
 
-![Alt](https://repobeats.axiom.co/api/embed/ae01883d171ad206316b28b61099419430155550.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/f6ae3b2f55b6e451eee558a2a003cf213dca4a90.svg "Repobeats analytics image")
 
 ## Getting Started
 
