@@ -39,6 +39,9 @@
   </h5>
 </div>
 
+> [!WARNING]  
+> This project is currently in development and considered unstable while we work towards an stable v1.0 release. Use it with caution.
+
 ## Introduction
 
 **koi18n** is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
@@ -72,12 +75,8 @@ More documentation available at [https://koi18n.dev](https://koi18n.dev).
 | `@koi18n/dev` | The user-facing package for **koi18n** | [![Version](https://img.shields.io/npm/v/@koi18n/dev.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/dev)](https://bundlephobia.com/result?p=@koi18n/dev) | [![NPM](https://img.shields.io/npm/dm/@koi18n/dev.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/dev) |
 | `@koi18n/react` | **koi18n** for React.js | [![Version](https://img.shields.io/npm/v/@koi18n/react.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/react)](https://bundlephobia.com/result?p=@koi18n/react) | [![NPM](https://img.shields.io/npm/dm/@koi18n/react.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/react) |
 | `@koi18n/vite` | **koi18n** for Vite | [![Version](https://img.shields.io/npm/v/@koi18n/vite.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/vite)](https://bundlephobia.com/result?p=@koi18n/vite) | [![NPM](https://img.shields.io/npm/dm/@koi18n/vite.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/vite) |
-| `@koi18n/next` | **koi18n** for Next.js | [![Version](https://img.shields.io/npm/v/@koi18n/next.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/next)](https://bundlephobia.com/result?p=@koi18n/next) | [![NPM](https://img.shields.io/npm/dm/@koi18n/next.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/next) |
+<!-- | `@koi18n/next` | **koi18n** for Next.js | [![Version](https://img.shields.io/npm/v/@koi18n/next.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/next)](https://bundlephobia.com/result?p=@koi18n/next) | [![NPM](https://img.shields.io/npm/dm/@koi18n/next.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/next) | -->
 | `@koi18n/node` | **koi18n** for Node.js | [![Version](https://img.shields.io/npm/v/@koi18n/node.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/node)](https://bundlephobia.com/result?p=@koi18n/node) | [![NPM](https://img.shields.io/npm/dm/@koi18n/node.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/node) |
-
-## Activity
-
-![Alt](https://repobeats.axiom.co/api/embed/f6ae3b2f55b6e451eee558a2a003cf213dca4a90.svg "Repobeats analytics image")
 
 ## Getting Started
 
