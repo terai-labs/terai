@@ -7,6 +7,7 @@ const withNextra = require('nextra')({
 
 module.exports = withNextra({
   output: 'export',
+  basePath: '/terai',
   images: {
     unoptimized: true
   }
