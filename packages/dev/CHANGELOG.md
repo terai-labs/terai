@@ -1,5 +1,16 @@
 # @terai/dev
 
+## 0.0.2
+
+### Patch Changes
+
+- e3ce54b: v0.0.2
+- Updated dependencies [e3ce54b]
+  - @terai/extractor@0.0.2
+  - @terai/runtime@0.0.2
+  - @terai/translator@0.0.2
+  - @terai/utils@0.0.2
+
 ## 0.0.1
 
 ### Patch Changes
