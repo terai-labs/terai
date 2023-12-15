@@ -123,7 +123,7 @@
     },
     "hWhCdW": {
       "id": "hWhCdW",
-      "value": "Static Extraction: Koi employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
+      "value": "Static Extraction: Terai employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
       "files": [
         "vite/src/App.tsx"
       ],

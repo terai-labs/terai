@@ -10,7 +10,7 @@
   "fiMPzY": "A New Approach to Localization",
   "gWGLlA": "In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Terai was born.",
   "gJuWag": "Terai represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:",
-  "hWhCdW": "Static Extraction: Koi employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
+  "hWhCdW": "Static Extraction: Terai employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
   "kcHZEL": "Codegen: Terai automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.",
   "eQvmzx": "Performance: Terai is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.",
   "hazgoL": "Developer Experience: Terai prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.",

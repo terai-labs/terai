@@ -1,0 +1,88 @@
+# Config Reference
+
+Customize how terai works via the `terai.config.ts` file in your project.
+
+```tsx
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  // your configuration options here...
+})
+```
+
+## File system options
+
+### include
+
+- **Type**: `string[]`
+- **Default**: `[]`
+
+List of files glob to to look for your locale declarations.
+
+```json
+{
+  "include": ["./src/**/*.{js,jsx,ts,tsx}"]
+}
+```
+
+### exclude
+
+- **Type**: `string[]`
+- **Default**: `[]`
+
+List of files glob to ignore.
+
+```json
+{
+  "exclude": []
+}
+```
+
+### outDir
+
+- **Type**: `string`
+- **Default**: `""`
+
+The output directory for your locale system.
+
+```json
+{
+  "outDir": "./locale-system"
+}
+```
+
+## Locale options
+
+### projectLocale
+
+- **Type**: `string`
+- **Default**: `""`
+
+The base locale used in your project
+
+```json
+{
+  "projectLocale": "en"
+}
+```
+
+### outLocales
+
+- **Type**: `string[]`
+- **Default**: `[]`
+
+The aditional locales you want to support
+
+```json
+{
+  "outLocales": ["es", "it"]
+}
+```
+
+### translator
+
+- **Type**:
+  `({ dictionary, locale, projectLocale }: { dictionary: Dictionary locale: Locale projectLocale: Locale }) => Promise<Dictionary> `
+- **Default**: `undefined`
+
+The translator for your messages

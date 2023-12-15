@@ -1,0 +1,42 @@
+# Cache
+
+**Terai**'s internal cache is a key component of the framework, designed to
+improve the efficiency of the translation process. Here are some core concepts
+related to the internal cache:
+
+- **Location**: The internal cache is stored locally in a directory named
+  `.terai` within your project's root folder. The cache directory is named
+  `.terai/cache`, and it's the storage location for all cached translation data.
+
+- **Message-Based**: **Terai**'s internal cache is message-based, which means it
+  stores translations on a per-message basis. Each message, which can be a
+  string or key, is associated with its corresponding translated value. This
+  design allows **Terai** to be efficient in managing translations.
+
+## Usage
+
+Whenever you run the `translate` script in **Terai** to generate translations,
+the framework checks the internal cache first. **Terai** will only translate
+messages that have not been historically translated before. This approach
+significantly reduces the translation workload, making the process faster and
+more efficient.
+
+### Overriding Cached Values
+
+One notable feature of the internal cache is its ability to adapt to changes in
+your project's translations. If you override the values of some messages in your
+locale files, the internal cache will automatically update and use the
+overridden values moving forward. This ensures that the cached translations
+remain in sync with the actual translations in your project.
+
+### Manual Message Creation and Cache
+
+In cases where you manually create a message translation, **Terai** will store
+this translation in the internal cache as well. This feature allows you to add
+custom translations and ensures that **Terai** leverages the cached data
+effectively.
+
+By understanding and utilizing **Terai**'s internal cache, you can streamline
+your localization process and make your JavaScript applications more efficient
+and responsive to changes. The internal cache is a powerful tool for developers
+looking to enhance their translation workflows.

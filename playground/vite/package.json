@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "pnpm localize && tsc && vite build --base=./",
-    "localize": "pnpm koi extract && pnpm koi translate",
+    "localize": "pnpm terai extract && pnpm terai translate",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

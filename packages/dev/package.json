@@ -8,7 +8,6 @@
   "private": false,
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
-    "koi": "bin.js",
     "terai": "bin.js"
   },
   "scripts": {

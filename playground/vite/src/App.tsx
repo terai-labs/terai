@@ -36,7 +36,7 @@ export default function App() {
       <p>{ts`Terai represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:`}</p>
 
       <ul>
-        <li>{ts`Static Extraction: Koi employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.`}</li>
+        <li>{ts`Static Extraction: Terai employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.`}</li>
         <li>{ts`Codegen: Terai automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.`}</li>
         <li>{ts`Performance: Terai is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.`}</li>
         <li>{ts`Developer Experience: Terai prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.`}</li>

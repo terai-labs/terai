@@ -1,0 +1,23 @@
+{
+  "index": {
+    "display": "hidden",
+    "type": "page"
+  },
+  "docs": {
+    "title": "Docs",
+    "type": "page",
+    "href": "/docs/overview/getting-started"
+  },
+  "examples": {
+    "title": "Examples",
+    "type": "page",
+    "href": "https://github.com/teraihq/examples"
+  },
+  "about": {
+    "title": "About",
+    "type": "page",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

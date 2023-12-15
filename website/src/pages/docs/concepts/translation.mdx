@@ -1,0 +1,65 @@
+import { Steps } from 'nextra/components'
+
+# Translation
+
+**Terai** simplifies the process of translating messages in your JavaScript
+application. You can use the `terai translate` command by setting up a
+translator in your `terai.config.ts` file. This guide will walk you through the
+steps to configure and use the translator effectively.
+
+<Steps>
+
+### Translator config
+
+First, you need to configure the translator in your `terai.config.ts` file.
+While we recommend using our dedicated translation service (link to
+documentation), **Terai** also provides integrations with major translation
+service providers.
+
+```tsx
+import { defineConfig, createKoiTranslator } from '@terai/dev'
+
+const translator = createKoiTranslator({
+  apiKey: YOUR_API_KEY
+})
+
+export default defineConfig({
+  translator
+  // ...rest of options
+})
+```
+
+In the above code snippet:
+
+- Import necessary modules from `@terai/dev`.
+- Use the `createKoiTranslator` function to set up the translator.
+- Replace `YOUR_API_KEY` with the actual API key provided by your chosen
+  translation service.
+
+### Running `extract`
+
+Before you can generate translations, you need to run the `extract` command to
+gather all messages from your project. This step ensures that **Terai** has a
+list of messages to translate.
+
+```sh
+pnpm terai extract
+```
+
+### Running `translate`
+
+Once your translator is configured and messages are extracted, you can easily
+manage translations by running the `translate` script. **Terai** will handle the
+translation process and generate the necessary translation files.
+
+```sh
+pnpm terai translate
+```
+
+</Steps>
+
+## 3rd party integrations
+
+- [Using your custom translator](/docs/guides/custom-translator)
+- [Using ChatGPT translator](/docs/guides/chatgpt-translator)
+- [Using Google translator](/docs/guides/google-translator)
