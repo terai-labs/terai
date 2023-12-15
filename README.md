@@ -4,15 +4,15 @@
 
 <div align="center">
 
-[![Build](https://img.shields.io/github/actions/workflow/status/terai/terai/release.yml?branch=master)](https://github.com/terai/terai/actions/workflows/release.yml)
-[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/terai/terai)](https://coveralls.io/github/terai/terai)
+[![Build](https://img.shields.io/github/actions/workflow/status/teraihq/terai/release.yml?branch=master)](https://github.com/teraihq/terai/actions/workflows/release.yml)
+[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/teraihq/terai)](https://coveralls.io/github/terai/terai)
 [![Language](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@terai/terai)
+[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@teraihq/terai)
 
 </div>
 
 <div align="center">
-      <b>terai is a modern localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
+      <b>Terai is a modern AI-based localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
 </div>
 
 <div align="center">
@@ -44,7 +44,7 @@
 
 ## Introduction
 
-**terai** is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
+**Terai** is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
 
 Workflow can be broken down into 3 steps:
 
@@ -80,7 +80,7 @@ More documentation available at [https://terai.dev](https://terai.dev).
 
 ## Getting Started
 
-Visit <a aria-label="terai learn" href="https://terai.dev/learn">https://terai.dev/learn</a> to get started with terai.
+Visit <a aria-label="terai learn" href="https://terai.dev/learn">https://terai.dev/learn</a> to get started with **Terai**.
 
 ## Documentation
 
@@ -88,9 +88,9 @@ Visit [https://terai.dev/docs](https://terai.dev/docs) to view the full document
 
 ## Community
 
-The **terai** community can be found on [GitHub Discussions](https://github.com/terai/terai/discussions), where you can ask questions, voice ideas, and share your projects.
+The **Terai** community can be found on [GitHub Discussions](https://github.com/terai/terai/discussions), where you can ask questions, voice ideas, and share your projects.
 
-Our [Code of Conduct](https://github.com/terai/terai/blob/master/CODE_OF_CONDUCT.md) applies to all **terai** community channels.
+Our [Code of Conduct](https://github.com/terai/terai/blob/master/CODE_OF_CONDUCT.md) applies to all **Terai** community channels.
 
 ## Contributing
 
