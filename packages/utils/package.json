@@ -1,7 +1,7 @@
 {
-  "name": "@koi18n/utils",
+  "name": "@terai/utils",
   "version": "0.0.10",
-  "description": "koi18n shared utils",
+  "description": "terai shared utils",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,6 +18,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

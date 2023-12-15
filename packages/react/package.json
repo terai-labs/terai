@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/react",
-  "description": "Koi18n for React.js",
+  "name": "@terai/react",
+  "description": "Terai for React.js",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -26,11 +26,11 @@
     }
   },
   "dependencies": {
-    "@koi18n/formatter": "workspace:*",
-    "@koi18n/ts": "workspace:*"
+    "@terai/formatter": "workspace:*",
+    "@terai/ts": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18"

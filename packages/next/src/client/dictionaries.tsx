@@ -4,6 +4,6 @@
 import { observable } from '@legendapp/state'
 
 // Types
-import type { Dictionaries } from '@koi18n/types'
+import type { Dictionaries } from '@terai/types'
 
 export const dictionaries$ = observable<Dictionaries>()

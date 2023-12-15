@@ -1,12 +1,12 @@
 // Dependencies
-import { findConfig, setupConfig, setupTemplate } from '@koi18n/runtime'
+import { findConfig, setupConfig, setupTemplate } from '@terai/runtime'
 import { input, select } from '@inquirer/prompts'
-import { logger } from '@koi18n/logger'
+import { logger } from '@terai/logger'
 import { outdent } from 'outdent'
 import getPackageManager from 'preferred-pm'
 
 // Types
-import type { Config, Locale } from '@koi18n/types'
+import type { Config, Locale } from '@terai/types'
 import type { CAC } from 'cac'
 
 export type InitOptions = Pick<Config, 'projectLocale'> & {
@@ -32,8 +32,8 @@ export async function initCmd({ cwd, force }: InitOptions) {
   if (configFile && !force) {
     return logger.log(
       outdent`
-        It looks like you already have koi18n created.
-        You can now run ${logger.colors.cyan(`'${cmd} koi18n extract --watch'`)}
+        It looks like you already have terai created.
+        You can now run ${logger.colors.cyan(`'${cmd} terai extract --watch'`)}
       `
     )
   }
@@ -76,5 +76,5 @@ export async function initCmd({ cwd, force }: InitOptions) {
 
   done('Config file created')
 
-  logger.log(`🚀 You are set up to start using koi18n! Thanks for choosing it.`)
+  logger.log(`🚀 You are set up to start using terai! Thanks for choosing it.`)
 }

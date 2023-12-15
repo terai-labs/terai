@@ -1,7 +1,7 @@
 {
-  "name": "@koi18n/runtime",
+  "name": "@terai/runtime",
   "version": "0.0.10",
-  "description": "koi18n node utilities",
+  "description": "terai node utilities",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/logger": "workspace:*",
+    "@terai/logger": "workspace:*",
     "bundle-n-require": "^1",
     "chokidar": "^3",
     "fast-glob": "^3",
@@ -28,7 +28,7 @@
     "pathe": "^1"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*",
+    "@terai/types": "workspace:*",
     "@types/fs-extra": "^11"
   }
 }

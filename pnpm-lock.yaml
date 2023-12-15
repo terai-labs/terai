@@ -93,16 +93,16 @@ importers:
       '@inquirer/prompts':
         specifier: ^3
         version: 3.2.0
-      '@koi18n/extractor':
+      '@terai/extractor':
         specifier: workspace:*
         version: link:../extractor
-      '@koi18n/runtime':
+      '@terai/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@koi18n/translator':
+      '@terai/translator':
         specifier: workspace:*
         version: link:../translator
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
       cac:
@@ -124,13 +124,13 @@ importers:
         specifier: ^3
         version: 3.1.2
     devDependencies:
-      '@koi18n/generator':
+      '@terai/generator':
         specifier: workspace:*
         version: link:../generator
-      '@koi18n/logger':
+      '@terai/logger':
         specifier: workspace:*
         version: link:../logger
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
       '@types/update-notifier':
@@ -142,43 +142,43 @@ importers:
 
   packages/extractor:
     dependencies:
-      '@koi18n/logger':
+      '@terai/logger':
         specifier: workspace:*
         version: link:../logger
-      '@koi18n/runtime':
+      '@terai/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@koi18n/transformer':
+      '@terai/transformer':
         specifier: workspace:*
         version: link:../transformer
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
   packages/formatter:
     dependencies:
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
   packages/generator:
     dependencies:
-      '@koi18n/runtime':
+      '@terai/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@koi18n/translator':
+      '@terai/translator':
         specifier: workspace:*
         version: link:../translator
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
@@ -186,13 +186,13 @@ importers:
 
   packages/next:
     dependencies:
-      '@koi18n/formatter':
+      '@terai/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@koi18n/react':
+      '@terai/react':
         specifier: workspace:*
         version: link:../react
-      '@koi18n/ts':
+      '@terai/ts':
         specifier: workspace:*
         version: link:../ts
       next:
@@ -211,7 +211,7 @@ importers:
       '@babel/preset-react':
         specifier: ^7
         version: 7.22.15(@babel/core@7.23.0)
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
       '@rollup/plugin-alias':
@@ -241,36 +241,36 @@ importers:
 
   packages/node:
     dependencies:
-      '@koi18n/formatter':
+      '@terai/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@koi18n/ts':
+      '@terai/ts':
         specifier: workspace:*
         version: link:../ts
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
   packages/react:
     dependencies:
-      '@koi18n/formatter':
+      '@terai/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@koi18n/ts':
+      '@terai/ts':
         specifier: workspace:*
         version: link:../ts
       react:
         specifier: ^18
         version: 18.2.0
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
   packages/runtime:
     dependencies:
-      '@koi18n/logger':
+      '@terai/logger':
         specifier: workspace:*
         version: link:../logger
       bundle-n-require:
@@ -295,7 +295,7 @@ importers:
         specifier: ^1
         version: 1.1.1
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
       '@types/fs-extra':
@@ -304,11 +304,11 @@ importers:
 
   packages/transformer:
     dependencies:
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
@@ -321,26 +321,26 @@ importers:
         specifier: ^4
         version: 4.14.0
     devDependencies:
-      '@koi18n/runtime':
+      '@terai/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
 
   packages/ts:
     dependencies:
-      '@koi18n/formatter':
+      '@terai/formatter':
         specifier: workspace:*
         version: link:../formatter
-      '@koi18n/utils':
+      '@terai/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
@@ -348,33 +348,33 @@ importers:
 
   packages/utils:
     devDependencies:
-      '@koi18n/types':
+      '@terai/types':
         specifier: workspace:*
         version: link:../types
 
   packages/vite:
     dependencies:
-      '@koi18n/react':
+      '@terai/react':
         specifier: workspace:*
         version: link:../react
 
   playground/next-app:
     dependencies:
-      '@koi18n/next':
+      '@terai/next':
         specifier: workspace:*
         version: link:../../packages/next
     devDependencies:
-      '@koi18n/dev':
+      '@terai/dev':
         specifier: workspace:*
         version: link:../../packages/dev
 
   playground/vite:
     dependencies:
-      '@koi18n/react':
+      '@terai/react':
         specifier: workspace:*
         version: link:../../packages/react
     devDependencies:
-      '@koi18n/dev':
+      '@terai/dev':
         specifier: workspace:*
         version: link:../../packages/dev
       '@vitejs/plugin-react':

@@ -1,4 +1,4 @@
-import type { ExtractedMessage } from '@koi18n/types'
+import type { ExtractedMessage } from '@terai/types'
 
 export type TransformerOptions = {
   cwd: string

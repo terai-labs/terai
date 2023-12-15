@@ -1,4 +1,4 @@
-# @koi18n/translator
+# @terai/translator
 
 ## 0.0.10
 

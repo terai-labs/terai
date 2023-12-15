@@ -2,8 +2,8 @@
 import { observable } from '@legendapp/state'
 
 // Types
-import type { Loader } from '@koi18n/types'
-import type { GlobalFormat } from '@koi18n/formatter'
+import type { Loader } from '@terai/types'
+import type { GlobalFormat } from '@terai/formatter'
 
 export type SetupClient = {
   loader: Loader

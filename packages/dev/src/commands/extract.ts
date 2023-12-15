@@ -1,18 +1,18 @@
 // Dependencies
 import { debounce } from 'perfect-debounce'
-import { extract } from '@koi18n/extractor'
-import { generate } from '@koi18n/generator'
-import { loadConfig, runtime } from '@koi18n/runtime'
-import { logger } from '@koi18n/logger'
+import { extract } from '@terai/extractor'
+import { generate } from '@terai/generator'
+import { loadConfig, runtime } from '@terai/runtime'
+import { logger } from '@terai/logger'
 import {
   convertExtractedMessagesToDictionary,
   stringify,
   groupDictionaryByChunks
-} from '@koi18n/utils'
+} from '@terai/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { BuildManifest } from '@koi18n/types'
+import type { BuildManifest } from '@terai/types'
 
 export type ExtractOptions = {
   cwd: string
@@ -46,7 +46,7 @@ export async function extractCmd(options: ExtractOptions) {
   )
   const manifestPath = runtime.path.resolve(
     outDirPath,
-    '.koi18n',
+    '.terai',
     `locale-manifest.json`
   )
 

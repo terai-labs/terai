@@ -1,4 +1,4 @@
-import { createMiddleware } from '@koi18n/next'
+import { createMiddleware } from '@terai/next'
 
 export const middleware = createMiddleware({
   locales: ['en', 'es'],

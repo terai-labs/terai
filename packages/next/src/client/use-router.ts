@@ -7,7 +7,7 @@ import { useMemo } from 'react'
 import { useRouter as useNextRouter } from 'next/navigation'
 
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 type IntlNavigateOptions = {
   locale?: Locale

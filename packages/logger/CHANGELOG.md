@@ -1,4 +1,4 @@
-# @koi18n/logger
+# @terai/logger
 
 ## 0.0.10
 

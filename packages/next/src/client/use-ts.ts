@@ -1,7 +1,7 @@
 'use client'
 
 // Dependencies
-import { createTs } from '@koi18n/ts'
+import { createTs } from '@terai/ts'
 import { dictionaries$ } from './dictionaries'
 import { setup$ } from './setup'
 import { tsRender } from '../ts-render'
@@ -9,7 +9,7 @@ import { useEffect, useCallback } from 'react'
 import { useLocale } from './use-locale'
 
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 type UseTsProps = {
   chunkId?: string

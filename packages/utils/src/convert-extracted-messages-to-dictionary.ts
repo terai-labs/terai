@@ -1,4 +1,4 @@
-import type { ExtractedMessages, Dictionary } from '@koi18n/types'
+import type { ExtractedMessages, Dictionary } from '@terai/types'
 
 export function convertExtractedMessagesToDictionary(
   extractedMessages: ExtractedMessages

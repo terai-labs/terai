@@ -1,4 +1,4 @@
-import { createTs } from '@koi18n/ts'
+import { createTs } from '@terai/ts'
 import { tsRender } from '../ts-render'
 import { getLocale } from './get-locale'
 import { setup$ } from './setup'

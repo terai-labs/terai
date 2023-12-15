@@ -1,5 +1,5 @@
 {
-  "ibyLHQ": "From the endless list of translation libraries, why should you choose Koi18n?",
+  "ibyLHQ": "From the endless list of translation libraries, why should you choose Terai?",
   "cfRzKn": "Backstory",
   "hJodfE": "The world of business and technology is rapidly expanding, with global growth as a common objective for many projects.\nHowever, language barriers can be a significant roadblock to entering new markets. While English dominates the internet, it caters to only a quarter of the world's internet users.",
   "hoJsxX": "To truly win the trust of consumers in these diverse markets, products and services must not only \"speak\" their language but also provide a local look and feel. This goes beyond mere translation; it involves a comprehensive localization process that takes into account local expectations, currencies, legal requirements, and more.",
@@ -8,13 +8,13 @@
   "eNyZTi": "The rapid evolution of the web over the past decade has transformed the way we build and deliver software. However, one area that has lagged behind is localization. Traditional localization processes often feel stuck in the past, relying on outdated methods that don't align with the agility and innovation seen in other aspects of software development.",
   "jjKCwG": "But it doesn't have to be this way. We're here to change that.",
   "fiMPzY": "A New Approach to Localization",
-  "gWGLlA": "In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Koi18n was born.",
-  "gJuWag": "Koi18n represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:",
+  "gWGLlA": "In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Terai was born.",
+  "gJuWag": "Terai represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:",
   "hWhCdW": "Static Extraction: Koi employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
-  "kcHZEL": "Codegen: Koi18n automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.",
-  "eQvmzx": "Performance: Koi18n is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.",
-  "hazgoL": "Developer Experience: Koi18n prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.",
+  "kcHZEL": "Codegen: Terai automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.",
+  "eQvmzx": "Performance: Terai is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.",
+  "hazgoL": "Developer Experience: Terai prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.",
   "dbWtFx": "Flexibility: You have the freedom to choose the translator that best suits your preferences.",
   "cFAdNw": "Customization: Tailor your own implementation to perfectly align with your specific use-case, granting you full control over the localization process.",
-  "bldBUq": "Join us in reimagining localization and unlocking the full potential of your global expansion strategy. Welcome to the future of localization with Koi18n. 🌐🚀"
+  "bldBUq": "Join us in reimagining localization and unlocking the full potential of your global expansion strategy. Welcome to the future of localization with Terai. 🌐🚀"
 }

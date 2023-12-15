@@ -1,6 +1,6 @@
-// import { Link } from '@koi18n/next/client'
-// const { Link } = require('@koi18n/next/client')
-import { getTs } from '@koi18n/next'
+// import { Link } from '@terai/next/client'
+// const { Link } = require('@terai/next/client')
+import { getTs } from '@terai/next'
 import Link from 'next/link'
 
 export default async function Home() {

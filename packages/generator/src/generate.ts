@@ -1,9 +1,9 @@
 // Dependencies
-import { runtime } from '@koi18n/runtime'
-import { stringify } from '@koi18n/utils'
+import { runtime } from '@terai/runtime'
+import { stringify } from '@terai/utils'
 
 // Types
-import type { Config, Locale, Dictionaries } from '@koi18n/types'
+import type { Config, Locale, Dictionaries } from '@terai/types'
 
 type GenerateOptions = {
   cwd: string

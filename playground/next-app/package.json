@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@koi18n/next": "workspace:*"
+    "@terai/next": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/dev": "workspace:*"
+    "@terai/dev": "workspace:*"
   }
 }

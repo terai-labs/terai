@@ -11,10 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@koi18n/react": "workspace:*"
+    "@terai/react": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/dev": "workspace:*",
+    "@terai/dev": "workspace:*",
     "@vitejs/plugin-react": "^4",
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-react-refresh": "^0",

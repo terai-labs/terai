@@ -1,5 +1,5 @@
 // Dependencies
-import { createTs } from '@koi18n/ts'
+import { createTs } from '@terai/ts'
 import { useEffect, useCallback } from 'react'
 import { tsRender } from './ts-render'
 import { useLocale } from './use-locale'
@@ -7,7 +7,7 @@ import { setup$ } from './setup'
 import { enableReactUse } from '@legendapp/state/config/enableReactUse'
 
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 enableReactUse()
 

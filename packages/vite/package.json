@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/vite",
-  "description": "Koi18n for Vite",
+  "name": "@terai/vite",
+  "description": "Terai for Vite",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,6 +19,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/react": "workspace:*"
+    "@terai/react": "workspace:*"
   }
 }

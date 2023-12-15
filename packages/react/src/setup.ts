@@ -7,8 +7,8 @@ import {
 } from '@legendapp/state/persist'
 
 // Types
-import type { Dictionaries, Loader, Locale } from '@koi18n/types'
-import type { GlobalFormat } from '@koi18n/formatter'
+import type { Dictionaries, Loader, Locale } from '@terai/types'
+import type { GlobalFormat } from '@terai/formatter'
 
 type Setup = {
   dictionaries: Dictionaries

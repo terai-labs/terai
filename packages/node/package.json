@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/node",
-  "description": "Koi18n for Node.js",
+  "name": "@terai/node",
+  "description": "Terai for Node.js",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,10 +19,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/formatter": "workspace:*",
-    "@koi18n/ts": "workspace:*"
+    "@terai/formatter": "workspace:*",
+    "@terai/ts": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

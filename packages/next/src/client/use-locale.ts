@@ -4,7 +4,7 @@
 import { useParams } from 'next/navigation'
 
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 const LOCALE_SEGMENT_NAME = 'locale'
 

@@ -1,8 +1,8 @@
 {
-  "name": "koi18n",
+  "name": "terai",
   "version": "0.0.0",
   "private": true,
-  "description": "A modern localization framework for JavaScript",
+  "description": "AI-based i18n framework for JS",
   "keywords": [],
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "license": "MIT",

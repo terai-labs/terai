@@ -1,5 +1,5 @@
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 export type FormatDisplayNameOptions = Intl.DisplayNamesOptions
 

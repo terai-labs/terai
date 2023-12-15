@@ -1,7 +1,7 @@
-import type { Dictionaries } from '@koi18n/types'
+import type { Dictionaries } from '@terai/types'
 import { generate } from '../src'
 import { afterAll, describe, expect, test } from 'vitest'
-import { runtime } from '@koi18n/runtime'
+import { runtime } from '@terai/runtime'
 
 const locale = 'en'
 const basePath = __dirname

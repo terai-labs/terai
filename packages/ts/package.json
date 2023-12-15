@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/ts",
-  "description": "koi18n translation source function",
+  "name": "@terai/ts",
+  "description": "terai translation source function",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,10 +18,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/formatter": "workspace:*",
-    "@koi18n/utils": "workspace:*"
+    "@terai/formatter": "workspace:*",
+    "@terai/utils": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

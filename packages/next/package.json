@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/next",
-  "description": "Koi18n for Next.js",
+  "name": "@terai/next",
+  "description": "Terai for Next.js",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,12 +19,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/ts": "workspace:*",
-    "@koi18n/react": "workspace:*",
-    "@koi18n/formatter": "workspace:*"
+    "@terai/ts": "workspace:*",
+    "@terai/react": "workspace:*",
+    "@terai/formatter": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*",
+    "@terai/types": "workspace:*",
     "@babel/plugin-transform-runtime": "^7",
     "@babel/preset-env": "^7",
     "@babel/preset-react": "^7",

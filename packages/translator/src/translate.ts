@@ -1,5 +1,5 @@
 // Types
-import type { Config, Locale, Dictionary } from '@koi18n/types'
+import type { Config, Locale, Dictionary } from '@terai/types'
 
 export type TranslateOptions = Pick<Config, 'translator' | 'projectLocale'> & {
   dictionary: Dictionary

@@ -1,9 +1,9 @@
 // Dependencies
 import * as ts from 'typescript'
-import { toHash, prepareMessage } from '@koi18n/utils'
+import { toHash, prepareMessage } from '@terai/utils'
 
 // Types
-import type { ExtractedMessage } from '@koi18n/types'
+import type { ExtractedMessage } from '@terai/types'
 import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts

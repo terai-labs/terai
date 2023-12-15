@@ -1,7 +1,7 @@
 // Dependencies
 import { cac } from 'cac'
-import { runtime } from '@koi18n/runtime'
-import { logger } from '@koi18n/logger'
+import { runtime } from '@terai/runtime'
+import { logger } from '@terai/logger'
 import updateNotifier from 'update-notifier'
 import pkg from '../package.json'
 import {
@@ -13,11 +13,11 @@ import {
 export async function main() {
   updateNotifier({ pkg, distTag: 'latest' }).notify()
   logger.log(
-    `${logger.colors.bold('koi18n')} ${logger.colors.cyan(`v${pkg.version}`)}`
+    `${logger.colors.bold('terai')} ${logger.colors.cyan(`v${pkg.version}`)}`
   )
 
   const cwd = runtime.cwd()
-  const cli = cac('koi18n')
+  const cli = cac('terai')
 
   createInitCommand(cli, cwd)
   createExtractCommand(cli, cwd)

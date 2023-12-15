@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/extractor",
-  "description": "koi18n core extractor",
+  "name": "@terai/extractor",
+  "description": "terai core extractor",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,11 +18,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/logger": "workspace:*",
-    "@koi18n/runtime": "workspace:*",
-    "@koi18n/transformer": "workspace:*"
+    "@terai/logger": "workspace:*",
+    "@terai/runtime": "workspace:*",
+    "@terai/transformer": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

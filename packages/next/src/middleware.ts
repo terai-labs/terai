@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { LOCALE_COOKIE } from './constants'
 
 // Types
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 type CreateMiddlewareOptions = {
   locales: Locale[]

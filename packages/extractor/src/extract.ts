@@ -1,11 +1,11 @@
 // Dependencies
 import * as ts from 'typescript'
-import { logger } from '@koi18n/logger'
-import { runtime } from '@koi18n/runtime'
-import { transform } from '@koi18n/transformer'
+import { logger } from '@terai/logger'
+import { runtime } from '@terai/runtime'
+import { transform } from '@terai/transformer'
 
 // Types
-import type { ExtractedMessage, ExtractedMessages } from '@koi18n/types'
+import type { ExtractedMessage, ExtractedMessages } from '@terai/types'
 
 type ExtractOptions = {
   filesPaths: readonly string[]

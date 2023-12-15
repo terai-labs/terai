@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/translator",
-  "description": "koi18n core translator",
+  "name": "@terai/translator",
+  "description": "terai core translator",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -34,8 +34,8 @@
     "openai": "^4"
   },
   "devDependencies": {
-    "@koi18n/runtime": "workspace:*",
-    "@koi18n/types": "workspace:*",
-    "@koi18n/utils": "workspace:*"
+    "@terai/runtime": "workspace:*",
+    "@terai/types": "workspace:*",
+    "@terai/utils": "workspace:*"
   }
 }

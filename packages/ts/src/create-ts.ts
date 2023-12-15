@@ -1,8 +1,8 @@
 // Dependencies
-import { joinTemplateStrings, prepareMessage, toHash } from '@koi18n/utils'
+import { joinTemplateStrings, prepareMessage, toHash } from '@terai/utils'
 
 // Types
-import type { InterpolateOptions, DynamicValue } from '@koi18n/formatter'
+import type { InterpolateOptions, DynamicValue } from '@terai/formatter'
 
 export type TsRenderer<R, E> = (options: TsRenderProps & E) => R
 

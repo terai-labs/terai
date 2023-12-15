@@ -1,11 +1,11 @@
 // Dependencies
 import { findTsConfig } from './find-tsconfig'
-import { logger } from '@koi18n/logger'
+import { logger } from '@terai/logger'
 import { outdent } from 'outdent'
 import { runtime } from './runtime'
 
 // Types
-import type { Config } from '@koi18n/types'
+import type { Config } from '@terai/types'
 
 type SetupOptions = Pick<Config, 'projectLocale' | 'outDir'> & {
   cwd: string
@@ -17,12 +17,12 @@ export async function setupConfig({
   cwd
 }: SetupOptions) {
   const isTs = findTsConfig()
-  const fileName = isTs ? 'koi18n.config.ts' : 'koi18n.config.mjs'
+  const fileName = isTs ? 'terai.config.ts' : 'terai.config.mjs'
 
   logger.info('init:setup', `Setting config file...`)
 
   const content = outdent`
-      import { defineConfig, createKoiTranslator } from "@koi18n/dev"
+      import { defineConfig, createKoiTranslator } from "@terai/dev"
 
       const translator = createKoiTranslator({
         apiKey: '' // Your API key

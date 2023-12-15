@@ -1,4 +1,4 @@
-import { useTs, setLocale } from '@koi18n/react'
+import { useTs, setLocale } from '@terai/react'
 
 export default function App() {
   const { ts } = useTs()
@@ -8,7 +8,7 @@ export default function App() {
       <button onClick={() => setLocale('es')}>es</button>
       <button onClick={() => setLocale('en')}>en</button>
       <button onClick={() => setLocale('it')}>it</button>
-      <p>{ts`From the endless list of translation libraries, why should you choose Koi18n?`}</p>
+      <p>{ts`From the endless list of translation libraries, why should you choose Terai?`}</p>
 
       <h2>{ts`Backstory`}</h2>
 
@@ -32,19 +32,19 @@ export default function App() {
       <p>{ts`But it doesn't have to be this way. We're here to change that.`}</p>
 
       <h2>{ts`A New Approach to Localization`}</h2>
-      <p>{ts`In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Koi18n was born.`}</p>
-      <p>{ts`Koi18n represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:`}</p>
+      <p>{ts`In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Terai was born.`}</p>
+      <p>{ts`Terai represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:`}</p>
 
       <ul>
         <li>{ts`Static Extraction: Koi employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.`}</li>
-        <li>{ts`Codegen: Koi18n automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.`}</li>
-        <li>{ts`Performance: Koi18n is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.`}</li>
-        <li>{ts`Developer Experience: Koi18n prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.`}</li>
+        <li>{ts`Codegen: Terai automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.`}</li>
+        <li>{ts`Performance: Terai is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.`}</li>
+        <li>{ts`Developer Experience: Terai prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.`}</li>
         <li>{ts`Flexibility: You have the freedom to choose the translator that best suits your preferences.`}</li>
         <li>{ts`Customization: Tailor your own implementation to perfectly align with your specific use-case, granting you full control over the localization process.`}</li>
       </ul>
 
-      <p>{ts`Join us in reimagining localization and unlocking the full potential of your global expansion strategy. Welcome to the future of localization with Koi18n. 🌐🚀`}</p>
+      <p>{ts`Join us in reimagining localization and unlocking the full potential of your global expansion strategy. Welcome to the future of localization with Terai. 🌐🚀`}</p>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense } from 'react'
-import { Link, useTs } from '@koi18n/next'
+import { Link, useTs } from '@terai/next'
 
 export default function Home() {
   const name = 'Hugo'

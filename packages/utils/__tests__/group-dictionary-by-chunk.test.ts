@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { groupDictionaryByChunks } from '../src/group-dictionary-by-chunk'
-import type { Dictionary, BuildManifest } from '@koi18n/types'
+import type { Dictionary, BuildManifest } from '@terai/types'
 
 const dictionary: Dictionary = {
   gOngMQ: 'Hello, ${var}!',

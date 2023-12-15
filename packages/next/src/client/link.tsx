@@ -7,7 +7,7 @@ import { useLocale } from './use-locale'
 
 // Types
 import type { ComponentProps } from 'react'
-import type { Locale } from '@koi18n/types'
+import type { Locale } from '@terai/types'
 
 type Props = Omit<ComponentProps<typeof NextLink>, 'locale'> & {
   locale?: Locale

@@ -1,7 +1,7 @@
-import type { Config } from '@koi18n/types'
+import type { Config } from '@terai/types'
 
 export function defineConfig(config: Config) {
   return config
 }
 
-export * from '@koi18n/translator/translators'
+export * from '@terai/translator/translators'

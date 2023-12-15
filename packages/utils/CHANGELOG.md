@@ -1,4 +1,4 @@
-# @koi18n/utils
+# @terai/utils
 
 ## 0.0.10
 

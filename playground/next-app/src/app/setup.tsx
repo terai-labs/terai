@@ -1,6 +1,6 @@
 'use client'
 
-import { setupClient } from '@koi18n/next'
+import { setupClient } from '@terai/next'
 
 export const options = setupClient({
   loader: (locale: string, id: string) =>

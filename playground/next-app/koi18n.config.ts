@@ -1,4 +1,4 @@
-import { defineConfig, createChatGptTranslator } from '@koi18n/dev'
+import { defineConfig, createChatGptTranslator } from '@terai/dev'
 
 const translator = createChatGptTranslator()
 

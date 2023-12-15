@@ -1,1 +1,1 @@
-export * from '@koi18n/react'
+export * from '@terai/react'

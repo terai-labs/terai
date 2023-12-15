@@ -1,11 +1,11 @@
 // Dependencies
-import { createTs, type TsRenderProps } from '@koi18n/ts'
+import { createTs, type TsRenderProps } from '@terai/ts'
 import { observable } from '@legendapp/state'
-import { createFormat, interpolate } from '@koi18n/formatter'
+import { createFormat, interpolate } from '@terai/formatter'
 
 // Types
-import type { Dictionaries, Loader, Locale } from '@koi18n/types'
-import type { InterpolateOptions } from '@koi18n/formatter'
+import type { Dictionaries, Loader, Locale } from '@terai/types'
+import type { InterpolateOptions } from '@terai/formatter'
 
 type SetupOptions = InterpolateOptions & {
   loader: Loader

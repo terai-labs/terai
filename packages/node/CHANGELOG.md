@@ -1,4 +1,4 @@
-# @koi18n/node
+# @terai/node
 
 ## 0.0.10
 
@@ -6,8 +6,8 @@
 
 - 023df7c: Update API
 - Updated dependencies [023df7c]
-  - @koi18n/formatter@0.0.10
-  - @koi18n/ts@0.0.10
+  - @terai/formatter@0.0.10
+  - @terai/ts@0.0.10
 
 ## 0.0.9
 
@@ -15,8 +15,8 @@
 
 - 15be323: WIP
 - Updated dependencies [15be323]
-  - @koi18n/formatter@0.0.9
-  - @koi18n/ts@0.0.9
+  - @terai/formatter@0.0.9
+  - @terai/ts@0.0.9
 
 ## 0.0.8
 
@@ -26,8 +26,8 @@
 - fe05f60: Add support for React components in messages
 - Updated dependencies [3dc3bc8]
 - Updated dependencies [fe05f60]
-  - @koi18n/formatter@0.0.8
-  - @koi18n/ts@0.0.8
+  - @terai/formatter@0.0.8
+  - @terai/ts@0.0.8
 
 ## 0.0.7
 
@@ -36,8 +36,8 @@
 - 27bbdbe: Improved createTs API by passing a callback directly instead of an
   object
 - Updated dependencies [27bbdbe]
-  - @koi18n/ts@0.0.7
-  - @koi18n/formatter@0.0.7
+  - @terai/ts@0.0.7
+  - @terai/formatter@0.0.7
 
 ## 0.0.6
 
@@ -47,8 +47,8 @@
 - aca8fc4: feat: improved format in ts expressions
 - Updated dependencies [59b1907]
 - Updated dependencies [aca8fc4]
-  - @koi18n/formatter@0.0.6
-  - @koi18n/ts@0.0.6
+  - @terai/formatter@0.0.6
+  - @terai/ts@0.0.6
 
 ## 0.0.5
 
@@ -56,8 +56,8 @@
 
 - 4477668: Improved next middleware
 - Updated dependencies [4477668]
-  - @koi18n/formatter@0.0.5
-  - @koi18n/ts@0.0.5
+  - @terai/formatter@0.0.5
+  - @terai/ts@0.0.5
 
 ## 0.0.4
 
@@ -65,8 +65,8 @@
 
 - 6d9f2c5: Release 0.0.4
 - Updated dependencies [6d9f2c5]
-  - @koi18n/formatter@0.0.4
-  - @koi18n/ts@0.0.4
+  - @terai/formatter@0.0.4
+  - @terai/ts@0.0.4
 
 ## 0.0.3
 
@@ -74,8 +74,8 @@
 
 - 380d6b2: Update package.json info
 - Updated dependencies [380d6b2]
-  - @koi18n/formatter@0.0.3
-  - @koi18n/ts@0.0.3
+  - @terai/formatter@0.0.3
+  - @terai/ts@0.0.3
 
 ## 0.0.2
 
@@ -83,8 +83,8 @@
 
 - 7b717e6: Update packages
 - Updated dependencies [7b717e6]
-  - @koi18n/formatter@0.0.2
-  - @koi18n/ts@0.0.2
+  - @terai/formatter@0.0.2
+  - @terai/ts@0.0.2
 
 ## 0.0.1
 
@@ -92,5 +92,5 @@
 
 - c1ffd99: First publish
 - Updated dependencies [c1ffd99]
-  - @koi18n/formatter@0.0.1
-  - @koi18n/ts@0.0.1
+  - @terai/formatter@0.0.1
+  - @terai/ts@0.0.1

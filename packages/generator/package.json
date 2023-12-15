@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/generator",
-  "description": "koi18n code generator",
+  "name": "@terai/generator",
+  "description": "terai code generator",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,11 +18,11 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@koi18n/runtime": "workspace:*",
-    "@koi18n/translator": "workspace:*",
-    "@koi18n/utils": "workspace:*"
+    "@terai/runtime": "workspace:*",
+    "@terai/translator": "workspace:*",
+    "@terai/utils": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

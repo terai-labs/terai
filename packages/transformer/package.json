@@ -1,6 +1,6 @@
 {
-  "name": "@koi18n/transformer",
-  "description": "koi18n core transformer",
+  "name": "@terai/transformer",
+  "description": "terai core transformer",
   "version": "0.0.10",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,9 +18,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@koi18n/utils": "workspace:*"
+    "@terai/utils": "workspace:*"
   },
   "devDependencies": {
-    "@koi18n/types": "workspace:*"
+    "@terai/types": "workspace:*"
   }
 }

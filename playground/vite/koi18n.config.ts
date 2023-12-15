@@ -1,4 +1,4 @@
-import { defineConfig, createGoogleCloudTranslator } from '@koi18n/dev'
+import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
 
 const translator = createGoogleCloudTranslator()
 

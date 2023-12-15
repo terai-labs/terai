@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { setup } from '@koi18n/react'
+import { setup } from '@terai/react'
 
 setup({
   defaultLocale: 'en',

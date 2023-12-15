@@ -1,7 +1,7 @@
 {
-  "name": "@koi18n/dev",
+  "name": "@terai/dev",
   "version": "0.0.10",
-  "description": "The user-facing package for Koi18n",
+  "description": "The user-facing package for Terai",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   "author": "Hugo Corta <corta.hugo@gmail.com>",
   "bin": {
     "koi": "bin.js",
-    "koi18n": "bin.js"
+    "terai": "bin.js"
   },
   "scripts": {
     "dev": "tsup --format=esm,cjs --no-dts --watch",
@@ -32,10 +32,10 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^3",
-    "@koi18n/extractor": "workspace:*",
-    "@koi18n/runtime": "workspace:*",
-    "@koi18n/translator": "workspace:*",
-    "@koi18n/utils": "workspace:*",
+    "@terai/extractor": "workspace:*",
+    "@terai/runtime": "workspace:*",
+    "@terai/translator": "workspace:*",
+    "@terai/utils": "workspace:*",
     "cac": "^6",
     "dotenv": "^1",
     "inquirer": "^9",
@@ -44,9 +44,9 @@
     "preferred-pm": "^3"
   },
   "devDependencies": {
-    "@koi18n/generator": "workspace:*",
-    "@koi18n/logger": "workspace:*",
-    "@koi18n/types": "workspace:*",
+    "@terai/generator": "workspace:*",
+    "@terai/logger": "workspace:*",
+    "@terai/types": "workspace:*",
     "@types/update-notifier": "^6",
     "update-notifier": "^6"
   }

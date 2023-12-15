@@ -47,10 +47,10 @@ body:
       description: 'The JS framework used in your project. Specify JS/TS.'
       placeholder: 'React (TS)'
   - type: 'input'
-    id: 'koi18n-version'
+    id: 'terai-version'
     attributes:
-      label: 'koi18n Version'
-      description: 'The version of koi18n you use.'
+      label: 'terai Version'
+      description: 'The version of terai you use.'
       placeholder: 'x.x.x'
     validations:
       required: true

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { convertExtractedMessagesToDictionary } from '../src'
-import type { ExtractedMessages } from '@koi18n/types'
+import type { ExtractedMessages } from '@terai/types'
 
 describe('convertExtractedMessagesToDictionary', () => {
   test('should convert extracted messages to dictionary', () => {

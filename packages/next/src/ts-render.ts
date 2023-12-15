@@ -1,9 +1,9 @@
 // Dependencies
-import { interpolate } from '@koi18n/formatter'
+import { interpolate } from '@terai/formatter'
 
 // Types
-import type { Locale, Dictionary } from '@koi18n/types'
-import type { TsRenderProps } from '@koi18n/ts'
+import type { Locale, Dictionary } from '@terai/types'
+import type { TsRenderProps } from '@terai/ts'
 
 export type TsOutputProps = TsRenderProps & {
   locale: Locale

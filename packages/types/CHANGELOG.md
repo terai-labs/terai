@@ -1,4 +1,4 @@
-# @koi18n/types
+# @terai/types
 
 ## 0.0.10
 

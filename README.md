@@ -4,36 +4,36 @@
 
 <div align="center">
 
-[![Build](https://img.shields.io/github/actions/workflow/status/koi18n/koi18n/release.yml?branch=master)](https://github.com/koi18n/koi18n/actions/workflows/release.yml)
-[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/koi18n/koi18n)](https://coveralls.io/github/koi18n/koi18n)
+[![Build](https://img.shields.io/github/actions/workflow/status/terai/terai/release.yml?branch=master)](https://github.com/terai/terai/actions/workflows/release.yml)
+[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/terai/terai)](https://coveralls.io/github/terai/terai)
 [![Language](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/github/license/koi18n/koi18n)](https://www.npmjs.com/package/@koi18n/koi18n)
+[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@terai/terai)
 
 </div>
 
 <div align="center">
-      <b>koi18n is a modern localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
+      <b>terai is a modern localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
 </div>
 
 <div align="center">
   <h5>
-    <a href="https://koi18n.dev">
+    <a href="https://terai.dev">
       Website
     </a>
     <span> • </span>
-    <a href="https://koi18n.dev/docs">
+    <a href="https://terai.dev/docs">
       Documentation
     </a>
     <span> • </span>
-    <a href="https://github.dev/koi18n/koi18n/issues">
+    <a href="https://github.dev/terai/terai/issues">
       Issues
     </a>
     <span> • </span>
-    <a href="https://koi18n.dev/docs/contributing">
+    <a href="https://terai.dev/docs/contributing">
       Contributing
     </a>
     <span> • </span>
-    <a href="https://github.dev/koi18n/koi18n/blob/master/CHANGELOG.md">
+    <a href="https://github.dev/terai/terai/blob/master/CHANGELOG.md">
       Changelog
     </a>
   </h5>
@@ -44,7 +44,7 @@
 
 ## Introduction
 
-**koi18n** is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
+**terai** is a developer-first open-source localization framework for JavaScript that aims to remove the pain in the localization process.
 
 Workflow can be broken down into 3 steps:
 
@@ -52,7 +52,7 @@ Workflow can be broken down into 3 steps:
 - 2️⃣ **Extract**: streamline your extraction process by automatically gathering all the messages within your project.
 - 3️⃣ **Translate**: use your defined translator to get your localized messages.
 
-More documentation available at [https://koi18n.dev](https://koi18n.dev).
+More documentation available at [https://terai.dev](https://terai.dev).
 
 ## Features
 
@@ -72,25 +72,25 @@ More documentation available at [https://koi18n.dev](https://koi18n.dev).
 
 | Package | Description | Version | Size | Downloads |
 | :------ | :---- |  :-----: | :--: | :-------: |
-| `@koi18n/dev` | The user-facing package for **koi18n** | [![Version](https://img.shields.io/npm/v/@koi18n/dev.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/dev)](https://bundlephobia.com/result?p=@koi18n/dev) | [![NPM](https://img.shields.io/npm/dm/@koi18n/dev.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/dev) |
-| `@koi18n/react` | **koi18n** for React.js | [![Version](https://img.shields.io/npm/v/@koi18n/react.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/react)](https://bundlephobia.com/result?p=@koi18n/react) | [![NPM](https://img.shields.io/npm/dm/@koi18n/react.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/react) |
-| `@koi18n/vite` | **koi18n** for Vite | [![Version](https://img.shields.io/npm/v/@koi18n/vite.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/vite)](https://bundlephobia.com/result?p=@koi18n/vite) | [![NPM](https://img.shields.io/npm/dm/@koi18n/vite.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/vite) |
-<!-- | `@koi18n/next` | **koi18n** for Next.js | [![Version](https://img.shields.io/npm/v/@koi18n/next.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/next)](https://bundlephobia.com/result?p=@koi18n/next) | [![NPM](https://img.shields.io/npm/dm/@koi18n/next.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/next) | -->
-| `@koi18n/node` | **koi18n** for Node.js | [![Version](https://img.shields.io/npm/v/@koi18n/node.svg?logo=npm)](https://www.npmjs.com/package/@koi18n/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@koi18n/node)](https://bundlephobia.com/result?p=@koi18n/node) | [![NPM](https://img.shields.io/npm/dm/@koi18n/node.svg?&logo=npm)](https://www.npmjs.com/package/@koi18n/node) |
+| `@terai/dev` | The user-facing package for **terai** | [![Version](https://img.shields.io/npm/v/@terai/dev.svg?logo=npm)](https://www.npmjs.com/package/@terai/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/dev)](https://bundlephobia.com/result?p=@terai/dev) | [![NPM](https://img.shields.io/npm/dm/@terai/dev.svg?&logo=npm)](https://www.npmjs.com/package/@terai/dev) |
+| `@terai/react` | **terai** for React.js | [![Version](https://img.shields.io/npm/v/@terai/react.svg?logo=npm)](https://www.npmjs.com/package/@terai/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react)](https://bundlephobia.com/result?p=@terai/react) | [![NPM](https://img.shields.io/npm/dm/@terai/react.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react) |
+| `@terai/vite` | **terai** for Vite | [![Version](https://img.shields.io/npm/v/@terai/vite.svg?logo=npm)](https://www.npmjs.com/package/@terai/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/vite)](https://bundlephobia.com/result?p=@terai/vite) | [![NPM](https://img.shields.io/npm/dm/@terai/vite.svg?&logo=npm)](https://www.npmjs.com/package/@terai/vite) |
+<!-- | `@terai/next` | **terai** for Next.js | [![Version](https://img.shields.io/npm/v/@terai/next.svg?logo=npm)](https://www.npmjs.com/package/@terai/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/next)](https://bundlephobia.com/result?p=@terai/next) | [![NPM](https://img.shields.io/npm/dm/@terai/next.svg?&logo=npm)](https://www.npmjs.com/package/@terai/next) | -->
+| `@terai/node` | **terai** for Node.js | [![Version](https://img.shields.io/npm/v/@terai/node.svg?logo=npm)](https://www.npmjs.com/package/@terai/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/node)](https://bundlephobia.com/result?p=@terai/node) | [![NPM](https://img.shields.io/npm/dm/@terai/node.svg?&logo=npm)](https://www.npmjs.com/package/@terai/node) |
 
 ## Getting Started
 
-Visit <a aria-label="koi18n learn" href="https://koi18n.dev/learn">https://koi18n.dev/learn</a> to get started with koi18n.
+Visit <a aria-label="terai learn" href="https://terai.dev/learn">https://terai.dev/learn</a> to get started with terai.
 
 ## Documentation
 
-Visit [https://koi18n.dev/docs](https://koi18n.dev/docs) to view the full documentation.
+Visit [https://terai.dev/docs](https://terai.dev/docs) to view the full documentation.
 
 ## Community
 
-The **koi18n** community can be found on [GitHub Discussions](https://github.com/koi18n/koi18n/discussions), where you can ask questions, voice ideas, and share your projects.
+The **terai** community can be found on [GitHub Discussions](https://github.com/terai/terai/discussions), where you can ask questions, voice ideas, and share your projects.
 
-Our [Code of Conduct](https://github.com/koi18n/koi18n/blob/master/CODE_OF_CONDUCT.md) applies to all **koi18n** community channels.
+Our [Code of Conduct](https://github.com/terai/terai/blob/master/CODE_OF_CONDUCT.md) applies to all **terai** community channels.
 
 ## Contributing
 
@@ -98,7 +98,7 @@ Please see our [contributing.md](/contributing.md).
 
 ### Good First Issues
 
-We have a list of [good first issues](https://github.com/koi18n/koi18n/labels/good%20first%20issue) that contain bugs that have a relatively limited scope. This is a great place to get started, gain experience, and get familiar with our contribution process.
+We have a list of [good first issues](https://github.com/terai/terai/labels/good%20first%20issue) that contain bugs that have a relatively limited scope. This is a great place to get started, gain experience, and get familiar with our contribution process.
 
 ## Authors
 

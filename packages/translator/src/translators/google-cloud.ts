@@ -2,7 +2,7 @@
 import { v2 } from '@google-cloud/translate'
 
 // Types
-import type { Dictionary, Translator } from '@koi18n/types'
+import type { Dictionary, Translator } from '@terai/types'
 
 export const createGoogleCloudTranslator = (options: v2.TranslateConfig) => {
   const translate = new v2.Translate(options)

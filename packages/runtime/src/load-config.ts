@@ -3,7 +3,7 @@ import { bundleNRequire } from 'bundle-n-require'
 import { findConfig } from './find-config'
 
 // Types
-import type { Config } from '@koi18n/types'
+import type { Config } from '@terai/types'
 
 export async function loadConfig({
   cwd,
