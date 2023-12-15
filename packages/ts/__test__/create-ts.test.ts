@@ -18,13 +18,13 @@ describe('createTs', () => {
      world!`
 
     expect(output1).toMatchInlineSnapshot(
-      '"{\\"id\\":\\"dQxGBP\\",\\"rawMessage\\":\\"Hello world!\\",\\"variables\\":[]}"'
+      `"{"id":"dQxGBP","rawMessage":"Hello world!","variables":[]}"`
     )
     expect(output2).toMatchInlineSnapshot(
-      '"{\\"id\\":\\"gOngMQ\\",\\"rawMessage\\":\\"Hello ${var}!\\",\\"variables\\":[\\"world\\"]}"'
+      `"{"id":"gOngMQ","rawMessage":"Hello \${var}!","variables":["world"]}"`
     )
     expect(output3).toMatchInlineSnapshot(
-      '"{\\"id\\":\\"dQxGBP\\",\\"rawMessage\\":\\"Hello world!\\",\\"variables\\":[]}"'
+      `"{"id":"dQxGBP","rawMessage":"Hello world!","variables":[]}"`
     )
   })
   test('should create a ts function that admits arguments', () => {
@@ -34,7 +34,7 @@ describe('createTs', () => {
     const output = ts({ context: 'test' })`Hello world!`
 
     expect(output).toMatchInlineSnapshot(
-      '"{\\"context\\":\\"test\\",\\"id\\":\\"dQxGBP\\",\\"rawMessage\\":\\"Hello world!\\",\\"variables\\":[]}"'
+      `"{"context":"test","id":"dQxGBP","rawMessage":"Hello world!","variables":[]}"`
     )
   })
 })

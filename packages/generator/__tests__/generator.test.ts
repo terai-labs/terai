@@ -44,10 +44,10 @@ describe('generate', () => {
     expect(output).toMatchInlineSnapshot(`
       [
         "{
-        \\"test1\\": \\"value1\\"
+        "test1": "value1"
       }",
         "{
-        \\"test2\\": \\"value2\\"
+        "test2": "value2"
       }",
       ]
     `)

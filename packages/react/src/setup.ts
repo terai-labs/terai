@@ -1,6 +1,8 @@
 // Depedencies
 import { observable } from '@legendapp/state'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
+
+// Global configuration
 import {
   configureObservablePersistence,
   persistObservable
@@ -27,7 +29,7 @@ export const setup$ = observable<Setup>()
 export const setup = ({ defaultLocale, ...options }: SetupOptions) => {
   if (options.persist) {
     configureObservablePersistence({
-      persistLocal: ObservablePersistLocalStorage
+      pluginLocal: ObservablePersistLocalStorage
     })
     persistObservable(setup$, {
       local: 'locale'

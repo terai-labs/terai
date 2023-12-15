@@ -10,11 +10,11 @@ describe('stringify', () => {
 
     expect(output).toMatchInlineSnapshot(`
       "{
-        \\"a\\": 1,
-        \\"b\\": 2,
-        \\"c\\": {
-          \\"d\\": 3,
-          \\"e\\": 4
+        "a": 1,
+        "b": 2,
+        "c": {
+          "d": 3,
+          "e": 4
         }
       }"
     `)
