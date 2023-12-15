@@ -1,7 +1,7 @@
 {
   "name": "@terai/generator",
   "description": "terai code generator",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
