@@ -16,27 +16,27 @@
 </div>
 
 <div align="center">
-  <h5>
-    <a href="https://terai.dev">
+  <h4>
+    <a href="https://teraihq.github.io/terai">
       Website
     </a>
-    <span> • </span>
-    <a href="https://terai.dev/docs">
+    <span> | </span>
+    <a href="https://teraihq.github.io/terai/docs">
       Documentation
     </a>
-    <span> • </span>
+    <span> | </span>
     <a href="https://github.dev/terai/terai/issues">
       Issues
     </a>
-    <span> • </span>
-    <a href="https://terai.dev/docs/contributing">
+    <span> | </span>
+    <a href="https://teraihq.github.io/terai/docs/contributing">
       Contributing
     </a>
-    <span> • </span>
+    <span> | </span>
     <a href="https://github.dev/terai/terai/blob/master/CHANGELOG.md">
       Changelog
     </a>
-  </h5>
+  </h4>
 </div>
 
 > [!WARNING]  
@@ -52,7 +52,7 @@ Workflow can be broken down into 3 steps:
 - 2️⃣ **Extract**: streamline your extraction process by automatically gathering all the messages within your project.
 - 3️⃣ **Translate**: use your defined translator to get your localized messages.
 
-More documentation available at [https://terai.dev](https://terai.dev).
+More documentation available at [https://teraihq.github.io/terai](https://teraihq.github.io/terai).
 
 ## Features
 
@@ -80,11 +80,11 @@ More documentation available at [https://terai.dev](https://terai.dev).
 
 ## Getting Started
 
-Visit <a aria-label="terai learn" href="https://terai.dev/learn">https://terai.dev/learn</a> to get started with **Terai**.
+Visit <a aria-label="terai learn" href="https://teraihq.github.io/terai/learn">https://teraihq.github.io/terai/learn</a> to get started with **Terai**.
 
 ## Documentation
 
-Visit [https://terai.dev/docs](https://terai.dev/docs) to view the full documentation.
+Visit [https://teraihq.github.io/terai/docs](https://teraihq.github.io/terai/docs) to view the full documentation.
 
 ## Community
 
