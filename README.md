@@ -25,11 +25,11 @@
       Documentation
     </a>
     <span> | </span>
-    <a href="https://github.dev/terai/terai/issues">
+    <a href="https://github.com/teraihq/terai/issues">
       Issues
     </a>
     <span> | </span>
-    <a href="https://teraihq.github.io/terai/docs/contributing">
+    <a href="https://github.com/teraihq/terai/contributing">
       Contributing
     </a>
     <span> | </span>
