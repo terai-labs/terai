@@ -2,7 +2,7 @@ import { useTs } from '@terai/react'
 import { Suspense } from 'react'
 
 export function Button() {
-  const { ts } = useTs({ chunkId: 'chunk-demo-1' })
+  const { ts } = useTs({ chunkId: 'chunk-button' })
 
   return (
     <Suspense fallback={<span>{'Loading...'}</span>}>

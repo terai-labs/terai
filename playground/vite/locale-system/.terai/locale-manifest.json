@@ -1,7 +1,7 @@
 {
   "messages": {
-    "ibyLHQ": {
-      "id": "ibyLHQ",
+    "gXRAap": {
+      "id": "gXRAap",
       "value": "From the endless list of translation libraries, why should you choose Terai?",
       "files": [
         "vite/src/App.tsx"
@@ -99,8 +99,8 @@
         "default"
       ]
     },
-    "gWGLlA": {
-      "id": "gWGLlA",
+    "iFprkV": {
+      "id": "iFprkV",
       "value": "In 2023, we embarked on a journey to revolutionise localization. Our mission was born out of frustration with the complexities of managing translation systems for our own projects. We understood that there had to be a better way, and that's how Terai was born.",
       "files": [
         "vite/src/App.tsx"
@@ -110,8 +110,8 @@
         "default"
       ]
     },
-    "gJuWag": {
-      "id": "gJuWag",
+    "huKNix": {
+      "id": "huKNix",
       "value": "Terai represents a modern approach to localization, utilizing cutting-edge technology and forward-thinking strategies to break free from the constraints of the past:",
       "files": [
         "vite/src/App.tsx"
@@ -121,8 +121,8 @@
         "default"
       ]
     },
-    "hWhCdW": {
-      "id": "hWhCdW",
+    "jLRHvw": {
+      "id": "jLRHvw",
       "value": "Static Extraction: Terai employs static extraction to meticulously gather your project's messages, ensuring a precise and efficient localization process.",
       "files": [
         "vite/src/App.tsx"
@@ -132,8 +132,8 @@
         "default"
       ]
     },
-    "kcHZEL": {
-      "id": "kcHZEL",
+    "jbKrxW": {
+      "id": "jbKrxW",
       "value": "Codegen: Terai automates the creation of a locale system, seamlessly structured around the extracted data, simplifying the management of translations.",
       "files": [
         "vite/src/App.tsx"
@@ -143,8 +143,8 @@
         "default"
       ]
     },
-    "eQvmzx": {
-      "id": "eQvmzx",
+    "ebJAPw": {
+      "id": "ebJAPw",
       "value": "Performance: Terai is powered by a state-of-the-art tech stack, ensuring top-tier performance for your application.",
       "files": [
         "vite/src/App.tsx"
@@ -154,8 +154,8 @@
         "default"
       ]
     },
-    "hazgoL": {
-      "id": "hazgoL",
+    "fYGLJq": {
+      "id": "fYGLJq",
       "value": "Developer Experience: Terai prioritizes a superb developer experience while offering a rich set of features such as code splitting, local cache support, and more.",
       "files": [
         "vite/src/App.tsx"
@@ -187,8 +187,8 @@
         "default"
       ]
     },
-    "bldBUq": {
-      "id": "bldBUq",
+    "hHgtMX": {
+      "id": "hHgtMX",
       "value": "Join us in reimagining localization and unlocking the full potential of your global expansion strategy. Welcome to the future of localization with Terai. 🌐🚀",
       "files": [
         "vite/src/App.tsx"
