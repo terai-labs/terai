@@ -82,9 +82,9 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { setup } from '@terai/react'
+import { setupClient } from '@terai/react'
 
-setup({
+setupClient({
   defaultLocale: 'en',
   persist: true,
   loader: (locale: string, id: string) =>
