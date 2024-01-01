@@ -358,9 +358,9 @@ importers:
 
   playground/vite:
     dependencies:
-      '@terai/react':
+      '@terai/vite':
         specifier: workspace:*
-        version: link:../../packages/react
+        version: link:../../packages/vite
     devDependencies:
       '@terai/dev':
         specifier: workspace:*

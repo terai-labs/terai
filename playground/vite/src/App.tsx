@@ -1,4 +1,4 @@
-import { useTs, setLocale } from '@terai/react'
+import { useTs, setLocale } from '@terai/vite'
 
 export default function App() {
   const { ts } = useTs()

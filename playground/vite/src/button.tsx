@@ -1,4 +1,4 @@
-import { useTs } from '@terai/react'
+import { useTs } from '@terai/vite'
 import { Suspense } from 'react'
 
 export function Button() {

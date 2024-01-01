@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@terai/react": "workspace:*"
+    "@terai/vite": "workspace:*"
   },
   "devDependencies": {
     "@terai/dev": "workspace:*",

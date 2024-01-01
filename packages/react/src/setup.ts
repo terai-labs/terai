@@ -26,7 +26,7 @@ type SetupOptions = Pick<Setup, 'format' | 'loader' | 'persist'> & {
 
 export const setup$ = observable<Setup>()
 
-export const setup = ({ defaultLocale, ...options }: SetupOptions) => {
+export const setupClient = ({ defaultLocale, ...options }: SetupOptions) => {
   if (options.persist) {
     configureObservablePersistence({
       pluginLocal: ObservablePersistLocalStorage
