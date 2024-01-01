@@ -8,7 +8,8 @@ export default function App() {
       <button onClick={() => setLocale('es')}>es</button>
       <button onClick={() => setLocale('en')}>en</button>
       <button onClick={() => setLocale('it')}>it</button>
-      <p>{ts`From the endless list of translation libraries, why should you choose Terai?`}</p>
+
+      <p>{ts`Terai is a modern localization framework for Javascript`}</p>
     </div>
   )
 }
