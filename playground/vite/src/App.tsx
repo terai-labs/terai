@@ -16,6 +16,8 @@ export default function App() {
 			</button>
 
 			<p>{ts`Terai is a modern localization framework for Javascript`}</p>
+			<p>{ts`Terai is a modern localization framework for Javascript.
+			This is a test for a very long message`}</p>
 		</div>
 	)
 }

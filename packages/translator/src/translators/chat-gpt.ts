@@ -20,9 +20,10 @@ export const createChatGptTranslator = (openaiOptions: ClientOptions) => {
 				{
 					role: 'system',
 					content: [
-						`Translate this JSON (from locale: ${projectLocale}} to locale: ${locale}`,
-						'Do not translate the keys of the json',
-						'Do not translate ${var}, just leave it as it is'
+						'Act like a professional translator',
+						`You will be provided with a JSON in locale: ${projectLocale}, and your task is to translate it to locale: ${locale}.`,
+						'Keep the same structure and keys, just translate the values.',
+						'Do not translate any escaped characters or "${var}" ocurrences, just keep them as they are'
 					].join('.\n')
 				},
 				{

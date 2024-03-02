@@ -17,7 +17,10 @@ describe('prepareMessage', () => {
 
 		const output = sut(message)
 
-		expect(output).toMatchInlineSnapshot('"Hello world!"')
+		expect(output).toMatchInlineSnapshot(`
+			"Hello
+			    world!"
+		`)
 	})
 	test('should keep explicit escaped characters', () => {
 		const sut = prepareMessage
@@ -27,8 +30,8 @@ describe('prepareMessage', () => {
 		const output = sut(message)
 
 		expect(output).toMatchInlineSnapshot(`
-      "Hello 
-      world!"
-    `)
+			"Hello \\n
+			    world!"
+		`)
 	})
 })

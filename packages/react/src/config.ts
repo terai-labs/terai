@@ -15,7 +15,7 @@ import type { Loader, Locale } from '@terai/types'
 import type { GlobalFormat } from '@terai/formatter'
 
 type Config = {
-	defaultLocale: Locale
+	defaultLocale: Locale | (() => Locale)
 	loader: Loader
 	format?: GlobalFormat
 	persist?: boolean
@@ -35,7 +35,9 @@ export function setupClient({ defaultLocale, ...options }: Config) {
 	}
 
 	if (!state$.started.get()) {
-		state$.locale.set(defaultLocale)
+		const locale =
+			typeof defaultLocale === 'function' ? defaultLocale() : defaultLocale
+		state$.locale.set(locale)
 		state$.started.set(true)
 	}
 

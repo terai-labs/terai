@@ -26,7 +26,7 @@ describe('createTs', () => {
 			`"{"id":"gOngMQ","rawMessage":"Hello \${var}!","variables":["world"]}"`
 		)
 		expect(output3).toMatchInlineSnapshot(
-			`"{"id":"dQxGBP","rawMessage":"Hello world!","variables":[]}"`
+			`"{"id":"dQxGBP","rawMessage":"Hello\\n     world!","variables":[]}"`
 		)
 	})
 	test('should create a ts function that admits arguments', () => {

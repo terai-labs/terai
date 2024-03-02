@@ -18,8 +18,12 @@ import type {
 } from './index'
 
 export function createFormat(getLocale: () => Locale) {
-	return () => {
-		const locale = getLocale()
+	return ({
+		locale: overrideLocale
+	}: {
+		locale?: Locale
+	} = {}) => {
+		const locale = overrideLocale || getLocale()
 
 		return {
 			number: (
