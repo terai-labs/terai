@@ -51,11 +51,7 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 			tsRender({
 				...props,
 				locale,
-				dictionary,
-				format: {
-					...config.format,
-					...props.format
-				}
+				dictionary
 			})
 		),
 		[locale]

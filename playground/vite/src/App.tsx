@@ -2,6 +2,7 @@ import { useTs, setLocale } from '@terai/vite'
 
 export default function App() {
 	const { ts } = useTs()
+	const language = 'en'
 
 	return (
 		<div>
@@ -15,7 +16,7 @@ export default function App() {
 				it
 			</button>
 
-			<p>{ts`Terai is a modern localization framework for Javascript`}</p>
+			<p>{ts`Terai is a modern localization framework for ${language}`}</p>
 			<p>{ts`Terai is a modern localization framework for Javascript.
 			This is a test for a very long message`}</p>
 		</div>

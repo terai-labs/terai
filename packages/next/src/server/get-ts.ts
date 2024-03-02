@@ -10,18 +10,13 @@ type GetTsProps = {
 export const getTs = async ({ chunkId }: GetTsProps = {}) => {
 	const locale = getLocale()
 	const setup = setup$.get()
-	console.log('getTs: setup', setup)
 	const dictionary = await setup?.loader(locale, chunkId ?? locale)
-	// biome-ignore lint/complexity/noBannedTypes: <explanation>
-	const ts = createTs<string, {}>((props) =>
+
+	const ts = createTs<string>((props) =>
 		tsRender({
 			...props,
 			locale,
-			dictionary,
-			format: {
-				// ...format,
-				...props.format
-			}
+			dictionary
 		})
 	)
 

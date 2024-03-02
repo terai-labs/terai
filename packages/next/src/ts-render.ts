@@ -12,21 +12,15 @@ export type TsOutputProps = TsRenderProps & {
 
 export function tsRender({
 	id,
-	locale,
 	rawMessage,
 	variables,
-	dictionary,
-	format
+	dictionary
 }: TsOutputProps) {
 	const message = dictionary?.[id] ?? rawMessage
-	const interpolatedMessage = interpolate(
-		{
-			message,
-			locale,
-			variables
-		},
-		{ format }
-	)
+	const interpolatedMessage = interpolate({
+		message,
+		variables
+	})
 
 	return interpolatedMessage
 }

@@ -5,10 +5,11 @@ import { createFormat, interpolate } from '@terai/formatter'
 
 // Types
 import type { Dictionaries, Loader, Locale } from '@terai/types'
-import type { InterpolateOptions } from '@terai/formatter'
+import type { GlobalFormat } from '@terai/formatter'
 
-type SetupOptions = InterpolateOptions & {
+type SetupOptions = {
 	loader: Loader
+	format?: GlobalFormat
 }
 
 export function setup({ loader, format = {} }: SetupOptions) {
@@ -30,19 +31,10 @@ export function setup({ loader, format = {} }: SetupOptions) {
 			({ id, variables, rawMessage, ...props }) => {
 				const message = dictionary?.[id] ?? rawMessage
 
-				return interpolate(
-					{
-						message,
-						locale,
-						variables
-					},
-					{
-						format: {
-							...format,
-							...props.format
-						}
-					}
-				)
+				return interpolate({
+					message,
+					variables
+				})
 			}
 		)
 	}

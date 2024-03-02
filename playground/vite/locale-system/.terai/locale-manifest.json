@@ -1,8 +1,8 @@
 {
   "messages": {
-    "FbtXz": {
-      "id": "FbtXz",
-      "value": "Terai is a modern localization framework for Javascript",
+    "eUhmot": {
+      "id": "eUhmot",
+      "value": "Terai is a modern localization framework for ${var}",
       "files": [
         "vite/src/App.tsx"
       ],

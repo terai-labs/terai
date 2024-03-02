@@ -2,7 +2,7 @@
 import { joinTemplateStrings, prepareMessage, toHash } from '@terai/utils'
 
 // Types
-import type { InterpolateOptions, DynamicValue } from '@terai/formatter'
+import type { DynamicValue } from '@terai/formatter'
 
 export type TsRenderer<R, E> = (options: TsRenderProps & E) => R
 
@@ -12,7 +12,7 @@ export type TsRenderProps = TsOptions & {
 	variables: DynamicValue[]
 }
 
-export type TsOptions = InterpolateOptions & {
+export type TsOptions = {
 	context?: string
 }
 

@@ -22,7 +22,6 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	const dictionary = dictionaries$[dictionaryId].get()
 	const loaderId = chunkId ?? locale
 
-	console.log('Use ts', setup)
 	if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
 
 	if (setup.persist) {
@@ -32,16 +31,11 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	}
 
 	const ts = useCallback(
-		// biome-ignore lint/complexity/noBannedTypes: <explanation>
-		createTs<string, {}>((props) =>
+		createTs<string>((props) =>
 			tsRender({
 				...props,
 				locale,
-				dictionary,
-				format: {
-					// ...setup.format,
-					...props.format
-				}
+				dictionary
 			})
 		),
 		[locale]
