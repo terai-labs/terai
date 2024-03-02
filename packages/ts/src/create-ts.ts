@@ -25,10 +25,10 @@ function isTemplateStringsArray(v: any): v is TemplateStringsArray {
 	return v?.raw && v?.length
 }
 
-export function createTs<R, E extends Record<string, unknown>>(
-	renderer: TsRenderer<R, E>,
-	opts?: E
-): Ts<R, E> {
+export function createTs<
+	R,
+	E extends Record<string, unknown> = Record<string, never>
+>(renderer: TsRenderer<R, E>, opts?: E): Ts<R, E> {
 	function ts(
 		stringsOrOptions: TemplateStringsArray,
 		...variables: DynamicValue[]
@@ -49,7 +49,6 @@ export function createTs<R, E extends Record<string, unknown>>(
 				variables
 			} as E & TsRenderProps
 
-			// @ts-ignore
 			return renderer(args)
 		}
 

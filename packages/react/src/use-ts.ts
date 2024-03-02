@@ -1,15 +1,17 @@
 // Dependencies
+import { config$ } from './config'
+import { state$ } from './state'
 import { createTs } from '@terai/ts'
-import { useEffect, useCallback } from 'react'
 import { tsRender } from './ts-render'
+
+// Hooks
+import { useEffect, useCallback } from 'react'
 import { useLocale } from './use-locale'
-import { setup$ } from './setup'
-import { enableReactUse } from '@legendapp/state/config/enableReactUse'
+import { useSelector } from '@legendapp/state/react'
+import { useDictionaries } from './use-dictionaries'
 
 // Types
-import type { Locale } from '@terai/types'
-
-enableReactUse()
+import type { Locale, Loader } from '@terai/types'
 
 type UseTsProps = {
 	chunkId?: string
@@ -17,28 +19,41 @@ type UseTsProps = {
 
 export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	const locale = useLocale()
+	const dictionaries = useDictionaries()
+	const config = useSelector(config$)
+
 	const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
-	const setup = setup$.get()
-	const dictionary = setup.dictionaries[dictionaryId]
+	const dictionary = dictionaries[dictionaryId]
 	const loaderId = chunkId ?? locale
 
-	if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
+	if (!dictionary) {
+		throw loadDictionary({
+			locale,
+			loaderId,
+			dictionaryId,
+			loader: config.loader
+		})
+	}
 
-	if (setup.persist) {
+	if (config.persist) {
 		useEffect(() => {
-			loadDictionary(locale, loaderId, dictionaryId)
+			loadDictionary({
+				locale,
+				loaderId,
+				dictionaryId,
+				loader: config.loader
+			})
 		}, [locale])
 	}
 
 	const ts = useCallback(
-		// biome-ignore lint/complexity/noBannedTypes: <explanation>
-		createTs<string, {}>((props) =>
+		createTs<string>((props) =>
 			tsRender({
 				...props,
 				locale,
 				dictionary,
 				format: {
-					...setup.format,
+					...config.format,
 					...props.format
 				}
 			})
@@ -49,15 +64,21 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	return { ts }
 }
 
-const loadDictionary = async (locale: Locale, chunkId: string, id: string) => {
-	const loader = setup$.get().loader
+const loadDictionary = async ({
+	locale,
+	loaderId,
+	dictionaryId,
+	loader
+}: {
+	locale: Locale
+	loaderId: string
+	dictionaryId: string
+	loader: Loader
+}) => {
+	const dic = await loader(locale, loaderId)
 
-	if (loader) {
-		const dic = await loader(locale, chunkId)
-
-		setup$.dictionaries[id].set((prev) => ({
-			...prev,
-			...dic
-		}))
-	}
+	state$.dictionaries[dictionaryId].set((prev) => ({
+		...prev,
+		...dic
+	}))
 }
