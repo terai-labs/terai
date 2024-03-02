@@ -1,5 +1,13 @@
 # @terai/vite
 
+## 0.0.4
+
+### Patch Changes
+
+- 3129d09: v0.0.4
+- Updated dependencies [3129d09]
+  - @terai/react@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
