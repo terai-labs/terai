@@ -1,48 +1,32 @@
 {
-  "messages": {
-    "FbtXz": {
-      "id": "FbtXz",
-      "value": "Terai is a modern localization framework for Javascript",
-      "files": [
-        "vite/src/App.tsx"
-      ],
-      "context": "",
-      "chunksIds": [
-        "default"
-      ]
-    },
-    "yPYux": {
-      "id": "yPYux",
-      "value": "Hello",
-      "files": [
-        "vite/src/button.tsx"
-      ],
-      "context": "",
-      "chunksIds": [
-        "chunk-button"
-      ]
-    },
-    "gOvqye": {
-      "id": "gOvqye",
-      "value": "I am on ${var}!",
-      "files": [
-        "vite/src/button.tsx"
-      ],
-      "context": "",
-      "chunksIds": [
-        "chunk-button"
-      ]
-    },
-    "cLXyxN": {
-      "id": "cLXyxN",
-      "value": "I'm not sure what is this",
-      "files": [
-        "vite/src/button.tsx"
-      ],
-      "context": "",
-      "chunksIds": [
-        "chunk-button"
-      ]
-    }
-  }
+	"messages": {
+		"FbtXz": {
+			"id": "FbtXz",
+			"value": "Terai is a modern localization framework for Javascript",
+			"files": ["vite/src/App.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"yPYux": {
+			"id": "yPYux",
+			"value": "Hello",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		},
+		"gOvqye": {
+			"id": "gOvqye",
+			"value": "I am on ${var}!",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		},
+		"cLXyxN": {
+			"id": "cLXyxN",
+			"value": "I'm not sure what is this",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		}
+	}
 }

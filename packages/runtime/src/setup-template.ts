@@ -8,29 +8,29 @@ import { runtime } from './runtime'
 import type { Config } from '@terai/types'
 
 type SetupOptions = Pick<Config, 'outDir'> & {
-  cwd: string
-  framework: 'next' | 'vite'
+	cwd: string
+	framework: 'next' | 'vite'
 }
 
 export async function setupTemplate({ outDir, cwd, framework }: SetupOptions) {
-  const templateFiles = getTemplate(framework)
-  logger.info('init:setup', `Setting up files...`)
+	const templateFiles = getTemplate(framework)
+	logger.info('init:setup', 'Setting up files...')
 
-  templateFiles.forEach(({ fileName, content }) => {
-    runtime.fs.write(runtime.path.join(cwd, outDir, fileName), content)
-  })
+	templateFiles.forEach(({ fileName, content }) => {
+		runtime.fs.write(runtime.path.join(cwd, outDir, fileName), content)
+	})
 }
 
 function getTemplate(
-  framework: SetupOptions['framework']
+	framework: SetupOptions['framework']
 ): { fileName: string; content: string }[] {
-  const isTs = findTsConfig()
+	const isTs = findTsConfig()
 
-  if (framework === 'vite') {
-    return [
-      {
-        fileName: `client.${isTs ? 'ts' : 'js'}`,
-        content: outdent`
+	if (framework === 'vite') {
+		return [
+			{
+				fileName: `client.${isTs ? 'ts' : 'js'}`,
+				content: outdent`
         import { setupClient } from '@terai/vite'
 
         export const { useTs, setLocale, useFormat } = setupClient({
@@ -43,15 +43,15 @@ function getTemplate(
         })
 
         `
-      }
-    ]
-  }
+			}
+		]
+	}
 
-  if (framework === 'next') {
-    return [
-      {
-        fileName: `client.${isTs ? 'ts' : 'js'}`,
-        content: outdent`
+	if (framework === 'next') {
+		return [
+			{
+				fileName: `client.${isTs ? 'ts' : 'js'}`,
+				content: outdent`
         import { setupClient } from '@terai/next'
 
         export const { ts } = setupClient({
@@ -62,10 +62,10 @@ function getTemplate(
               .then(msg => msg[id]),
         })
         `
-      },
-      {
-        fileName: `server.${isTs ? 'ts' : 'js'}`,
-        content: outdent`
+			},
+			{
+				fileName: `server.${isTs ? 'ts' : 'js'}`,
+				content: outdent`
         import { setupServer } from '@terai/next'
 
         export const { ts } = setupServer({
@@ -74,14 +74,14 @@ function getTemplate(
               .then(mod => mod.default[id]),
         })
         `
-      }
-    ]
-  }
+			}
+		]
+	}
 
-  return [
-    {
-      fileName: `client.${isTs ? 'ts' : 'js'}`,
-      content: outdent`
+	return [
+		{
+			fileName: `client.${isTs ? 'ts' : 'js'}`,
+			content: outdent`
         import { setupReword } from '@terai/react/client'
 
         export const terai = setupReword({
@@ -92,6 +92,6 @@ function getTemplate(
               .then(msg => msg[id]),
         })
         `
-    }
-  ]
+		}
+	]
 }

@@ -5,16 +5,20 @@ import './index.css'
 import { setupClient } from '@terai/vite'
 
 setupClient({
-  defaultLocale: 'en',
-  persist: true,
-  loader: (locale: string, id: string) =>
-    import(`../locale-system/${locale}/${id}.json`)
+	defaultLocale: 'en',
+	persist: true,
+	loader: (locale: string, id: string) =>
+		import(`../locale-system/${locale}/${id}.json`)
 })
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Suspense fallback={<h1>{'Loading...'}</h1>}>
-      <App />
-    </Suspense>
-  </React.StrictMode>
-)
+const rootNode = document.getElementById('root')
+
+if (rootNode) {
+	ReactDOM.createRoot(rootNode).render(
+		<React.StrictMode>
+			<Suspense fallback={<h1>{'Loading...'}</h1>}>
+				<App />
+			</Suspense>
+		</React.StrictMode>
+	)
+}

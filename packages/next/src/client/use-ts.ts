@@ -12,49 +12,50 @@ import { useLocale } from './use-locale'
 import type { Locale } from '@terai/types'
 
 type UseTsProps = {
-  chunkId?: string
+	chunkId?: string
 }
 
 export const useTs = ({ chunkId }: UseTsProps = {}) => {
-  const locale = useLocale()
-  const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
-  const setup = setup$.get()
-  const dictionary = dictionaries$[dictionaryId].get()
-  const loaderId = chunkId ?? locale
+	const locale = useLocale()
+	const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
+	const setup = setup$.get()
+	const dictionary = dictionaries$[dictionaryId].get()
+	const loaderId = chunkId ?? locale
 
-  console.log('Use ts', setup)
-  if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
+	console.log('Use ts', setup)
+	if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
 
-  if (setup.persist) {
-    useEffect(() => {
-      loadDictionary(locale, loaderId, dictionaryId)
-    }, [locale])
-  }
+	if (setup.persist) {
+		useEffect(() => {
+			loadDictionary(locale, loaderId, dictionaryId)
+		}, [locale])
+	}
 
-  const ts = useCallback(
-    createTs<string, {}>(props =>
-      tsRender({
-        ...props,
-        locale,
-        dictionary,
-        format: {
-          // ...setup.format,
-          ...props.format
-        }
-      })
-    ),
-    [locale]
-  )
+	const ts = useCallback(
+		// biome-ignore lint/complexity/noBannedTypes: <explanation>
+		createTs<string, {}>((props) =>
+			tsRender({
+				...props,
+				locale,
+				dictionary,
+				format: {
+					// ...setup.format,
+					...props.format
+				}
+			})
+		),
+		[locale]
+	)
 
-  return { ts }
+	return { ts }
 }
 
 const loadDictionary = async (locale: Locale, chunkId: string, id: string) => {
-  const loader = setup$.get().loader
-  const dic = await loader(locale, chunkId)
+	const loader = setup$.get().loader
+	const dic = await loader(locale, chunkId)
 
-  dictionaries$[id].set(prev => ({
-    ...prev,
-    ...dic
-  }))
+	dictionaries$[id].set((prev) => ({
+		...prev,
+		...dic
+	}))
 }

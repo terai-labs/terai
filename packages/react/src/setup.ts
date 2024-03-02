@@ -4,8 +4,8 @@ import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/
 
 // Global configuration
 import {
-  configureObservablePersistence,
-  persistObservable
+	configureObservablePersistence,
+	persistObservable
 } from '@legendapp/state/persist'
 
 // Types
@@ -13,28 +13,28 @@ import type { Dictionaries, Loader, Locale } from '@terai/types'
 import type { GlobalFormat } from '@terai/formatter'
 
 type Setup = {
-  dictionaries: Dictionaries
-  locale: Locale
-  loader: Loader
-  format?: GlobalFormat
-  persist?: boolean
+	dictionaries: Dictionaries
+	locale: Locale
+	loader: Loader
+	format?: GlobalFormat
+	persist?: boolean
 }
 
 type SetupOptions = Pick<Setup, 'format' | 'loader' | 'persist'> & {
-  defaultLocale: string
+	defaultLocale: string
 }
 
 export const setup$ = observable<Setup>()
 
 export const setupClient = ({ defaultLocale, ...options }: SetupOptions) => {
-  if (options.persist) {
-    configureObservablePersistence({
-      pluginLocal: ObservablePersistLocalStorage
-    })
-    persistObservable(setup$, {
-      local: 'locale'
-    })
-  }
+	if (options.persist) {
+		configureObservablePersistence({
+			pluginLocal: ObservablePersistLocalStorage
+		})
+		persistObservable(setup$, {
+			local: 'locale'
+		})
+	}
 
-  setup$.set({ ...options, locale: defaultLocale, dictionaries: {} })
+	setup$.set({ ...options, locale: defaultLocale, dictionaries: {} })
 }

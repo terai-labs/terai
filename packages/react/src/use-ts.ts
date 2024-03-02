@@ -12,51 +12,52 @@ import type { Locale } from '@terai/types'
 enableReactUse()
 
 type UseTsProps = {
-  chunkId?: string
+	chunkId?: string
 }
 
 export const useTs = ({ chunkId }: UseTsProps = {}) => {
-  const locale = useLocale()
-  const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
-  const setup = setup$.get()
-  const dictionary = setup.dictionaries[dictionaryId]
-  const loaderId = chunkId ?? locale
+	const locale = useLocale()
+	const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
+	const setup = setup$.get()
+	const dictionary = setup.dictionaries[dictionaryId]
+	const loaderId = chunkId ?? locale
 
-  if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
+	if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
 
-  if (setup.persist) {
-    useEffect(() => {
-      loadDictionary(locale, loaderId, dictionaryId)
-    }, [locale])
-  }
+	if (setup.persist) {
+		useEffect(() => {
+			loadDictionary(locale, loaderId, dictionaryId)
+		}, [locale])
+	}
 
-  const ts = useCallback(
-    createTs<string, {}>(props =>
-      tsRender({
-        ...props,
-        locale,
-        dictionary,
-        format: {
-          ...setup.format,
-          ...props.format
-        }
-      })
-    ),
-    [locale]
-  )
+	const ts = useCallback(
+		// biome-ignore lint/complexity/noBannedTypes: <explanation>
+		createTs<string, {}>((props) =>
+			tsRender({
+				...props,
+				locale,
+				dictionary,
+				format: {
+					...setup.format,
+					...props.format
+				}
+			})
+		),
+		[locale]
+	)
 
-  return { ts }
+	return { ts }
 }
 
 const loadDictionary = async (locale: Locale, chunkId: string, id: string) => {
-  const loader = setup$.get().loader
+	const loader = setup$.get().loader
 
-  if (loader) {
-    const dic = await loader(locale, chunkId)
+	if (loader) {
+		const dic = await loader(locale, chunkId)
 
-    setup$.dictionaries[id].set(prev => ({
-      ...prev,
-      ...dic
-    }))
-  }
+		setup$.dictionaries[id].set((prev) => ({
+			...prev,
+			...dic
+		}))
+	}
 }

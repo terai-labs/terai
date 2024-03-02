@@ -4,17 +4,17 @@ import type { Locale } from '@terai/types'
 export type FormatListOptions = Intl.ListFormatOptions
 
 export type FormatListProps = {
-  value: Parameters<Intl.ListFormat['format']>[0]
-  locale: Locale
-  options?: FormatListOptions
+	value: Parameters<Intl.ListFormat['format']>[0]
+	locale: Locale
+	options?: FormatListOptions
 }
 
 export function formatList({
-  value,
-  locale,
-  options
+	value,
+	locale,
+	options
 }: FormatListProps): ReturnType<Intl.ListFormat['format']> {
-  const formatter = new Intl.ListFormat(locale, options)
+	const formatter = new Intl.ListFormat(locale, options)
 
-  return formatter.format(value)
+	return formatter.format(value)
 }

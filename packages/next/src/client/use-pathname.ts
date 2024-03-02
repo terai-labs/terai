@@ -20,17 +20,17 @@ import { usePathname as useNextPathname } from 'next/navigation'
  * ```
  */
 export function usePathname(): string {
-  const pathname = useNextPathname()
-  const locale = useLocale()
+	const pathname = useNextPathname()
+	const locale = useLocale()
 
-  return useMemo(() => {
-    if (!pathname) return pathname
+	return useMemo(() => {
+		if (!pathname) return pathname
 
-    const isPathnamePrefixed = hasPathnamePrefixed(locale, pathname)
-    const unlocalizedPathname = isPathnamePrefixed
-      ? unlocalizePathname(pathname, locale)
-      : pathname
+		const isPathnamePrefixed = hasPathnamePrefixed(locale, pathname)
+		const unlocalizedPathname = isPathnamePrefixed
+			? unlocalizePathname(pathname, locale)
+			: pathname
 
-    return unlocalizedPathname
-  }, [locale, pathname])
+		return unlocalizedPathname
+	}, [locale, pathname])
 }

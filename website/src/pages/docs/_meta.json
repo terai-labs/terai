@@ -1,17 +1,17 @@
 {
-  "overview": {
-    "title": "Overview"
-  },
-  "usage": {
-    "title": "Usage"
-  },
-  "concepts": {
-    "title": "Concepts"
-  },
-  "guides": {
-    "title": "Guides"
-  },
-  "references": {
-    "title": "References"
-  }
+	"overview": {
+		"title": "Overview"
+	},
+	"usage": {
+		"title": "Usage"
+	},
+	"concepts": {
+		"title": "Concepts"
+	},
+	"guides": {
+		"title": "Guides"
+	},
+	"references": {
+		"title": "References"
+	}
 }

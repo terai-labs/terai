@@ -10,7 +10,7 @@ import { useRouter as useNextRouter } from 'next/navigation'
 import type { Locale } from '@terai/types'
 
 type IntlNavigateOptions = {
-  locale?: Locale
+	locale?: Locale
 }
 
 /**
@@ -33,66 +33,66 @@ type IntlNavigateOptions = {
  * ```
  */
 export function useRouter() {
-  const router = useNextRouter()
-  const locale = useLocale()
+	const router = useNextRouter()
+	const locale = useLocale()
 
-  return useMemo(() => {
-    function localize(href: string, nextLocale?: string) {
-      return localizeHref(
-        href,
-        nextLocale || locale,
-        locale,
-        window.location.pathname
-      )
-    }
+	return useMemo(() => {
+		function localize(href: string, nextLocale?: string) {
+			return localizeHref(
+				href,
+				nextLocale || locale,
+				locale,
+				window.location.pathname
+			)
+		}
 
-    return {
-      ...router,
-      push(
-        href: string,
-        options?: Parameters<typeof router.push>[1] & IntlNavigateOptions
-      ) {
-        const { locale: nextLocale, ...rest } = options || {}
-        const args: [
-          href: string,
-          options?: Parameters<typeof router.push>[1]
-        ] = [localize(href, nextLocale)]
-        if (Object.keys(rest).length > 0) {
-          args.push(rest)
-        }
-        return router.push(...args)
-      },
+		return {
+			...router,
+			push(
+				href: string,
+				options?: Parameters<typeof router.push>[1] & IntlNavigateOptions
+			) {
+				const { locale: nextLocale, ...rest } = options || {}
+				const args: [
+					href: string,
+					options?: Parameters<typeof router.push>[1]
+				] = [localize(href, nextLocale)]
+				if (Object.keys(rest).length > 0) {
+					args.push(rest)
+				}
+				return router.push(...args)
+			},
 
-      replace(
-        href: string,
-        options?: Parameters<typeof router.replace>[1] & IntlNavigateOptions
-      ) {
-        const { locale: nextLocale, ...rest } = options || {}
-        const args: [
-          href: string,
-          options?: Parameters<typeof router.replace>[1]
-        ] = [localize(href, nextLocale)]
-        if (Object.keys(rest).length > 0) {
-          args.push(rest)
-        }
-        return router.replace(...args)
-      },
+			replace(
+				href: string,
+				options?: Parameters<typeof router.replace>[1] & IntlNavigateOptions
+			) {
+				const { locale: nextLocale, ...rest } = options || {}
+				const args: [
+					href: string,
+					options?: Parameters<typeof router.replace>[1]
+				] = [localize(href, nextLocale)]
+				if (Object.keys(rest).length > 0) {
+					args.push(rest)
+				}
+				return router.replace(...args)
+			},
 
-      prefetch(
-        href: string,
-        options?: Parameters<typeof router.prefetch>[1] & IntlNavigateOptions
-      ) {
-        const { locale: nextLocale, ...rest } = options || {}
-        const args: [
-          href: string,
-          options?: Parameters<typeof router.prefetch>[1]
-        ] = [localize(href, nextLocale)]
-        if (Object.keys(rest).length > 0) {
-          // @ts-expect-error TypeScript thinks `rest` can be an empty object
-          args.push(rest)
-        }
-        return router.prefetch(...args)
-      }
-    }
-  }, [locale])
+			prefetch(
+				href: string,
+				options?: Parameters<typeof router.prefetch>[1] & IntlNavigateOptions
+			) {
+				const { locale: nextLocale, ...rest } = options || {}
+				const args: [
+					href: string,
+					options?: Parameters<typeof router.prefetch>[1]
+				] = [localize(href, nextLocale)]
+				if (Object.keys(rest).length > 0) {
+					// @ts-expect-error TypeScript thinks `rest` can be an empty object
+					args.push(rest)
+				}
+				return router.prefetch(...args)
+			}
+		}
+	}, [locale])
 }

@@ -8,20 +8,20 @@ import { runtime } from './runtime'
 import type { Config } from '@terai/types'
 
 type SetupOptions = Pick<Config, 'projectLocale' | 'outDir'> & {
-  cwd: string
+	cwd: string
 }
 
 export async function setupConfig({
-  projectLocale,
-  outDir,
-  cwd
+	projectLocale,
+	outDir,
+	cwd
 }: SetupOptions) {
-  const isTs = findTsConfig()
-  const fileName = isTs ? 'terai.config.ts' : 'terai.config.mjs'
+	const isTs = findTsConfig()
+	const fileName = isTs ? 'terai.config.ts' : 'terai.config.mjs'
 
-  logger.info('init:setup', `Setting config file...`)
+	logger.info('init:setup', 'Setting config file...')
 
-  const content = outdent`
+	const content = outdent`
       import { defineConfig, createKoiTranslator } from "@terai/dev"
 
       const translator = createKoiTranslator({
@@ -49,5 +49,5 @@ export async function setupConfig({
       })
     `
 
-  runtime.fs.write(runtime.path.join(cwd, fileName), content)
+	runtime.fs.write(runtime.path.join(cwd, fileName), content)
 }

@@ -4,17 +4,17 @@ import type { Locale } from '@terai/types'
 export type FormatNumberOptions = Intl.NumberFormatOptions
 
 export type FormatNumberProps = {
-  value: Parameters<Intl.NumberFormat['format']>[0]
-  locale: Locale
-  options?: FormatNumberOptions
+	value: Parameters<Intl.NumberFormat['format']>[0]
+	locale: Locale
+	options?: FormatNumberOptions
 }
 
 export function formatNumber({
-  value,
-  locale,
-  options
+	value,
+	locale,
+	options
 }: FormatNumberProps): ReturnType<Intl.NumberFormat['format']> {
-  const formatter = new Intl.NumberFormat(locale, options)
+	const formatter = new Intl.NumberFormat(locale, options)
 
-  return formatter.format(value)
+	return formatter.format(value)
 }

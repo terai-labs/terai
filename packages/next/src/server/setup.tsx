@@ -6,12 +6,12 @@ import type { Loader } from '@terai/types'
 import type { GlobalFormat } from '@terai/formatter'
 
 export type Setup = {
-  loader: Loader
-  format?: GlobalFormat
+	loader: Loader
+	format?: GlobalFormat
 }
 
 export const setup$ = observable<Setup>()
 
 export const setupServer = (options: Setup) => {
-  setup$.set(options)
+	setup$.set(options)
 }

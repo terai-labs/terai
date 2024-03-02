@@ -3,24 +3,24 @@ import { convertExtractedMessagesToDictionary } from '../src'
 import type { ExtractedMessages } from '@terai/types'
 
 describe('convertExtractedMessagesToDictionary', () => {
-  test('should convert extracted messages to dictionary', () => {
-    const sut = convertExtractedMessagesToDictionary
-    const extractedMessages: ExtractedMessages = {
-      a: {
-        id: 'a',
-        value: 'test',
-        context: '',
-        files: [],
-        chunksIds: []
-      }
-    }
+	test('should convert extracted messages to dictionary', () => {
+		const sut = convertExtractedMessagesToDictionary
+		const extractedMessages: ExtractedMessages = {
+			a: {
+				id: 'a',
+				value: 'test',
+				context: '',
+				files: [],
+				chunksIds: []
+			}
+		}
 
-    const output = sut(extractedMessages)
+		const output = sut(extractedMessages)
 
-    expect(output).toMatchInlineSnapshot(`
+		expect(output).toMatchInlineSnapshot(`
       {
         "a": "test",
       }
     `)
-  })
+	})
 })
