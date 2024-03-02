@@ -1,6 +1,6 @@
 {
   "name": "@terai/dev",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The user-facing package for Terai",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -1,5 +1,17 @@
 # @terai/extractor
 
+## 0.0.3
+
+### Patch Changes
+
+- 532543c: v0.0.3
+- 2f411c1: v0.0.3
+- Updated dependencies [532543c]
+- Updated dependencies [2f411c1]
+  - @terai/logger@0.0.3
+  - @terai/runtime@0.0.3
+  - @terai/transformer@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
