@@ -1,7 +1,7 @@
 {
   "name": "@terai/next",
   "description": "Terai for Next.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "require": "dist/index.js",
