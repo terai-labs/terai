@@ -4,4 +4,7 @@ export function defineConfig(config: Config) {
 	return config
 }
 
-export * from '@terai/translator/translators'
+export {
+  createChatGptTranslator,
+  createGoogleCloudTranslator
+} from '@terai/translator/translators'

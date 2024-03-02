@@ -1,3 +1,4 @@
 #!/usr/bin/env node
-require('dotenv')?.config()
+
+require('dotenv').config({ silent: true })
 require('./dist/cli.default.js')

@@ -40,7 +40,8 @@
 </div>
 
 > [!WARNING]  
-> This project is currently in development and considered unstable while we work towards an stable v1.0 release. Use it with caution.
+> **Terai** is currently in development preview with unstable dependencies.
+While not planned, we may need to introduce breaking changes in these dependencies on the road to v1.0.
 
 ## Introduction
 
