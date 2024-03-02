@@ -53,11 +53,11 @@ const config: ThemeConfig = {
 	},
 	primaryHue: {
 		light: 235,
-		dark: 40
+		dark: 215
 	},
 	primarySaturation: {
 		light: 70,
-		dark: 100
+		dark: 80
 	},
 	footer: {
 		text: (
