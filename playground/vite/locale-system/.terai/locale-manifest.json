@@ -11,17 +11,6 @@
         "default"
       ]
     },
-    "jQRFDH": {
-      "id": "jQRFDH",
-      "value": "Terai is a modern localization framework for Javascript.\n\t\t\tThis is a test for a very long message",
-      "files": [
-        "vite/src/App.tsx"
-      ],
-      "context": "",
-      "chunksIds": [
-        "default"
-      ]
-    },
     "yPYux": {
       "id": "yPYux",
       "value": "Hello",
@@ -53,6 +42,17 @@
       "context": "",
       "chunksIds": [
         "chunk-button"
+      ]
+    },
+    "dQxGBP": {
+      "id": "dQxGBP",
+      "value": "Hello world!",
+      "files": [
+        "vite/src/example.tsx"
+      ],
+      "context": "",
+      "chunksIds": [
+        "default"
       ]
     }
   }

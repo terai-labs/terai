@@ -51,13 +51,14 @@ const config: ThemeConfig = {
 	toc: {
 		backToTop: true
 	},
+	gitTimestamp: false,
 	primaryHue: {
 		light: 235,
-		dark: 215
+		dark: 235
 	},
 	primarySaturation: {
 		light: 70,
-		dark: 80
+		dark: 40
 	},
 	footer: {
 		text: (

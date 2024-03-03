@@ -1,8 +1,4 @@
-import { defineConfig, createChatGptTranslator } from '@terai/dev'
-
-// const translator = createChatGptTranslator({
-// 	apiKey: process.env.OPENAI_API_KEY
-// })
+import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
 
 export default defineConfig({
 	include: ['./src/**/*.{js,jsx,ts,tsx}'],

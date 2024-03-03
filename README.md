@@ -4,32 +4,32 @@
 
 <div align="center">
 
-[![Build](https://img.shields.io/github/actions/workflow/status/teraihq/terai/release.yml?branch=master)](https://github.com/teraihq/terai/actions/workflows/release.yml)
-[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/teraihq/terai)](https://coveralls.io/github/terai/terai)
+[![Build](https://img.shields.io/github/actions/workflow/status/terai-labs/terai/release.yml?branch=master)](https://github.com/terai-labs/terai/actions/workflows/release.yml)
+[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/terai-labs/terai)](https://coveralls.io/github/terai/terai)
 [![Language](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@teraihq/terai)
+[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@terai-labs/terai)
 
 </div>
 
 <div align="center">
-      <b>Terai is a modern AI-based localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
+  <b>Terai is a modern AI-based localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
 </div>
 
 <div align="center">
   <h4>
-    <a href="https://teraihq.github.io/terai">
+    <a href="https://terai-labs.github.io/terai">
       Website
     </a>
     <span> | </span>
-    <a href="https://teraihq.github.io/terai/docs">
+    <a href="https://terai-labs.github.io/terai/docs">
       Documentation
     </a>
     <span> | </span>
-    <a href="https://github.com/teraihq/terai/issues">
+    <a href="https://github.com/terai-labs/terai/issues">
       Issues
     </a>
     <span> | </span>
-    <a href="https://github.com/teraihq/terai/contributing">
+    <a href="https://github.com/terai-labs/terai/contributing">
       Contributing
     </a>
     <span> | </span>
@@ -53,7 +53,7 @@ Workflow can be broken down into 3 steps:
 - 2️⃣ **Extract**: streamline your extraction process by automatically gathering all the messages within your project.
 - 3️⃣ **Translate**: use your defined translator to get your localized messages.
 
-More documentation available at [https://teraihq.github.io/terai](https://teraihq.github.io/terai).
+More documentation available at [https://terai-labs.github.io/terai](https://terai-labs.github.io/terai).
 
 ## Features
 
@@ -81,11 +81,11 @@ More documentation available at [https://teraihq.github.io/terai](https://teraih
 
 ## Getting Started
 
-Visit <a aria-label="terai learn" href="https://teraihq.github.io/terai/learn">https://teraihq.github.io/terai/learn</a> to get started with **Terai**.
+Visit <a aria-label="terai learn" href="https://terai-labs.github.io/terai/learn">https://terai-labs.github.io/terai/learn</a> to get started with **Terai**.
 
 ## Documentation
 
-Visit [https://teraihq.github.io/terai/docs](https://teraihq.github.io/terai/docs) to view the full documentation.
+Visit [https://terai-labs.github.io/terai/docs](https://terai-labs.github.io/terai/docs) to view the full documentation.
 
 ## Community
 
