@@ -34,7 +34,7 @@ that instance are linked.
 import { useTs } from './locale'
 
 export function Button() {
-  const ts = useTs({ chunkId: 'button' })
+  const { ts } = useTs({ chunkId: 'button' })
 
   return (
     <div>
@@ -53,7 +53,7 @@ specific requirements.
 import { useTs } from './locale'
 
 export function Header() {
-  const ts = useTs({ chunkId: 'common' })
+  const { ts } = useTs({ chunkId: 'common' })
 
   return (
     <div>
@@ -67,7 +67,7 @@ export function Header() {
 import { useTs } from './locale'
 
 export function Footer() {
-  const ts = useTs({ chunkId: 'common' })
+  const { ts } = useTs({ chunkId: 'common' })
 
   return (
     <div>

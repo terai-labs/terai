@@ -57,7 +57,7 @@ const config: ThemeConfig = {
 		dark: 235
 	},
 	primarySaturation: {
-		light: 70,
+		light: 40,
 		dark: 40
 	},
 	footer: {

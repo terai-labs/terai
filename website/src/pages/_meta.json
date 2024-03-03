@@ -3,6 +3,7 @@
     "display": "hidden",
     "type": "page",
     "theme": {
+      "layout": "full",
       "breadcrumb": false,
       "footer": false,
       "sidebar": false,

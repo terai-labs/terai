@@ -1,1 +1,17 @@
 # Extraction
+
+Keeping your localization system up to date can be a challenging task, especially in large or fast-paced projects. It often involves duplicating work and leaves room for potential errors.
+
+Terai's extraction feature simplifies the process of identifying all the strings that require localization in your project, making them ready for translation.
+
+## Running the `extract` command
+
+To extract strings for localization in your project using Terai, follow these steps:
+
+1. Run the `terai extract` command in your project.
+2. Terai will analyze the inputs to your project and search for all instances of `ts` files.
+3. Each occurrence of a string will be converted into a unique hash (e.g., 78awdk123) based on its content.
+4. The extracted strings will be written to a manifest file (`.terai/locale-manifest.json`).
+5. Additionally, the dictionary for your `projectLocale` will be created or updated, as it does not require translation.
+
+![Extract](/extract.gif)

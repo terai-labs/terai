@@ -1,0 +1,72 @@
+import { Steps, Tabs } from 'nextra/components'
+
+# Formatting
+
+Terai provides a set of utils to format numbers, dates, displayNames, lists and relative times.
+All functions are based in the `Intl` Web API Standard.
+
+## Usage
+
+Now you can start using terai in your project. Here is the snippet of code that
+you can use in some `example.tsx` file.
+
+<Tabs items={['useFormat', 'getFormat']}>
+  <Tabs.Tab>
+  ```tsx filename="example.tsx" copy
+import { useTs, useFormat } from '@terai/vite'
+
+export function Example() {
+  const { ts } = useTs()
+  const format = useFormat()
+  const now = new Date()
+
+  return (
+  <div>
+    <p>{ts`Now is ${format.date({ value: now })}!`}</p>
+  </div>
+  ) 
+}
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```sh copy
+  npm install -D @terai/dev
+  npm install @terai/vite
+  npx terai init
+````
+
+  </Tabs.Tab>
+</Tabs>
+
+### Number
+
+This function uses `Intl.NumberFormat` options.
+
+```ts
+function format.number(
+  value: number,
+  options?: Intl.NumberFormatOptions & {format?: string}
+): string
+```
+
+```tsx filename="example.tsx" copy
+import { useTs, useFormat } from '@terai/vite'
+
+export function Example() {
+  const { ts } = useTs()
+  const format = useFormat()
+
+  return (
+    <div>
+      <p>{ts`Hello, world!`}</p>
+    </div>
+  )
+}
+```
+
+```tsx
+function formatDate(
+  value: number | Date,
+  options?: Intl.DateTimeFormatOptions & { format?: string }
+): string
+```

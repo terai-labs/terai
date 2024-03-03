@@ -54,6 +54,9 @@ importers:
       lint-staged:
         specifier: ^15
         version: 15.2.2
+      prettier:
+        specifier: ^3
+        version: 3.2.5
       rimraf:
         specifier: ^5
         version: 5.0.5
@@ -247,61 +250,6 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/react-next:
-    dependencies:
-      '@terai/formatter':
-        specifier: workspace:*
-        version: link:../formatter
-      '@terai/react':
-        specifier: workspace:*
-        version: link:../react
-      '@terai/ts':
-        specifier: workspace:*
-        version: link:../ts
-      next:
-        specifier: ^14
-        version: 14.1.1(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18
-        version: 18.2.0
-    devDependencies:
-      '@babel/plugin-transform-runtime':
-        specifier: ^7
-        version: 7.24.0(@babel/core@7.24.0)
-      '@babel/preset-env':
-        specifier: ^7
-        version: 7.24.0(@babel/core@7.24.0)
-      '@babel/preset-react':
-        specifier: ^7
-        version: 7.23.3(@babel/core@7.24.0)
-      '@rollup/plugin-alias':
-        specifier: ^5
-        version: 5.1.0(rollup@4.12.0)
-      '@rollup/plugin-babel':
-        specifier: ^6
-        version: 6.0.4(@babel/core@7.24.0)(rollup@4.12.0)
-      '@rollup/plugin-commonjs':
-        specifier: ^25
-        version: 25.0.7(rollup@4.12.0)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15
-        version: 15.2.3(rollup@4.12.0)
-      '@rollup/plugin-terser':
-        specifier: ^0
-        version: 0.4.4(rollup@4.12.0)
-      '@rollup/plugin-typescript':
-        specifier: ^11
-        version: 11.1.6(rollup@4.12.0)(typescript@5.3.3)
-      '@terai/types':
-        specifier: workspace:*
-        version: link:../types
-      rollup:
-        specifier: ^4
-        version: 4.12.0
-      rollup-plugin-preserve-directives:
-        specifier: ^0
-        version: 0.4.0(rollup@4.12.0)
-
   packages/runtime:
     dependencies:
       '@terai/logger':
@@ -391,16 +339,6 @@ importers:
       '@terai/react':
         specifier: workspace:*
         version: link:../react
-
-  playground/next:
-    dependencies:
-      '@terai/react-next':
-        specifier: workspace:*
-        version: link:../../packages/react-next
-    devDependencies:
-      '@terai/dev':
-        specifier: workspace:*
-        version: link:../../packages/dev
 
   playground/next-app:
     dependencies:
@@ -8323,6 +8261,12 @@ packages:
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
