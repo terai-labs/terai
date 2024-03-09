@@ -3,11 +3,11 @@ article.nextra-body-typesetting-article {
   font-size: 14px !important;
 }
 
-footer,
+/* footer,
 :is(html[class~='dark'] .dark\:nx-bg-dark),
 html[class~='dark'] body {
   background: #000 !important;
-}
+} */
 
 .nextra-nav-container-blur {
   background: transparent !important;
