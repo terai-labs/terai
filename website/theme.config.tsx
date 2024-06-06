@@ -44,9 +44,9 @@ const config: ThemeConfig = {
 			</span>
 		</div>
 	),
-	docsRepositoryBase: 'https://github.com/teraihq/terai',
+	docsRepositoryBase: 'https://github.com/terai-labs/terai/tree/master/website',
 	project: {
-		link: 'https://github.com/teraihq/terai'
+		link: 'https://github.com/terai-labs/terai'
 	},
 	toc: {
 		backToTop: true
@@ -65,7 +65,7 @@ const config: ThemeConfig = {
 			<span>
 				MIT {new Date().getFullYear()} ©{' '}
 				<a
-					href='https://github.com/teraihq/terai'
+					href='https://github.com/terai-labs/terai'
 					target='_blank'
 					rel='noreferrer'
 				>
