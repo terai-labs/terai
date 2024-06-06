@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-  <b>Terai is a modern AI-based localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
+  <b>Terai is a modern localization framework for Javascript. Built with the open source community and optimized for developer experience in the frameworks you love.</b>
 </div>
 
 <div align="center">
