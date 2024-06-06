@@ -1,5 +1,15 @@
 # @terai/extractor
 
+## 0.0.5
+
+### Patch Changes
+
+- cf235da: Update React definitions and setup arguments
+- Updated dependencies [cf235da]
+  - @terai/logger@0.0.5
+  - @terai/runtime@0.0.5
+  - @terai/transformer@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
