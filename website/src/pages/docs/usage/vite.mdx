@@ -12,36 +12,11 @@ Using **Terai** in a **Vite** project.
 
 Install `terai` and create your `terai.config.ts` file.
 
-<Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
-  <Tabs.Tab>
-  ```sh copy
-  pnpm add -D @terai/dev
-  pnpm add @terai/vite
-  pnpm terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  npm install -D @terai/dev
-  npm install @terai/vite
-  npx terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  yarn add -D @terai/dev
-  yarn add @terai/vite
-  yarn terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  bun add -D @terai/dev
-  bun add @terai/vite
-  bun terai init
-  ```
-  </Tabs.Tab>
-</Tabs>
+```sh copy
+pnpm add -D @terai/dev
+pnpm add @terai/react
+pnpm terai init
+```
 
 - [`init`](/docs/references/cli#terai-init): script that creates a
   `terai.config.ts`.
@@ -50,13 +25,13 @@ Install `terai` and create your `terai.config.ts` file.
 
 #### `terai.config.ts`
 
-Add your custom options in `terai.config.ts`.
+Add your custom options in `terai.config.ts`. In this example we will use ChatGPT for translating out messages.
 
 ```tsx filename="terai.config.ts" copy
 import { defineConfig, createChatGptTranslator } from '@terai/dev'
 
 const translator = createChatGptTranslator({
-  apiKey: process.env.OPEN_API_KEY
+  apiKey: process.env.OPEN_API_KEY,
 })
 
 export default defineConfig({
@@ -65,14 +40,14 @@ export default defineConfig({
   projectLocale: 'en',
   outDir: './locale-system',
   outLocales: ['es', 'it'],
-  translator
+  translator,
 })
 ```
 
 - [`config`](/docs/references/config): Options used by the static processes
   (`extract` and `translate`) run by `terai`.
 
-#### `setupClient`
+#### `setupTerai`
 
 Configure your runtime options by adding the following lines in `main.tsx`:
 
@@ -81,13 +56,13 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { setupClient } from '@terai/react'
+import { setupTerai } from '@terai/react'
 
-setupClient({
+setupTerai({
   defaultLocale: 'en',
   persist: true,
-  loader: (locale: string, id: string) =>
-    import(`../locale-system/${locale}/${id}.json`)
+  loader: (locale: string, chunkId: string) =>
+    import(`../locale-system/${locale}/${chunkId}.json`),
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -99,7 +74,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 ```
 
-- [`setupClient`](/docs/references/setup-client): Client-side options used by
+- [`setupTerai`](/docs/references/setup-client): Client-side options used by
   the `ts` function.
 
 </Steps>
@@ -110,11 +85,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### Use `terai`
 
-Now you can start using terai in your project. Here is the snippet of code that
+Now you can start using `terai` in your project. Here is the snippet of code that
 you can use in some `example.tsx` file.
 
 ```tsx filename="example.tsx" copy
-import { useTs } from '@terai/vite'
+import { useTs } from '@terai/react'
 
 export function Example() {
   const { ts } = useTs()
@@ -158,22 +133,21 @@ pnpm terai translate
 
 | Package        |                                                     Version                                                      |                                                        Size                                                        |                                                   Downloads                                                    |
 | :------------- | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
-| `@terai/vite` | [![Version](https://img.shields.io/npm/v/@terai/vite.svg?logo=npm)](https://www.npmjs.com/package/@terai/vite) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/vite)](https://bundlephobia.com/result?p=@terai/vite) | [![NPM](https://img.shields.io/npm/dm/@terai/vite.svg?&logo=npm)](https://www.npmjs.com/package/@terai/vite) |
+| `@terai/react` | [![Version](https://img.shields.io/npm/v/@terai/react.svg?logo=npm)](https://www.npmjs.com/package/@terai/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react)](https://bundlephobia.com/result?p=@terai/react) | [![NPM](https://img.shields.io/npm/dm/@terai/react.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react) |
 
 ### Exports
 
 ```tsx
 import {
-  setLocale,
-  setupClient,
+  useTs,
   useFormat,
   useLocale,
-  useTs,
-  useTs
-} from '@terai/vite'
+  setLocale,
+  setupTerai,
+} from '@terai/react'
 ```
 
-- [`setupClient`](/docs/references/setup-client): Client-side configuration
+- [`setupTerai`](/docs/references/setup-client): Client-side configuration
   options
 - [`useFormat`](/docs/references/use-format): Hook to get the format function
 - [`useLocale`](/docs/references/use-locale): Hook to retrieve the current

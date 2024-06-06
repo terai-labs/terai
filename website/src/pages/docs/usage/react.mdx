@@ -55,7 +55,7 @@ Add your custom options in `terai.config.ts`.
 import { defineConfig, createChatGptTranslator } from '@terai/dev'
 
 const translator = createChatGptTranslator({
-  apiKey: process.env.OPEN_API_KEY
+  apiKey: process.env.OPEN_API_KEY,
 })
 
 export default defineConfig({
@@ -64,7 +64,7 @@ export default defineConfig({
   projectLocale: 'en',
   outDir: './public/locale',
   outLocales: ['es', 'it'],
-  translator
+  translator,
 })
 ```
 
@@ -82,7 +82,7 @@ setupClient({
   defaultLocale: 'en',
   persist: true,
   loader: (locale: string, id: string) =>
-    import(`../locale-system/${locale}/${id}.json`)
+    import(`../locale-system/${locale}/${id}.json`),
 })
 ```
 

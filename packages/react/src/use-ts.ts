@@ -35,7 +35,7 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 		})
 	}
 
-	if (config.persist) {
+	if (config.persistence) {
 		useEffect(() => {
 			loadDictionary({
 				locale,

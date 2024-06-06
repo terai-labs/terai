@@ -1,8 +1,10 @@
 // Depedencies
 import { observable } from '@legendapp/state'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-import { state$ } from './state'
 import pkg from '../package.json'
+
+// State
+import { state$ } from './state'
 
 // Global configuration
 import {
@@ -18,19 +20,24 @@ type Config = {
 	defaultLocale: Locale | (() => Locale)
 	loader: Loader
 	format?: GlobalFormat
-	persist?: boolean
+	persistence?: boolean
+	persistenceKey?: string
 }
-
-configureObservablePersistence({
-	pluginLocal: ObservablePersistLocalStorage
-})
 
 export const config$ = observable<Config>()
 
-export function setupClient({ defaultLocale, ...options }: Config) {
-	if (options.persist) {
+export function setupTerai({
+	defaultLocale,
+	persistence = false,
+	persistenceKey = `terai-${pkg.version}`,
+	...options
+}: Config) {
+	if (persistence) {
+		configureObservablePersistence({
+			pluginLocal: ObservablePersistLocalStorage
+		})
 		persistObservable(state$, {
-			local: `terai-${pkg.version}`
+			local: persistenceKey
 		})
 	}
 
@@ -41,5 +48,10 @@ export function setupClient({ defaultLocale, ...options }: Config) {
 		state$.started.set(true)
 	}
 
-	config$.set({ defaultLocale, ...options })
+	config$.set({
+		defaultLocale,
+		persistence,
+		persistenceKey,
+		...options
+	})
 }

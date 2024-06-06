@@ -2,13 +2,15 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { setupClient } from '@terai/vite'
+import { setupTerai } from '@terai/react'
 
-setupClient({
+setupTerai({
 	defaultLocale: 'en',
-	persist: true,
-	loader: (locale: string, id: string) =>
-		import(`../locale-system/${locale}/${id}.json`)
+	persistence: true,
+	loader: (locale: string, chunkId: string) =>
+		import(`../locale-system/${locale}/${chunkId}.json`).then(
+			(mod) => mod.default
+		)
 })
 
 const rootNode = document.getElementById('root')
