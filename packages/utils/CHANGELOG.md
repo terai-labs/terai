@@ -1,5 +1,11 @@
 # @terai/utils
 
+## 0.0.5
+
+### Patch Changes
+
+- cf235da: Update React definitions and setup arguments
+
 ## 0.0.4
 
 ### Patch Changes
