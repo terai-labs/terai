@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { ThemeConfig } from 'nextra/types'
 
 const config: ThemeConfig = {
