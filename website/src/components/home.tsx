@@ -5,7 +5,7 @@ export function Home() {
 		<div
 			className='nx-flex nx-flex-col nx-justify-center nx-items-center'
 			style={{
-				overflow: 'hidden',
+				// overflow: 'hidden',
 				textAlign: 'center',
 				display: 'flex',
 				flexDirection: 'column',
@@ -18,7 +18,6 @@ export function Home() {
 			<section
 				style={{
 					width: '100%',
-					// paddingBlock: '15dvh',
 					position: 'relative',
 					alignItems: 'center',
 					display: 'flex',
@@ -69,14 +68,14 @@ export function Home() {
 					>
 						<a href='/docs'>
 							<button
-								className='nx-bg-light dark:nx-bg-dark'
 								type='button'
 								style={{
+									color: 'white',
 									fontSize: 'medium',
 									paddingInline: 16,
 									paddingBlock: 8,
 									borderRadius: 4,
-									filter: 'invert()'
+									background: 'linear-gradient(#a788ec, #5e6ad2)'
 								}}
 							>
 								Read the docs
@@ -84,14 +83,14 @@ export function Home() {
 						</a>
 						<a href='https://github.com/terai-labs/terai'>
 							<button
-								className='dark:nx-bg-dark'
 								type='button'
 								style={{
+									color: 'white',
 									fontSize: 'medium',
 									paddingInline: 16,
 									paddingBlock: 8,
 									borderRadius: 4,
-									filter: 'invert()'
+									background: 'black'
 								}}
 							>
 								GitHub
@@ -104,8 +103,7 @@ export function Home() {
 			<hr
 				className={'dark:nx-border-neutral-800'}
 				style={{
-					width: '100%',
-					transform: 'scaleX(2)'
+					width: '100dvw'
 				}}
 			/>
 
@@ -121,11 +119,11 @@ export function Home() {
 				}}
 			>
 				<Logo
-					height={'600px'}
-					width={'600px'}
+					height={'400px'}
+					width={'400px'}
 					style={{
 						position: 'absolute',
-						filter: 'blur(80px)',
+						filter: 'blur(120px)',
 						zIndex: -1
 					}}
 				/>
@@ -163,7 +161,7 @@ export function Home() {
 					}}
 				>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -194,7 +192,7 @@ export function Home() {
 						</span>
 					</li>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -226,7 +224,7 @@ export function Home() {
 						</span>
 					</li>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -257,7 +255,7 @@ export function Home() {
 						</span>
 					</li>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -288,7 +286,7 @@ export function Home() {
 						</span>
 					</li>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -319,7 +317,7 @@ export function Home() {
 						</span>
 					</li>
 					<li
-						className='nx-bg-light dark:nx-bg-dark'
+						className='nx-bg-white dark:nx-bg-dark'
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
@@ -356,8 +354,7 @@ export function Home() {
 			<hr
 				className={'dark:nx-border-neutral-800'}
 				style={{
-					width: '100%',
-					transform: 'scaleX(2)'
+					width: '100dvw'
 				}}
 			/>
 
@@ -370,7 +367,6 @@ export function Home() {
 					justifyContent: 'center'
 				}}
 			>
-				<Logo height={'80px'} />
 				<h2
 					style={{
 						fontWeight: 'bolder',
@@ -445,7 +441,8 @@ function HeaderLogo() {
 					padding: 12,
 					borderRadius: '20px',
 					border: '1px solid rgba(160,160,160,0.1)',
-					backdropFilter: 'blur(16px)'
+					backdropFilter: 'blur(16px)',
+					boxShadow: '0px 3px 6px rgba(0,0,0,0.1)'
 				}}
 			>
 				<Logo style={{ opacity: 0 }} />
@@ -505,7 +502,8 @@ const DottedBackground = () => {
 				width: '100%',
 				height: '100%',
 				top: 0,
-				left: 0
+				left: 0,
+				zIndex: -1
 			}}
 			ref={canvasRef}
 		/>
