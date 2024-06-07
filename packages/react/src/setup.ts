@@ -20,24 +20,24 @@ type Config = {
 	defaultLocale: Locale | (() => Locale)
 	loader: Loader
 	format?: GlobalFormat
-	persistence?: boolean
-	persistenceKey?: string
+	persist?: boolean
+	storageKey?: string
 }
 
 export const config$ = observable<Config>()
 
 export function setupTerai({
 	defaultLocale,
-	persistence = false,
-	persistenceKey = `terai-${pkg.version}`,
+	persist = false,
+	storageKey = `terai-${pkg.version}`,
 	...options
 }: Config) {
-	if (persistence) {
+	if (persist) {
 		configureObservablePersistence({
 			pluginLocal: ObservablePersistLocalStorage
 		})
 		persistObservable(state$, {
-			local: persistenceKey
+			local: storageKey
 		})
 	}
 
@@ -50,8 +50,8 @@ export function setupTerai({
 
 	config$.set({
 		defaultLocale,
-		persistence,
-		persistenceKey,
+		persist,
+		storageKey,
 		...options
 	})
 }
