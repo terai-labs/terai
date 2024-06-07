@@ -5,6 +5,7 @@ export function Home() {
 		<div
 			className='nx-flex nx-flex-col nx-justify-center nx-items-center'
 			style={{
+				overflow: 'hidden',
 				textAlign: 'center',
 				display: 'flex',
 				flexDirection: 'column',
@@ -101,10 +102,10 @@ export function Home() {
 			</section>
 
 			<hr
+				className={'dark:nx-border-neutral-800'}
 				style={{
 					width: '100%',
-					transform: 'scaleX(2)',
-					border: '0.5px solid rgba(128,128,128,0.35)'
+					transform: 'scaleX(2)'
 				}}
 			/>
 
@@ -120,7 +121,13 @@ export function Home() {
 				}}
 			>
 				<Logo
-					style={{ position: 'absolute', filter: 'blur(100px)', zIndex: -1 }}
+					height={'600px'}
+					width={'600px'}
+					style={{
+						position: 'absolute',
+						filter: 'blur(80px)',
+						zIndex: -1
+					}}
 				/>
 				<h2
 					style={{
@@ -162,7 +169,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -193,7 +200,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -225,7 +232,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -256,7 +263,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -287,7 +294,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -318,7 +325,7 @@ export function Home() {
 							flexDirection: 'column',
 							alignItems: 'flex-start',
 							textAlign: 'left',
-							border: '0.5px solid rgba(128,128,128,0.35)',
+							border: '0.5px solid rgba(160,160,160,0.1)',
 							padding: 32,
 							borderRadius: 16,
 							gap: 8
@@ -347,25 +354,33 @@ export function Home() {
 			</section>
 
 			<hr
+				className={'dark:nx-border-neutral-800'}
 				style={{
 					width: '100%',
-					transform: 'scaleX(2)',
-					border: '0.5px solid rgba(128,128,128,0.35)'
+					transform: 'scaleX(2)'
 				}}
 			/>
 
-			<section>
+			<section
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					paddingBlock: '10dvh',
+					justifyContent: 'center'
+				}}
+			>
+				<Logo height={'80px'} />
 				<h2
 					style={{
 						fontWeight: 'bolder',
 						fontSize: 'xx-large',
 						lineHeight: '1',
-						marginBottom: '20px',
-						letterSpacing: '-0.03em',
-						paddingBlock: '10dvh'
+						marginTop: '20px',
+						letterSpacing: '-0.03em'
 					}}
 				>
-					Let's move localization forward
+					Let's move localization forward 🚀
 				</h2>
 			</section>
 		</div>
@@ -375,12 +390,12 @@ export function Home() {
 function Logo(props: any) {
 	return (
 		<svg
-			{...props}
 			width='100'
 			height='100'
 			viewBox='0 0 162 162'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
+			{...props}
 		>
 			<title>Terai</title>
 			<path
@@ -429,7 +444,7 @@ function HeaderLogo() {
 					position: 'absolute',
 					padding: 12,
 					borderRadius: '20px',
-					border: '1px solid rgba(128,128,128,0.35)',
+					border: '1px solid rgba(160,160,160,0.1)',
 					backdropFilter: 'blur(16px)'
 				}}
 			>

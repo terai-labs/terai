@@ -53,11 +53,11 @@ const config: ThemeConfig = {
 	gitTimestamp: false,
 	primaryHue: {
 		light: 235,
-		dark: 235
+		dark: 35
 	},
 	primarySaturation: {
 		light: 40,
-		dark: 40
+		dark: 100
 	},
 	footer: {
 		text: (
