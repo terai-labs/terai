@@ -31,7 +31,7 @@ option to designate the specific chunk to which the messages associated with
 that instance are linked.
 
 ```tsx
-import { useTs } from './locale'
+import { useTs } from '@terai/react'
 
 export function Button() {
   const { ts } = useTs({ chunkId: 'button' })
@@ -50,7 +50,7 @@ application, simplifying the process of defining chunks according to your
 specific requirements.
 
 ```tsx
-import { useTs } from './locale'
+import { useTs } from '@terai/react'
 
 export function Header() {
   const { ts } = useTs({ chunkId: 'common' })
@@ -64,7 +64,7 @@ export function Header() {
 ```
 
 ```tsx
-import { useTs } from './locale'
+import { useTs } from '@terai/react'
 
 export function Footer() {
   const { ts } = useTs({ chunkId: 'common' })

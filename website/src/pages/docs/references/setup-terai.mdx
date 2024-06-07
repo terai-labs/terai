@@ -1,0 +1,59 @@
+# `setupTerai` Reference
+
+Main function to be called to configure the Terai library. It should be called at the entry point of your application.
+
+```ts
+import { setupTerai } from 'terai'
+
+setupTerai({
+  // Configuration options
+})
+```
+
+## Setup options
+
+### `defaultLocale`
+
+The default locale to be used by the library. It can be a string or a function that returns a string.
+
+```ts
+defaultLocale: Locale | (() => Locale)
+```
+
+### `loader`
+
+Function to load the locale data. It can be a function that returns a promise or a promise.
+
+```ts
+loader: (locale: string, chunkId: string) => Promise<Dictionary>
+```
+
+### `persistence`
+
+Whether to persist the locale data in the browser's local storage.
+
+```ts
+persistence?: boolean
+```
+
+### `persistenceKey`
+
+The key to be used to store the locale data in the browser's local storage.
+
+```ts
+persistenceKey?: string
+```
+
+### `format`
+
+Global format options to be used by the library.
+
+```ts
+format?: {
+  number?: FormatNumberOptions
+	date?: FormatDateOptions
+	list?: FormatListOptions
+	displayName?: FormatDisplayNameOptions
+	relativeTime?: FormatRelativeTimeOptions
+}
+```

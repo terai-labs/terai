@@ -12,18 +12,18 @@ steps to configure and use the translator effectively.
 ### Translator config
 
 First, you need to configure the translator in your `terai.config.ts` file.
-**Terai** also provides integrations with major translation
-service providers.
+**Terai** provides integrations with some major translation
+service providers, or you can opt-in for configuring a custom translator.
 
 ```tsx
-import { defineConfig, createKoiTranslator } from '@terai/dev'
+import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
 
-const translator = createKoiTranslator({
-  apiKey: YOUR_API_KEY
+const translator = createGoogleCloudTranslator({
+  // your Google Cloud crendentials
 })
 
 export default defineConfig({
-  translator
+  translator,
   // ...rest of options
 })
 ```
@@ -31,14 +31,13 @@ export default defineConfig({
 In the above code snippet:
 
 - Import necessary modules from `@terai/dev`.
-- Use the `createKoiTranslator` function to set up the translator.
-- Replace `YOUR_API_KEY` with the actual API key provided by your chosen
-  translation service.
+- Use the `createGoogleCloudTranslator` function to set up the translator.
+- Pass the translator to the Terai config.
 
 ### Running `extract`
 
 Before you can generate translations, you need to run the `extract` command to
-gather all messages from your project. This step ensures that **Terai** has a
+gather all source messages from your project. This step ensures that **Terai** has a
 list of messages to translate.
 
 ```sh
@@ -47,7 +46,7 @@ pnpm terai extract
 
 ### Running `translate`
 
-Once your translator is configured and messages are extracted, you can easily
+Once your translator is configured and sources messages are extracted, you can easily
 manage translations by running the `translate` script. **Terai** will handle the
 translation process and generate the necessary translation files.
 
@@ -56,9 +55,3 @@ pnpm terai translate
 ```
 
 </Steps>
-
-## 3rd party integrations
-
-- [Using your custom translator](/docs/guides/custom-translator)
-- [Using ChatGPT translator](/docs/guides/chatgpt-translator)
-- [Using Google translator](/docs/guides/google-translator)

@@ -28,23 +28,23 @@ export function createFormat(getLocale: () => Locale) {
 		return {
 			number: (
 				value: FormatNumberProps['value'],
-				options: FormatNumberProps['options']
+				options?: FormatNumberProps['options']
 			) => formatNumber({ locale, value, options }),
 			date: (
 				value: FormatDateProps['value'],
-				options: FormatDateProps['options']
+				options?: FormatDateProps['options']
 			) => formatDate({ locale, value, options }),
-			displayName: (
+			displayNames: (
 				value: FormatDisplayNameProps['value'],
 				options: FormatDisplayNameProps['options']
 			) => formatDisplayName({ locale, value, options }),
 			list: (
 				value: FormatListProps['value'],
-				options: FormatListProps['options']
+				options?: FormatListProps['options']
 			) => formatList({ locale, value, options }),
 			relativeTime: (
 				value: FormatRelativeTimeProps['value'],
-				options: FormatRelativeTimeProps['options']
+				options?: FormatRelativeTimeProps['options']
 			) => formatRelativeTime({ locale, value, options })
 		}
 	}

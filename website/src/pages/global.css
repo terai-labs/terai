@@ -62,3 +62,13 @@ article td a {
   color: #5e6ad2 !important;
   transition: color 0.2s ease;
 }
+
+html[class~='dark'] .nextra-sidebar-container button {
+  color: white !important;
+  font-weight: 600;
+}
+
+.nextra-sidebar-container button {
+  color: black !important;
+  font-weight: 600;
+}

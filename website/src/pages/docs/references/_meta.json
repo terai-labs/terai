@@ -5,25 +5,13 @@
   "config": {
     "title": "Config"
   },
-  "loader": {
-    "title": "Loader"
-  },
-  "translator": {
-    "title": "Translator"
-  },
-  "setup-client": {
-    "title": "setupClient"
-  },
-  "setup-server": {
-    "title": "setupServer"
+  "setup-terai": {
+    "title": "setupTerai"
   },
   "get-ts": {
     "title": "getTs"
   },
   "use-ts": {
     "title": "useTs"
-  },
-  "ts": {
-    "title": "ts"
   }
 }

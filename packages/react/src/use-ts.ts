@@ -1,5 +1,5 @@
 // Dependencies
-import { config$ } from './config'
+import { config$ } from './setup'
 import { state$ } from './state'
 import { createTs } from '@terai/ts'
 import { tsRender } from './ts-render'
