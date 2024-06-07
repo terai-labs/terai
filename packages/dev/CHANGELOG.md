@@ -1,5 +1,16 @@
 # @terai/dev
 
+## 0.0.6
+
+### Patch Changes
+
+- 0365a00: Update React config
+- Updated dependencies [0365a00]
+  - @terai/extractor@0.0.6
+  - @terai/runtime@0.0.6
+  - @terai/translator@0.0.6
+  - @terai/utils@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
