@@ -1,6 +1,6 @@
 {
   "name": "@terai/logger",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "terai core logger",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
