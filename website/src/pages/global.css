@@ -72,3 +72,11 @@ html[class~='dark'] .nextra-sidebar-container button {
   color: black !important;
   font-weight: 600;
 }
+
+html[class~='dark'] *:not(pre) code {
+  color: white !important;
+}
+
+*:not(pre) code {
+  color: black !important;
+}

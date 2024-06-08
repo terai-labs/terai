@@ -5,8 +5,8 @@
   "config": {
     "title": "Config"
   },
-  "setup-terai": {
-    "title": "setupTerai"
+  "setup": {
+    "title": "Setup"
   },
   "get-ts": {
     "title": "getTs"

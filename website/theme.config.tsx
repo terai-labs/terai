@@ -14,14 +14,14 @@ const config: ThemeConfig = {
 				<path
 					d='M70.2002 147.825C83.1788 149.958 96.4977 148.252 108.52 142.918C120.543 137.583 130.745 128.853 137.873 117.799C145.001 106.746 148.744 93.8502 148.642 80.6979C148.541 67.5456 144.599 54.7095 137.302 43.767'
 					stroke='#5E6AD2'
-					stroke-width='14'
+					strokeWidth='14'
 					stroke-linecap='round'
 					stroke-linejoin='round'
 				/>
 				<path
 					d='M91.1253 14.175C78.1997 12.2012 64.9791 14.0239 53.0698 19.4218C41.1606 24.8196 31.0755 33.5602 24.04 44.5814C17.0044 55.6027 13.3213 68.4301 13.4382 81.505C13.5551 94.5798 17.467 107.339 24.6985 118.233'
 					stroke='#5E6AD2'
-					stroke-width='14'
+					strokeWidth='14'
 					stroke-linecap='round'
 					stroke-linejoin='round'
 				/>
@@ -50,14 +50,14 @@ const config: ThemeConfig = {
 	toc: {
 		backToTop: true
 	},
-	gitTimestamp: false,
+	// gitTimestamp: false,
 	primaryHue: {
 		light: 235,
-		dark: 35
+		dark: 235
 	},
 	primarySaturation: {
 		light: 40,
-		dark: 100
+		dark: 40
 	},
 	footer: {
 		text: (

@@ -1,0 +1,86 @@
+# Setup Reference
+
+Main function to be called to configure runtime options for Terai. It should be called only once (ideally, at the entry point of your application).
+
+```ts
+import { setupTerai } from 'terai'
+
+setupTerai({
+  // Configuration options
+})
+```
+
+## Setup options
+
+### defaultLocale
+
+- **Type**: `Locale | () => Locale`
+- **Default**: `''`
+
+The default locale to be used by the library. It can be a string or a function that returns a string.
+
+```ts
+{
+  defaultLocale: 'en-US'
+}
+```
+
+### loader
+
+Function to load the locale data. It can be a function that returns a promise or a promise.
+
+- **Type**: `(locale: string, chunkId: string) => Promise<Dictionary>`
+- **Default**: `undefined`
+
+```ts
+{
+  loader: (locale: string, chunkId: string) => Promise<Dictionary>
+}
+```
+
+### persist
+
+- **Type**: `boolean | undefined`
+- **Default**: `false`
+
+Whether to persist the locale data in the browser's local storage.
+
+```ts
+{
+  persist: true
+}
+```
+
+### storageKey
+
+- **Type**: `string | undefined`
+- **Default**: `"terai"`
+
+The key to be used to store the locale data in the browser's local storage.
+
+```ts
+{
+  storageKey: '@acme-locale'
+}
+```
+
+### format
+
+- **Type**: `format?: {
+  number?: FormatNumberOptions
+	date?: FormatDateOptions
+	list?: FormatListOptions
+	displayName?: FormatDisplayNameOptions
+	relativeTime?: FormatRelativeTimeOptions
+} | undefined`
+- **Default**: `undefined`
+
+Global format options to be used by the library.
+
+```ts
+format: {
+  number: {
+		style: 'currency',
+	}
+}
+```
