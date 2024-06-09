@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-  <b>Terai is a i18n localization framework for Typescript applications. Built for the open source community and optimized for developer experience in the frameworks you love.</b>
+  <b>Terai is a i18n framework for Typescript applications. Built for the open source community and optimized for developer experience in the frameworks you love.</b>
 </div>
 
 <div align="center">
