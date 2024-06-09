@@ -1,30 +1,53 @@
+import { Callout } from 'nextra/components'
+
 # `ts`
 
-**Terai** follows a source-based translation approach, which means it uses the
-messages in your project as the source of truth for your translation system.
-This unique approach offers several advantages that significantly enhance the
-efficiency of your translation workflow.
+The core API that you will be using most when using Terai, is the `ts` function.
 
-- **Readable Files:** Your source messages are stored in a human-readable
-  format. This means that finding or making changes to your locale system
-  messages is a breeze. Developers can easily understand and work with the
-  source messages, making the localization process faster and more efficient.
-- **Automatic Updates:** When you make changes to any of the source messages,
-  terai automatically generates the corresponding updates in your locale system.
-  This automation streamlines the process and simplifies maintenance. You no
-  longer need to manually synchronize source and localized messages, which is
-  especially valuable as your project scales.
-- **Variable Injection:** One of the most powerful features of the source-based
-  approach is the ability to inject runtime variables directly into your
-  messages. This dynamic capability allows for a wide range of improvements,
-  such as static analysis and type-checking, ensuring that your translations are
-  not only efficient but also error-free.
+The `ts` function is based in **tagged templates**, a more advanced form of
+template literals in Javascript, each call representing representing a translatable plain-text string.
 
-# `ts` function
+<Callout emoji={'💡'} type='info'>
+  In essence, `ts` is just a string that receives a string and returns its
+  equivalent in the corresponding dictionary.
+</Callout>
 
-The core API that you will be using most when using terai, is the `ts` function.
+## Usage
 
-The `ts` function based in **tagged templates**, a more advanced form of
-template literals in Javascript.
+Terai provides a set of utils for obtaining the `ts` function, depending on the framework you're using:
 
-# Integrated format
+- `useFormat`: for React
+- `getFormat`: for Node
+
+```tsx copy
+import { useTs } from '@terai/react'
+
+export function Example() {
+  const { ts } = useTs()
+
+  return (
+    <div>
+      <p>{ts`Hello, world!`}</p>
+    </div>
+  )
+}
+```
+
+### Variables
+
+If you know how to use a variable in a template string, you already know how to use variables in `ts`.
+
+```tsx copy
+import { useTs } from '@terai/react'
+
+export function Example() {
+  const { ts } = useTs()
+  const name = 'world'
+
+  return (
+    <div>
+      <p>{ts`Hello, ${name}!`}</p>
+    </div>
+  )
+}
+```

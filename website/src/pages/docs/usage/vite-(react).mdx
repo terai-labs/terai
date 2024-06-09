@@ -51,7 +51,7 @@ export default defineConfig({
 
 Configure your runtime options by adding the following lines in `main.tsx`:
 
-```tsx filename="main.tsx" {5,7-12} copy
+```tsx filename="main.tsx" {5,7-14} copy
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
@@ -62,7 +62,9 @@ setupTerai({
   defaultLocale: 'en',
   persist: true,
   loader: (locale: string, chunkId: string) =>
-    import(`../locale-system/${locale}/${chunkId}.json`),
+    import(`../locale-system/${locale}/${chunkId}.json`).then(
+      (mod) => mod.default
+    ),
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -74,7 +76,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 ```
 
-- [`setupTerai`](/docs/references/setup-client): Client-side options used by
+- [`setupTerai`](/docs/references/setup-terai): Client-side options used by
   the `ts` function.
 
 </Steps>
@@ -147,7 +149,7 @@ import {
 } from '@terai/react'
 ```
 
-- [`setupTerai`](/docs/references/setup-client): Client-side configuration
+- [`setupTerai`](/docs/references/setup-terai): Client-side configuration
   options
 - [`useFormat`](/docs/references/use-format): Hook to get the format function
 - [`useLocale`](/docs/references/use-locale): Hook to retrieve the current

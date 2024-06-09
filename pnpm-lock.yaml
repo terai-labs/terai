@@ -81,6 +81,9 @@ importers:
       '@terai/translator':
         specifier: workspace:*
         version: link:../translator
+      '@terai/types':
+        specifier: workspace:*
+        version: link:../types
       '@terai/utils':
         specifier: workspace:*
         version: link:../utils
@@ -109,9 +112,6 @@ importers:
       '@terai/logger':
         specifier: workspace:*
         version: link:../logger
-      '@terai/types':
-        specifier: workspace:*
-        version: link:../types
       '@types/update-notifier':
         specifier: ^6
         version: 6.0.8

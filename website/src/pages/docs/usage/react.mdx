@@ -2,7 +2,9 @@ import { Steps, Tabs } from 'nextra/components'
 
 # Using Terai with React
 
-Setting up terai in a React project.
+Using **Terai** in a **React** project.
+
+## Installation
 
 <Steps>
 
@@ -10,46 +12,20 @@ Setting up terai in a React project.
 
 Install `terai` and create your `terai.config.ts` file.
 
-<Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
-  <Tabs.Tab>
-  ```sh copy
-  pnpm add -D @terai/dev
-  pnpm add @terai/react
-  pnpm terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  npm install -D @terai/dev
-  npm install @terai/react
-  npx terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  yarn add -D @terai/dev
-  yarn add @terai/react
-  yarn terai init
-  ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```sh copy
-  bun add -D @terai/dev
-  bun add @terai/react
-  bun terai init
-  ```
-  </Tabs.Tab>
+```sh copy
+pnpm add -D @terai/dev
+pnpm add @terai/react
+pnpm terai init
+```
 
-</Tabs>
-
-- [`init`](/docs/references/cli#terai-init) - script that creates a
+- [`init`](/docs/references/cli#terai-init): script that creates a
   `terai.config.ts`.
 
 ### Configure your options
 
 #### `terai.config.ts`
 
-Add your custom options in `terai.config.ts`.
+Add your custom options in `terai.config.ts`. In this example we will use ChatGPT for translating out messages.
 
 ```tsx filename="terai.config.ts" copy
 import { defineConfig, createChatGptTranslator } from '@terai/dev'
@@ -62,7 +38,7 @@ export default defineConfig({
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
   exclude: [],
   projectLocale: 'en',
-  outDir: './public/locale',
+  outDir: './locale-system',
   outLocales: ['es', 'it'],
   translator,
 })
@@ -71,33 +47,53 @@ export default defineConfig({
 - [`config`](/docs/references/config): Options used by the static processes
   (`extract` and `translate`) run by `terai`.
 
-#### `setupClient`
+#### `setupTerai`
 
-Configure your runtime options by adding the following lines in `main.tsx`:
+Configure your runtime options by adding the following lines in your main entrypoint:
 
-```tsx filename="main.tsx" copy
-import { setupClient } from '@terai/react'
+```tsx filename="main.tsx" {5,7-14} copy
+import React, { Suspense } from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+import { setupTerai } from '@terai/react'
 
-setupClient({
+setupTerai({
   defaultLocale: 'en',
   persist: true,
-  loader: (locale: string, id: string) =>
-    import(`../locale-system/${locale}/${id}.json`),
+  loader: (locale: string, chunkId: string) =>
+    import(`../locale-system/${locale}/${chunkId}.json`).then(
+      (mod) => mod.default
+    ),
 })
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <Suspense>
+      <App />
+    </Suspense>
+  </React.StrictMode>
+)
 ```
 
-- [`setupClient`](/docs/references/setup-client): Client-side options used by
+- [`setupTerai`](/docs/references/setup-terai): Client-side options used by
   the `ts` function.
 
-### Start using `terai`
+</Steps>
 
-Now you can start using terai in your project. Here is the snippet of code that
-you can use in your `src/App.tsx` file.
+## Usage
 
-```tsx filename="App.tsx" copy
+<Steps>
+
+### Use `terai`
+
+Now you can start using `terai` in your project. Here is the snippet of code that
+you can use in some `example.tsx` file.
+
+```tsx filename="example.tsx" copy
 import { useTs } from '@terai/react'
 
-export default function App() {
+export function Example() {
   const { ts } = useTs()
 
   return (
@@ -117,8 +113,9 @@ script provided by the CLI.
 pnpm terai extract
 ```
 
-- `extract`: script to statically extract messages from your project. Check more
-  info about the process [here](/docs/concepts/extraction).
+- [`extract`](/docs/references/cli#terai-extract): script to statically extract
+  messages from your project. Check more info about the
+  [extraction](/docs/concepts/extraction) process.
 
 ### Translate
 
@@ -134,7 +131,34 @@ pnpm terai translate
 
 </Steps>
 
+## API
+
+| Package        |                                                     Version                                                      |                                                        Size                                                        |                                                   Downloads                                                    |
+| :------------- | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
+| `@terai/react` | [![Version](https://img.shields.io/npm/v/@terai/react.svg?logo=npm)](https://www.npmjs.com/package/@terai/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react)](https://bundlephobia.com/result?p=@terai/react) | [![NPM](https://img.shields.io/npm/dm/@terai/react.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react) |
+
+### Exports
+
+```tsx
+import {
+  useTs,
+  useFormat,
+  useLocale,
+  setLocale,
+  setupTerai,
+} from '@terai/react'
+```
+
+- [`setupTerai`](/docs/references/setup-terai): Client-side configuration
+  options
+- [`useFormat`](/docs/references/use-format): Hook to get the format function
+- [`useLocale`](/docs/references/use-locale): Hook to retrieve the current
+  locale
+- [`useTs`](/docs/references/use-ts): Hook to retrieve the `ts` function
+- [`setLocale`](/docs/references/set-locale): Function to set the current locale
+
 ## Example
 
-You can see a running example in the
-[examples repo](https://github.com/terai/examples/tree/master/react)
+Check
+[this scattfolded example](https://github.com/terai/examples/tree/master/vite)
+in the [examples repo](https://github.com/terai/examples).
