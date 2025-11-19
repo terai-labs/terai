@@ -1,51 +1,77 @@
-# `getFormat` Reference
+# `getFormat`
 
-Function to retrieve the `format` function for a specific locale. It is returned by `setup`.
+The `getFormat` function returns formatting utilities for the current global locale.
 
 ```ts
-const format = getFormat('en')
-console.log(format.number(1000, { style: 'currency', currency: 'USD' }))
+const format = getFormat()
 ```
 
 ## Parameters
 
-### locale
-
-- **Type**: `string`
-- **Required**
-
-The locale for which to get the format function.
+None. It uses the current global locale set by `setupTerai` or `setLocale`.
 
 ## Return Value
 
-Returns a `Format` object containing formatting functions.
+Returns a `Format` object.
 
-### format.number
+## Return Value
 
-- **Type**: `(value: number, options?: FormatNumberOptions) => string`
+Returns a `Format` object containing the following methods:
 
-Formats a number according to the locale and options.
+### `format.number`
 
-### format.date
+Formats numbers for currency, percentages, decimals, etc.
 
-- **Type**: `(value: Date | number, options?: FormatDateOptions) => string`
+- **Signature**: `(value: number, options?: Intl.NumberFormatOptions) => string`
 
-Formats a date according to the locale and options.
+```ts
+format.number(1234.56, { style: 'currency', currency: 'USD' })
+// Output: "$1,234.56"
+```
 
-### format.list
+### `format.date`
 
-- **Type**: `(value: Iterable<string>, options?: FormatListOptions) => string`
+Formats dates and times.
 
-Formats a list of strings according to the locale and options.
+- **Signature**: `(value: Date | number, options?: Intl.DateTimeFormatOptions) => string`
 
-### format.displayName
+```ts
+format.date(new Date(), { dateStyle: 'full' })
+// Output: "Tuesday, November 19, 2025"
+```
 
-- **Type**: `(value: string, options?: FormatDisplayNameOptions) => string | undefined`
+### `format.list`
 
-Formats a display name according to the locale and options.
+Formats a list of items (conjunctions or disjunctions).
 
-### format.relativeTime
+- **Signature**: `(value: Iterable<string>, options?: Intl.ListFormatOptions) => string`
 
-- **Type**: `(value: number, unit: RelativeTimeFormatUnit, options?: FormatRelativeTimeOptions) => string`
+```ts
+format.list(['Apple', 'Banana', 'Orange'], { type: 'conjunction' })
+// Output: "Apple, Banana, and Orange"
+```
 
-Formats a relative time according to the locale and options.
+### `format.displayName`
+
+Returns the localized display name for a region, language, script, or currency.
+
+- **Signature**: `(value: string, options?: Intl.DisplayNamesOptions) => string | undefined`
+
+```ts
+format.displayName('US', { type: 'region' })
+// Output: "United States"
+```
+
+### `format.relativeTime`
+
+Formats a relative time value (e.g., "5 minutes ago", "in 2 days").
+
+- **Signature**: `(value: number, unit: Intl.RelativeTimeFormatUnit, options?: Intl.RelativeTimeFormatOptions) => string`
+
+```ts
+format.relativeTime(-1, 'day')
+// Output: "yesterday"
+
+format.relativeTime(5, 'minute', { style: 'short' })
+// Output: "in 5 min."
+```

@@ -1,11 +1,20 @@
 {
 	"setup": {
-		"title": "setup"
+		"title": "setupTerai"
 	},
 	"get-ts": {
 		"title": "getTs"
 	},
 	"get-format": {
 		"title": "getFormat"
+	},
+	"set-locale": {
+		"title": "setLocale"
+	},
+	"get-locale": {
+		"title": "getLocale"
+	},
+	"get-dictionary": {
+		"title": "getDictionary"
 	}
 }

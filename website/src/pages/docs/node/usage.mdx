@@ -1,37 +1,40 @@
-import { Steps } from 'nextra/components'
+import { Steps, Callout } from 'nextra/components'
 
 # Using Terai with Node.js
 
-Using **Terai** in a **Node.js** project.
+**Terai** provides a robust and type-safe internationalization solution for **Node.js** applications. It is designed to be efficient, scalable, and easy to integrate into any Node.js environment, from simple scripts to complex server-side applications.
 
 ## Installation
 
 <Steps>
 
-### Install `terai`
+### Install packages
 
-Install `terai` and create your `terai.config.ts` file.
+Install the necessary packages to get started. You'll need `@terai/dev` for development tools (like extraction) and `@terai/node` for the runtime.
 
-```sh copy
-pnpm add -D @terai/dev
-pnpm add @terai/node
-pnpm terai init
+```sh npm2yarn
+npm install -D @terai/dev
+npm install @terai/node
 ```
 
-- [`init`](/docs/references/cli#terai-init): script that creates a
-  `terai.config.ts`.
+### Initialize configuration
 
-### Configure your options
+Run the initialization command to create a `terai.config.ts` file. This file will hold your project's internationalization settings.
 
-#### `terai.config.ts`
+```sh npm2yarn
+npm exec terai init
+```
 
-Add your custom options in `terai.config.ts`. In this example we will use ChatGPT for translating out messages.
+### Configure options
 
-```tsx filename="terai.config.ts" copy
-import { defineConfig, createChatGptTranslator } from '@terai/dev'
+Edit `terai.config.ts` to match your project needs. Here is a common configuration using the OpenAI translator:
 
-const translator = createChatGptTranslator({
-  apiKey: process.env.OPEN_API_KEY,
+```tsx filename="terai.config.ts"
+import { defineConfig, createOpenAITranslator } from '@terai/dev'
+
+const translator = createOpenAITranslator({
+  apiKey: process.env.OPENAI_API_KEY,
+  model: 'gpt-4',
 })
 
 export default defineConfig({
@@ -39,93 +42,104 @@ export default defineConfig({
   exclude: [],
   projectLocale: 'en',
   outDir: './locale-system',
-  outLocales: ['es', 'it'],
+  outLocales: ['es', 'it', 'fr'],
   translator,
 })
 ```
 
-- [`config`](/docs/references/config): Options used by the static processes
-  (`extract` and `translate`) run by `terai`.
+<Callout type="info">
+  The `outDir` is where Terai will output the compiled translation files. Make sure this directory is included in your build process if necessary.
+</Callout>
 
-#### `setup`
+### Setup runtime
 
-Configure your runtime options by using the `setup` function.
+Create a file (e.g., `i18n.ts`) to configure the Terai runtime. This is where you define how translations are loaded.
 
-```tsx filename="i18n.ts" copy
-import { setup } from '@terai/node'
+```tsx filename="src/i18n.ts"
+import { setupTerai } from '@terai/node'
 
-export const { getTs, getFormat } = setup({
-  loader: (locale: string, chunkId: string) =>
-    import(`./locale-system/${locale}/${chunkId}.json`).then(
-      (mod) => mod.default
-    ),
+setupTerai({
+  defaultLocale: 'en',
+  // The loader function is responsible for fetching the translation data
+  // for a given locale. In Node.js, this is typically a dynamic import
+  // or a file system read.
+  loader: (locale) => import(`../locale-system/${locale}/main.json`).then((m) => m.default),
 })
 ```
-
-- [`setup`](/docs/docs/node/references/setup): Configuration function that returns `getTs` and `getFormat`.
 
 </Steps>
 
 ## Usage
 
-<Steps>
+### Translating strings
 
-### Use `terai`
+Use the `getTs` function to obtain a translation function (`ts`). By default, it uses the globally configured locale.
 
-Now you can start using `terai` in your project. You can use `getTs` to get a translation function for a specific locale.
+```tsx filename="src/example.ts"
+import { getTs } from '@terai/node'
 
-```tsx filename="example.ts" copy
-import { getTs } from './i18n'
+export async function greetUser(name: string) {
+  // 1. Get the translation function for the current locale
+  const ts = await getTs()
 
-export async function example(locale: string) {
-  const ts = await getTs({ locale })
-  console.log(ts`Hello, world!`)
+  // 2. Use the tagged template literal to translate
+  console.log(ts`Hello, ${name}! Welcome to Terai.`)
 }
 ```
 
-- [`getTs`](/docs/docs/node/references/get-ts): Function to get the translation function.
+### Formatting values
 
-### Extract
+Use `getFormat` to access locale-aware formatting utilities. It automatically uses the current global locale.
 
-Once you're ready for your messages to be gathered, just run the `extract`
-script provided by the CLI.
+```tsx filename="src/example.ts"
+import { getFormat } from '@terai/node'
 
-```sh
-pnpm terai extract
+export function printStats(amount: number, date: Date) {
+  const format = getFormat()
+
+  console.log(format.number(amount, { style: 'currency', currency: 'USD' }))
+  console.log(format.date(date, { dateStyle: 'full' }))
+}
 ```
 
-- [`extract`](/docs/references/cli#terai-extract): script to statically extract
-  messages from your project. Check more info about the
-  [extraction](/docs/concepts/extraction) process.
+### Changing Locale
 
-### Translate
-
-Once you're ready for your messages to be gathered, just run the `translate`
-script provided by the CLI.
-
-```sh
-pnpm terai translate
-```
-
-- `translate`: script to translate your messages. Check more info about the
-  [translation](/docs/concepts/translation) process.
-
-</Steps>
-
-## API
-
-| Package        |                                                     Version                                                      |                                                        Size                                                        |                                                   Downloads                                                    |
-| :------------- | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
-| `@terai/node` | [![Version](https://img.shields.io/npm/v/@terai/node.svg?logo=npm)](https://www.npmjs.com/package/@terai/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/node)](https://bundlephobia.com/result?p=@terai/node) | [![NPM](https://img.shields.io/npm/dm/@terai/node.svg?&logo=npm)](https://www.npmjs.com/package/@terai/node) |
-
-### Exports
+You can change the global locale using `setLocale`. This will affect subsequent calls to `getTs` and `getFormat`.
 
 ```tsx
-import {
-  setup
-} from '@terai/node'
+import { setLocale } from '@terai/node'
+
+setLocale('es')
 ```
 
-- [`setup`](/docs/docs/node/references/setup): Configuration function that returns `getTs` and `getFormat`.
-- [`getTs`](/docs/docs/node/references/get-ts): Function to get the translation function.
-- [`getFormat`](/docs/docs/node/references/get-format): Function to get the format function.
+### Per-Request Locale (Async Context)
+
+In server environments (like Express or Fastify), you often need to handle multiple locales concurrently. You can pass the locale explicitly to `getTs` to override the global setting for a specific operation.
+
+```tsx
+import { getTs } from '@terai/node'
+
+app.get('/:locale/greet', async (req, res) => {
+  const { locale } = req.params
+  const ts = await getTs({ locale }) // Uses the requested locale
+  res.send(ts`Hello World`)
+})
+```
+
+## Workflow
+
+### 1. Extraction
+
+When you have added `ts` calls to your code, run the extract command to gather all strings into your source locale file.
+
+```sh npm2yarn
+npm exec terai extract
+```
+
+### 2. Translation
+
+Run the translate command to generate translations for your configured `outLocales`.
+
+```sh npm2yarn
+npm exec terai translate
+```
