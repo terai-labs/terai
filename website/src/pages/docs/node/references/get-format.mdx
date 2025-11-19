@@ -1,0 +1,51 @@
+# `getFormat` Reference
+
+Function to retrieve the `format` function for a specific locale. It is returned by `setup`.
+
+```ts
+const format = getFormat('en')
+console.log(format.number(1000, { style: 'currency', currency: 'USD' }))
+```
+
+## Parameters
+
+### locale
+
+- **Type**: `string`
+- **Required**
+
+The locale for which to get the format function.
+
+## Return Value
+
+Returns a `Format` object containing formatting functions.
+
+### format.number
+
+- **Type**: `(value: number, options?: FormatNumberOptions) => string`
+
+Formats a number according to the locale and options.
+
+### format.date
+
+- **Type**: `(value: Date | number, options?: FormatDateOptions) => string`
+
+Formats a date according to the locale and options.
+
+### format.list
+
+- **Type**: `(value: Iterable<string>, options?: FormatListOptions) => string`
+
+Formats a list of strings according to the locale and options.
+
+### format.displayName
+
+- **Type**: `(value: string, options?: FormatDisplayNameOptions) => string | undefined`
+
+Formats a display name according to the locale and options.
+
+### format.relativeTime
+
+- **Type**: `(value: number, unit: RelativeTimeFormatUnit, options?: FormatRelativeTimeOptions) => string`
+
+Formats a relative time according to the locale and options.
