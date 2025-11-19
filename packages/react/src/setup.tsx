@@ -10,6 +10,13 @@ export type Config = {
 	defaultLocale: Locale | (() => Locale)
 	loader: Loader
 	format?: GlobalFormat
+	/**
+	 * Enable React Suspense for dictionary loading
+	 * When true: Component suspends while dictionary loads (requires Suspense boundary)
+	 * When false: Returns empty dictionary while loading, re-renders when ready
+	 * @default false
+	 */
+	suspense?: boolean
 }
 
 let globalConfig: Config | null = null

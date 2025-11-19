@@ -21,11 +21,20 @@ const dictionaryPromises = new Map<string, Promise<Dictionary>>()
 
 /**
  * Main hook for using translations
- * Implements React 19's "use" hook for async dictionary loading
+ * Supports both Suspense and non-Suspense modes based on config
  *
- * Performance optimization:
- * - If dictionary exists in store (from cache or previous load): NO SUSPENSION
- * - If dictionary needs to be loaded: SUSPENDS until loaded
+ * Suspense mode (config.suspense = true):
+ * - Uses React 19's "use" hook for async dictionary loading
+ * - Component suspends while dictionary loads (requires Suspense boundary)
+ * - If dictionary exists in store: NO SUSPENSION
+ *
+ * Non-Suspense mode (config.suspense = false, default):
+ * - Loads dictionary in background without suspending
+ * - Returns empty dictionary while loading
+ * - Re-renders when dictionary is ready
+ *
+ * Performance optimization (both modes):
+ * - If dictionary exists in store (from cache or previous load): instant return
  * - Only re-renders when the specific dictionary for this locale/chunk changes
  * - This ensures locale changes are instant when dictionaries are cached
  */
@@ -40,12 +49,12 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	/**
 	 * Get the dictionary - either from cache or by loading
 	 *
-	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist
+	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist AND suspense is enabled
 	 * This prevents suspension when switching to a locale that's already cached
 	 */
 	const loadedDictionary = useMemo(() => {
 		// Dictionary already exists in store (from localStorage or previous load)
-		// Return it immediately - NO SUSPENSION
+		// Return it immediately - NO SUSPENSION in either mode
 		if (dictionary) {
 			return dictionary
 		}
@@ -73,8 +82,22 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 			})
 		}
 
-		return use(promise)
-	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
+		// Suspense mode: use the "use" hook to suspend
+		if (config.suspense) {
+			return use(promise)
+		}
+
+		// Non-suspense mode: return empty dictionary
+		// Component will re-render when dictionary loads via store update
+		return {}
+	}, [
+		locale,
+		dictionaryId,
+		dictionary,
+		loaderId,
+		config.loader,
+		config.suspense
+	])
 
 	/**
 	 * Create the translation function
