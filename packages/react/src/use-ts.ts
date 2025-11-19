@@ -47,25 +47,22 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	const loaderId = chunkId ?? locale
 
 	/**
-	 * Get the dictionary - either from cache or by loading
-	 *
-	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist AND suspense is enabled
-	 * This prevents suspension when switching to a locale that's already cached
+	 * Get or create the promise for loading the dictionary
+	 * This needs to be done outside of the "use" hook call
+	 * to avoid calling hooks inside useMemo
 	 */
-	const loadedDictionary = useMemo(() => {
-		// Dictionary already exists in store (from localStorage or previous load)
-		// Return it immediately - NO SUSPENSION in either mode
+	const promise = useMemo(() => {
+		// Dictionary already exists - no need for promise
 		if (dictionary) {
-			return dictionary
+			return null
 		}
 
-		// Dictionary doesn't exist - need to load it
 		// Check if we already have a pending promise for this dictionary
-		let promise = dictionaryPromises.get(dictionaryId)
+		let existingPromise = dictionaryPromises.get(dictionaryId)
 
-		if (!promise) {
+		if (!existingPromise) {
 			// Create new promise for loading the dictionary
-			promise = loadDictionary({
+			existingPromise = loadDictionary({
 				locale,
 				loaderId,
 				dictionaryId,
@@ -73,31 +70,41 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 			})
 
 			// Cache the promise to ensure stable reference
-			dictionaryPromises.set(dictionaryId, promise)
+			dictionaryPromises.set(dictionaryId, existingPromise)
 
 			// Clean up the promise from cache once resolved
 			// This prevents memory leaks and allows re-fetching if needed
-			promise.finally(() => {
+			existingPromise.finally(() => {
 				dictionaryPromises.delete(dictionaryId)
 			})
 		}
 
-		// Suspense mode: use the "use" hook to suspend
-		if (config.suspense) {
-			return use(promise)
-		}
+		return existingPromise
+	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
 
+	/**
+	 * Get the dictionary - either from cache or by loading
+	 *
+	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist AND suspense is enabled
+	 * This prevents suspension when switching to a locale that's already cached
+	 *
+	 * IMPORTANT: "use" hook must be called at top level, not inside useMemo
+	 */
+	let loadedDictionary: Dictionary
+
+	if (dictionary) {
+		// Dictionary already exists in store (from localStorage or previous load)
+		// Return it immediately - NO SUSPENSION in either mode
+		loadedDictionary = dictionary
+	} else if (config.suspense && promise) {
+		// Suspense mode: use the "use" hook to suspend
+		// This is called at top level, not inside useMemo, to follow Rules of Hooks
+		loadedDictionary = use(promise)
+	} else {
 		// Non-suspense mode: return empty dictionary
 		// Component will re-render when dictionary loads via store update
-		return {}
-	}, [
-		locale,
-		dictionaryId,
-		dictionary,
-		loaderId,
-		config.loader,
-		config.suspense
-	])
+		loadedDictionary = {}
+	}
 
 	/**
 	 * Create the translation function
