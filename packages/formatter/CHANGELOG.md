@@ -1,5 +1,13 @@
 # @terai/formatter
 
+## 0.0.10
+
+### Patch Changes
+
+- 90a0986: v10.0.0
+- Updated dependencies [90a0986]
+  - @terai/utils@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
