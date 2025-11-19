@@ -1,5 +1,15 @@
 # @terai/generator
 
+## 0.0.8
+
+### Patch Changes
+
+- 5a77788: Update build configurations to enable code splitting, treeshaking and sourcemaps
+- Updated dependencies [5a77788]
+  - @terai/runtime@0.0.8
+  - @terai/translator@0.0.8
+  - @terai/utils@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
