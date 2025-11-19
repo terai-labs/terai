@@ -1,44 +1,44 @@
 {
-  "name": "@terai/next",
-  "description": "Terai for Next.js",
-  "version": "0.0.6",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "require": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Hugo Corta <corta.hugo@gmail.com>",
-  "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c"
-  },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@terai/ts": "workspace:*",
-    "@terai/react": "workspace:*",
-    "@terai/formatter": "workspace:*"
-  },
-  "devDependencies": {
-    "@terai/types": "workspace:*",
-    "@babel/plugin-transform-runtime": "^7",
-    "@babel/preset-env": "^7",
-    "@babel/preset-react": "^7",
-    "@rollup/plugin-alias": "^5",
-    "@rollup/plugin-typescript": "^11",
-    "@rollup/plugin-babel": "^6",
-    "@rollup/plugin-commonjs": "^25",
-    "@rollup/plugin-node-resolve": "^15",
-    "@rollup/plugin-terser": "^0",
-    "rollup": "^4",
-    "rollup-plugin-preserve-directives": "^0"
-  },
-  "peerDependencies": {
-    "next": "^15",
-    "react": "^19"
-  }
+	"name": "@terai/next",
+	"description": "Terai for Next.js",
+	"version": "0.0.10",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"require": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"author": "Hugo Corta <corta.hugo@gmail.com>",
+	"scripts": {
+		"dev": "rollup -c -w",
+		"build": "rollup -c"
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@terai/ts": "workspace:*",
+		"@terai/react": "workspace:*",
+		"@terai/formatter": "workspace:*"
+	},
+	"devDependencies": {
+		"@terai/types": "workspace:*",
+		"@babel/plugin-transform-runtime": "^7",
+		"@babel/preset-env": "^7",
+		"@babel/preset-react": "^7",
+		"@rollup/plugin-alias": "^5",
+		"@rollup/plugin-typescript": "^11",
+		"@rollup/plugin-babel": "^6",
+		"@rollup/plugin-commonjs": "^25",
+		"@rollup/plugin-node-resolve": "^15",
+		"@rollup/plugin-terser": "^0",
+		"rollup": "^4",
+		"rollup-plugin-preserve-directives": "^0"
+	},
+	"peerDependencies": {
+		"next": "^15",
+		"react": "^19"
+	}
 }

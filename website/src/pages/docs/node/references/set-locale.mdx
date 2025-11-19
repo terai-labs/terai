@@ -1,0 +1,18 @@
+# `setLocale`
+
+Updates the global locale state. This affects subsequent calls to `getTs` (if no locale is provided) and `getFormat`.
+
+```ts
+import { setLocale } from '@terai/node'
+
+setLocale('fr')
+```
+
+## Parameters
+
+### `locale`
+
+- **Type**: `string`
+- **Required**: Yes
+
+The new locale code to set as active.

@@ -1,5 +1,37 @@
 # @terai/runtime
 
+## 0.0.10
+
+### Patch Changes
+
+- 90a0986: v10.0.0
+- Updated dependencies [90a0986]
+  - @terai/logger@0.0.10
+
+## 0.0.9
+
+### Patch Changes
+
+- 1588d39: v0.0.9
+- Updated dependencies [1588d39]
+  - @terai/logger@0.0.9
+
+## 0.0.8
+
+### Patch Changes
+
+- 5a77788: Update build configurations to enable code splitting, treeshaking and sourcemaps
+- Updated dependencies [5a77788]
+  - @terai/logger@0.0.8
+
+## 0.0.7
+
+### Patch Changes
+
+- 2704bac: Update to React 19
+- Updated dependencies [2704bac]
+  - @terai/logger@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

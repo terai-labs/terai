@@ -1,5 +1,29 @@
 # @terai/translator
 
+## 0.0.10
+
+### Patch Changes
+
+- 90a0986: v10.0.0
+
+## 0.0.9
+
+### Patch Changes
+
+- 1588d39: v0.0.9
+
+## 0.0.8
+
+### Patch Changes
+
+- 5a77788: Update build configurations to enable code splitting, treeshaking and sourcemaps
+
+## 0.0.7
+
+### Patch Changes
+
+- 2704bac: Update to React 19
+
 ## 0.0.6
 
 ### Patch Changes

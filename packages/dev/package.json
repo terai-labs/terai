@@ -1,52 +1,52 @@
 {
-  "name": "@terai/dev",
-  "version": "0.0.6",
-  "description": "The user-facing package for Terai",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "private": false,
-  "author": "Hugo Corta <corta.hugo@gmail.com>",
-  "bin": {
-    "terai": "bin.js"
-  },
-  "scripts": {
-    "dev": "tsup --format=esm,cjs --no-dts --watch",
-    "build": "tsup"
-  },
-  "files": [
-    "bin.js",
-    "dist"
-  ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    }
-  },
-  "dependencies": {
-    "@inquirer/prompts": "^3",
-    "@terai/extractor": "workspace:*",
-    "@terai/runtime": "workspace:*",
-    "@terai/translator": "workspace:*",
-    "@terai/utils": "workspace:*",
-    "@terai/types": "workspace:*",
-    "cac": "^6",
-    "dotenv": "^1",
-    "inquirer": "^9",
-    "kleur": "^4",
-    "perfect-debounce": "^1",
-    "preferred-pm": "^3"
-  },
-  "devDependencies": {
-    "@terai/generator": "workspace:*",
-    "@terai/logger": "workspace:*",
-    "@types/update-notifier": "^6",
-    "update-notifier": "^6"
-  }
+	"name": "@terai/dev",
+	"version": "0.0.10",
+	"description": "The user-facing package for Terai",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"private": false,
+	"author": "Hugo Corta <corta.hugo@gmail.com>",
+	"bin": {
+		"terai": "bin.js"
+	},
+	"scripts": {
+		"dev": "tsup --format=esm,cjs --no-dts --watch",
+		"build": "tsup"
+	},
+	"files": [
+		"bin.js",
+		"dist"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.js",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"dependencies": {
+		"@inquirer/prompts": "^3",
+		"@terai/extractor": "workspace:*",
+		"@terai/runtime": "workspace:*",
+		"@terai/translator": "workspace:*",
+		"@terai/utils": "workspace:*",
+		"@terai/types": "workspace:*",
+		"cac": "^6",
+		"dotenv": "^1",
+		"inquirer": "^9",
+		"kleur": "^4",
+		"perfect-debounce": "^1",
+		"preferred-pm": "^3"
+	},
+	"devDependencies": {
+		"@terai/generator": "workspace:*",
+		"@terai/logger": "workspace:*",
+		"@types/update-notifier": "^6",
+		"update-notifier": "^6"
+	}
 }

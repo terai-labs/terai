@@ -1,63 +1,43 @@
-# `setup` Reference
+# `setupTerai`
 
-Main function to be called to configure runtime options for Terai in Node.js. It returns the `getTs` and `getFormat` functions configured with the provided options.
+The `setupTerai` function initializes the Terai runtime with your configuration. It sets up the loader, default locale, and global formatting options. This must be called before using any other Terai functions.
 
 ```ts
-import { setup } from '@terai/node'
+import { setupTerai } from '@terai/node'
 
-const { getTs, getFormat } = setup({
-  // Configuration options
+setupTerai({
+  defaultLocale: 'en',
+  loader: (locale) => import(`./locales/${locale}.json`),
 })
 ```
 
-## Setup options
+## Parameters
 
-### loader
+The `setupTerai` function accepts a single configuration object with the following properties:
+
+### `loader`
 
 - **Type**: `(locale: string, chunkId: string) => Promise<Dictionary>`
-- **Required**
+- **Required**: Yes
 
-Function to load the locale data. It must return a promise that resolves to the dictionary object.
+A function responsible for loading the translation dictionary for a given locale.
 
-```ts
-{
-  loader: (locale: string, chunkId: string) =>
-    import(`./locale-system/${locale}/${chunkId}.json`).then(
-      (mod) => mod.default
-    )
-}
-```
+### `defaultLocale`
 
-### format
+- **Type**: `string`
+- **Required**: No
+- **Default**: `'en'`
 
-- **Type**: `GlobalFormat | undefined`
-- **Default**: `undefined`
+The initial locale to use. This sets the global locale state.
 
-Global format options to be used by the library.
+### `format`
 
-```ts
-{
-  format: {
-    number: {
-      style: 'currency',
-      currency: 'USD'
-    }
-  }
-}
-```
+- **Type**: `GlobalFormat`
+- **Required**: No
+- **Default**: `{}`
+
+Global configuration for formatting options.
 
 ## Return Value
 
-Returns an object containing:
-
-### getTs
-
-- **Type**: `(options: { locale: string }) => Promise<Ts>`
-
-Function to get the translation function for a specific locale.
-
-### getFormat
-
-- **Type**: `(locale: string) => Format`
-
-Function to get the format function for a specific locale.
+`void`. This function initializes the internal global state and does not return anything.

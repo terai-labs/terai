@@ -1,43 +1,26 @@
-# `getTs` Reference
+# `getTs`
 
-Function to retrieve the `ts` translation function for a specific locale. It is returned by `setup`.
+The `getTs` function retrieves a translation function (`ts`). It uses the global locale by default but can be overridden with a specific locale.
 
 ```ts
-const ts = await getTs({ locale: 'en' })
-console.log(ts`Hello, world!`)
+// Uses global locale
+const ts = await getTs()
+
+// Uses specific locale
+const tsEs = await getTs({ locale: 'es' })
 ```
 
 ## Parameters
 
-### options
+### `options`
 
-- **Type**: `{ locale: string }`
-- **Required**
+- **Type**: `{ locale?: string, chunkId?: string }`
+- **Required**: No
 
-Object containing the locale for which to get the translation function.
+Configuration options:
+- `locale`: Override the global locale.
+- `chunkId`: Specify a chunk to load (defaults to the locale name).
 
 ## Return Value
 
-Returns a Promise that resolves to the `ts` function.
-
-### ts
-
-- **Type**: `` (strings: TemplateStringsArray, ...values: any[]) => string ``
-
-The translation function that uses tagged template literals to translate messages. It automatically:
-- Extracts the message and normalizes it
-- Looks up the translation in the loaded dictionary
-- Interpolates any variables passed in the template
-
-**Example**:
-
-```ts
-const ts = await getTs({ locale: 'es' })
-
-// Simple translation
-const greeting = ts`Hello, world!`
-
-// With variables
-const name = 'Juan'
-const personalGreeting = ts`Hello, ${name}!`
-```
+Returns a `Promise` that resolves to a `ts` tag function.

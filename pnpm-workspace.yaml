@@ -1,6 +1,5 @@
 packages:
-  - 'core/**'
-  - 'packages/**'
-  - '!packages/next/**'
-  - 'playground/**'
-  - 'website/**'
+  - "core/**"
+  - "packages/**"
+  - "playground/**"
+  - "website/**"
