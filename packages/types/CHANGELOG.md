@@ -1,5 +1,11 @@
 # @terai/types
 
+## 0.0.9
+
+### Patch Changes
+
+- 1588d39: v0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
