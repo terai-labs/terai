@@ -1,5 +1,13 @@
 # @terai/runtime
 
+## 0.0.11
+
+### Patch Changes
+
+- bab0188: v0.0.11
+- Updated dependencies [bab0188]
+  - @terai/logger@0.0.11
+
 ## 0.0.10
 
 ### Patch Changes
