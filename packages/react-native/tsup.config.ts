@@ -9,6 +9,5 @@ export default defineConfig({
 	sourcemap: true,
 	minify: false,
 	splitting: true,
-	treeshake: 'recommended',
-	platform: 'neutral'
+	treeshake: 'recommended'
 })

@@ -1,0 +1,249 @@
+{
+	"messages": {
+		"xLJlc": {
+			"id": "xLJlc",
+			"value": "Modal",
+			"files": ["rn-expo/app/_layout.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"hTZUOt": {
+			"id": "hTZUOt",
+			"value": "This is a modal",
+			"files": ["rn-expo/app/modal.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"efbMav": {
+			"id": "efbMav",
+			"value": "Go to home screen",
+			"files": ["rn-expo/app/modal.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"fzzJzM": {
+			"id": "fzzJzM",
+			"value": "Home",
+			"files": ["rn-expo/app/(tabs)/_layout.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"lfgcGC": {
+			"id": "lfgcGC",
+			"value": "Explore",
+			"files": [
+				"rn-expo/app/(tabs)/_layout.tsx",
+				"rn-expo/app/(tabs)/explore.tsx"
+			],
+			"context": "",
+			"chunksIds": ["default", "default"]
+		},
+		"lzvPY": {
+			"id": "lzvPY",
+			"value": "This app includes example code to help you get started.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"gbCtnx": {
+			"id": "gbCtnx",
+			"value": "This app has two screens:",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"bImYyD": {
+			"id": "bImYyD",
+			"value": "The layout file in app/(tabs)/_layout.tsx sets up the tab navigator.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"kucURi": {
+			"id": "kucURi",
+			"value": "Learn more",
+			"files": [
+				"rn-expo/app/(tabs)/explore.tsx",
+				"rn-expo/app/(tabs)/explore.tsx",
+				"rn-expo/app/(tabs)/explore.tsx"
+			],
+			"context": "",
+			"chunksIds": ["default", "default", "default"]
+		},
+		"Nsstg": {
+			"id": "Nsstg",
+			"value": "You can open this project on Android, iOS, and the web. To open the\n\t\t\t\t\tweb version, press w in the terminal running this project.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eYkYCn": {
+			"id": "eYkYCn",
+			"value": "For static images, you can use the @2x and @3x suffixes to provide files for different screen densities",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"jughov": {
+			"id": "jughov",
+			"value": "This template has light and dark mode support. The useColorScheme() hook",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"grAvdc": {
+			"id": "grAvdc",
+			"value": "useColorScheme()",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"ihFyVc": {
+			"id": "ihFyVc",
+			"value": "lets you inspect what the user's current color scheme is, and so you can adjust UI colors accordingly.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"iJeNaK": {
+			"id": "iJeNaK",
+			"value": "This template includes an example of an animated component. The",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"nCfxf": {
+			"id": "nCfxf",
+			"value": "components/HelloWave.tsx",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"CyyEh": {
+			"id": "CyyEh",
+			"value": "component uses the powerful react-native-reanimated library to create a waving hand animation.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"AxzOm": {
+			"id": "AxzOm",
+			"value": "The",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"gIGZin": {
+			"id": "gIGZin",
+			"value": "components/ParallaxScrollView.tsx",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"gMiJBr": {
+			"id": "gMiJBr",
+			"value": "component provides a parallax effect for the header image.",
+			"files": ["rn-expo/app/(tabs)/explore.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"kKFVnl": {
+			"id": "kKFVnl",
+			"value": "Welcome!",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eduLIS": {
+			"id": "eduLIS",
+			"value": "Step 1: Try it",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"cBIxAV": {
+			"id": "cBIxAV",
+			"value": "Edit app/(tabs)/index.tsx to see changes. Press",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"fzzusd": {
+			"id": "fzzusd",
+			"value": "cmd + d",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"YaETZ": {
+			"id": "YaETZ",
+			"value": "to open developer tools.",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"jYgqny": {
+			"id": "jYgqny",
+			"value": "Step 2: Explore",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eruBtV": {
+			"id": "eruBtV",
+			"value": "Action",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"wHyMW": {
+			"id": "wHyMW",
+			"value": "Share",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"bvhyBY": {
+			"id": "bvhyBY",
+			"value": "Share pressed",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"fzzLbS": {
+			"id": "fzzLbS",
+			"value": "More",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"deNHqm": {
+			"id": "deNHqm",
+			"value": "Delete",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"blhlpE": {
+			"id": "blhlpE",
+			"value": "Delete pressed",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"kRqMLs": {
+			"id": "kRqMLs",
+			"value": "Tap the Explore tab to learn more about what's included in this starter app.",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eUhmot": {
+			"id": "eUhmot",
+			"value": "Terai is a modern localization framework for ${var}",
+			"files": ["rn-expo/app/(tabs)/index.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		}
+	}
+}
