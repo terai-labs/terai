@@ -1,0 +1,63 @@
+# `setup` Reference
+
+Main function to be called to configure runtime options for Terai in Node.js. It returns the `getTs` and `getFormat` functions configured with the provided options.
+
+```ts
+import { setup } from '@terai/node'
+
+const { getTs, getFormat } = setup({
+  // Configuration options
+})
+```
+
+## Setup options
+
+### loader
+
+- **Type**: `(locale: string, chunkId: string) => Promise<Dictionary>`
+- **Required**
+
+Function to load the locale data. It must return a promise that resolves to the dictionary object.
+
+```ts
+{
+  loader: (locale: string, chunkId: string) =>
+    import(`./locale-system/${locale}/${chunkId}.json`).then(
+      (mod) => mod.default
+    )
+}
+```
+
+### format
+
+- **Type**: `GlobalFormat | undefined`
+- **Default**: `undefined`
+
+Global format options to be used by the library.
+
+```ts
+{
+  format: {
+    number: {
+      style: 'currency',
+      currency: 'USD'
+    }
+  }
+}
+```
+
+## Return Value
+
+Returns an object containing:
+
+### getTs
+
+- **Type**: `(options: { locale: string }) => Promise<Ts>`
+
+Function to get the translation function for a specific locale.
+
+### getFormat
+
+- **Type**: `(locale: string) => Format`
+
+Function to get the format function for a specific locale.
