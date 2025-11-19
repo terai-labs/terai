@@ -9,7 +9,7 @@
 	"packageManager": "pnpm@10.22.0",
 	"scripts": {
 		"dev": "turbo dev --filter='./packages/**'",
-		"build": "turbo build",
+		"build": "turbo build --filter='./packages/**'",
 		"test": "turbo test",
 		"test:dev": "vitest dev -u",
 		"test:coverage": "vitest run --coverage",
