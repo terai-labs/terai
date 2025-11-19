@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@legendapp/state": "^2.1.15",
 		"chalk": "^5.6.2",
-		"next": "^15.5.6",
+		"next": "^16.0.3",
 		"outdent": "^0.8.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0"
@@ -49,6 +49,6 @@
 		"rimraf": "^5.0.10",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
-		"vitest": "^4.0.1"
+		"vitest": "^4.0.10"
 	}
 }
