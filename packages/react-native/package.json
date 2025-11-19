@@ -1,0 +1,40 @@
+{
+	"name": "@terai/react-native",
+	"description": "Terai for React Native",
+	"version": "0.0.6",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"require": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"author": "Hugo Corta <corta.hugo@gmail.com>",
+	"scripts": {
+		"dev": "tsup --format=esm,cjs --no-dts --watch",
+		"build": "tsup"
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.js",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"dependencies": {
+		"@terai/formatter": "workspace:*",
+		"@terai/ts": "workspace:*"
+	},
+	"devDependencies": {
+		"@terai/types": "workspace:*"
+	},
+	"peerDependencies": {
+		"@react-native-async-storage/async-storage": "^2.0.0",
+		"react": "^19",
+		"react-native": "*"
+	}
+}
