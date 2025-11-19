@@ -1,0 +1,39 @@
+{
+	"messages": {
+		"gOngMQ": {
+			"id": "gOngMQ",
+			"value": "Hello, ${var}!",
+			"files": ["hono/src/index.ts"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eOFMme": {
+			"id": "eOFMme",
+			"value": "Welcome to our API",
+			"files": ["hono/src/index.ts"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"hZJcAx": {
+			"id": "hZJcAx",
+			"value": "The current time is ${var}",
+			"files": ["hono/src/index.ts"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"heaazr": {
+			"id": "heaazr",
+			"value": "Successfully processed ${var} items",
+			"files": ["hono/src/index.ts"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"eIapop": {
+			"id": "eIapop",
+			"value": "User not found",
+			"files": ["hono/src/index.ts"],
+			"context": "",
+			"chunksIds": ["default"]
+		}
+	}
+}

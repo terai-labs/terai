@@ -1,0 +1,22 @@
+{
+	"name": "playground-hono",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"start": "tsx src/index.ts",
+		"localize": "pnpm terai extract && pnpm terai translate",
+		"build": "pnpm localize && tsc"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.14.0",
+		"@terai/node": "workspace:*",
+		"hono": "^4.6.14"
+	},
+	"devDependencies": {
+		"@terai/dev": "workspace:*",
+		"@types/node": "^20",
+		"tsx": "^4.19.2"
+	}
+}
