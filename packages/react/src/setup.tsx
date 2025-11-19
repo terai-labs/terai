@@ -1,9 +1,9 @@
 // Dependencies
 import { useEffect } from 'react'
-import pkg from '../package.json'
 
 // State
 import { teraiStore, getInitialState } from './state'
+import { loadFromStorage, saveToStorage } from './persistence'
 
 // Types
 import type { Loader, Locale } from '@terai/types'
@@ -13,8 +13,6 @@ export type Config = {
 	defaultLocale: Locale | (() => Locale)
 	loader: Loader
 	format?: GlobalFormat
-	persist?: boolean
-	storageKey?: string
 }
 
 // Global config storage (non-reactive, used for reference)
@@ -29,54 +27,37 @@ export const getConfig = (): Config => {
 
 /**
  * Initialize Terai with configuration
- * This function sets up the global configuration and initializes the store
+ * Persistence is always enabled for optimal performance
+ *
+ * On startup:
+ * 1. Loads cached locale and dictionaries from localStorage
+ * 2. Renders immediately with cached data (no suspension)
+ * 3. User can navigate instantly
  */
 export function setupTerai(config: Config) {
-	globalConfig = {
-		persist: false,
-		storageKey: `terai-${pkg.version}`,
-		...config
-	}
+	globalConfig = config
 
-	const storageKey = globalConfig.storageKey ?? `terai-${pkg.version}`
+	// Try to load from localStorage first for instant startup
+	const cachedState = loadFromStorage()
 
-	// Initialize state from localStorage if persistence is enabled
-	if (globalConfig.persist && typeof window !== 'undefined') {
-		try {
-			const stored = localStorage.getItem(storageKey)
-			if (stored) {
-				const parsedState = JSON.parse(stored)
-				teraiStore.setStateDirect({
-					...getInitialState(),
-					...parsedState,
-					started: true
-				})
-			} else {
-				// No stored state, initialize with default locale
-				initializeWithDefaultLocale(globalConfig.defaultLocale)
-			}
-		} catch (error) {
-			console.error('Failed to load Terai state from localStorage:', error)
-			// Fallback to default initialization
-			initializeWithDefaultLocale(globalConfig.defaultLocale)
-		}
+	if (cachedState && (cachedState.locale || cachedState.dictionaries)) {
+		// We have cached data - use it immediately for fast startup
+		teraiStore.setStateDirect({
+			...getInitialState(),
+			...cachedState,
+			started: true
+		})
 	} else {
-		// No persistence, just initialize with default locale
+		// No cached data - initialize with default locale
 		initializeWithDefaultLocale(globalConfig.defaultLocale)
 	}
 
-	// Set up localStorage sync if persistence is enabled
-	if (globalConfig.persist && typeof window !== 'undefined') {
-		// Subscribe to store changes and persist to localStorage
-		teraiStore.subscribe(() => {
-			try {
-				const state = teraiStore.getState()
-				localStorage.setItem(storageKey, JSON.stringify(state))
-			} catch (error) {
-				console.error('Failed to save Terai state to localStorage:', error)
-			}
-		})
-	}
+	// Subscribe to store changes and persist to localStorage
+	// This ensures locale and dictionaries are always saved
+	teraiStore.subscribe(() => {
+		const state = teraiStore.getState()
+		saveToStorage(state)
+	})
 
 	return globalConfig
 }

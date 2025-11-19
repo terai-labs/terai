@@ -1,5 +1,5 @@
 // Dependencies
-import { use, useCallback, useEffect, useMemo } from 'react'
+import { use, useCallback, useMemo } from 'react'
 import { createTs } from '@terai/ts'
 import { tsRender } from './ts-render'
 import { teraiStore } from './state'
@@ -26,6 +26,11 @@ const dictionaryPromises = new Map<string, Promise<Dictionary>>()
 /**
  * Main hook for using translations
  * Implements React 19's "use" hook for async dictionary loading
+ *
+ * Performance optimization:
+ * - If dictionary exists in store (from cache or previous load): NO SUSPENSION
+ * - If dictionary needs to be loaded: SUSPENDS until loaded
+ * - This ensures locale changes are instant when dictionaries are cached
  */
 export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	const locale = useLocale()
@@ -37,76 +42,46 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	const loaderId = chunkId ?? locale
 
 	/**
-	 * Create or retrieve a stable Promise for loading the dictionary
-	 * This memo ensures the Promise reference stays stable across re-renders
-	 * until the locale or chunkId changes
+	 * Get the dictionary - either from cache or by loading
+	 *
+	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist
+	 * This prevents suspension when switching to a locale that's already cached
 	 */
-	const dictionaryPromise = useMemo(() => {
-		// If dictionary already exists, return resolved promise
+	const loadedDictionary = useMemo(() => {
+		// Dictionary already exists in store (from localStorage or previous load)
+		// Return it immediately - NO SUSPENSION
 		if (dictionary) {
-			return Promise.resolve(dictionary)
+			return dictionary
 		}
 
+		// Dictionary doesn't exist - need to load it
 		// Check if we already have a pending promise for this dictionary
-		const cachedPromise = dictionaryPromises.get(dictionaryId)
-		if (cachedPromise) {
-			return cachedPromise
-		}
+		let promise = dictionaryPromises.get(dictionaryId)
 
-		// Create new promise for loading the dictionary
-		const promise = loadDictionary({
-			locale,
-			loaderId,
-			dictionaryId,
-			loader: config.loader
-		})
-
-		// Cache the promise to ensure stable reference
-		dictionaryPromises.set(dictionaryId, promise)
-
-		// Clean up the promise from cache once resolved
-		// This prevents memory leaks and allows re-fetching if needed
-		promise.finally(() => {
-			dictionaryPromises.delete(dictionaryId)
-		})
-
-		return promise
-	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
-
-	/**
-	 * Use React 19's "use" hook to unwrap the Promise
-	 * This will:
-	 * 1. Suspend the component if the Promise is pending
-	 * 2. Return the resolved value once ready
-	 * 3. Throw the error if the Promise is rejected
-	 * 4. Integrate seamlessly with Suspense and Error Boundaries
-	 */
-	const loadedDictionary = use(dictionaryPromise)
-
-	/**
-	 * Preload dictionary when locale changes if persistence is enabled
-	 * This ensures dictionaries are cached for faster subsequent loads
-	 */
-	useEffect(() => {
-		if (config.persist && !dictionaries[dictionaryId]) {
-			loadDictionary({
+		if (!promise) {
+			// Create new promise for loading the dictionary
+			promise = loadDictionary({
 				locale,
 				loaderId,
 				dictionaryId,
 				loader: config.loader
-			}).catch((error) => {
-				// Silently catch errors in preload - the main "use" hook will handle them
-				console.warn('Failed to preload dictionary:', error)
+			})
+
+			// Cache the promise to ensure stable reference
+			dictionaryPromises.set(dictionaryId, promise)
+
+			// Clean up the promise from cache once resolved
+			// This prevents memory leaks and allows re-fetching if needed
+			promise.finally(() => {
+				dictionaryPromises.delete(dictionaryId)
 			})
 		}
-	}, [
-		locale,
-		dictionaryId,
-		loaderId,
-		config.loader,
-		config.persist,
-		dictionaries
-	])
+
+		// Use React 19's "use" hook to unwrap the Promise
+		// This will SUSPEND the component until the dictionary is loaded
+		// The component will be wrapped in a Suspense boundary to show a fallback
+		return use(promise)
+	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
 
 	/**
 	 * Create the translation function
@@ -145,6 +120,8 @@ const loadDictionary = async ({
 	const dic = await loader(locale, loaderId)
 
 	// Update the store with the loaded dictionary
+	// This will trigger re-renders for components using useDictionaries
+	// and persist to localStorage automatically
 	teraiStore.setState((prev) => ({
 		...prev,
 		dictionaries: {
