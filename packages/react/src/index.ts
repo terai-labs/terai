@@ -3,4 +3,4 @@ export * from './use-locale'
 export * from './set-locale'
 export * from './use-ts'
 
-export { setupTerai } from './setup'
+export { setupTerai, TeraiProvider } from './setup'

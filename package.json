@@ -31,18 +31,18 @@
   "dependencies": {
     "@legendapp/state": "^2",
     "chalk": "^5",
-    "next": "^14",
+    "next": "^15",
     "outdent": "^0",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
     "@biomejs/biome": "^1",
     "@changesets/changelog-github": "^0",
     "@changesets/cli": "^2",
     "@types/node": "^20",
-    "@types/react-dom": "^18",
-    "@types/react": "^18",
+    "@types/react-dom": "^19",
+    "@types/react": "^19",
     "@vitest/coverage-v8": "^1",
     "husky": "^9",
     "lint-staged": "^15",
