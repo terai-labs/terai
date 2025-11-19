@@ -1,37 +1,35 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "organizeImports": {
-    "enabled": false
-  },
-  "files": {
-    "ignore": ["dist", ".next", "out", ".rollup.cache"]
-  },
-  "formatter": {
-    "enabled": true
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "trailingComma": "none",
-      "jsxQuoteStyle": "single",
-      "semicolons": "asNeeded"
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "useExhaustiveDependencies": "off"
-      },
-      "suspicious": {
-        "noArrayIndexKey": "off",
-        "noExplicitAny": "off",
-        "noDuplicateParameters": "off"
-      },
-      "complexity": {
-        "noForEach": "off"
-      }
-    }
-  }
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": { "actions": { "source": { "organizeImports": "off" } } },
+	"files": {
+		"includes": ["**", "!**/dist", "!**/.next", "!**/out", "!**/.rollup.cache"]
+	},
+	"formatter": {
+		"enabled": true
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"trailingCommas": "none",
+			"jsxQuoteStyle": "single",
+			"semicolons": "asNeeded"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"useExhaustiveDependencies": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noExplicitAny": "off",
+				"noDuplicateParameters": "off"
+			},
+			"complexity": {
+				"noForEach": "off"
+			}
+		}
+	}
 }
