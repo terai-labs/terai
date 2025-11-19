@@ -158,3 +158,5 @@ __generated__
 .env*.local
 
 .rollup.cache
+
+.turbo

@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"packageManager": "pnpm@10.22.0",
 	"scripts": {
-		"dev": "turbo dev",
+		"dev": "turbo dev --filter='./packages/**'",
 		"build": "turbo build",
 		"test": "turbo test",
 		"test:dev": "vitest dev -u",
