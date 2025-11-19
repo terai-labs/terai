@@ -76,17 +76,17 @@ More documentation available at [https://terai-labs.github.io/terai](https://ter
 | Package | Description | Version | Size | Downloads |
 | :------ | :---- |  :-----: | :--: | :-------: |
 | `@terai/dev` | Dev package for **Terai** | [![Version](https://img.shields.io/npm/v/@terai/dev.svg?logo=npm)](https://www.npmjs.com/package/@terai/dev) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/dev)](https://bundlephobia.com/result?p=@terai/dev) | [![NPM](https://img.shields.io/npm/dm/@terai/dev.svg?&logo=npm)](https://www.npmjs.com/package/@terai/dev) |
-| `@terai/react` | **Terai** for React.js | [![Version](https://img.shields.io/npm/v/@terai/react.svg?logo=npm)](https://www.npmjs.com/package/@terai/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react)](https://bundlephobia.com/result?p=@terai/react) | [![NPM](https://img.shields.io/npm/dm/@terai/react.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react) |
-| `@terai/next` | **Terai** for Next.js (WIP) | [![Version](https://img.shields.io/npm/v/@terai/next.svg?logo=npm)](https://www.npmjs.com/package/@terai/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/next)](https://bundlephobia.com/result?p=@terai/next) | [![NPM](https://img.shields.io/npm/dm/@terai/next.svg?&logo=npm)](https://www.npmjs.com/package/@terai/next) |
-| `@terai/node` | **Terai** for Node.js | [![Version](https://img.shields.io/npm/v/@terai/node.svg?logo=npm)](https://www.npmjs.com/package/@terai/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/node)](https://bundlephobia.com/result?p=@terai/node) | [![NPM](https://img.shields.io/npm/dm/@terai/node.svg?&logo=npm)](https://www.npmjs.com/package/@terai/node) |
+| `@terai/react` | **Terai** for **React** | [![Version](https://img.shields.io/npm/v/@terai/react.svg?logo=npm)](https://www.npmjs.com/package/@terai/react) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react)](https://bundlephobia.com/result?p=@terai/react) | [![NPM](https://img.shields.io/npm/dm/@terai/react.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react) |
+| `@terai/next` | **Terai** for **Next** (WIP) | [![Version](https://img.shields.io/npm/v/@terai/next.svg?logo=npm)](https://www.npmjs.com/package/@terai/next) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/next)](https://bundlephobia.com/result?p=@terai/next) | [![NPM](https://img.shields.io/npm/dm/@terai/next.svg?&logo=npm)](https://www.npmjs.com/package/@terai/next) |
+| `@terai/node` | **Terai** for **Node** | [![Version](https://img.shields.io/npm/v/@terai/node.svg?logo=npm)](https://www.npmjs.com/package/@terai/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/node)](https://bundlephobia.com/result?p=@terai/node) | [![NPM](https://img.shields.io/npm/dm/@terai/node.svg?&logo=npm)](https://www.npmjs.com/package/@terai/node) |
 
 ## Getting Started
 
-Visit <a aria-label="terai learn" href="https://terai-labs.github.io/terai">https://terai-labs.github.io/terai</a> to get started with **Terai**.
+Visit [https://terai-labs.github.io/terai/docs/overview/getting-started](https://terai-labs.github.io/terai/docs/overview/getting-started) to get started with **Terai**.
 
 ## Documentation
 
-Visit [https://terai-labs.github.io/terai/docs](https://terai-labs.github.io/terai/docs) to view the full documentation.
+Visit <a aria-label="terai learn" href="https://terai-labs.github.io/terai">https://terai-labs.github.io/terai</a> to view the full documentation.
 
 ## Community
 
