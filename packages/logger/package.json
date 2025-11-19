@@ -1,20 +1,20 @@
 {
-  "name": "@terai/logger",
-  "version": "0.0.6",
-  "description": "terai core logger",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "author": "Hugo Corta <corta.hugo@gmail.com>",
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "dev": "tsup --format=esm,cjs --no-dts --watch",
-    "build": "tsup"
-  }
+	"name": "@terai/logger",
+	"version": "0.0.7",
+	"description": "terai core logger",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"author": "Hugo Corta <corta.hugo@gmail.com>",
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"dev": "tsup --format=esm,cjs --no-dts --watch",
+		"build": "tsup"
+	}
 }
