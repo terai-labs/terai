@@ -1,19 +1,14 @@
 // Types
 import type { Locale } from '@terai/types'
-import type { StateContextValue } from './state'
+import { teraiStore } from './state'
 
-// Global reference to the context value for imperative updates
-let contextRef: StateContextValue | null = null
-
-export const setContextRef = (context: StateContextValue | null) => {
-	contextRef = context
-}
-
+/**
+ * Imperative function to change the current locale
+ * This directly updates the store and notifies all subscribers
+ */
 export const setLocale = (locale: Locale) => {
-	if (!contextRef) {
-		throw new Error(
-			'Terai context not initialized. Ensure TeraiProvider is mounted.'
-		)
-	}
-	contextRef.setState((prev) => ({ ...prev, locale }))
+	teraiStore.setState((prev) => ({
+		...prev,
+		locale
+	}))
 }

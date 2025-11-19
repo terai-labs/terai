@@ -1,10 +1,17 @@
-import { useContext } from 'react'
-import { TeraiContext } from './state'
+import { useSyncExternalStore } from 'react'
+import { teraiStore } from './state'
 
+/**
+ * Hook to access the current locale
+ * Uses useSyncExternalStore for efficient subscriptions
+ */
 export const useLocale = () => {
-	const context = useContext(TeraiContext)
-	if (!context) {
-		throw new Error('useLocale must be used within TeraiProvider')
-	}
-	return context.state.locale
+	// Get locale from store using useSyncExternalStore
+	const state = useSyncExternalStore(
+		teraiStore.subscribe,
+		teraiStore.getSnapshot,
+		teraiStore.getSnapshot // Server snapshot is the same as client
+	)
+
+	return state.locale
 }
