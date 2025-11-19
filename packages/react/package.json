@@ -33,6 +33,6 @@
     "@terai/types": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^19"
   }
 }

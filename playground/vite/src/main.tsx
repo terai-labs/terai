@@ -6,11 +6,8 @@ import { setupTerai } from '@terai/react'
 
 setupTerai({
 	defaultLocale: 'en',
-	persistence: true,
 	loader: (locale: string, chunkId: string) =>
-		import(`../locale-system/${locale}/${chunkId}.json`).then(
-			(mod) => mod.default
-		)
+		import(`../locale/${locale}/${chunkId}.json`).then((mod) => mod.default)
 })
 
 const rootNode = document.getElementById('root')

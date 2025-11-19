@@ -1,0 +1,19 @@
+{
+	"permissions": {
+		"allow": [
+			"Edit",
+			"Write",
+			"Read",
+			"Glob",
+			"Grep",
+			"Bash",
+			"WebFetch",
+			"WebSearch",
+			"mcp__ide__getDiagnostics",
+			"mcp__ide__executeCode"
+		],
+		"deny": [],
+		"ask": []
+	},
+	"outputStyle": "default"
+}

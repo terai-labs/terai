@@ -1,8 +1,8 @@
-type Options = {
+export function getBrowserLocale({
+	languageCodeOnly
+}: {
 	languageCodeOnly?: boolean
-}
-
-export function getBrowserLocale({ languageCodeOnly }: Options = {}) {
+} = {}) {
 	const browserLocale = navigator.language || navigator.languages[0]
 	const trimmedLocale = browserLocale.trim()
 

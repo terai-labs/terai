@@ -1,4 +1,19 @@
-import { state$ } from './state'
-import { useSelector } from '@legendapp/state/react'
+// Hooks
+import { useSyncExternalStore } from 'react'
 
-export const useDictionaries = () => useSelector(state$.dictionaries)
+// State
+import { store, selectDictionaries } from './store'
+
+// Types
+import type { Dictionaries } from '@terai/types'
+
+/**
+ * Hook to access all dictionaries
+ */
+export const useDictionaries = (): Dictionaries => {
+	return useSyncExternalStore(
+		store.subscribe,
+		() => selectDictionaries(store.getSnapshot()),
+		() => selectDictionaries(store.getSnapshot())
+	)
+}

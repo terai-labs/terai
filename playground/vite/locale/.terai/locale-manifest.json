@@ -1,0 +1,39 @@
+{
+	"messages": {
+		"eUhmot": {
+			"id": "eUhmot",
+			"value": "Terai is a modern localization framework for ${var}",
+			"files": ["vite/src/App.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		},
+		"yPYux": {
+			"id": "yPYux",
+			"value": "Hello",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		},
+		"gOvqye": {
+			"id": "gOvqye",
+			"value": "I am on ${var}!",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		},
+		"cLXyxN": {
+			"id": "cLXyxN",
+			"value": "I'm not sure what is this",
+			"files": ["vite/src/button.tsx"],
+			"context": "",
+			"chunksIds": ["chunk-button"]
+		},
+		"dQxGBP": {
+			"id": "dQxGBP",
+			"value": "Hello world!",
+			"files": ["vite/src/example.tsx"],
+			"context": "",
+			"chunksIds": ["default"]
+		}
+	}
+}

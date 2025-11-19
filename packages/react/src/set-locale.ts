@@ -1,9 +1,15 @@
-// Dependencies
-import { state$ } from './state'
+// State
+import { store } from './store'
 
 // Types
 import type { Locale } from '@terai/types'
 
+/**
+ * Imperative function to change the current locale
+ */
 export const setLocale = (locale: Locale) => {
-	state$.locale.set(locale)
+	store.setState((prev) => ({
+		...prev,
+		locale
+	}))
 }
