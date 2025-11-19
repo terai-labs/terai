@@ -2,6 +2,19 @@
 
 Terai integration for React Native applications with React 19 support.
 
+## Overview
+
+`@terai/react-native` brings Terai's developer-first localization framework to React Native. It provides automatic message extraction, multiple translation providers, and a seamless developer experience with full TypeScript support.
+
+**Key Features:**
+- 🎯 **React 19 Native Support**: Uses React 19's `use` hook for async dictionary loading with smart suspension
+- 📱 **AsyncStorage Persistence**: Automatic caching of translations and locale preferences for instant app startup
+- 🔄 **Zero Config in Monorepos**: Works seamlessly in pnpm/yarn/npm workspaces with proper Metro configuration
+- 🎨 **Type-Safe Translations**: Full TypeScript support with inferred types
+- ⚡ **Performance Optimized**: Only suspends on first load, instant locale changes for cached dictionaries
+- 🧩 **Code Splitting**: Load only the translations you need via chunk IDs
+- 🌍 **Intl API Integration**: Built-in formatting for numbers, dates, lists, and more
+
 ## Installation
 
 ```bash

@@ -9,5 +9,6 @@ export default defineConfig({
 	sourcemap: true,
 	minify: false,
 	splitting: true,
-	treeshake: 'recommended'
+	treeshake: 'recommended',
+	external: ['react', 'react-native', 'react/jsx-runtime']
 })
