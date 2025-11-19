@@ -1,0 +1,259 @@
+# `setLocale` Reference
+
+Imperative function to change the current locale in your React Native application.
+
+```tsx
+import { Button } from 'react-native'
+import { setLocale } from '@terai/react-native'
+
+function LanguageSwitcher() {
+  return (
+    <Button
+      title='Switch to Spanish'
+      onPress={() => setLocale('es')}
+    />
+  )
+}
+```
+
+## Signature
+
+```ts
+function setLocale(locale: Locale): void
+```
+
+### Parameters
+
+#### locale
+
+- **Type**: `Locale` (string)
+- **Required**: Yes
+
+The locale to switch to (e.g., `'en'`, `'en-US'`, `'es'`, `'fr'`, etc.).
+
+## Behavior
+
+When called, `setLocale`:
+1. Updates the internal locale state
+2. Triggers re-renders in components using [`useLocale`](/docs/react-native/references/use-locale)
+3. Loads the dictionary for the new locale (if not already cached)
+4. Updates all active translations via [`useTs`](/docs/react-native/references/use-ts)
+5. Persists the locale to AsyncStorage for next app launch
+
+### Performance
+
+- **Instant switching**: If dictionaries are cached, locale changes are instant with no loading delay
+- **Automatic loading**: If dictionary not cached, it loads in background (suspends if `suspense: true`)
+- **Persistence**: New locale is automatically saved to AsyncStorage for next session
+
+## Examples
+
+### Basic Language Switcher
+
+```tsx
+import { View, Button, Text } from 'react-native'
+import { setLocale, useLocale } from '@terai/react-native'
+
+function LanguageSwitcher() {
+  const currentLocale = useLocale()
+
+  return (
+    <View>
+      <Text>Current: {currentLocale}</Text>
+      <Button
+        title='English'
+        onPress={() => setLocale('en')}
+        disabled={currentLocale === 'en'}
+      />
+      <Button
+        title='Español'
+        onPress={() => setLocale('es')}
+        disabled={currentLocale === 'es'}
+      />
+      <Button
+        title='Français'
+        onPress={() => setLocale('fr')}
+        disabled={currentLocale === 'fr'}
+      />
+    </View>
+  )
+}
+```
+
+### Language Selection Screen
+
+```tsx
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { setLocale, useLocale } from '@terai/react-native'
+
+const LANGUAGES = [
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+]
+
+function LanguageSelectionScreen() {
+  const currentLocale = useLocale()
+
+  return (
+    <View style={styles.container}>
+      {LANGUAGES.map((lang) => (
+        <TouchableOpacity
+          key={lang.code}
+          style={[
+            styles.languageItem,
+            currentLocale === lang.code && styles.selectedLanguage,
+          ]}
+          onPress={() => setLocale(lang.code)}
+        >
+          <Text style={styles.flag}>{lang.flag}</Text>
+          <Text style={styles.languageName}>{lang.name}</Text>
+          {currentLocale === lang.code && (
+            <Text style={styles.checkmark}>✓</Text>
+          )}
+        </TouchableOpacity>
+      ))}
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  languageItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 8,
+    backgroundColor: '#f5f5f5',
+  },
+  selectedLanguage: {
+    backgroundColor: '#e3f2fd',
+    borderWidth: 2,
+    borderColor: '#2196f3',
+  },
+  flag: {
+    fontSize: 32,
+    marginRight: 12,
+  },
+  languageName: {
+    fontSize: 18,
+    flex: 1,
+  },
+  checkmark: {
+    fontSize: 24,
+    color: '#2196f3',
+  },
+})
+```
+
+### Settings Screen Integration
+
+```tsx
+import { View, TouchableOpacity, Text } from 'react-native'
+import { setLocale, useLocale } from '@terai/react-native'
+import { useNavigation } from '@react-navigation/native'
+
+function SettingsScreen() {
+  const locale = useLocale()
+  const navigation = useNavigation()
+
+  const languageNames = {
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+    de: 'Deutsch',
+  }
+
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('LanguageSelection')}
+      >
+        <Text>Language</Text>
+        <Text>{languageNames[locale]}</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+```
+
+### Programmatic Locale Detection
+
+```tsx
+import { setLocale } from '@terai/react-native'
+import { useEffect } from 'react'
+import * as Localization from 'expo-localization'
+
+function LocaleInitializer() {
+  useEffect(() => {
+    // Detect device language
+    const deviceLocale = Localization.locale.split('-')[0]
+    const supportedLocales = ['en', 'es', 'fr', 'de']
+
+    if (supportedLocales.includes(deviceLocale)) {
+      setLocale(deviceLocale)
+    }
+  }, [])
+
+  return null
+}
+```
+
+### With React Navigation
+
+```tsx
+import { setLocale } from '@terai/react-native'
+import { useFocusEffect } from '@react-navigation/native'
+import { useCallback } from 'react'
+
+function LanguageSettingsScreen({ route }) {
+  const { selectedLocale } = route.params || {}
+
+  useFocusEffect(
+    useCallback(() => {
+      if (selectedLocale) {
+        setLocale(selectedLocale)
+      }
+    }, [selectedLocale])
+  )
+
+  return (
+    // Your screen content
+  )
+}
+```
+
+## When to Use
+
+Use `setLocale` when you need to:
+- Build language switchers or selection screens
+- Respond to user interactions that change the language
+- Integrate with device language settings
+- Programmatically detect and set the user's preferred language
+- Change locale based on user preferences in settings
+- Sync locale across different parts of your app
+
+## Persistence
+
+The selected locale is automatically persisted to AsyncStorage and will be:
+- Restored when the app restarts
+- Maintained across app updates (with versioned keys)
+- Available immediately on app launch (no flash of wrong language)
+
+## Requirements
+
+- Requires `setupTerai` to be called first
+- Requires `@react-native-async-storage/async-storage` to be installed
+- The locale must be configured in your `terai.config.ts` and have translations available
+
+## Related
+
+- [`useLocale`](/docs/react-native/references/use-locale) - Hook to get the current locale
+- [`setupTerai`](/docs/react-native/references/setup-terai) - Configure the default locale
+- [`useTs`](/docs/react-native/references/use-ts) - Hook for translations that automatically updates on locale change

@@ -10,6 +10,5 @@ export default defineConfig({
 	minify: false,
 	splitting: true,
 	treeshake: 'recommended',
-	platform: 'browser',
-	external: ['react', 'react-dom', 'react/jsx-runtime']
+	external: ['react', 'react-native', 'react/jsx-runtime']
 })
