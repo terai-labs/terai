@@ -1,5 +1,11 @@
 # @terai/types
 
+## 0.0.8
+
+### Patch Changes
+
+- 5a77788: Update build configurations to enable code splitting, treeshaking and sourcemaps
+
 ## 0.0.7
 
 ### Patch Changes
