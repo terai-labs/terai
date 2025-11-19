@@ -1,7 +1,7 @@
 export default {
-	'*.{ts,tsx,js,jsx}': [
-		'pnpm biome lint --apply --verbose',
-		'pnpm biome format --write --verbose'
+	'*.{ts,tsx,js,jsx,css,html,json}': [
+		'pnpm biome lint --write --verbose --staged',
+		'pnpm biome format --write --verbose --staged'
 	],
-	'*.ts?(x)': 'bash -c tsc --noEmit'
+	'*.{ts,tsx}': 'bash -c tsc --noEmit'
 }

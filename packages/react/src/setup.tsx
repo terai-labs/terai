@@ -1,8 +1,5 @@
-// Dependencies
-import { useEffect } from 'react'
-
 // State
-import { teraiStore, getInitialState } from './state'
+import { store, getInitialState } from './store'
 import { loadFromStorage, saveToStorage } from './persistence'
 
 // Types
@@ -15,25 +12,15 @@ export type Config = {
 	format?: GlobalFormat
 }
 
-// Global config storage (non-reactive, used for reference)
 let globalConfig: Config | null = null
 
 export const getConfig = (): Config => {
 	if (!globalConfig) {
-		throw new Error('Terai not initialized. Call setupTerai first.')
+		throw new Error('Terai not initialized. Call "setupTerai" first.')
 	}
 	return globalConfig
 }
 
-/**
- * Initialize Terai with configuration
- * Persistence is always enabled for optimal performance
- *
- * On startup:
- * 1. Loads cached locale and dictionaries from localStorage
- * 2. Renders immediately with cached data (no suspension)
- * 3. User can navigate instantly
- */
 export function setupTerai(config: Config) {
 	globalConfig = config
 
@@ -42,51 +29,28 @@ export function setupTerai(config: Config) {
 
 	if (cachedState && (cachedState.locale || cachedState.dictionaries)) {
 		// We have cached data - use it immediately for fast startup
-		teraiStore.setStateDirect({
+		store.setStateDirect({
 			...getInitialState(),
-			...cachedState,
-			started: true
+			...cachedState
 		})
 	} else {
 		// No cached data - initialize with default locale
-		initializeWithDefaultLocale(globalConfig.defaultLocale)
+		const locale =
+			typeof config.defaultLocale === 'function'
+				? config.defaultLocale()
+				: config.defaultLocale
+		store.setState((prev) => ({
+			...prev,
+			locale
+		}))
 	}
 
 	// Subscribe to store changes and persist to localStorage
-	// This ensures locale and dictionaries are always saved
-	teraiStore.subscribe(() => {
-		const state = teraiStore.getState()
+	// saveToStorage is debounced internally for performance
+	store.subscribe(() => {
+		const state = store.getState()
 		saveToStorage(state)
 	})
 
 	return globalConfig
-}
-
-/**
- * Initialize store with default locale
- */
-function initializeWithDefaultLocale(defaultLocale: Locale | (() => Locale)) {
-	const currentState = teraiStore.getState()
-	if (!currentState.started) {
-		const locale =
-			typeof defaultLocale === 'function' ? defaultLocale() : defaultLocale
-		teraiStore.setState((prev) => ({
-			...prev,
-			locale,
-			started: true
-		}))
-	}
-}
-
-/**
- * Optional component for advanced use cases
- * This component ensures the store is initialized when mounted
- * Most users won't need this - just call setupTerai()
- */
-export function TeraiInitializer({ config }: { config: Config }) {
-	useEffect(() => {
-		setupTerai(config)
-	}, [config])
-
-	return null
 }

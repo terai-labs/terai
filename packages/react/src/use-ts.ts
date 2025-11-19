@@ -2,19 +2,15 @@
 import { use, useCallback, useMemo } from 'react'
 import { createTs } from '@terai/ts'
 import { tsRender } from './ts-render'
-import { teraiStore } from './state'
+import { store } from './store'
 import { getConfig } from './setup'
 
 // Hooks
 import { useLocale } from './use-locale'
-import { useDictionaries } from './use-dictionaries'
+import { useDictionary } from './use-dictionary'
 
 // Types
 import type { Locale, Loader, Dictionary } from '@terai/types'
-
-type UseTsProps = {
-	chunkId?: string
-}
 
 /**
  * Cache for dictionary loading promises
@@ -30,15 +26,15 @@ const dictionaryPromises = new Map<string, Promise<Dictionary>>()
  * Performance optimization:
  * - If dictionary exists in store (from cache or previous load): NO SUSPENSION
  * - If dictionary needs to be loaded: SUSPENDS until loaded
+ * - Only re-renders when the specific dictionary for this locale/chunk changes
  * - This ensures locale changes are instant when dictionaries are cached
  */
-export const useTs = ({ chunkId }: UseTsProps = {}) => {
+export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	const locale = useLocale()
-	const dictionaries = useDictionaries()
+	const dictionary = useDictionary(locale, chunkId)
 	const config = getConfig()
 
 	const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
-	const dictionary = dictionaries[dictionaryId]
 	const loaderId = chunkId ?? locale
 
 	/**
@@ -77,9 +73,6 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 			})
 		}
 
-		// Use React 19's "use" hook to unwrap the Promise
-		// This will SUSPEND the component until the dictionary is loaded
-		// The component will be wrapped in a Suspense boundary to show a fallback
 		return use(promise)
 	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
 
@@ -120,9 +113,9 @@ const loadDictionary = async ({
 	const dic = await loader(locale, loaderId)
 
 	// Update the store with the loaded dictionary
-	// This will trigger re-renders for components using useDictionaries
+	// This will trigger re-renders for components using useDictionary
 	// and persist to localStorage automatically
-	teraiStore.setState((prev) => ({
+	store.setState((prev) => ({
 		...prev,
 		dictionaries: {
 			...prev.dictionaries,

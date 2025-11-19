@@ -1,6 +1,6 @@
-export * from './use-format'
-export * from './use-locale'
-export * from './set-locale'
-export * from './use-ts'
-
-export { setupTerai, TeraiInitializer } from './setup'
+export { setupTerai } from './setup'
+export { setLocale } from './set-locale'
+export { useDictionaries } from './use-dictionaries'
+export { useFormat } from './use-format'
+export { useLocale } from './use-locale'
+export { useTs } from './use-ts'

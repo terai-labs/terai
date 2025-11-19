@@ -1,17 +1,19 @@
+// Hooks
 import { useSyncExternalStore } from 'react'
-import { teraiStore } from './state'
+
+// State
+import { store, selectLocale } from './store'
+
+// Types
+import type { Locale } from '@terai/types'
 
 /**
  * Hook to access the current locale
- * Uses useSyncExternalStore for efficient subscriptions
  */
-export const useLocale = () => {
-	// Get locale from store using useSyncExternalStore
-	const state = useSyncExternalStore(
-		teraiStore.subscribe,
-		teraiStore.getSnapshot,
-		teraiStore.getSnapshot // Server snapshot is the same as client
+export const useLocale = (): Locale => {
+	return useSyncExternalStore(
+		store.subscribe,
+		() => selectLocale(store.getSnapshot()),
+		() => selectLocale(store.getSnapshot())
 	)
-
-	return state.locale
 }

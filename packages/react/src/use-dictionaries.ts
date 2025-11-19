@@ -1,17 +1,19 @@
+// Hooks
 import { useSyncExternalStore } from 'react'
-import { teraiStore } from './state'
+
+// State
+import { store, selectDictionaries } from './store'
+
+// Types
+import type { Dictionaries } from '@terai/types'
 
 /**
  * Hook to access all dictionaries
- * Uses useSyncExternalStore for efficient subscriptions
  */
-export const useDictionaries = () => {
-	// Get dictionaries from store using useSyncExternalStore
-	const state = useSyncExternalStore(
-		teraiStore.subscribe,
-		teraiStore.getSnapshot,
-		teraiStore.getSnapshot // Server snapshot is the same as client
+export const useDictionaries = (): Dictionaries => {
+	return useSyncExternalStore(
+		store.subscribe,
+		() => selectDictionaries(store.getSnapshot()),
+		() => selectDictionaries(store.getSnapshot())
 	)
-
-	return state.dictionaries
 }

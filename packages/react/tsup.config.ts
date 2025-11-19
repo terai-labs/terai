@@ -3,10 +3,12 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
 	clean: true,
 	dts: true,
-	entry: ['src/index.ts'],
+	entry: ['src'],
 	format: ['esm', 'cjs'],
 	shims: true,
-	sourcemap: false,
+	sourcemap: true,
 	minify: false,
-	splitting: true
+	splitting: true,
+	treeshake: 'recommended',
+	platform: 'browser'
 })
