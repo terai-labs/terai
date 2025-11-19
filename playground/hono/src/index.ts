@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
-import { setup, getTs, getFormat, setLocale, getLocale } from '@terai/node'
+import { setupTerai, getTs, getFormat, setLocale, getLocale } from '@terai/node'
 
 // Initialize Terai
 setupTerai({

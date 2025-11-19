@@ -20,20 +20,6 @@
 			"files": ["hono/src/index.ts"],
 			"context": "",
 			"chunksIds": ["default"]
-		},
-		"heaazr": {
-			"id": "heaazr",
-			"value": "Successfully processed ${var} items",
-			"files": ["hono/src/index.ts"],
-			"context": "",
-			"chunksIds": ["default"]
-		},
-		"eIapop": {
-			"id": "eIapop",
-			"value": "User not found",
-			"files": ["hono/src/index.ts"],
-			"context": "",
-			"chunksIds": ["default"]
 		}
 	}
 }

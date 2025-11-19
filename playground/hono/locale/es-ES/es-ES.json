@@ -1,7 +1,5 @@
 {
 	"gOngMQ": "¡Hola, ${var}!",
 	"eOFMme": "Bienvenido a nuestra API",
-	"hZJcAx": "La hora actual es ${var}",
-	"heaazr": "Procesados correctamente ${var} elementos",
-	"eIapop": "Usuario no encontrado"
+	"hZJcAx": "La hora actual es ${var}"
 }
