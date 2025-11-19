@@ -1,6 +1,6 @@
 {
 	"name": "@terai/types",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "terai types definitions",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",

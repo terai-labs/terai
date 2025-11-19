@@ -1,5 +1,13 @@
 # @terai/transformer
 
+## 0.0.9
+
+### Patch Changes
+
+- 1588d39: v0.0.9
+- Updated dependencies [1588d39]
+  - @terai/utils@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
