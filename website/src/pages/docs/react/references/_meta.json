@@ -1,0 +1,17 @@
+{
+	"setup-terai": {
+		"title": "setupTerai"
+	},
+	"use-ts": {
+		"title": "useTs"
+	},
+	"use-locale": {
+		"title": "useLocale"
+	},
+	"set-locale": {
+		"title": "setLocale"
+	},
+	"use-format": {
+		"title": "useFormat"
+	}
+}

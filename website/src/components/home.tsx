@@ -66,7 +66,7 @@ export function Home() {
 							marginTop: '20px'
 						}}
 					>
-						<a href='/docs'>
+						<a href='/terai/docs/overview/getting-started'>
 							<button
 								type='button'
 								style={{
@@ -439,7 +439,7 @@ function HeaderLogo() {
 					zIndex: 1,
 					position: 'absolute',
 					padding: 12,
-					borderRadius: '20px',
+					borderRadius: 28,
 					border: '1px solid rgba(160,160,160,0.1)',
 					backdropFilter: 'blur(16px)',
 					boxShadow: '0px 3px 6px rgba(0,0,0,0.1)'

@@ -1,17 +1,8 @@
 {
-  "cli": {
-    "title": "CLI"
-  },
-  "config": {
-    "title": "Config"
-  },
-  "setup": {
-    "title": "Setup"
-  },
-  "get-ts": {
-    "title": "getTs"
-  },
-  "use-ts": {
-    "title": "useTs"
-  }
+	"cli": {
+		"title": "CLI"
+	},
+	"config": {
+		"title": "Config"
+	}
 }

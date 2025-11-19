@@ -1,0 +1,280 @@
+# `useFormat` Reference
+
+React hook that provides internationalized formatting functions for numbers, dates, lists, and more using the browser's native `Intl` API.
+
+```tsx
+import { useFormat } from '@terai/react'
+
+function Component() {
+  const format = useFormat()
+
+  return (
+    <div>
+      <p>{format.number(1234.56, { style: 'currency', currency: 'USD' })}</p>
+      <p>{format.date(new Date(), { dateStyle: 'long' })}</p>
+    </div>
+  )
+}
+```
+
+## Return Value
+
+Returns an object with formatting functions that automatically use the current locale:
+
+### number
+
+Format numbers with locale-aware formatting.
+
+- **Type**: `(value: number, options?: Intl.NumberFormatOptions) => string`
+
+**Examples**:
+
+```tsx
+const format = useFormat()
+
+// Currency
+format.number(1234.56, { style: 'currency', currency: 'USD' })
+// Result: '$1,234.56' (en), '1.234,56 $' (es), etc.
+
+// Percentage
+format.number(0.85, { style: 'percent' })
+// Result: '85%'
+
+// Compact notation
+format.number(1234567, { notation: 'compact' })
+// Result: '1.2M' (en), '1,2 M' (es), etc.
+
+// Custom decimal places
+format.number(3.14159, { minimumFractionDigits: 2, maximumFractionDigits: 4 })
+// Result: '3.1416'
+```
+
+### date
+
+Format dates with locale-aware formatting.
+
+- **Type**: `(value: Date | number, options?: Intl.DateTimeFormatOptions) => string`
+
+**Examples**:
+
+```tsx
+const format = useFormat()
+const date = new Date('2024-03-15')
+
+// Long date style
+format.date(date, { dateStyle: 'long' })
+// Result: 'March 15, 2024' (en), '15 de marzo de 2024' (es)
+
+// Custom format
+format.date(date, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  weekday: 'long'
+})
+// Result: 'Friday, March 15, 2024' (en)
+
+// Time only
+format.date(new Date(), { timeStyle: 'short' })
+// Result: '2:30 PM' (en), '14:30' (es)
+
+// Date and time
+format.date(new Date(), {
+  dateStyle: 'short',
+  timeStyle: 'short'
+})
+// Result: '3/15/24, 2:30 PM' (en)
+```
+
+### list
+
+Format lists with locale-aware conjunctions and separators.
+
+- **Type**: `(value: Iterable<string>, options?: Intl.ListFormatOptions) => string`
+
+**Examples**:
+
+```tsx
+const format = useFormat()
+const items = ['apples', 'oranges', 'bananas']
+
+// Default (conjunction)
+format.list(items)
+// Result: 'apples, oranges, and bananas' (en), 'apples, oranges y bananas' (es)
+
+// Disjunction
+format.list(items, { type: 'disjunction' })
+// Result: 'apples, oranges, or bananas' (en)
+
+// Unit
+format.list(['5 pounds', '12 ounces'], { type: 'unit' })
+// Result: '5 pounds, 12 ounces' (en)
+```
+
+### relativeTime
+
+Format relative time with locale-aware phrases.
+
+- **Type**: `(value: [number, Intl.RelativeTimeFormatUnit], options?: Intl.RelativeTimeFormatOptions) => string`
+
+**Examples**:
+
+```tsx
+const format = useFormat()
+
+// Past
+format.relativeTime([-3, 'day'])
+// Result: '3 days ago' (en), 'hace 3 días' (es)
+
+// Future
+format.relativeTime([2, 'hour'])
+// Result: 'in 2 hours' (en), 'dentro de 2 horas' (es)
+
+// Narrow style
+format.relativeTime([-1, 'week'], { style: 'narrow' })
+// Result: '1 wk. ago' (en)
+
+// Auto numeric (uses 'yesterday', 'tomorrow', etc.)
+format.relativeTime([-1, 'day'], { numeric: 'auto' })
+// Result: 'yesterday' (en), 'ayer' (es)
+```
+
+### displayNames
+
+Format display names for languages, regions, currencies, etc.
+
+- **Type**: `(value: string, options: Intl.DisplayNamesOptions) => string | undefined`
+
+**Examples**:
+
+```tsx
+const format = useFormat()
+
+// Language names
+format.displayNames('es', { type: 'language' })
+// Result: 'Spanish' (en), 'español' (es)
+
+// Region names
+format.displayNames('US', { type: 'region' })
+// Result: 'United States' (en), 'Estados Unidos' (es)
+
+// Currency names
+format.displayNames('USD', { type: 'currency' })
+// Result: 'US Dollar' (en), 'dólar estadounidense' (es)
+
+// Script names
+format.displayNames('Arab', { type: 'script' })
+// Result: 'Arabic' (en)
+```
+
+## Options
+
+### locale
+
+- **Type**: `Locale | undefined`
+- **Default**: Current locale from `useLocale()`
+
+Override the locale for formatting. Useful when you need to format in a different locale than the current one.
+
+```tsx
+const format = useFormat({ locale: 'es' })
+
+// Always formats in Spanish, regardless of current locale
+format.number(1234.56, { style: 'currency', currency: 'EUR' })
+// Result: '1.234,56 €'
+```
+
+## Use Cases
+
+### Currency Display
+
+```tsx
+function PriceTag({ amount, currency }) {
+  const format = useFormat()
+
+  return (
+    <span className='price'>
+      {format.number(amount, { style: 'currency', currency })}
+    </span>
+  )
+}
+```
+
+### Date Ranges
+
+```tsx
+function EventDate({ startDate, endDate }) {
+  const format = useFormat()
+
+  return (
+    <time>
+      {format.date(startDate, { dateStyle: 'medium' })}
+      {' - '}
+      {format.date(endDate, { dateStyle: 'medium' })}
+    </time>
+  )
+}
+```
+
+### Shopping Cart Summary
+
+```tsx
+function CartSummary({ items, total }) {
+  const format = useFormat()
+
+  return (
+    <div>
+      <p>
+        {format.list(items.map(item => item.name))}
+      </p>
+      <p>
+        Total: {format.number(total, { style: 'currency', currency: 'USD' })}
+      </p>
+    </div>
+  )
+}
+```
+
+### Relative Timestamps
+
+```tsx
+function PostTimestamp({ createdAt }) {
+  const format = useFormat()
+  const now = Date.now()
+  const diff = createdAt - now
+
+  // Calculate appropriate unit
+  const minutes = Math.floor(diff / 60000)
+  const hours = Math.floor(diff / 3600000)
+  const days = Math.floor(diff / 86400000)
+
+  let value: [number, Intl.RelativeTimeFormatUnit]
+  if (Math.abs(days) >= 1) {
+    value = [days, 'day']
+  } else if (Math.abs(hours) >= 1) {
+    value = [hours, 'hour']
+  } else {
+    value = [minutes, 'minute']
+  }
+
+  return <time>{format.relativeTime(value, { numeric: 'auto' })}</time>
+}
+```
+
+## Performance
+
+- Formatting functions are locale-aware and automatically update when locale changes
+- Uses native `Intl` API for optimal performance
+- Memoized internally to prevent unnecessary recreations
+
+## Requirements
+
+- Must be called inside a React component
+- Requires `setupTerai` to be called first
+- Requires browser support for `Intl` API (all modern browsers)
+
+## Related
+
+- [`useLocale`](/docs/react/references/use-locale) - Hook to get the current locale
+- [`setupTerai`](/docs/react/references/setup-terai) - Configure global format options
+- [MDN Intl API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) - Browser internationalization API
