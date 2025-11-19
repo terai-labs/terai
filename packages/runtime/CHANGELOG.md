@@ -1,5 +1,13 @@
 # @terai/runtime
 
+## 0.0.7
+
+### Patch Changes
+
+- 2704bac: Update to React 19
+- Updated dependencies [2704bac]
+  - @terai/logger@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
