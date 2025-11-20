@@ -1,5 +1,13 @@
 # rn-expo
 
+## 1.0.3
+
+### Patch Changes
+
+- 19d285e: v0.0.13
+- Updated dependencies [19d285e]
+  - @terai/react-native@0.0.13
+
 ## 1.0.2
 
 ### Patch Changes

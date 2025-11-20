@@ -1,5 +1,17 @@
 # @terai/dev
 
+## 0.0.13
+
+### Patch Changes
+
+- 19d285e: v0.0.13
+- Updated dependencies [19d285e]
+  - @terai/extractor@0.0.13
+  - @terai/runtime@0.0.13
+  - @terai/translator@0.0.13
+  - @terai/types@0.0.13
+  - @terai/utils@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
