@@ -1,5 +1,17 @@
 # @terai/dev
 
+## 0.0.12
+
+### Patch Changes
+
+- 77b5152: v0.0.11
+- Updated dependencies [77b5152]
+  - @terai/extractor@0.0.12
+  - @terai/runtime@0.0.12
+  - @terai/translator@0.0.12
+  - @terai/types@0.0.12
+  - @terai/utils@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
