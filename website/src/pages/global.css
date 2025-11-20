@@ -1,6 +1,6 @@
 html,
 article.nextra-body-typesetting-article {
-  font-size: 14px !important;
+	/* font-size: 15px !important; */
 }
 
 /* footer,
@@ -10,7 +10,7 @@ html[class~='dark'] body {
 } */
 
 .nextra-nav-container-blur {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 /* html[class~='dark'] #hero {
@@ -19,28 +19,28 @@ html[class~='dark'] body {
 } */
 
 .gradient-bg {
-  background: linear-gradient(#a788ec, #5e6ad2);
+	background: linear-gradient(#a788ec, #5e6ad2);
 }
 
 td,
 th {
-  border: none;
+	border: none;
 }
 
 tr {
-  background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 table * {
-  border-color: rgba(134, 152, 165, 0.1) !important;
+	border-color: rgba(134, 152, 165, 0.1) !important;
 }
 
 pre {
-  background-color: rgba(160, 160, 160, 0.12) !important;
+	background-color: rgba(160, 160, 160, 0.12) !important;
 }
 
 .nextra-code-block > div {
-  background-color: rgba(134, 152, 165, 0.1) !important;
+	background-color: rgba(134, 152, 165, 0.1) !important;
 }
 
 h1,
@@ -48,35 +48,35 @@ h2,
 h3,
 h4,
 h5 {
-  border-bottom: none !important;
+	border-bottom: none !important;
 }
 
 img {
-  border: none !important;
-  border-radius: 12px;
+	border: none !important;
+	border-radius: 12px;
 }
 
 article li a,
 article p a,
 article td a {
-  color: #5e6ad2 !important;
-  transition: color 0.2s ease;
+	color: #5e6ad2 !important;
+	transition: color 0.2s ease;
 }
 
-html[class~='dark'] .nextra-sidebar-container button {
-  color: white !important;
-  font-weight: 600;
+html[class~="dark"] .nextra-sidebar-container button {
+	color: white !important;
+	font-weight: 600;
 }
 
 .nextra-sidebar-container button {
-  color: black !important;
-  font-weight: 600;
+	color: black !important;
+	font-weight: 600;
 }
 
-html[class~='dark'] *:not(pre) code {
-  color: white !important;
+html[class~="dark"] *:not(pre) code {
+	color: white !important;
 }
 
 *:not(pre) code {
-  color: black !important;
+	color: black !important;
 }
