@@ -2,13 +2,13 @@
 	"name": "@terai/translator",
 	"description": "terai core translator",
 	"version": "0.0.12",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
-		"dev": "tsup --format=esm,cjs --no-dts --watch",
-		"build": "tsup"
+		"dev": "tsdown --format=esm --no-dts --watch",
+		"build": "tsdown"
 	},
 	"files": [
 		"dist"
@@ -19,14 +19,24 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"require": "./dist/index.js",
-			"import": "./dist/index.mjs"
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
 		},
 		"./translators": {
-			"types": "./dist/translators/index.d.ts",
-			"require": "./dist/translators/index.js",
-			"import": "./dist/translators/index.mjs"
+			"import": {
+				"types": "./dist/translators/index.d.mts",
+				"default": "./dist/translators/index.mjs"
+			},
+			"require": {
+				"types": "./dist/translators/index.d.cts",
+				"default": "./dist/translators/index.cjs"
+			}
 		}
 	},
 	"dependencies": {

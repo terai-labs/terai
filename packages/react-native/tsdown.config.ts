@@ -1,14 +1,12 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
 	clean: true,
 	dts: true,
-	entry: ['src'],
+	entry: ['src/index.ts'],
 	format: ['esm', 'cjs'],
 	shims: true,
 	sourcemap: true,
-	minify: false,
-	splitting: true,
-	treeshake: 'recommended',
+	minify: true,
 	external: ['react', 'react-native', 'react/jsx-runtime']
 })

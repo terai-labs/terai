@@ -2,9 +2,9 @@
 	"name": "@terai/logger",
 	"version": "0.0.12",
 	"description": "terai core logger",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"files": [
 		"dist"
@@ -13,8 +13,20 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
 	"scripts": {
-		"dev": "tsup --format=esm,cjs --no-dts --watch",
-		"build": "tsup"
+		"dev": "tsdown --format=esm --no-dts --watch",
+		"build": "tsdown"
 	}
 }

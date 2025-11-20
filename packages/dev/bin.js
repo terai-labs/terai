@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require('dotenv').config({ silent: true })
-require('./dist/cli.default.js')
+require('./dist/cli.default.cjs')
