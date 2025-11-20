@@ -1,6 +1,6 @@
 {
 	"name": "@terai/runtime",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"description": "terai node utilities",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",

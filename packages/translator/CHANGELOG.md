@@ -1,5 +1,11 @@
 # @terai/translator
 
+## 0.0.12
+
+### Patch Changes
+
+- 77b5152: v0.0.11
+
 ## 0.0.11
 
 ### Patch Changes
