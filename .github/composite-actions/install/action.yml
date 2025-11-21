@@ -6,8 +6,6 @@ runs:
   steps:
     - name: Setup PNPM
       uses: pnpm/action-setup@master
-      with:
-        version: 10
 
     - name: Setup Node.js
       uses: actions/setup-node@main
