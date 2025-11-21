@@ -36,7 +36,6 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org/
           cache: "pnpm"
-          cache-dependency-path: "./website/pnpm-lock.yaml"
 
       - name: Setup Git Configuration
         shell: bash
