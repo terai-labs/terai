@@ -1,0 +1,224 @@
+---
+title: Usage
+description: Learn how to integrate Terai into your React Native project
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps'
+
+
+## Installation
+
+<Steps>
+
+<Step>
+
+### Install `terai`
+
+Install `terai` and create your `terai.config.ts` file.
+
+```sh copy
+pnpm add -D @terai/dev
+pnpm add @terai/react-native @react-native-async-storage/async-storage
+pnpm terai init
+```
+
+- [`init`](/docs/references/cli#terai-init): script that creates a
+  `terai.config.ts`.
+
+</Step>
+
+<Step>
+
+### Install native dependencies
+
+For iOS, install the native dependencies:
+
+```sh copy
+cd ios && pod install
+```
+
+For Expo projects, rebuild your development client:
+
+```sh copy
+npx expo prebuild
+```
+
+
+</Step>
+
+<Step>
+
+### Configure your options
+
+#### `terai.config.ts`
+
+Add your custom options in `terai.config.ts`. In this example we will use ChatGPT for translating our messages.
+
+```tsx filename="terai.config.ts" copy
+import { defineConfig, createChatGptTranslator } from '@terai/dev'
+
+const translator = createChatGptTranslator({
+  apiKey: process.env.OPEN_API_KEY,
+})
+
+export default defineConfig({
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+  exclude: [],
+  projectLocale: 'en',
+  outDir: './locale-system',
+  outLocales: ['es', 'it'],
+  translator,
+})
+```
+
+- [`config`](/docs/references/config): Options used by the static processes
+  (`extract` and `translate`) run by `terai`.
+
+#### `setupTerai`
+
+Configure your runtime options by adding the following lines in your main entrypoint:
+
+```tsx filename="App.tsx" {5,7-14} copy
+import React, { Suspense } from 'react'
+import { View, Text } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { setupTerai } from '@terai/react-native'
+
+setupTerai({
+  defaultLocale: 'en',
+  loader: (locale: string, chunkId: string) =>
+    import(`../locale-system/${locale}/${chunkId}.json`).then(
+      (mod) => mod.default
+    ),
+})
+
+export default function App() {
+  return (
+    <Suspense fallback={<Text>Loading...</Text>}>
+      <NavigationContainer>
+        {/* Your app navigation */}
+      </NavigationContainer>
+    </Suspense>
+  )
+}
+```
+
+- [`setupTerai`](/docs/react-native/references/setup-terai): Client-side options used by
+  the `ts` function.
+
+</Step>
+
+</Steps>
+
+## Usage
+
+<Steps>
+
+<Step>
+
+### Use `terai`
+
+Now you can start using `terai` in your project. Here is the snippet of code that
+you can use in some `example.tsx` file.
+
+```tsx filename="example.tsx" copy
+import { View, Text } from 'react-native'
+import { useTs } from '@terai/react-native'
+
+export function Example() {
+  const { ts } = useTs()
+
+  return (
+    <View>
+      <Text>{ts`Hello, world!`}</Text>
+    </View>
+  )
+}
+```
+
+</Step>
+
+<Step>
+
+### Extract
+
+Once you're ready for your messages to be gathered, just run the `extract`
+script provided by the CLI.
+
+```sh
+pnpm terai extract
+```
+
+- [`extract`](/docs/references/cli#terai-extract): script to statically extract
+  messages from your project. Check more info about the
+  [extraction](/docs/concepts/extraction) process.
+
+</Step>
+
+<Step>
+
+### Translate
+
+Once you're ready for your messages to be gathered, just run the `translate`
+script provided by the CLI.
+
+```sh
+pnpm terai translate
+```
+
+- `translate`: script to translate your messages. Check more info about the
+  [translation](/docs/concepts/translation) process.
+
+</Step>
+
+</Steps>
+
+## API
+
+| Package               |                                                                     Version                                                                      |                                                                        Size                                                                        |                                                                    Downloads                                                                    |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------: |
+| `@terai/react-native` | [![Version](https://img.shields.io/npm/v/@terai/react-native.svg?logo=npm)](https://www.npmjs.com/package/@terai/react-native) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/react-native)](https://bundlephobia.com/result?p=@terai/react-native) | [![NPM](https://img.shields.io/npm/dm/@terai/react-native.svg?&logo=npm)](https://www.npmjs.com/package/@terai/react-native) |
+
+### Exports
+
+```tsx
+import {
+  useTs,
+  useFormat,
+  useLocale,
+  setLocale,
+  setupTerai,
+} from '@terai/react-native'
+```
+
+- [`setupTerai`](/docs/react-native/references/setup-terai): Client-side configuration
+  options
+- [`useFormat`](/docs/react-native/references/use-format): Hook to get the format function
+- [`useLocale`](/docs/react-native/references/use-locale): Hook to retrieve the current
+  locale
+- [`useTs`](/docs/react-native/references/use-ts): Hook to retrieve the `ts` function
+- [`setLocale`](/docs/react-native/references/set-locale): Function to set the current locale
+
+## Persistence
+
+Terai automatically persists translations and locale preferences using AsyncStorage. This ensures:
+
+- Instant app startup with cached translations
+- Locale preference is remembered across app restarts
+- No flash of untranslated content
+
+The data is stored with versioned keys to prevent conflicts when updating Terai versions.
+
+## Differences from React Web
+
+The React Native package is nearly identical to the React web package, with the following key differences:
+
+1. **Persistence**: Uses AsyncStorage instead of localStorage
+2. **Setup**: `setupTerai()` returns a Promise (though you don't need to await it)
+3. **Platform**: Built for React Native environment
+
+All hooks, APIs, and patterns are identical to maintain consistency across platforms.
+
+## Example
+
+Check out the [examples repo](https://github.com/terai/examples) for React Native examples.

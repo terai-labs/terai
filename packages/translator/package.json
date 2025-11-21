@@ -39,9 +39,9 @@
 			}
 		}
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"ai": "^4",
-		"zod": "^3"
+		"zod": "^4"
 	},
 	"devDependencies": {
 		"@terai/runtime": "workspace:*",

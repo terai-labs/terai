@@ -1,0 +1,164 @@
+---
+title: setLocale
+description: Imperative function to change the current locale in your application.
+---
+
+
+```tsx
+import { setLocale } from '@terai/react'
+
+function LanguageSwitcher() {
+  return (
+    <button onClick={() => setLocale('es')}>
+      Switch to Spanish
+    </button>
+  )
+}
+```
+
+## Signature
+
+```ts
+function setLocale(locale: Locale): void
+```
+
+### Parameters
+
+#### locale
+
+- **Type**: `Locale` (string)
+- **Required**: Yes
+
+The locale to switch to (e.g., `'en'`, `'en-US'`, `'es'`, `'fr'`, etc.).
+
+## Behavior
+
+When called, `setLocale`:
+1. Updates the internal locale state
+2. Triggers re-renders in components using [`useLocale`](/docs/react/references/use-locale)
+3. Loads the dictionary for the new locale (if not already cached)
+4. Updates all active translations via [`useTs`](/docs/react/references/use-ts)
+5. Persists the locale to localStorage (if persistence is enabled)
+
+### Performance
+
+- **Instant switching**: If dictionaries are cached, locale changes are instant with no loading delay
+- **Automatic loading**: If dictionary not cached, it loads in background (suspends if `suspense: true`)
+- **Persistence**: New locale is automatically saved to localStorage for next session
+
+## Examples
+
+### Basic Language Switcher
+
+```tsx
+import { setLocale, useLocale } from '@terai/react'
+
+function LanguageSwitcher() {
+  const currentLocale = useLocale()
+
+  return (
+    <div>
+      <button
+        onClick={() => setLocale('en')}
+        disabled={currentLocale === 'en'}
+      >
+        English
+      </button>
+      <button
+        onClick={() => setLocale('es')}
+        disabled={currentLocale === 'es'}
+      >
+        Español
+      </button>
+      <button
+        onClick={() => setLocale('fr')}
+        disabled={currentLocale === 'fr'}
+      >
+        Français
+      </button>
+    </div>
+  )
+}
+```
+
+### Dropdown Language Selector
+
+```tsx
+import { setLocale, useLocale } from '@terai/react'
+
+function LanguageDropdown() {
+  const locale = useLocale()
+
+  return (
+    <select
+      value={locale}
+      onChange={(e) => setLocale(e.target.value)}
+    >
+      <option value='en'>English</option>
+      <option value='es'>Español</option>
+      <option value='fr'>Français</option>
+      <option value='de'>Deutsch</option>
+    </select>
+  )
+}
+```
+
+### With URL Sync
+
+```tsx
+import { setLocale } from '@terai/react'
+import { useNavigate, useParams } from 'react-router-dom'
+
+function useLocaleSync() {
+  const navigate = useNavigate()
+  const { locale } = useParams()
+
+  const changeLocale = (newLocale: string) => {
+    setLocale(newLocale)
+    navigate(`/${newLocale}`)
+  }
+
+  return changeLocale
+}
+```
+
+### Programmatic Locale Detection
+
+```tsx
+import { setLocale } from '@terai/react'
+import { useEffect } from 'react'
+
+function LocaleInitializer() {
+  useEffect(() => {
+    // Detect browser language
+    const browserLocale = navigator.language.split('-')[0]
+    const supportedLocales = ['en', 'es', 'fr', 'de']
+
+    if (supportedLocales.includes(browserLocale)) {
+      setLocale(browserLocale)
+    }
+  }, [])
+
+  return null
+}
+```
+
+## When to Use
+
+Use `setLocale` when you need to:
+- Build language switchers or dropdowns
+- Respond to user interactions that change the language
+- Sync locale with URL parameters
+- Programmatically detect and set the user's preferred language
+- Change locale based on user settings or preferences
+
+## Requirements
+
+- Requires `setupTerai` to be called first
+- The locale must be configured in your `terai.config.ts` and have translations available
+
+## Related
+
+- [`useLocale`](/docs/react/references/use-locale) - Hook to get the current locale
+- [`setupTerai`](/docs/react/references/setup-terai) - Configure the default locale
+- [`useTs`](/docs/react/references/use-ts) - Hook for translations that automatically updates on locale change

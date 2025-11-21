@@ -7,13 +7,14 @@ import { runtime } from './runtime'
 // Types
 import type { Config } from '@terai/types'
 
-type SetupOptions = Pick<Config, 'projectLocale' | 'outDir'> & {
+type SetupOptions = Pick<Config, 'projectLocale' | 'outDir' | 'outLocales'> & {
 	cwd: string
 }
 
 export async function setupConfig({
 	projectLocale,
 	outDir,
+	outLocales,
 	cwd
 }: SetupOptions) {
 	const isTs = findTsConfig()
@@ -29,22 +30,11 @@ export async function setupConfig({
       })
 
       export default defineConfig({
-        // List of files glob to to look for your locale declarations
         include: ["./src/**/*.{js,jsx,ts,tsx}"],
-
-        // Files to exclude
         exclude: [],
-        
-        // The base locale used in your project
         projectLocale: "${projectLocale}",
-        
-        // The aditional locales you want to support
-        outLocales: [],
-        
-        // The output directory for your locale system
+        outLocales: ${outLocales},
         outDir: "${outDir}",
-
-        // The translator for your messages
         translator,
       })
     `

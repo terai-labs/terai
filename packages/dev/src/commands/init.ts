@@ -1,6 +1,6 @@
 // Dependencies
-import { findConfig, setupConfig, setupTemplate } from '@terai/runtime'
-import { input, select } from '@inquirer/prompts'
+import { findConfig, setupConfig } from '@terai/runtime'
+import { input } from '@inquirer/prompts'
 import { logger } from '@terai/logger'
 import { outdent } from 'outdent'
 import getPackageManager from 'preferred-pm'
@@ -32,47 +32,53 @@ export async function initCmd({ cwd, force }: InitOptions) {
 	if (configFile && !force) {
 		return logger.log(
 			outdent`
-        It looks like you already have terai created.
+        It looks like you already have a config file created.
         You can now run ${logger.colors.cyan(`'${cmd} terai extract --watch'`)}
       `
 		)
 	}
 
 	const projectLocale = (await input({
-		message: 'What locale do you use for development?',
-		default: 'en'
+		message: 'What locale do you use in your project messages?',
+		default: 'en-US',
+		validate: (value: string) => {
+			if (value.trim().length === 0) {
+				return 'Please provide a valid locale'
+			}
+			return true
+		}
+	})) as Locale
+
+	const outLocales = (await input({
+		message: 'What locales do you want to support? (comma separated)',
+		default: 'fr-FR,es-ES,de-DE',
+		validate: (value: string) => {
+			if (value.trim().length === 0) {
+				return 'Please provide at least one locale'
+			}
+			return true
+		},
+		transformer: (value: string) => {
+			return value
+				.split(',')
+				.map((locale) => locale.trim())
+				.join(',')
+		}
 	})) as Locale
 
 	const outDir = await input({
 		message: 'Where do you want to place your generated files?',
-		default: './locale-system'
+		default: './locale'
 	})
-
-	const framework = (await select({
-		message: 'Would you like to use any of these templates? (recommended)',
-		choices: [
-			{
-				name: 'No',
-				value: null
-			},
-			{
-				name: 'Next',
-				value: 'next'
-			},
-			{
-				name: 'Vite',
-				value: 'vite'
-			}
-		]
-	})) as 'next' | 'vite'
 
 	const done = logger.time.success()
 
-	await setupConfig({ cwd, projectLocale, outDir })
-
-	if (framework) {
-		await setupTemplate({ cwd, outDir, framework })
-	}
+	await setupConfig({
+		cwd,
+		projectLocale,
+		outDir,
+		outLocales: outLocales.split(',')
+	})
 
 	done('Config file created')
 
