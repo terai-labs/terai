@@ -1,2 +1,1 @@
-export * from './chat-gpt'
-export * from './google-cloud'
+export * from './ai'

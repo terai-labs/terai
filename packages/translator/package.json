@@ -40,8 +40,8 @@
 		}
 	},
 	"dependencies": {
-		"@google-cloud/translate": "^8",
-		"openai": "^4"
+		"ai": "^4",
+		"zod": "^3"
 	},
 	"devDependencies": {
 		"@terai/runtime": "workspace:*",
