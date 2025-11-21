@@ -1,0 +1,152 @@
+---
+title: Usage
+description: Learn how to integrate Terai into your Node project
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps'
+
+## Installation
+
+<Steps>
+
+<Step>
+
+### Install `terai`
+
+Install `terai` and create your `terai.config.ts` file.
+
+```sh copy
+pnpm add -D @terai/dev
+pnpm add @terai/node
+pnpm terai init
+```
+
+- [`init`](/docs/references/cli#terai-init): script that creates a
+  `terai.config.ts`.
+
+</Step>
+
+<Step>
+
+### Configure your options
+
+#### `terai.config.ts`
+
+Add your custom options in `terai.config.ts`. In this example we will use ChatGPT for translating out messages.
+
+```tsx filename="terai.config.ts" copy
+import { defineConfig, createChatGptTranslator } from '@terai/dev'
+
+const translator = createChatGptTranslator({
+  apiKey: process.env.OPEN_API_KEY,
+})
+
+export default defineConfig({
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+  exclude: [],
+  projectLocale: 'en',
+  outDir: './locale-system',
+  outLocales: ['es', 'it'],
+  translator,
+})
+```
+
+- [`config`](/docs/references/config): Options used by the static processes
+  (`extract` and `translate`) run by `terai`.
+
+#### `setup`
+
+Configure your runtime options by using the `setup` function.
+
+```tsx filename="i18n.ts" copy
+import { setup } from '@terai/node'
+
+export const { getTs, getFormat } = setup({
+  loader: (locale: string, chunkId: string) =>
+    import(`./locale-system/${locale}/${chunkId}.json`).then(
+      (mod) => mod.default
+    ),
+})
+```
+
+- [`setup`](/docs/node/references/setup-terai): Configuration function that returns `getTs` and `getFormat`.
+
+</Step>
+
+</Steps>
+
+## Usage
+
+<Steps>
+
+<Step>
+
+### Use `terai`
+
+Now you can start using `terai` in your project. You can use `getTs` to get a translation function for a specific locale.
+
+```tsx filename="example.ts" copy
+import { getTs } from './i18n'
+
+export async function example(locale: string) {
+  const ts = await getTs({ locale })
+  console.log(ts`Hello, world!`)
+}
+```
+
+- [`getTs`](/docs/node/references/get-ts): Function to get the translation function.
+
+</Step>
+
+<Step>
+
+### Extract
+
+Once you're ready for your messages to be gathered, just run the `extract`
+script provided by the CLI.
+
+```sh
+pnpm terai extract
+```
+
+- [`extract`](/docs/references/cli#terai-extract): script to statically extract
+  messages from your project. Check more info about the
+  [extraction](/docs/concepts/extraction) process.
+
+</Step>
+
+<Step>
+
+### Translate
+
+Once you're ready for your messages to be gathered, just run the `translate`
+script provided by the CLI.
+
+```sh
+pnpm terai translate
+```
+
+- `translate`: script to translate your messages. Check more info about the
+  [translation](/docs/concepts/translation) process.
+
+</Step>
+
+</Steps>
+
+## API
+
+| Package        |                                                     Version                                                      |                                                        Size                                                        |                                                   Downloads                                                    |
+| :------------- | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
+| `@terai/node` | [![Version](https://img.shields.io/npm/v/@terai/node.svg?logo=npm)](https://www.npmjs.com/package/@terai/node) | [![Size](https://img.shields.io/bundlephobia/minzip/@terai/node)](https://bundlephobia.com/result?p=@terai/node) | [![NPM](https://img.shields.io/npm/dm/@terai/node.svg?&logo=npm)](https://www.npmjs.com/package/@terai/node) |
+
+### Exports
+
+```tsx
+import {
+  setup
+} from '@terai/node'
+```
+
+- [`setup`](/docs/node/references/setup-terai): Configuration function that returns `getTs` and `getFormat`.
+- [`getTs`](/docs/node/references/get-ts): Function to get the translation function.
+- [`getFormat`](/docs/node/references/get-format): Function to get the format function.

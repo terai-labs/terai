@@ -1,0 +1,74 @@
+---
+title: Variables
+description: Learn how to use variables in Terai for dynamic message content.
+---
+
+Variables represent a piece of the message that is dynamic, and therefore, should be replaced with a value at runtime. In Terai, you can use the `${variable}` syntax to define variables in your translations.
+Handling variables is often one of the most challenging aspects when working with translation libraries. Terai takes a specific stance on this by not natively supporting variable-related functionalities such as gender and pluralization.
+
+<Callout emoji={'⚠️'} type='warning'>
+  We believe that most projects can be localized without the complexity of
+  dynamic variable support. If your project heavily depends on native support
+  for these use cases, there are several excellent libraries available that
+  excel in this area.
+</Callout>
+
+A variable is not translated, though you could use an already translated message.
+
+## Basic Usage
+
+### String Interpolation
+
+The most common use case for variables is string interpolation. This is the process of replacing placeholders in a string with actual values. Here's an example:
+
+```tsx copy
+import { useTs } from '@terai/react'
+
+export function Example() {
+  const { ts } = useTs()
+  const name = 'world'
+
+  return (
+    <div>
+      <p>{ts`Hello, ${name}!`}</p>
+    </div>
+  )
+}
+```
+
+### Composition
+
+To compose multiple translations together, you can use variables to nest them within each other. Each ts call represents an atomic message that should be translated independently.
+
+Here's an example:
+
+```tsx copy
+import { useTs } from '@terai/react'
+
+type MailBoxProps = {
+  name: string
+  messages: string[]
+}
+
+export function MailBox({ name, messages }) {
+  const { ts } = useTs()
+  const inboxMsg = getInboxMsg()
+
+  function getInboxMsg() {
+    if (!messages.length) return ts`your inbox is empty`
+    if (messages.length === 1) return ts`you got one message in your inbox`
+    return ts`you got ${messages} messages in your inbox`
+  }
+
+  // Expected output:
+  // "Hello John, your inbox is empty" || "Hello John, you got 10 messages in your inbox"
+
+  return (
+    <div>
+      <p>{ts`Hello ${name}, ${inboxMsg}`}</p>
+    </div>
+  )
+}
+```
+
+Using composition in your messages opens the door for developers to create complex messages that can suit most use cases.
