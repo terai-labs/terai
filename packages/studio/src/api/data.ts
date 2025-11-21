@@ -10,10 +10,24 @@ export type StudioMessage = {
 	translations: Record<string, string>
 }
 
+export type TranslationStats = {
+	total: number
+	translated: number
+	missing: number
+	percentage: number
+}
+
 export type StudioData = {
 	projectLocale: string
 	outLocales: string[]
 	messages: StudioMessage[]
+	stats: {
+		totalMessages: number
+		totalTranslations: number
+		missingTranslations: number
+		coveragePercentage: number
+		byLocale: Record<string, TranslationStats>
+	}
 }
 
 export type GetStudioDataOptions = {
@@ -38,16 +52,27 @@ export async function getStudioData(
 		)
 	}
 
-	// Load manifest
-	const manifest = JSON.parse(
-		runtime.fs.readFile(manifestPath)
-	) as BuildManifest
+	// Load and validate manifest
+	let manifest: BuildManifest
+	try {
+		const manifestContent = runtime.fs.readFile(manifestPath)
+		manifest = JSON.parse(manifestContent) as BuildManifest
 
-	// Get all locales (projectLocale + outLocales)
-	const allLocales = [
-		config.projectLocale,
-		...config.outLocales.filter((l) => l !== config.projectLocale)
-	]
+		if (!manifest.messages || typeof manifest.messages !== 'object') {
+			throw new Error('Invalid manifest format: missing messages object')
+		}
+	} catch (error) {
+		if (error instanceof SyntaxError) {
+			throw new Error(`Invalid JSON in locale-manifest.json: ${error.message}`)
+		}
+		throw error
+	}
+
+	// Get all locales (projectLocale + outLocales, deduplicated)
+	const targetLocales = config.outLocales.filter(
+		(l) => l !== config.projectLocale
+	)
+	const allLocales = [config.projectLocale, ...targetLocales]
 
 	// Load translations for all locales
 	const localeTranslations = loadAllLocaleTranslations(
@@ -72,10 +97,64 @@ export async function getStudioData(
 		})
 	)
 
+	// Calculate stats
+	const stats = calculateStats(messages, targetLocales)
+
 	return {
 		projectLocale: config.projectLocale,
 		outLocales: config.outLocales,
-		messages
+		messages,
+		stats
+	}
+}
+
+function calculateStats(
+	messages: StudioMessage[],
+	targetLocales: string[]
+): StudioData['stats'] {
+	const totalMessages = messages.length
+	const byLocale: Record<string, TranslationStats> = {}
+
+	let totalTranslations = 0
+	let missingTranslations = 0
+
+	for (const locale of targetLocales) {
+		let translated = 0
+		let missing = 0
+
+		for (const msg of messages) {
+			if (msg.translations[locale]) {
+				translated++
+				totalTranslations++
+			} else {
+				missing++
+				missingTranslations++
+			}
+		}
+
+		const percentage =
+			totalMessages > 0 ? Math.round((translated / totalMessages) * 100) : 0
+
+		byLocale[locale] = {
+			total: totalMessages,
+			translated,
+			missing,
+			percentage
+		}
+	}
+
+	const expectedTotal = totalMessages * targetLocales.length
+	const coveragePercentage =
+		expectedTotal > 0
+			? Math.round((totalTranslations / expectedTotal) * 100)
+			: 100
+
+	return {
+		totalMessages,
+		totalTranslations,
+		missingTranslations,
+		coveragePercentage,
+		byLocale
 	}
 }
 
@@ -105,41 +184,44 @@ function loadAllLocaleTranslations(
 		}
 
 		// Load default chunk (named after locale)
-		const defaultChunkPath = runtime.path.resolve(
-			localeDirPath,
-			`${locale}.json`
+		loadChunkFile(
+			runtime.path.resolve(localeDirPath, `${locale}.json`),
+			translations
 		)
-		if (runtime.fs.exists(defaultChunkPath)) {
-			try {
-				const chunkData = JSON.parse(
-					runtime.fs.readFile(defaultChunkPath)
-				) as Dictionary
-				Object.assign(translations, chunkData)
-			} catch {
-				// Skip invalid JSON
-			}
-		}
 
 		// Load all named chunks
 		for (const chunkId of allChunkIds) {
 			if (chunkId === 'default') continue
-			const chunkPath = runtime.path.resolve(localeDirPath, `${chunkId}.json`)
-			if (runtime.fs.exists(chunkPath)) {
-				try {
-					const chunkData = JSON.parse(
-						runtime.fs.readFile(chunkPath)
-					) as Dictionary
-					Object.assign(translations, chunkData)
-				} catch {
-					// Skip invalid JSON
-				}
-			}
+			loadChunkFile(
+				runtime.path.resolve(localeDirPath, `${chunkId}.json`),
+				translations
+			)
 		}
 
 		result[locale] = translations
 	}
 
 	return result
+}
+
+function loadChunkFile(chunkPath: string, target: Dictionary): void {
+	if (!runtime.fs.exists(chunkPath)) return
+
+	try {
+		const content = runtime.fs.readFile(chunkPath)
+		const chunkData = JSON.parse(content) as Dictionary
+
+		// Validate that it's an object with string values
+		if (typeof chunkData === 'object' && chunkData !== null) {
+			for (const [key, value] of Object.entries(chunkData)) {
+				if (typeof value === 'string') {
+					target[key] = value
+				}
+			}
+		}
+	} catch {
+		// Skip invalid JSON files silently
+	}
 }
 
 function getTranslationsForMessage(
@@ -151,11 +233,7 @@ function getTranslationsForMessage(
 
 	for (const locale of locales) {
 		const translations = localeTranslations[locale]
-		if (translations?.[messageId]) {
-			result[locale] = translations[messageId]
-		} else {
-			result[locale] = ''
-		}
+		result[locale] = translations?.[messageId] || ''
 	}
 
 	return result
