@@ -1,21 +1,20 @@
 {
-	"name": "@terai/dev",
+	"name": "@terai/studio",
 	"version": "0.0.13",
-	"description": "The user-facing package for Terai",
+	"description": "Terai Studio - Visual translation management interface",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"private": false,
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
-	"bin": {
-		"terai": "bin.js"
-	},
 	"scripts": {
 		"dev": "tsdown --format=esm --no-dts --watch",
-		"build": "tsdown"
+		"build:server": "tsdown",
+		"build:client": "vite build",
+		"clean": "rimraf dist",
+		"build": "pnpm clean && pnpm build:server && pnpm build:client"
 	},
 	"files": [
-		"bin.js",
 		"dist"
 	],
 	"sideEffects": false,
@@ -35,24 +34,18 @@
 		}
 	},
 	"dependencies": {
-		"@inquirer/prompts": "^3",
-		"@terai/extractor": "workspace:*",
 		"@terai/runtime": "workspace:*",
-		"@terai/studio": "workspace:*",
-		"@terai/translator": "workspace:*",
-		"@terai/utils": "workspace:*",
 		"@terai/types": "workspace:*",
-		"cac": "^6",
-		"dotenv": "^1",
-		"inquirer": "^9",
-		"kleur": "^4",
-		"perfect-debounce": "^1",
-		"preferred-pm": "^3"
+		"@terai/logger": "workspace:*",
+		"open": "^10"
 	},
 	"devDependencies": {
-		"@terai/generator": "workspace:*",
-		"@terai/logger": "workspace:*",
-		"@types/update-notifier": "^6",
-		"update-notifier": "^6"
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"@vitejs/plugin-react": "^4",
+		"react": "^19",
+		"react-dom": "^19",
+		"react-router": "^7",
+		"vite": "^6"
 	}
 }
