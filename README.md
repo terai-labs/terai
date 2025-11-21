@@ -5,9 +5,9 @@
 <div align="center">
 
 [![Build](https://img.shields.io/github/actions/workflow/status/terai-labs/terai/release.yml?branch=master)](https://github.com/terai-labs/terai/actions/workflows/release.yml)
-[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/terai-labs/terai)](https://coveralls.io/github/terai/terai)
+[![Tests Coverage](https://img.shields.io/coverallsCoverage/github/terai-labs/terai)](https://coveralls.io/github/terai-labs/terai)
 [![Language](https://img.shields.io/badge/language-TypeScript-blue.svg)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/github/license/terai/terai)](https://www.npmjs.com/package/@terai-labs/terai)
+[![License](https://img.shields.io/github/license/terai-labs/terai)](https://www.npmjs.com/package/@terai-labs/terai)
 
 </div>
 
@@ -83,11 +83,11 @@ More documentation available at [https://terai-labs.github.io/terai](https://ter
 
 ## Getting Started
 
-Visit [https://terai-labs.github.io/terai/docs/overview/getting-started](https://terai-labs.github.io/terai/docs/overview/getting-started) to get started with **Terai**.
+Visit [getting started](https://terai-labs.github.io/terai/docs) to get started with **Terai**.
 
 ## Documentation
 
-Visit <a aria-label="terai learn" href="https://terai-labs.github.io/terai">https://terai-labs.github.io/terai</a> to view the full documentation.
+Visit our [website](https://terai-labs.github.io/terai/docs) to view the full documentation.
 
 ## Community
 
