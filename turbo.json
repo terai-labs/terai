@@ -3,15 +3,17 @@
 	"tasks": {
 		"dev": {
 			"dependsOn": ["^build"],
+			"outputLogs": "new-only",
 			"cache": false
 		},
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**"],
+			"outputLogs": "new-only"
 		},
 		"test": {
 			"dependsOn": ["^build"],
-			"inputs": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts", "test/**/*.tsx"]
+			"outputLogs": "new-only"
 		},
 		"clean": {
 			"cache": false
