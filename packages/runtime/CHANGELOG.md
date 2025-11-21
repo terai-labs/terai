@@ -1,5 +1,13 @@
 # @terai/runtime
 
+## 0.0.13
+
+### Patch Changes
+
+- 19d285e: v0.0.13
+- Updated dependencies [19d285e]
+  - @terai/logger@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
