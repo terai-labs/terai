@@ -1,0 +1,119 @@
+---
+title: AWS Translate
+description: Neural Machine Translation using Amazon Translate for AWS ecosystem integration.
+---
+
+AWS Translate provides neural machine translation with seamless integration into the AWS ecosystem.
+
+## Installation
+
+```bash
+pnpm add @aws-sdk/client-translate
+```
+
+## Authentication
+
+Configure AWS credentials using one of these methods:
+
+### Option 1: Environment Variables
+
+```bash
+export AWS_ACCESS_KEY_ID="your-access-key-id"
+export AWS_SECRET_ACCESS_KEY="your-secret-access-key"
+export AWS_REGION="us-east-1"
+```
+
+### Option 2: AWS CLI Profile
+
+```bash
+aws configure
+```
+
+### Option 3: Pass credentials directly
+
+```ts
+const translator = createAwsTranslator({
+  region: 'us-east-1',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  }
+})
+```
+
+## Usage
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAwsTranslator } from '@terai/dev'
+
+const translator = createAwsTranslator({
+  region: 'us-east-1'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `region` | `string` | Required | AWS region |
+| `credentials` | `object` | Auto-detected | AWS credentials |
+| `sourceLanguageCode` | `string` | `'auto'` | Source language code |
+
+Plus all options from [@aws-sdk/client-translate](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/translate/).
+
+## Features
+
+- **Neural Machine Translation**: High-quality NMT powered by deep learning
+- **75+ Languages**: Support for major world languages
+- **Auto-detection**: Automatic source language detection
+- **Custom Terminology**: Support for domain-specific translations
+- **Active Custom Translation**: Train custom models with your data
+- **AWS Integration**: Seamless integration with other AWS services
+
+## Language Codes
+
+AWS Translate uses standard language codes:
+
+| Language | Code |
+|----------|------|
+| English | `en` |
+| Spanish | `es` |
+| French | `fr` |
+| German | `de` |
+| Japanese | `ja` |
+| Chinese (Simplified) | `zh` |
+| Korean | `ko` |
+| Portuguese | `pt` |
+
+See [AWS documentation](https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html) for the complete list.
+
+## Example with IAM Role
+
+If running on AWS infrastructure (EC2, Lambda, ECS), you can use IAM roles:
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAwsTranslator } from '@terai/dev'
+
+// Credentials are automatically loaded from the IAM role
+const translator = createAwsTranslator({
+  region: process.env.AWS_REGION || 'us-east-1'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'ja-JP'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Pricing
+
+AWS Translate charges per character translated. See [AWS Translate Pricing](https://aws.amazon.com/translate/pricing/) for current rates.

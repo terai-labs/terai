@@ -1,5 +1,5 @@
 // Dependencies
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 // Constants
 import { LOCALE_COOKIE } from './constants'
@@ -71,7 +71,7 @@ function getFallbackLocale({
 	const header = request.headers.get('Accept-Language')
 	const headerLocale = header?.split(',')?.[0]?.split('-')?.[0]
 
-	if (headerLocale && locales.includes(headerLocale))
+	if (headerLocale && locales.includes(headerLocale as Locale))
 		return headerLocale as Locale
 
 	return defaultLocale

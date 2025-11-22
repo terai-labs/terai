@@ -1,0 +1,78 @@
+---
+title: Usage
+description: Overview of available translation providers for Terai.
+---
+
+Terai supports multiple translation providers, giving you the flexibility to choose the best solution for your needs. Whether you prefer AI-powered translations, traditional machine translation services, or a custom solution, Terai has you covered.
+
+## Available Providers
+
+| Provider | Package | Best For |
+|----------|---------|----------|
+| [AI Translator](/docs/translation-providers/ai) | `ai` + SDK provider | Flexible, high-quality AI translations |
+| [Google Cloud](/docs/translation-providers/google-cloud) | `@google-cloud/translate` | Enterprise-grade NMT |
+| [AWS Translate](/docs/translation-providers/aws) | `@aws-sdk/client-translate` | AWS ecosystem integration |
+| [Azure Translator](/docs/translation-providers/azure) | Native fetch | Microsoft ecosystem integration |
+| [DeepL](/docs/translation-providers/deepl) | `deepl-node` | Premium translation quality |
+
+## Choosing a Provider
+
+### For Maximum Flexibility: AI Translator
+
+The **AI Translator** uses the Vercel AI SDK, supporting any LLM provider (OpenAI, Anthropic, Groq, Google, etc.). This gives you:
+- Choice of models (GPT-4o, Claude, Llama, Gemini)
+- Custom system prompts for domain-specific translations
+- Structured output with variable preservation
+
+### For Enterprise Scale: Google Cloud or AWS
+
+Both **Google Cloud Translation** and **AWS Translate** offer:
+- High throughput and reliability
+- Pay-per-character pricing
+- Integration with existing cloud infrastructure
+
+### For Translation Quality: DeepL
+
+**DeepL** is renowned for producing the most natural-sounding translations, particularly for European languages. It offers:
+- Superior translation quality
+- Formality options
+- Document translation capabilities
+
+### For Microsoft Ecosystem: Azure Translator
+
+**Azure Translator** integrates seamlessly with:
+- Azure services
+- Microsoft 365
+- Cognitive Services suite
+
+## Quick Start
+
+All translation providers follow the same pattern:
+
+```ts filename="terai.config.ts"
+import { defineConfig } from '@terai/dev'
+// Import your preferred translator factory
+import { createSomeTranslator } from '@terai/dev'
+
+const translator = createSomeTranslator({
+  // Provider-specific options
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+Then run:
+
+```bash
+pnpm terai extract   # Extract messages from source code
+pnpm terai translate # Translate to target locales
+```
+
+## Custom Translators
+
+If none of the built-in providers meet your needs, you can create a [custom translator](/docs/guides/custom-translator) to integrate with any translation service or API.
