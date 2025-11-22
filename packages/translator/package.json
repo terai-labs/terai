@@ -39,13 +39,36 @@
 			}
 		}
 	},
-	"dependencies": {
+	"peerDependencies": {
+		"@aws-sdk/client-translate": "^3",
 		"@google-cloud/translate": "^8",
-		"openai": "^4"
+		"ai": "^5",
+		"deepl-node": "^1",
+		"zod": "^4"
+	},
+	"peerDependenciesMeta": {
+		"@aws-sdk/client-translate": {
+			"optional": true
+		},
+		"@google-cloud/translate": {
+			"optional": true
+		},
+		"ai": {
+			"optional": true
+		},
+		"deepl-node": {
+			"optional": true
+		},
+		"zod": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
+		"@aws-sdk/client-translate": "^3.936.0",
+		"@google-cloud/translate": "^9.3.0",
 		"@terai/runtime": "workspace:*",
 		"@terai/types": "workspace:*",
-		"@terai/utils": "workspace:*"
+		"@terai/utils": "workspace:*",
+		"deepl-node": "^1.22.0"
 	}
 }

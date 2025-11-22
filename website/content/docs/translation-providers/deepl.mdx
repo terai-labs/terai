@@ -1,0 +1,141 @@
+---
+title: DeepL
+description: Premium translation quality using DeepL's neural machine translation.
+---
+
+DeepL is renowned for producing the most natural-sounding translations, particularly for European languages.
+
+## Installation
+
+```bash
+pnpm add deepl-node
+```
+
+## Authentication
+
+Sign up for a DeepL API account at [deepl.com/pro-api](https://www.deepl.com/pro-api) to get your API key.
+
+## Usage
+
+```ts filename="terai.config.ts"
+import { defineConfig, createDeepLTranslator } from '@terai/dev'
+
+const translator = createDeepLTranslator({
+  authKey: process.env.DEEPL_API_KEY
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `authKey` | `string` | Required | DeepL API key |
+| `formality` | `'default' \| 'more' \| 'less' \| 'prefer_more' \| 'prefer_less'` | `'default'` | Formality level |
+| `preserveFormatting` | `boolean` | `true` | Preserve text formatting |
+| `tagHandling` | `'xml' \| 'html'` | `'xml'` | How to handle markup tags |
+| `options` | `TranslatorOptions` | - | Additional DeepL client options |
+
+## Formality Options
+
+DeepL supports formality control for supported languages:
+
+```ts filename="terai.config.ts"
+import { defineConfig, createDeepLTranslator } from '@terai/dev'
+
+// Formal translations (e.g., "Sie" in German, "usted" in Spanish)
+const translator = createDeepLTranslator({
+  authKey: process.env.DEEPL_API_KEY,
+  formality: 'more'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['de-DE', 'es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+### Formality Values
+
+| Value | Description |
+|-------|-------------|
+| `'default'` | Default formality |
+| `'more'` | More formal language |
+| `'less'` | Less formal language |
+| `'prefer_more'` | More formal if available, otherwise default |
+| `'prefer_less'` | Less formal if available, otherwise default |
+
+## Features
+
+- **Superior Quality**: Best-in-class translation quality, especially for European languages
+- **Formality Control**: Choose between formal and informal tone
+- **Formatting Preservation**: Maintains text formatting and structure
+- **XML/HTML Tag Handling**: Properly handles markup in translations
+- **Glossary Support**: Use custom glossaries for consistent terminology
+
+## Supported Languages
+
+DeepL supports 30+ languages including:
+
+| Language | Code |
+|----------|------|
+| English | `en` |
+| German | `de` |
+| French | `fr` |
+| Spanish | `es` |
+| Italian | `it` |
+| Dutch | `nl` |
+| Polish | `pl` |
+| Portuguese | `pt` |
+| Russian | `ru` |
+| Japanese | `ja` |
+| Chinese | `zh` |
+
+See [DeepL documentation](https://www.deepl.com/docs-api/translate-text) for the complete list.
+
+## Free vs Pro API
+
+DeepL offers two API tiers:
+
+| Feature | Free | Pro |
+|---------|------|-----|
+| Characters/month | 500,000 | Unlimited |
+| Document translation | No | Yes |
+| API endpoint | `api-free.deepl.com` | `api.deepl.com` |
+
+The translator automatically detects which endpoint to use based on your API key.
+
+## Example with All Options
+
+```ts filename="terai.config.ts"
+import { defineConfig, createDeepLTranslator } from '@terai/dev'
+
+const translator = createDeepLTranslator({
+  authKey: process.env.DEEPL_API_KEY,
+  formality: 'prefer_more',
+  preserveFormatting: true,
+  tagHandling: 'xml'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['de-DE', 'fr-FR', 'es-ES', 'it-IT', 'nl-NL'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Best Practices
+
+1. **Use for European languages**: DeepL excels at European language translation
+2. **Set appropriate formality**: Match formality to your application's tone
+3. **Preserve formatting**: Keep `preserveFormatting: true` for UI strings
+4. **Consider the free tier**: 500K characters/month is often sufficient for development

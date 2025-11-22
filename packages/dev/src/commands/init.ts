@@ -77,7 +77,7 @@ export async function initCmd({ cwd, force }: InitOptions) {
 		cwd,
 		projectLocale,
 		outDir,
-		outLocales: outLocales.split(',')
+		outLocales: outLocales.split(',') as Locale[]
 	})
 
 	done('Config file created')

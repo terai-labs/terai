@@ -1,8 +1,9 @@
 import type {
-	Dictionary,
 	BuildManifest,
-	Locale,
-	Dictionaries
+	Dictionaries,
+	Dictionary,
+	DictionaryId,
+	Locale
 } from '@terai/types'
 
 export function groupDictionaryByChunks(
@@ -20,9 +21,9 @@ export function groupDictionaryByChunks(
 
 		for (let chunkId of chunksIds) {
 			if (chunkId === 'default') chunkId = locale
-			const chunk = dictionaries[chunkId] ?? {}
+			const chunk = dictionaries[chunkId as DictionaryId] ?? {}
 
-			dictionaries[chunkId] = {
+			dictionaries[chunkId as DictionaryId] = {
 				...chunk,
 				[id]: dictionary[id]
 			}

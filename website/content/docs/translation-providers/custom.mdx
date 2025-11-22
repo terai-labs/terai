@@ -1,5 +1,5 @@
 ---
-title: Custom Translator
+title: Custom
 description: Learn how to use a custom translator with Terai to handle translations in your project.
 ---
 
@@ -58,7 +58,7 @@ export default defineConfig({
 })
 ```
 
-With this setup, every time you run `terai extract`, Terai will call your custom translator function to translate the dictionary to the desired locales.
+With this setup, every time you run `terai translate`, Terai will call your custom translator function to translate the dictionary to the desired locales.
 
 <Callout type='warning' emoji='⚠️'>
   Ensure that the translator function returns a dictionary with the same keys as

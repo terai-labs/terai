@@ -21,10 +21,15 @@ service providers, or you can opt-in for configuring a custom translator.
 Also, you need to set up the locale targets for which you want to generate translations.
 
 ```tsx
-import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createOpenAI } from '@ai-sdk/openai'
 
-const translator = createGoogleCloudTranslator({
-  // your Google Cloud crendentials
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: openai('gpt-4o')
 })
 
 export default defineConfig({
@@ -37,10 +42,12 @@ export default defineConfig({
 
 In the above code snippet:
 
-- Import necessary modules from `@terai/dev`.
-- Use the `createGoogleCloudTranslator` function to set up the translator.
+- Import necessary modules from `@terai/dev` and your AI provider.
+- Use the `createAiTranslator` function to set up the AI-powered translator.
 - Pass the translator to the Terai config.
 - Define the target locales for which we want to generate translations.
+
+Learn more about [AI-powered translation](/docs/guides/ai-translator) for advanced configuration options.
 
 </Step>
 <Step>
