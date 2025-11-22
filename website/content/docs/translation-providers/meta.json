@@ -1,4 +1,4 @@
 {
 	"title": "Translation Providers",
-	"pages": ["index", "ai", "google-cloud", "aws", "azure", "deepl"]
+	"pages": ["index", "ai", "google-cloud", "aws", "azure", "deepl", "custom"]
 }

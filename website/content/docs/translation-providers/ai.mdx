@@ -1,5 +1,5 @@
 ---
-title: AI Translator
+title: AI
 description: Use AI models (OpenAI, Anthropic, Groq, Google, etc.) for flexible, high-quality translations.
 ---
 
@@ -51,6 +51,60 @@ export default defineConfig({
   translator
 })
 ```
+
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `model` | `LanguageModel` | Required | The AI model to use for translation |
+| `systemPrompt` | `string` | Built-in prompt | Custom system prompt for translation |
+
+## Custom System Prompt
+
+You can provide a custom system prompt for domain-specific translations:
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createOpenAI } from '@ai-sdk/openai'
+
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: openai('gpt-4o'),
+  systemPrompt: `
+    You are a medical translation specialist.
+    Use proper medical terminology in all translations.
+    Maintain formal, professional tone suitable for healthcare applications.
+  `
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Built-in System Prompt Features
+
+The default system prompt is optimized for application translation and includes:
+
+- **Variable preservation**: Template variables (`${name}`, `{count}`) are never translated
+- **UI awareness**: Concise translations for buttons, labels, and menus
+- **Tone consistency**: Maintains appropriate tone across all strings
+- **Cultural adaptation**: Adapts references for target locales
+
+## Best Practices
+
+1. **Choose the right model**: Specific models may perform better for translation tasks
+2. **Use Groq for speed**: Llama models on Groq provide fast, cost-effective translations
+3. **Custom prompts for domains**: Use custom system prompts for specialized content (legal, medical, etc.)
+4. **Test thoroughly**: Always review translations for accuracy, especially for critical content
+
 
 ## Provider Examples
 
@@ -119,57 +173,3 @@ export default defineConfig({
   translator
 })
 ```
-
-## Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `model` | `LanguageModelV1` | Required | The AI model to use for translation |
-| `systemPrompt` | `string` | Built-in prompt | Custom system prompt for translation |
-| `mode` | `'json' \| 'auto'` | `'json'` | Structured output generation mode |
-
-## Custom System Prompt
-
-You can provide a custom system prompt for domain-specific translations:
-
-```ts filename="terai.config.ts"
-import { defineConfig, createAiTranslator } from '@terai/dev'
-import { createOpenAI } from '@ai-sdk/openai'
-
-const openai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
-
-const translator = createAiTranslator({
-  model: openai('gpt-4o'),
-  systemPrompt: `You are a medical translation specialist.
-Use proper medical terminology in all translations.
-Maintain formal, professional tone suitable for healthcare applications.
-Always preserve template variables like \${variable} exactly as provided.
-Return only valid JSON with the same keys as the input.`
-})
-
-export default defineConfig({
-  projectLocale: 'en-US',
-  outLocales: ['es-ES', 'fr-FR'],
-  outDir: './locale',
-  translator
-})
-```
-
-## Built-in System Prompt Features
-
-The default system prompt is optimized for application translation and includes:
-
-- **Variable preservation**: Template variables (`${name}`, `{count}`) are never translated
-- **HTML/Markdown support**: Tags and formatting are preserved
-- **UI awareness**: Concise translations for buttons, labels, and menus
-- **Tone consistency**: Maintains appropriate tone across all strings
-- **Cultural adaptation**: Adapts references for target locales
-
-## Best Practices
-
-1. **Choose the right model**: GPT-4o and Claude 3.5 Sonnet offer the best translation quality
-2. **Use Groq for speed**: Llama models on Groq provide fast, cost-effective translations
-3. **Custom prompts for domains**: Use custom system prompts for specialized content (legal, medical, etc.)
-4. **Test thoroughly**: Always review translations for accuracy, especially for critical content

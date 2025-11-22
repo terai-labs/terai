@@ -42,9 +42,9 @@
 	"peerDependencies": {
 		"@aws-sdk/client-translate": "^3",
 		"@google-cloud/translate": "^8",
-		"ai": "^4",
+		"ai": "^5",
 		"deepl-node": "^1",
-		"zod": "^3"
+		"zod": "^4"
 	},
 	"peerDependenciesMeta": {
 		"@aws-sdk/client-translate": {

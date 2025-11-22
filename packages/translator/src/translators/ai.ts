@@ -1,9 +1,10 @@
 // Dependencies
 import { generateObject } from 'ai'
+import { outdent } from 'outdent'
 import { z } from 'zod'
-import type { LanguageModelV1 } from 'ai'
 
 // Types
+import type { LanguageModel } from 'ai'
 import type { Translator } from '@terai/types'
 
 export type CreateAiTranslatorOptions = {
@@ -21,22 +22,17 @@ export type CreateAiTranslatorOptions = {
 	 * const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
 	 * const model = groq('llama-3.3-70b-versatile')
 	 */
-	model: LanguageModelV1
+	model: LanguageModel
 
 	/**
 	 * Custom system prompt for translation.
 	 * If not provided, a generic prompt will be used that covers most app translation cases.
 	 */
 	systemPrompt?: string
-
-	/**
-	 * Mode for structured output generation.
-	 * @default 'json'
-	 */
-	mode?: 'json' | 'auto'
 }
 
-const DEFAULT_SYSTEM_PROMPT = `# Expert Translation AI
+const DEFAULT_SYSTEM_PROMPT = outdent`
+# Expert AI Translator
 
 ## Your Role
 You are an expert translator and localization specialist with deep expertise in software
@@ -46,7 +42,7 @@ contextually appropriate, and maintain the natural feel of native language.
 ## Critical Requirements
 
 ### 1. Preserve Code Patterns
-- **NEVER** translate template variables (e.g., \${variable}, {variable}, %s, %d)
+- **NEVER** translate template variables (e.g., \${var}, {var}, %s, %d)
 - **ALWAYS** keep placeholder syntax exactly as provided
 - **MAINTAIN** all escape sequences and special characters
 - **PRESERVE** HTML tags, markdown syntax, and formatting codes
@@ -85,13 +81,13 @@ contextually appropriate, and maintain the natural feel of native language.
 ## Examples of What to Preserve
 
 ✅ CORRECT:
-- "Welcome \${name}" → "Bienvenido \${name}"
+- "Welcome \${var}" → "Bienvenido \${var}"
 - "You have {count} items" → "Tienes {count} elementos"
 - "Click <strong>here</strong>" → "Haz clic <strong>aquí</strong>"
 
 ❌ INCORRECT:
-- "Welcome \${name}" → "Bienvenido Juan" (translated variable)
-- "You have {count} items" → "Tienes count elementos" (removed braces)
+- "Welcome \${var}" → "Bienvenido Juan" (translated variable)
+- "You have {var} items" → "Tienes 3 elementos" (removed braces)
 - "Click <strong>here</strong>" → "Haz clic **aquí**" (changed HTML to markdown)`
 
 /**
@@ -136,8 +132,7 @@ contextually appropriate, and maintain the natural feel of native language.
  */
 export const createAiTranslator = ({
 	model,
-	systemPrompt = DEFAULT_SYSTEM_PROMPT,
-	mode = 'json'
+	systemPrompt = DEFAULT_SYSTEM_PROMPT
 }: CreateAiTranslatorOptions): Translator => {
 	const translator: Translator = async ({
 		dictionary,
@@ -145,11 +140,23 @@ export const createAiTranslator = ({
 		locale
 	}) => {
 		const { object: translation } = await generateObject({
-			mode,
 			model,
-			schema: z.record(z.string()),
-			prompt: `Translate the following JSON from "${projectLocale}" to "${locale}".\n\n<target-json>\n${JSON.stringify(dictionary, null, 2)}\n</target-json>`,
-			system: systemPrompt
+			output: 'object',
+			schema: z.record(z.string(), z.string()),
+			system: !systemPrompt
+				? DEFAULT_SYSTEM_PROMPT
+				: outdent`
+				${DEFAULT_SYSTEM_PROMPT}
+				
+				## Additonal User System Instructions (highest priority)
+				${systemPrompt}
+			`,
+			prompt: outdent`
+			Translate the following JSON from "${projectLocale}" to "${locale}".
+			<target-json>
+				${JSON.stringify(dictionary, null, 2)}
+			</target-json>
+			`
 		})
 
 		return translation
