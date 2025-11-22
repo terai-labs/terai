@@ -40,7 +40,9 @@
 		}
 	},
 	"dependencies": {
+		"@aws-sdk/client-translate": "^3",
 		"@google-cloud/translate": "^8",
+		"deepl-node": "^1",
 		"openai": "^4"
 	},
 	"devDependencies": {

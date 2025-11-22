@@ -1,2 +1,5 @@
 export * from './chat-gpt'
 export * from './google-cloud'
+export * from './aws-translate'
+export * from './deepl'
+export * from './azure-translator'
