@@ -1,0 +1,97 @@
+---
+title: Google Cloud Translation
+description: Enterprise-grade Neural Machine Translation using Google Cloud Translation API.
+---
+
+Google Cloud Translation provides enterprise-grade Neural Machine Translation (NMT) with support for 100+ languages.
+
+## Installation
+
+```bash
+pnpm add @google-cloud/translate
+```
+
+## Authentication
+
+Set up authentication using one of these methods:
+
+### Option 1: Service Account Key File
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
+```
+
+### Option 2: Pass credentials directly
+
+```ts
+const translator = createGoogleCloudTranslator({
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY
+  },
+  projectId: process.env.GOOGLE_PROJECT_ID
+})
+```
+
+## Usage
+
+```ts filename="terai.config.ts"
+import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
+
+const translator = createGoogleCloudTranslator({
+  projectId: process.env.GOOGLE_PROJECT_ID
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Options
+
+All options from [@google-cloud/translate](https://cloud.google.com/nodejs/docs/reference/translate/latest) are supported:
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `projectId` | `string` | Your Google Cloud project ID |
+| `credentials` | `object` | Service account credentials |
+| `keyFilename` | `string` | Path to service account key file |
+
+## Features
+
+- **Neural Machine Translation**: High-quality translations using Google's NMT models
+- **100+ Languages**: Support for a wide range of language pairs
+- **Auto-detection**: Can automatically detect source language
+- **Enterprise SLA**: Reliable service with enterprise support
+- **Pay-per-character**: Cost-effective pricing based on usage
+
+## Setup Guide
+
+1. Create a Google Cloud project at [console.cloud.google.com](https://console.cloud.google.com)
+2. Enable the Cloud Translation API
+3. Create a service account and download the JSON key
+4. Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable
+
+## Example with Environment Variables
+
+```ts filename="terai.config.ts"
+import { defineConfig, createGoogleCloudTranslator } from '@terai/dev'
+
+const translator = createGoogleCloudTranslator({
+  projectId: process.env.GOOGLE_PROJECT_ID,
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
+  }
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'ja-JP', 'zh-CN'],
+  outDir: './locale',
+  translator
+})
+```

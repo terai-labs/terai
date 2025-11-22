@@ -1,0 +1,103 @@
+---
+title: Azure Translator
+description: Neural Machine Translation using Microsoft Azure Translator for Microsoft ecosystem integration.
+---
+
+Azure Translator provides neural machine translation with integration into the Microsoft Azure ecosystem.
+
+## Installation
+
+No additional packages required - Azure Translator uses native `fetch`.
+
+## Authentication
+
+You'll need an Azure Translator resource:
+
+1. Create an Azure account at [portal.azure.com](https://portal.azure.com)
+2. Create a Translator resource in the Azure portal
+3. Get your subscription key and region from the resource
+
+## Usage
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAzureTranslator } from '@terai/dev'
+
+const translator = createAzureTranslator({
+  subscriptionKey: process.env.AZURE_TRANSLATOR_KEY,
+  region: process.env.AZURE_TRANSLATOR_REGION // e.g., 'eastus'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `subscriptionKey` | `string` | Required | Azure subscription key |
+| `region` | `string` | Required | Azure region (e.g., 'eastus') |
+| `endpoint` | `string` | `'https://api.cognitive.microsofttranslator.com'` | API endpoint |
+
+## Features
+
+- **Neural Machine Translation**: State-of-the-art NMT models
+- **100+ Languages**: Support for a wide range of languages
+- **Auto-detection**: Automatic source language detection
+- **Custom Translator**: Train custom models with your terminology
+- **Document Translation**: Translate entire documents
+- **Microsoft Integration**: Works with Azure services and Microsoft 365
+
+## Environment Variables
+
+```bash
+export AZURE_TRANSLATOR_KEY="your-subscription-key"
+export AZURE_TRANSLATOR_REGION="eastus"
+```
+
+## Language Codes
+
+Azure Translator uses BCP 47 language tags:
+
+| Language | Code |
+|----------|------|
+| English | `en` |
+| Spanish | `es` |
+| French | `fr` |
+| German | `de` |
+| Japanese | `ja` |
+| Chinese (Simplified) | `zh-Hans` |
+| Chinese (Traditional) | `zh-Hant` |
+| Korean | `ko` |
+| Portuguese (Brazil) | `pt-br` |
+
+See [Azure documentation](https://learn.microsoft.com/en-us/azure/ai-services/translator/language-support) for the complete list.
+
+## Custom Endpoint
+
+For Azure Government or custom deployments:
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAzureTranslator } from '@terai/dev'
+
+const translator = createAzureTranslator({
+  subscriptionKey: process.env.AZURE_TRANSLATOR_KEY,
+  region: process.env.AZURE_TRANSLATOR_REGION,
+  endpoint: 'https://your-custom-endpoint.cognitiveservices.azure.com'
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Pricing
+
+Azure Translator offers a free tier with 2M characters/month. See [Azure Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/) for details.

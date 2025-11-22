@@ -1,0 +1,175 @@
+---
+title: AI Translator
+description: Use AI models (OpenAI, Anthropic, Groq, Google, etc.) for flexible, high-quality translations.
+---
+
+The AI Translator uses the [Vercel AI SDK](https://sdk.vercel.ai/) to provide flexible, high-quality translations using any supported LLM provider.
+
+## Installation
+
+```bash
+pnpm add ai zod @ai-sdk/openai
+```
+
+You can replace `@ai-sdk/openai` with any [AI SDK provider](https://sdk.vercel.ai/providers/ai-sdk-providers):
+
+```bash
+# Anthropic (Claude)
+pnpm add @ai-sdk/anthropic
+
+# Google (Gemini)
+pnpm add @ai-sdk/google
+
+# Groq (Llama, Mixtral)
+pnpm add @ai-sdk/groq
+
+# Mistral
+pnpm add @ai-sdk/mistral
+
+# Azure OpenAI
+pnpm add @ai-sdk/azure
+```
+
+## Usage
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createOpenAI } from '@ai-sdk/openai'
+
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: openai('gpt-4o')
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Provider Examples
+
+### Anthropic (Claude)
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createAnthropic } from '@ai-sdk/anthropic'
+
+const anthropic = createAnthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: anthropic('claude-sonnet-4-20250514')
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+### Groq (Llama, Mixtral)
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createGroq } from '@ai-sdk/groq'
+
+const groq = createGroq({
+  apiKey: process.env.GROQ_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: groq('llama-3.3-70b-versatile')
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+### Google (Gemini)
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: google('gemini-1.5-pro')
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `model` | `LanguageModelV1` | Required | The AI model to use for translation |
+| `systemPrompt` | `string` | Built-in prompt | Custom system prompt for translation |
+| `mode` | `'json' \| 'auto'` | `'json'` | Structured output generation mode |
+
+## Custom System Prompt
+
+You can provide a custom system prompt for domain-specific translations:
+
+```ts filename="terai.config.ts"
+import { defineConfig, createAiTranslator } from '@terai/dev'
+import { createOpenAI } from '@ai-sdk/openai'
+
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+const translator = createAiTranslator({
+  model: openai('gpt-4o'),
+  systemPrompt: `You are a medical translation specialist.
+Use proper medical terminology in all translations.
+Maintain formal, professional tone suitable for healthcare applications.
+Always preserve template variables like \${variable} exactly as provided.
+Return only valid JSON with the same keys as the input.`
+})
+
+export default defineConfig({
+  projectLocale: 'en-US',
+  outLocales: ['es-ES', 'fr-FR'],
+  outDir: './locale',
+  translator
+})
+```
+
+## Built-in System Prompt Features
+
+The default system prompt is optimized for application translation and includes:
+
+- **Variable preservation**: Template variables (`${name}`, `{count}`) are never translated
+- **HTML/Markdown support**: Tags and formatting are preserved
+- **UI awareness**: Concise translations for buttons, labels, and menus
+- **Tone consistency**: Maintains appropriate tone across all strings
+- **Cultural adaptation**: Adapts references for target locales
+
+## Best Practices
+
+1. **Choose the right model**: GPT-4o and Claude 3.5 Sonnet offer the best translation quality
+2. **Use Groq for speed**: Llama models on Groq provide fast, cost-effective translations
+3. **Custom prompts for domains**: Use custom system prompts for specialized content (legal, medical, etc.)
+4. **Test thoroughly**: Always review translations for accuracy, especially for critical content
