@@ -3,7 +3,7 @@ import { runtime } from '@terai/runtime'
 import { stringify } from '@terai/utils'
 
 // Types
-import type { Config, Locale, Dictionaries } from '@terai/types'
+import type { Config, Locale, Dictionaries, DictionaryId } from '@terai/types'
 
 type GenerateOptions = {
 	cwd: string
@@ -22,7 +22,7 @@ export async function generate({
 
 	for (const id in dictionaries) {
 		const fileDir = runtime.path.resolve(folderPath, `${id}.json`)
-		const fileContent = dictionaries[id]
+		const fileContent = dictionaries[id as DictionaryId]
 		const idOutput = stringify(fileContent)
 
 		runtime.fs.write(fileDir, idOutput)

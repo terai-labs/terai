@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import { store } from './store'
-import type { Locale, Dictionary } from '@terai/types'
+import type { Locale, Dictionary, DictionaryId } from '@terai/types'
 
 /**
  * Hook to access a specific dictionary by locale and optional chunkId
@@ -17,7 +17,7 @@ export const useDictionary = (
 
 	return useSyncExternalStore(
 		store.subscribe,
-		() => store.getSnapshot().dictionaries[dictionaryId],
-		() => store.getSnapshot().dictionaries[dictionaryId]
+		() => store.getSnapshot().dictionaries[dictionaryId as DictionaryId],
+		() => store.getSnapshot().dictionaries[dictionaryId as DictionaryId]
 	)
 }

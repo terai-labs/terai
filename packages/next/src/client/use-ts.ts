@@ -9,7 +9,7 @@ import { useEffect, useCallback } from 'react'
 import { useLocale } from './use-locale'
 
 // Types
-import type { Locale } from '@terai/types'
+import type { DictionaryId, Locale } from '@terai/types'
 
 type UseTsProps = {
 	chunkId?: string
@@ -18,17 +18,18 @@ type UseTsProps = {
 export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	const locale = useLocale()
 	const dictionaryId = chunkId ? `${locale}-${chunkId}` : locale
-	const setup = setup$.get()
-	const dictionary = dictionaries$[dictionaryId].get()
+	// const setup = setup$.get()
+	const dictionary = dictionaries$[dictionaryId as DictionaryId].get()
 	const loaderId = chunkId ?? locale
 
-	if (!dictionary) throw loadDictionary(locale, loaderId, dictionaryId)
+	if (!dictionary)
+		throw loadDictionary(locale, loaderId, dictionaryId as DictionaryId)
 
-	if (setup.persist) {
-		useEffect(() => {
-			loadDictionary(locale, loaderId, dictionaryId)
-		}, [locale])
-	}
+	// if (setup.persist) {
+	// 	useEffect(() => {
+	// 		loadDictionary(locale, loaderId, dictionaryId)
+	// 	}, [locale])
+	// }
 
 	const ts = useCallback(
 		createTs<string>((props) =>
@@ -44,7 +45,11 @@ export const useTs = ({ chunkId }: UseTsProps = {}) => {
 	return { ts }
 }
 
-const loadDictionary = async (locale: Locale, chunkId: string, id: string) => {
+const loadDictionary = async (
+	locale: Locale,
+	chunkId: string,
+	id: DictionaryId
+) => {
 	const loader = setup$.get().loader
 	const dic = await loader(locale, chunkId)
 

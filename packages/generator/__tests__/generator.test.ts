@@ -14,10 +14,10 @@ describe('generate', () => {
 	test('should generate dictionaries', async () => {
 		const sut = generate
 		const dictionaries: Dictionaries = {
-			dictionary1: {
+			'en-US': {
 				test1: 'value1'
 			},
-			dictionary2: {
+			'es-ES': {
 				test2: 'value2'
 			}
 		}
@@ -32,10 +32,10 @@ describe('generate', () => {
 			runtime.path.join(outDir, locale)
 		)
 		const existsDictionary1File = runtime.fs.exists(
-			runtime.path.join(outDir, locale, 'dictionary1.json')
+			runtime.path.join(outDir, locale, 'en-US.json')
 		)
 		const existsDictionary2File = runtime.fs.exists(
-			runtime.path.join(outDir, locale, 'dictionary2.json')
+			runtime.path.join(outDir, locale, 'es-ES.json')
 		)
 
 		expect(existsLocaleFolder).toBe(true)

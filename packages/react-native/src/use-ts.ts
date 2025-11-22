@@ -10,7 +10,7 @@ import { useLocale } from './use-locale'
 import { useDictionary } from './use-dictionary'
 
 // Types
-import type { Locale, Loader, Dictionary } from '@terai/types'
+import type { Locale, Loader, Dictionary, DictionaryId } from '@terai/types'
 
 /**
  * Cache for dictionary loading promises
@@ -52,28 +52,20 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	 * to avoid calling hooks inside useMemo
 	 */
 	const promise = useMemo(() => {
-		// Dictionary already exists - no need for promise
-		if (dictionary) {
-			return null
-		}
+		if (dictionary) return null
 
-		// Check if we already have a pending promise for this dictionary
 		let existingPromise = dictionaryPromises.get(dictionaryId)
 
 		if (!existingPromise) {
-			// Create new promise for loading the dictionary
 			existingPromise = loadDictionary({
 				locale,
 				loaderId,
-				dictionaryId,
+				dictionaryId: dictionaryId as DictionaryId,
 				loader: config.loader
 			})
 
-			// Cache the promise to ensure stable reference
 			dictionaryPromises.set(dictionaryId, existingPromise)
 
-			// Clean up the promise from cache once resolved
-			// This prevents memory leaks and allows re-fetching if needed
 			existingPromise.finally(() => {
 				dictionaryPromises.delete(dictionaryId)
 			})
@@ -82,34 +74,16 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 		return existingPromise
 	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
 
-	/**
-	 * Get the dictionary - either from cache or by loading
-	 *
-	 * KEY OPTIMIZATION: Only use "use" hook when dictionary doesn't exist AND suspense is enabled
-	 * This prevents suspension when switching to a locale that's already cached
-	 *
-	 * IMPORTANT: "use" hook must be called at top level, not inside useMemo
-	 */
 	let loadedDictionary: Dictionary
 
 	if (dictionary) {
-		// Dictionary already exists in store (from AsyncStorage or previous load)
-		// Return it immediately - NO SUSPENSION in either mode
 		loadedDictionary = dictionary
 	} else if (config.suspense && promise) {
-		// Suspense mode: use the "use" hook to suspend
-		// This is called at top level, not inside useMemo, to follow Rules of Hooks
 		loadedDictionary = use(promise)
 	} else {
-		// Non-suspense mode: return empty dictionary
-		// Component will re-render when dictionary loads via store update
 		loadedDictionary = {}
 	}
 
-	/**
-	 * Create the translation function
-	 * Memoized to avoid unnecessary re-renders
-	 */
 	const ts = useCallback(
 		createTs<string>((props) =>
 			tsRender({
@@ -124,10 +98,6 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	return { ts }
 }
 
-/**
- * Load a dictionary from the loader function
- * Updates the store with the loaded dictionary
- */
 const loadDictionary = async ({
 	locale,
 	loaderId,
@@ -136,15 +106,11 @@ const loadDictionary = async ({
 }: {
 	locale: Locale
 	loaderId: string
-	dictionaryId: string
+	dictionaryId: DictionaryId
 	loader: Loader
 }): Promise<Dictionary> => {
-	// Call the user-provided loader function
 	const dic = await loader(locale, loaderId)
 
-	// Update the store with the loaded dictionary
-	// This will trigger re-renders for components using useDictionary
-	// and persist to AsyncStorage automatically
 	store.setState((prev) => ({
 		...prev,
 		dictionaries: {
