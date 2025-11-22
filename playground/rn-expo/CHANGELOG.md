@@ -1,5 +1,13 @@
 # rn-expo
 
+## 1.0.4
+
+### Patch Changes
+
+- a119986: v0.0.14
+- Updated dependencies [a119986]
+  - @terai/react-native@0.0.14
+
 ## 1.0.3
 
 ### Patch Changes
