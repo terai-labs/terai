@@ -1,5 +1,13 @@
 # rn-expo
 
+## 1.0.5
+
+### Patch Changes
+
+- dcd5184: v0.0.15
+- Updated dependencies [dcd5184]
+  - @terai/react-native@0.0.15
+
 ## 1.0.4
 
 ### Patch Changes
