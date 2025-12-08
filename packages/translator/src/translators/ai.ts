@@ -16,11 +16,7 @@ export type CreateAiTranslatorOptions = {
 	 * import { createOpenAI } from '@ai-sdk/openai'
 	 * const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
 	 * const model = openai('gpt-4o')
-	 *
-	 * @example
-	 * import { createGroq } from '@ai-sdk/groq'
-	 * const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
-	 * const model = groq('llama-3.3-70b-versatile')
+	 * const translator = createAiTranslator({ model })
 	 */
 	model: LanguageModel
 
@@ -73,7 +69,7 @@ contextually appropriate, and maintain the natural feel of native language.
 
 ## Output Format
 - Return ONLY a valid JSON object
-- Use the EXACT SAME KEYS as the input
+- Use the EXACT SAME KEYS as the input (CRITICAL)
 - Do NOT add newlines within string values
 - Do NOT modify, remove, or add keys
 - Do NOT include markdown code blocks or extra formatting
@@ -99,28 +95,6 @@ contextually appropriate, and maintain the natural feel of native language.
  * @example
  * ```ts
  * import { createAiTranslator } from '@terai/translator/translators'
- * import { createOpenAI } from '@ai-sdk/openai'
- *
- * const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
- * const translator = createAiTranslator({
- *   model: openai('gpt-4o')
- * })
- * ```
- *
- * @example With Groq
- * ```ts
- * import { createAiTranslator } from '@terai/translator/translators'
- * import { createGroq } from '@ai-sdk/groq'
- *
- * const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
- * const translator = createAiTranslator({
- *   model: groq('llama-3.3-70b-versatile')
- * })
- * ```
- *
- * @example With custom system prompt
- * ```ts
- * import { createAiTranslator } from '@terai/translator/translators'
  * import { createAnthropic } from '@ai-sdk/anthropic'
  *
  * const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -141,26 +115,28 @@ export const createAiTranslator = ({
 	}) => {
 		const { object: translation } = await generateObject({
 			model,
-			output: 'object',
-			schema: z.record(z.string(), z.string()),
+			output: 'no-schema',
 			system: !systemPrompt
 				? DEFAULT_SYSTEM_PROMPT
 				: outdent`
 				${DEFAULT_SYSTEM_PROMPT}
 				
-				## Additonal User System Instructions (highest priority)
+				## Additional User System Instructions (highest priority)
 				${systemPrompt}
 			`,
 			prompt: outdent`
-			Translate the following JSON from "${projectLocale}" to "${locale}".
-			<target-json>
-				${JSON.stringify(dictionary, null, 2)}
-			</target-json>
+				Translate the following JSON from locale:"${projectLocale}" to locale:"${locale}".
+
+				<target-json>
+					${JSON.stringify(dictionary, null, 2)}
+				</target-json>
 			`
 		})
 
-		return translation
+		return JSONSchema.parse(translation)
 	}
 
 	return translator
 }
+
+const JSONSchema = z.record(z.string(), z.string())
