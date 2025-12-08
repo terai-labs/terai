@@ -1,5 +1,14 @@
 # @terai/react
 
+## 0.0.15
+
+### Patch Changes
+
+- dcd5184: v0.0.15
+- Updated dependencies [dcd5184]
+  - @terai/formatter@0.0.15
+  - @terai/ts@0.0.15
+
 ## 0.0.14
 
 ### Patch Changes

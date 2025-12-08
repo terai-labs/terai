@@ -1,5 +1,11 @@
 # @terai/logger
 
+## 0.0.15
+
+### Patch Changes
+
+- dcd5184: v0.0.15
+
 ## 0.0.14
 
 ### Patch Changes
