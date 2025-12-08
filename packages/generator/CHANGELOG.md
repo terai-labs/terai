@@ -1,5 +1,15 @@
 # @terai/generator
 
+## 0.0.15
+
+### Patch Changes
+
+- dcd5184: v0.0.15
+- Updated dependencies [dcd5184]
+  - @terai/translator@0.0.15
+  - @terai/runtime@0.0.15
+  - @terai/utils@0.0.15
+
 ## 0.0.14
 
 ### Patch Changes
