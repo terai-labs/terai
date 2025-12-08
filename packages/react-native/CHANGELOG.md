@@ -1,5 +1,14 @@
 # @terai/react-native
 
+## 0.0.16
+
+### Patch Changes
+
+- 74683cc: v0.0.16
+- Updated dependencies [74683cc]
+  - @terai/formatter@0.0.16
+  - @terai/ts@0.0.16
+
 ## 0.0.15
 
 ### Patch Changes
