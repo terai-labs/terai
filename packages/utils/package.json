@@ -1,6 +1,6 @@
 {
 	"name": "@terai/utils",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "terai shared utils",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
