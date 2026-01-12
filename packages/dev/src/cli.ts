@@ -7,7 +7,8 @@ import pkg from '../package.json'
 import {
 	createExtractCommand,
 	createInitCommand,
-	createTranslateCommand
+	createTranslateCommand,
+	createStudioCommand
 } from './commands'
 
 export async function main() {
@@ -22,6 +23,7 @@ export async function main() {
 	createInitCommand(cli, cwd)
 	createExtractCommand(cli, cwd)
 	createTranslateCommand(cli, cwd)
+	createStudioCommand(cli, cwd)
 
 	cli.help()
 	cli.version(pkg.version)
