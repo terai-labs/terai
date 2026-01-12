@@ -1,196 +1,172 @@
-# Terai - Claude Code Configuration
+# Terai
 
-This document provides comprehensive context for Claude Code to work effectively on the Terai project.
+Modern localization (i18n) framework for JavaScript/TypeScript.
+Workflow: **Develop → Extract → Translate**
 
-## Quick Reference
+## Table of Contents
 
-### Essential Commands
+- [Commands](#commands)
+- [Code Style](#code-style)
+- [Project Structure](#project-structure)
+- [Core Patterns](#core-patterns)
+- [Package Reference](#package-reference)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+
+---
+
+## Commands
 
 ```bash
 # Development
-pnpm install          # Install dependencies
-pnpm dev              # Watch mode for all packages
-pnpm build            # Build all packages (with dependency order)
+pnpm install                    # Install dependencies
+pnpm dev                        # Watch mode (all packages)
+pnpm build                      # Build all packages
 
 # Testing
-pnpm test             # Run all tests
-pnpm test:dev         # Watch mode
-pnpm test:coverage    # With coverage
+pnpm test                       # Run tests
+pnpm test:dev                   # Watch mode
+pnpm test:coverage              # With coverage
 
 # Code Quality
-pnpm biome lint --write .    # Fix linting issues
-pnpm biome format --write .  # Fix formatting
-pnpm biome check --write .   # Fix both lint and format
+pnpm biome check --write .      # Lint + format
+npx tsc --noEmit                # Type check
 
-# Type Checking
-npx tsc --noEmit      # Check TypeScript across workspace
+# Release
+pnpm changeset                  # Create changeset
+pnpm release                    # Publish packages
 ```
 
-### Code Style Rules (Biome)
+---
 
-- **Quotes**: Single quotes (`'hello'`)
-- **Semicolons**: As needed (minimal)
-- **JSX Quotes**: Single quotes
-- **Trailing Commas**: None
-- **Indentation**: Tabs
-- **Imports**: Auto-organize OFF (manual control)
+## Code Style
 
-### File Naming
+**Biome Configuration:**
 
-- **Source files**: `kebab-case.ts` (e.g., `use-locale.ts`, `to-hash.ts`)
-- **Test files**: `*.test.ts` in `__tests__/` or `__test__/` directories
-- **React components**: `kebab-case.tsx` (e.g., `ts-render.tsx`)
+| Rule | Value |
+|------|-------|
+| Quotes | Single (`'`) |
+| Semicolons | As needed |
+| Indentation | Tabs |
+| Trailing commas | None |
+| JSX quotes | Single |
+
+**File Naming:**
+
+- Source: `kebab-case.ts` (`use-locale.ts`, `to-hash.ts`)
+- Tests: `*.test.ts` in `__tests__/` or `__test__/`
+- Components: `kebab-case.tsx`
+
+**Disabled Linter Rules:**
+
+- `useExhaustiveDependencies` - Manual dependency management
+- `noArrayIndexKey` - Allows index keys
+- `noExplicitAny` - Allows `any` when needed
+- `noForEach` - Allows `forEach`
 
 ---
 
-## Project Overview
-
-**Terai** is a modern localization (i18n) framework for JavaScript/TypeScript with an automated workflow: **Develop -> Extract -> Translate**.
-
-| Property | Value |
-|----------|-------|
-| Status | Development preview (v0.0.16) |
-| License | MIT |
-| Author | Hugo Corta (@hugocxl) |
-| Package Manager | pnpm 10.x |
-| Build Tool | tsdown |
-| Build Orchestrator | Turborepo |
-| Linter/Formatter | Biome 2.x |
-| Testing | Vitest 4.x |
-| React Version | 19.x |
-| Next.js Version | 16.x |
-
-### Core Philosophy
-
-1. **Developer-first**: No manual key management or locale file editing
-2. **Type-safe**: Full TypeScript with inferred types
-3. **Framework-agnostic**: Core works everywhere, specialized integrations for React/Next.js/Node
-
----
-
-## Repository Structure
+## Project Structure
 
 ```
 terai/
-├── packages/                 # 15 packages
-│   ├── react/               # React 19 integration (PRIMARY)
-│   ├── react-native/        # React Native + Expo integration
-│   ├── next/                # Next.js 16 integration
-│   ├── node/                # Node.js server-side integration
-│   ├── dev/                 # CLI tool (@terai/dev)
-│   ├── types/               # Shared TypeScript types
-│   ├── ts/                  # Translation function factory
-│   ├── formatter/           # Intl API formatting
-│   ├── extractor/           # Message extraction from AST
-│   ├── translator/          # Translation provider integrations
-│   ├── transformer/         # TypeScript AST transformer
-│   ├── runtime/             # Node.js runtime utilities
-│   ├── generator/           # Dictionary file generation
-│   ├── logger/              # CLI logging utilities
-│   └── utils/               # Shared utilities (hashing, etc.)
+├── packages/
+│   ├── react/          # React 19 integration (PRIMARY)
+│   ├── react-native/   # React Native + Expo
+│   ├── next/           # Next.js 16 integration
+│   ├── node/           # Node.js integration
+│   ├── dev/            # CLI tool (@terai/dev)
+│   ├── types/          # Shared TypeScript types
+│   ├── ts/             # Translation function factory
+│   ├── formatter/      # Intl API formatting
+│   ├── extractor/      # Message extraction (AST)
+│   ├── translator/     # Translation providers
+│   ├── transformer/    # TypeScript AST transformer
+│   ├── runtime/        # Node.js runtime utilities
+│   ├── generator/      # Dictionary file generation
+│   ├── logger/         # CLI logging
+│   └── utils/          # Shared utilities
 ├── playground/
-│   ├── vite/                # Vite + React demo
-│   ├── hono/                # Hono server demo
-│   └── rn-expo/             # React Native Expo demo
-├── website/                 # Documentation site (Next.js)
-└── [config files]           # Root configs
+│   ├── vite/           # Vite + React demo
+│   ├── hono/           # Hono server demo
+│   └── rn-expo/        # React Native Expo demo
+└── website/            # Documentation (Next.js)
 ```
 
-### Package Dependency Graph
+**Dependency Graph:**
 
 ```
-@terai/types (no deps)
-     │
-     ├─> @terai/utils
-     ├─> @terai/logger
-     ├─> @terai/formatter
-     ├─> @terai/ts
-     └─> @terai/transformer
-              │
-              └─> @terai/extractor
-                       │
-                       └─> @terai/dev (CLI)
+@terai/types (base)
+    ↓
+@terai/utils, @terai/logger, @terai/formatter, @terai/ts
+    ↓
+@terai/transformer → @terai/extractor → @terai/dev (CLI)
 
-@terai/runtime (file I/O, used by dev/extractor/generator)
-@terai/translator (AI providers, used by dev)
-@terai/generator (dictionary files, used by dev)
-
-@terai/node (uses ts, formatter)
-@terai/react (uses ts, formatter) ─> @terai/next
-@terai/react-native (uses ts, formatter)
+@terai/react → @terai/next
+@terai/react-native
+@terai/node
 ```
 
 ---
 
 ## Core Patterns
 
-### 1. Tagged Template Translation
-
-The core API uses tagged template literals:
+### Tagged Template Translation
 
 ```typescript
-// Basic usage
 const message = ts`Hello ${name}`
-
-// With context
-const greeting = ts({ context: 'formal' })`Hello ${name}`
+const formal = ts({ context: 'formal' })`Hello ${name}`
 ```
 
-### 2. Hash-Based Message IDs
+### Hash-Based Message IDs
 
-Messages are identified by DJB2 hash + base-52 encoding (`packages/utils/src/to-hash.ts`):
+Location: `packages/utils/src/to-hash.ts`
 
-```typescript
+```
 "Hello world" → normalize → DJB2 hash → base-52 → "dQxGBP"
 ```
 
-Benefits:
-- Consistent IDs across extractions
-- No manual key management
-- Collision-resistant
+### Store Pattern (React)
 
-### 3. Store Pattern (React/React Native)
-
-Custom pub/sub store implementing `useSyncExternalStore` (`packages/react/src/store.ts`):
+Location: `packages/react/src/store.ts`
 
 ```typescript
 class Store {
-  getSnapshot(): State      // Current state (immutable reference)
-  subscribe(listener): void // Register change listener
-  setState(updater): void   // Update state + notify
+  getSnapshot(): State
+  subscribe(listener): void
+  setState(updater): void
 }
 ```
 
-### 4. Smart Suspense (React 19)
+Uses `useSyncExternalStore` for React integration.
 
-Only suspends when dictionary not cached (`packages/react/src/use-ts.ts`):
+### Smart Suspense (React 19)
+
+Location: `packages/react/src/use-ts.ts`
+
+Only suspends when dictionary is not cached:
 
 ```typescript
-// If dictionary exists: instant return (NO suspension)
-// If not: create promise, cache it, suspend with use()
 const loadedDictionary = useMemo(() => {
-  if (dictionary) return dictionary
-  const promise = getDictionaryPromise(...)
-  return use(promise)
+  if (dictionary) return dictionary        // No suspension
+  return use(getDictionaryPromise(...))    // Suspends
 }, [locale, dictionary])
 ```
 
-### 5. Persistence Pattern
+### Persistence
 
-Versioned localStorage keys (`packages/react/src/persistence.ts`):
+Location: `packages/react/src/persistence.ts`
+
+Versioned localStorage keys prevent stale data:
 
 ```typescript
-// Keys include version to prevent stale data
 localStorage.setItem('terai-locale-0.0.16', locale)
 localStorage.setItem('terai-dictionaries-0.0.16', JSON.stringify(dictionaries))
 ```
 
-### 6. Chunk-Based Code Splitting
-
-Messages can be grouped into chunks for lazy loading:
+### Code Splitting
 
 ```typescript
-// Declare chunk in component
 const { ts } = useTs({ chunkId: 'dashboard' })
 
 // Loader receives chunkId
@@ -199,95 +175,93 @@ loader: (locale, chunkId) => import(`./locales/${locale}/${chunkId}.json`)
 
 ---
 
-## Key Files by Package
+## Package Reference
 
-### @terai/react (Primary Package)
-
-| File | Purpose |
-|------|---------|
-| `src/setup.tsx` | Configuration initialization |
-| `src/store.ts` | State management (useSyncExternalStore) |
-| `src/use-ts.ts` | Main translation hook with Suspense |
-| `src/use-locale.ts` | Locale access hook |
-| `src/use-dictionaries.ts` | Dictionary cache access |
-| `src/use-format.ts` | Formatting hook |
-| `src/set-locale.ts` | Imperative locale setter |
-| `src/persistence.ts` | localStorage integration |
-| `src/ts-render.ts` | Translation rendering logic |
-
-### @terai/dev (CLI)
+### @terai/react
 
 | File | Purpose |
 |------|---------|
-| `src/cli.ts` | CLI entry (cac framework) |
-| `src/commands/init.ts` | Project initialization |
-| `src/commands/extract.ts` | Message extraction |
-| `src/commands/translate.ts` | Translation workflow |
-| `src/index.ts` | Config helper (defineConfig) |
+| `setup.tsx` | Configuration initialization |
+| `store.ts` | State management |
+| `use-ts.ts` | Translation hook with Suspense |
+| `use-locale.ts` | Locale access |
+| `use-format.ts` | Formatting hook |
+| `set-locale.ts` | Imperative locale setter |
+| `persistence.ts` | localStorage integration |
+
+### @terai/dev
+
+| File | Purpose |
+|------|---------|
+| `cli.ts` | CLI entry (cac framework) |
+| `commands/init.ts` | Project initialization |
+| `commands/extract.ts` | Message extraction |
+| `commands/translate.ts` | Translation workflow |
 
 ### @terai/types
 
 | File | Purpose |
 |------|---------|
-| `src/locale.ts` | BCP 47 locale union (1000+ locales) |
-| `src/config.ts` | Terai configuration type |
-| `src/dictionary.ts` | Dictionary structure |
-| `src/loader.ts` | Loader function type |
-| `src/translator.ts` | Translator interface |
+| `locale.ts` | BCP 47 locale union (1000+) |
+| `config.ts` | Configuration type |
+| `dictionary.ts` | Dictionary structure |
+| `loader.ts` | Loader function type |
 
 ### @terai/utils
 
 | File | Purpose |
 |------|---------|
-| `src/to-hash.ts` | DJB2 hash + base-52 encoding |
-| `src/prepare-message.ts` | Message normalization |
-| `src/join-template-strings.ts` | Template literal joining |
-| `src/memo.ts` | Memoization wrapper |
+| `to-hash.ts` | DJB2 hash + base-52 |
+| `prepare-message.ts` | Message normalization |
+| `join-template-strings.ts` | Template joining |
 
 ---
 
-## Build Configuration
+## Development
 
-### tsdown.config.ts (Standard Package)
+### Adding a Hook to @terai/react
+
+1. Create `packages/react/src/use-{name}.ts`
+2. Use `useSyncExternalStore`:
 
 ```typescript
-import { defineConfig } from 'tsdown'
+import { useSyncExternalStore } from 'react'
+import { store, selectLocale } from './store'
 
-export default defineConfig({
-  clean: true,
-  dts: true,              // Generate .d.ts files
-  entry: ['src/index.ts'],
-  format: ['esm', 'cjs'], // Dual format
-  minify: true,
-  shims: true,            // Node.js shims for browser
-  sourcemap: true
-})
-```
-
-### tsconfig.json (Root)
-
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "target": "ESNext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true
-  }
+export function useLocale() {
+  return useSyncExternalStore(
+    store.subscribe,
+    () => selectLocale(store.getSnapshot()),
+    () => selectLocale(store.getSnapshot())
+  )
 }
 ```
 
----
+3. Export from `index.ts`
+4. Test: `cd playground/vite && pnpm dev`
 
-## Testing
+### Testing CLI Commands
 
-### Framework: Vitest 4.x
+```bash
+cd playground/vite
+pnpm terai extract
+pnpm terai translate
+```
 
-- Tests in `__tests__/` or `__test__/` directories
-- Uses inline snapshots (`toMatchInlineSnapshot`)
-- Coverage via `@vitest/coverage-v8`
+### Build Configuration
+
+Standard `tsdown.config.ts`:
+
+```typescript
+export default defineConfig({
+  clean: true,
+  dts: true,
+  entry: ['src/index.ts'],
+  format: ['esm', 'cjs'],
+  minify: true,
+  sourcemap: true
+})
+```
 
 ### Test Pattern
 
@@ -296,199 +270,76 @@ import { describe, expect, test } from 'vitest'
 import { toHash } from '../src'
 
 describe('toHash', () => {
-  test('should generate a hash from a string', () => {
-    const output = toHash('Hello world!')
-    expect(output).toMatchInlineSnapshot('"dQxGBP"')
+  test('generates hash from string', () => {
+    expect(toHash('Hello world!')).toMatchInlineSnapshot('"dQxGBP"')
   })
 })
 ```
 
-### Running Tests
-
-```bash
-pnpm test                       # All tests
-pnpm test:dev                   # Watch mode
-pnpm test:coverage              # With coverage
-pnpm vitest run packages/utils  # Specific package
-```
-
 ---
 
-## Development Workflow
+## Translation Providers
 
-### Adding a Feature to @terai/react
-
-1. Read existing files in `packages/react/src/`
-2. Understand store interaction (`store.ts`)
-3. Follow hook pattern (`use-*.ts`)
-4. Export from `index.ts`
-5. Test with playground:
-   ```bash
-   cd playground/vite && pnpm dev
-   ```
-6. Run tests: `pnpm test`
-
-### Adding a New Hook
-
-1. Create `packages/react/src/use-{name}.ts`
-2. Use `useSyncExternalStore` for store access:
-   ```typescript
-   import { useSyncExternalStore } from 'react'
-   import { store, selectLocale } from './store'
-
-   export function useLocale() {
-     return useSyncExternalStore(
-       store.subscribe,
-       () => selectLocale(store.getSnapshot()),
-       () => selectLocale(store.getSnapshot())
-     )
-   }
-   ```
-3. Memoize return values with `useMemo`/`useCallback`
-4. Export from `index.ts`
-
-### Modifying CLI Commands
-
-1. Edit files in `packages/dev/src/commands/`
-2. Uses `cac` for CLI framework
-3. Uses `@terai/logger` for output
-4. Test locally:
-   ```bash
-   cd playground/vite
-   pnpm terai extract
-   pnpm terai translate
-   ```
-
----
-
-## Translation Provider Integration
-
-### Available Providers (packages/translator/src/translators/)
+Location: `packages/translator/src/translators/`
 
 | Provider | Package |
 |----------|---------|
-| Vercel AI SDK | `ai` (supports GPT, Claude, etc.) |
+| Vercel AI SDK | `ai` |
 | Google Cloud | `@google-cloud/translate` |
 | AWS Translate | `@aws-sdk/client-translate` |
-| Azure Translator | Azure API |
+| Azure | Azure API |
 | DeepL | `deepl-node` |
 
-### Custom Translator Example (terai.config.ts)
+Custom translator example:
 
 ```typescript
+// terai.config.ts
 import { defineConfig } from '@terai/dev'
-import { generateObject } from 'ai'
-import { z } from 'zod'
 
 export default defineConfig({
   include: ['./src/**/*.{ts,tsx}'],
   projectLocale: 'en-GB',
   outDir: './locale',
-  outLocales: ['es-ES', 'fr-FR', 'de-DE'],
+  outLocales: ['es-ES', 'fr-FR'],
   translator: async ({ dictionary, locale, projectLocale }) => {
-    const { object } = await generateObject({
-      model: yourModel,
-      schema: z.record(z.string()),
-      prompt: `Translate from ${projectLocale} to ${locale}: ${JSON.stringify(dictionary)}`
-    })
-    return object
+    // Your translation logic
+    return translatedDictionary
   }
 })
 ```
 
 ---
 
-## Common Issues & Solutions
+## Troubleshooting
 
-### "use" hook not working
+**"use" hook not working:**
+- Ensure React 19 installed
+- Wrap in `<Suspense>` boundary
 
-- Ensure React 19 is installed
-- Wrap component in `<Suspense>` boundary
-- Check that `config.suspense = true` in `setupTerai`
+**Locale not persisting:**
+- Check localStorage keys match version
+- Keys: `terai-locale-{version}`, `terai-dictionaries-{version}`
 
-### Locale not persisting
-
-- Check localStorage keys: `terai-locale-{version}`, `terai-dictionaries-{version}`
-- Version in keys must match package version
-- Verify browser localStorage is enabled
-
-### Build failing
-
+**Build failing:**
 ```bash
-pnpm clean && pnpm install
-pnpm build
+pnpm clean && pnpm install && pnpm build
 ```
 
-### TypeScript errors
-
-```bash
-npx tsc --noEmit  # Check all packages
-```
-
-### Store not updating
-
-- Ensure `setState` is called (not direct mutation)
-- Check listeners are subscribed via `store.subscribe`
-
----
-
-## Linter Rules (Biome)
-
-The following rules are intentionally disabled:
-
-```json
-{
-  "useExhaustiveDependencies": "off",  // Manual dep management in hooks
-  "noArrayIndexKey": "off",             // Allows array index keys
-  "noExplicitAny": "off",               // Allows any when needed
-  "noForEach": "off",                   // Allows forEach
-  "noDuplicateParameters": "off"        // For function overloads
-}
-```
-
----
-
-## Git Workflow
-
-### Pre-commit Hooks (Husky + lint-staged)
-
-```bash
-# Runs automatically on commit:
-pnpm lint-staged --allow-empty && pnpm test
-```
-
-### Release Process (Changesets)
-
-```bash
-# Create changeset
-pnpm changeset
-
-# Version packages
-pnpm changeset version
-
-# Publish
-pnpm release
-```
-
-### Changeset Configuration
-
-- All `@terai/*` packages versioned together (`fixed` mode)
-- Playground packages ignored
-- Base branch: `master`
+**Store not updating:**
+- Use `setState()`, not direct mutation
+- Verify listeners subscribed via `store.subscribe`
 
 ---
 
 ## API Quick Reference
 
-### React Integration
-
 ```typescript
 import { setupTerai, useTs, useLocale, useFormat, setLocale } from '@terai/react'
 
-// Setup (once, before React renders)
+// Setup (before React renders)
 setupTerai({
   defaultLocale: 'en',
-  suspense: true,  // Enable Suspense mode
+  suspense: true,
   loader: (locale, chunkId) => import(`./locales/${locale}/${chunkId}.json`)
 })
 
@@ -502,53 +353,16 @@ function App() {
     <div>
       <p>{ts`Hello ${name}`}</p>
       <p>{format.date(new Date(), { dateStyle: 'long' })}</p>
-      <button onClick={() => setLocale('es')}>Switch to Spanish</button>
+      <button onClick={() => setLocale('es')}>Spanish</button>
     </div>
   )
 }
 ```
 
-### CLI Usage
-
-```bash
-# Initialize project
-pnpm terai init
-
-# Extract messages from source
-pnpm terai extract
-
-# Translate extracted messages
-pnpm terai translate
-```
-
----
-
-## Performance Best Practices
-
-1. **Cache dictionary promises** - Stable references for React 19 `use()`
-2. **Check cache before loading** - Avoid unnecessary async operations
-3. **Maintain reference equality** - Prevent unnecessary re-renders
-4. **Use versioned storage keys** - Prevent stale cached data
-5. **Debounce persistence** - 300ms debounce on localStorage writes
-
----
-
-## Configuration Files
-
-| File | Purpose |
-|------|---------|
-| `package.json` | Root workspace config |
-| `pnpm-workspace.yaml` | Workspace definition |
-| `tsconfig.json` | TypeScript configuration |
-| `biome.json` | Linting/formatting rules |
-| `turbo.json` | Turborepo build orchestration |
-| `.changeset/config.json` | Changeset versioning config |
-| `lint-staged.config.mjs` | Pre-commit lint config |
-
 ---
 
 ## Links
 
-- **Website**: https://terai-labs.github.io/terai
-- **GitHub**: https://github.com/terai-labs/terai
-- **npm**: https://www.npmjs.com/org/terai
+- Website: https://terai-labs.github.io/terai
+- GitHub: https://github.com/terai-labs/terai
+- npm: https://www.npmjs.com/org/terai
