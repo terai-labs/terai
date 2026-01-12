@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { TranslationTable } from '../components/TranslationTable'
+import { TranslationTable } from '../components/translation-table'
 import type { StudioData } from '../types'
 
 type FilterMode = 'all' | 'missing' | 'translated'
