@@ -18,11 +18,7 @@ import type {
 } from './index'
 
 export function createFormat(getLocale: () => Locale) {
-	return ({
-		locale: overrideLocale
-	}: {
-		locale?: Locale
-	} = {}) => {
+	return ({ locale: overrideLocale }: { locale?: Locale } = {}) => {
 		const locale = overrideLocale || getLocale()
 
 		return {

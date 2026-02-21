@@ -9,12 +9,15 @@ export type FormatDisplayNameProps = {
 	options: FormatDisplayNameOptions
 }
 
+// Cache
+import { getCachedIntl } from './intl-cache'
+
 export function formatDisplayName({
 	value,
 	locale,
 	options
 }: FormatDisplayNameProps): ReturnType<Intl.DisplayNames['of']> {
-	const formatter = new Intl.DisplayNames(locale, options)
+	const formatter = getCachedIntl(Intl.DisplayNames, locale, options)
 
 	return formatter.of(value)
 }
