@@ -1,7 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["src", "client.ts", "server.ts"],
-  "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo"
-  }
+	"extends": "../../tsconfig.json",
+	"include": ["src", "client.ts", "server.ts"],
+	"compilerOptions": {
+		"rootDir": "src",
+		"tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo"
+	}
 }

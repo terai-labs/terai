@@ -71,7 +71,10 @@ export const runtime = {
 
 			// chokidar >= 4 does not support globs: watch the base directory of
 			// each include pattern and filter files with picomatch
-			const normalize = (pattern: string) => pattern.replace(/^\.\//, '')
+			const normalize = (pattern: string) =>
+				isAbsolute(pattern)
+					? relative(cwd, pattern)
+					: pattern.replace(/^\.\//, '')
 			const isIncluded = picomatch(include.map(normalize), { dot: true })
 			const isExcluded = picomatch(exclude.map(normalize), { dot: true })
 			const dirs = [
@@ -88,7 +91,7 @@ export const runtime = {
 				ignoreInitial: true,
 				ignorePermissionErrors: true,
 				ignored: (path, stats) => {
-					const rel = relative(cwd, path)
+					const rel = relative(cwd, resolve(cwd, path))
 					if (!rel || rel.startsWith('..')) return false
 					if (exclude.length && isExcluded(rel)) return true
 					return !!stats?.isFile() && !isIncluded(rel)

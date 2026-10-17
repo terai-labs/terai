@@ -18,22 +18,16 @@ const makeExternalPredicate = (externalArr) => {
 
 const config = {
 	input: 'src/index.ts',
-	output:
-		// {
-		//   file: pkg.require,
-		//   format: 'cjs',
-		//   exports: 'named',
-		//   sourcemap: true
-		// },
-		{
-			dir: 'dist',
-			format: 'esm',
-			exports: 'named',
-			preserveModules: true,
-			preserveModulesRoot: 'src',
-			sourcemap: true,
-			interop: 'auto'
-		},
+	output: ['esm', 'cjs'].map((format) => ({
+		dir: 'dist',
+		format,
+		entryFileNames: `[name].${format === 'esm' ? 'mjs' : 'cjs'}`,
+		exports: 'named',
+		preserveModules: true,
+		preserveModulesRoot: 'src',
+		sourcemap: true,
+		interop: 'auto'
+	})),
 	external: makeExternalPredicate([
 		...Object.keys(pkg.dependencies || {}),
 		...Object.keys(pkg.peerDependencies || {})

@@ -1,5 +1,6 @@
 // Dependencies
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Platform } from 'react-native'
 import pkg from '../package.json'
 
 // Types
@@ -17,6 +18,7 @@ let saveTimeoutId: ReturnType<typeof setTimeout> | null = null
 const SAVE_DEBOUNCE_MS = 300
 
 export async function loadFromStorage(): Promise<Partial<State> | null> {
+	if (Platform.OS === 'web' && typeof window === 'undefined') return null
 	try {
 		const stored: Partial<State> = {}
 
@@ -40,6 +42,7 @@ export async function loadFromStorage(): Promise<Partial<State> | null> {
 }
 
 export function saveToStorage(state: State): void {
+	if (Platform.OS === 'web' && typeof window === 'undefined') return
 	if (saveTimeoutId) clearTimeout(saveTimeoutId)
 
 	saveTimeoutId = setTimeout(() => {

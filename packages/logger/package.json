@@ -4,7 +4,12 @@
 	"description": "terai core logger",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/index.d.mts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/logger"
+	},
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"files": [
 		"dist"

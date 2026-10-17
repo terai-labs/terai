@@ -4,7 +4,12 @@
 	"version": "0.0.16",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/index.d.mts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/react-native"
+	},
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
 		"dev": "tsdown --format=esm --no-dts --watch",
@@ -34,7 +39,11 @@
 		"@terai/ts": "workspace:*"
 	},
 	"devDependencies": {
-		"@terai/types": "workspace:*"
+		"@terai/types": "workspace:*",
+		"@babel/core": "^7.29.7",
+		"@react-native-async-storage/async-storage": "^2.2.0",
+		"react": "^19.3.1",
+		"react-native": "0.88.0"
 	},
 	"peerDependencies": {
 		"@react-native-async-storage/async-storage": "^2.0.0",

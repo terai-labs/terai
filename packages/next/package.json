@@ -4,8 +4,19 @@
 	"version": "0.0.16",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-	"require": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/next"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
 		"dev": "rollup -c -w",
@@ -24,19 +35,23 @@
 		"@terai/ts": "workspace:*"
 	},
 	"devDependencies": {
-		"@babel/core": "^8",
-		"@babel/plugin-transform-runtime": "^8",
-		"@babel/preset-env": "^8",
-		"@babel/preset-react": "^8",
-		"@rollup/plugin-alias": "^6",
-		"@rollup/plugin-babel": "^7",
-		"@rollup/plugin-commonjs": "^29",
-		"@rollup/plugin-node-resolve": "^16",
-		"@rollup/plugin-terser": "^1",
-		"@rollup/plugin-typescript": "^12",
+		"@babel/core": "^7.29.7",
+		"@babel/plugin-transform-runtime": "^7.29.7",
+		"@babel/preset-env": "^7.29.7",
+		"@babel/preset-react": "^7.29.7",
+		"@rollup/plugin-alias": "^6.0.0",
+		"@rollup/plugin-babel": "^7.1.0",
+		"@rollup/plugin-commonjs": "^29.0.3",
+		"@rollup/plugin-node-resolve": "^16.0.3",
+		"@rollup/plugin-terser": "^1.0.0",
+		"@rollup/plugin-typescript": "^12.3.0",
 		"@terai/types": "workspace:*",
+		"next": "^16.4.2",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
 		"rollup": "^4.64.8",
-		"rollup-plugin-preserve-directives": "^0.4.0"
+		"rollup-plugin-preserve-directives": "^0.4.0",
+		"typescript": "~6.0.3"
 	},
 	"peerDependencies": {
 		"next": "^15 || ^16",

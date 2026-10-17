@@ -4,9 +4,7 @@ import { generateObject } from 'ai'
 import { z } from 'zod'
 import dedent from 'dedent'
 
-const groq = createGroq({
-	apiKey: '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'
-})
+const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
 
 // https://console.groq.com/docs/structured-outputs#supported-models
 // const model = groq('openai/gpt-oss-20b');
@@ -38,9 +36,8 @@ export default defineConfig({
 	outLocales: ['en-US', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP'],
 	translator: async ({ dictionary, locale, projectLocale }) => {
 		const { object: translation } = await generateObject({
-			mode: 'json',
 			model: model,
-			schema: z.record(z.string()),
+			schema: z.record(z.string(), z.string()),
 			prompt: dedent`
 								Translate the following JSON from "${projectLocale}" to "${locale}".
 								<target-json>

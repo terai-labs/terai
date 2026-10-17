@@ -5,21 +5,15 @@ runs:
   using: composite
   steps:
     - name: Setup PNPM
-      uses: pnpm/action-setup@master
+      uses: pnpm/action-setup@v6
 
     - name: Setup Node.js
-      uses: actions/setup-node@main
+      uses: actions/setup-node@v7
       with:
         node-version: 24
         registry-url: https://registry.npmjs.org/
         cache: "pnpm"
 
-    - name: Setup Git Configuration
-      shell: bash
-      run: |
-        git config --global user.email "corta.hugo@gmail.com"
-        git config --global user.name "hugocxl"
-
     - name: Install dependencies
       shell: bash
-      run: pnpm i --no-frozen-lockfile
+      run: pnpm i --frozen-lockfile

@@ -4,7 +4,12 @@
 	"version": "0.0.16",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/index.d.mts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/extractor"
+	},
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
 		"dev": "tsdown --format=esm --no-dts --watch",
@@ -32,7 +37,8 @@
 	"dependencies": {
 		"@terai/logger": "workspace:*",
 		"@terai/runtime": "workspace:*",
-		"@terai/transformer": "workspace:*"
+		"@terai/transformer": "workspace:*",
+		"typescript": "~6.0.3"
 	},
 	"devDependencies": {
 		"@terai/types": "workspace:*"
