@@ -5,7 +5,7 @@ import { z } from 'zod'
 import dedent from 'dedent'
 
 const groq = createGroq({
-	apiKey: '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'
+	apiKey: process.env.GROQ_API_KEY
 })
 
 // https://console.groq.com/docs/structured-outputs#supported-models

@@ -2,7 +2,7 @@ import { defineConfig, createAiTranslator } from '@terai/dev'
 import { createGroq } from '@ai-sdk/groq'
 
 const groq = createGroq({
-	apiKey: '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'
+	apiKey: process.env.GROQ_API_KEY
 })
 
 const model = groq('openai/gpt-oss-120b')
