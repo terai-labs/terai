@@ -1,5 +1,14 @@
 # @terai/generator
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies [69a9c27]
+  - @terai/translator@0.0.18
+  - @terai/utils@0.0.18
+  - @terai/runtime@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes

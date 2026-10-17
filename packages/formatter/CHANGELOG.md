@@ -1,5 +1,12 @@
 # @terai/formatter
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies [69a9c27]
+  - @terai/utils@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes
