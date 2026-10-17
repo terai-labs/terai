@@ -8,9 +8,13 @@ import type { TransformerOptions } from './types'
 
 type TypeScript = typeof ts
 
-// https://esbuild.github.io/content-types/#direct-eval
-const nodeEval = eval
-const chunks: Record<string, string[]> = {}
+// Chunk ids declared so far in the file being transformed. Messages found
+// after a `useTs`/`getTs` call belong to every chunk the file declares.
+type FileState = {
+	file: string
+	chunksIds: string[]
+	messages: { msg: ExtractedMessage; chunked: boolean }[]
+}
 
 function getRepoFilePath(cwd: string, filePath: string) {
 	const folderName = cwd.split('/').pop()
@@ -23,24 +27,19 @@ function extractMessageFromTemplateExpression(
 	ts: TypeScript,
 	factory: ts.NodeFactory,
 	node: ts.TaggedTemplateExpression,
-	{ onMsgExtracted, cwd }: TransformerOptions,
-	sf: ts.SourceFile
+	state: FileState
 ): ts.VisitResult<ts.TaggedTemplateExpression> {
 	const text = node.template.getText()
 	const value = prepareMessage(text)
 	const id = toHash(value)
-	const file = getRepoFilePath(cwd, sf.fileName)
-	const chunksIds = chunks[file] ?? ['default']
 
-	const msg: ExtractedMessage = {
+	collectMessage(state, {
 		id,
 		value,
-		files: [file],
+		files: [state.file],
 		context: '',
-		chunksIds
-	}
-
-	onMsgExtracted(id, msg)
+		chunksIds: []
+	})
 
 	return node
 }
@@ -49,49 +48,54 @@ function extractMessageFromCallExpression(
 	ts: TypeScript,
 	factory: ts.NodeFactory,
 	node: ts.CallExpression,
-	{ onMsgExtracted, cwd }: TransformerOptions,
-	sf: ts.SourceFile
+	state: FileState
 ): ts.VisitResult<ts.CallExpression> {
 	const expressionNode = node.parent as ts.TaggedTemplateExpression
 	const text = expressionNode.template.getText()
 	const value = prepareMessage(text)
-	const file = getRepoFilePath(cwd, sf.fileName)
 	const id = toHash(value)
 	let context = ''
 	const arg = node.arguments?.[0]
-	const chunksIds = chunks[file] ?? ['default']
 
 	if (arg) {
 		arg.forEachChild((child) => {
 			const key = child.getFirstToken()?.getText()
 			if (key === 'context') {
-				const contextValue = child.getLastToken()?.getText()
-				if (contextValue) context = nodeEval(contextValue)
+				const contextValue = getStringValue(child.getLastToken())
+				if (contextValue) context = contextValue
 			}
 		})
 	}
 
-	const msg: ExtractedMessage = {
+	collectMessage(state, {
 		id,
 		value,
-		files: [file],
+		files: [state.file],
 		context,
-		chunksIds
-	}
-
-	onMsgExtracted(id, msg)
+		chunksIds: []
+	})
 
 	return node
+}
+
+// Only static strings can be extracted: `'a'`, `"a"` or `` `a` ``
+function getStringValue(node: ts.Node | undefined) {
+	if (!node) return undefined
+	if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+		return node.text
+	}
+}
+
+function collectMessage(state: FileState, msg: ExtractedMessage) {
+	state.messages.push({ msg, chunked: state.chunksIds.length > 0 })
 }
 
 function extractChunk(
 	ts: TypeScript,
 	factory: ts.NodeFactory,
 	node: ts.CallExpression,
-	{ cwd }: TransformerOptions,
-	sf: ts.SourceFile
+	state: FileState
 ): ts.VisitResult<ts.CallExpression> {
-	const file = getRepoFilePath(cwd, sf.fileName)
 	const arg = node.arguments?.[0]
 
 	if (arg) {
@@ -99,10 +103,9 @@ function extractChunk(
 			const key = child.getFirstToken()?.getText()
 
 			if (key === 'chunkId') {
-				const chunkValue = child.getLastToken()?.getText()
-				if (chunkValue) {
-					chunks[file] = chunks[file] ?? []
-					chunks[file].push(nodeEval(chunkValue))
+				const chunkId = getStringValue(child.getLastToken())
+				if (chunkId && !state.chunksIds.includes(chunkId)) {
+					state.chunksIds.push(chunkId)
 				}
 			}
 		})
@@ -114,8 +117,7 @@ function extractChunk(
 function getVisitor(
 	ts: TypeScript,
 	cts: ts.TransformationContext,
-	sf: ts.SourceFile,
-	opts: TransformerOptions
+	state: FileState
 ) {
 	const visitor: ts.Visitor = (node: ts.Node): ts.Node => {
 		if (
@@ -123,15 +125,15 @@ function getVisitor(
 			(node.expression.getText() === 'getTs' ||
 				node.expression.getText() === 'useTs')
 		) {
-			extractChunk(ts, cts.factory, node, opts, sf)
+			extractChunk(ts, cts.factory, node, state)
 		}
 
 		if (ts.isTaggedTemplateExpression(node) && node.tag.getText() === 'ts') {
-			extractMessageFromTemplateExpression(ts, cts.factory, node, opts, sf)
+			extractMessageFromTemplateExpression(ts, cts.factory, node, state)
 		}
 
 		if (ts.isCallExpression(node) && node.expression.getText() === 'ts') {
-			extractMessageFromCallExpression(ts, cts.factory, node, opts, sf)
+			extractMessageFromCallExpression(ts, cts.factory, node, state)
 		}
 
 		return ts.visitEachChild(node, visitor, cts)
@@ -142,9 +144,24 @@ function getVisitor(
 
 export function transform(opts: TransformerOptions) {
 	const transformFn: ts.TransformerFactory<ts.SourceFile> = (cts) => (sf) => {
-		const visitor = getVisitor(ts, cts, sf, opts)
+		const state: FileState = {
+			file: getRepoFilePath(opts.cwd, sf.fileName),
+			chunksIds: [],
+			messages: []
+		}
+		const visitor = getVisitor(ts, cts, state)
+		const result = ts.visitEachChild(sf, visitor, cts)
 
-		return ts.visitEachChild(sf, visitor, cts)
+		// Emit once the whole file is visited, so every message sees the final
+		// list of chunks declared after it (and none from other files or runs).
+		for (const { msg, chunked } of state.messages) {
+			opts.onMsgExtracted(msg.id, {
+				...msg,
+				chunksIds: chunked ? [...state.chunksIds] : ['default']
+			})
+		}
+
+		return result
 	}
 
 	return transformFn

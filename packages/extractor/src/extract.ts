@@ -17,14 +17,18 @@ export async function extract({
 	cwd
 }: ExtractOptions): Promise<ExtractedMessages> {
 	const extractedMessages: ExtractedMessages = {}
+	const failedFiles: string[] = []
 
 	function onMsgExtracted(id: string, msg: ExtractedMessage) {
 		if (extractedMessages[id]) {
 			extractedMessages[id] = {
 				...extractedMessages[id],
 				...msg,
-				chunksIds: [...extractedMessages[id].chunksIds, ...msg.chunksIds],
-				files: [...extractedMessages[id].files, ...msg.files]
+				chunksIds: unique([
+					...extractedMessages[id].chunksIds,
+					...msg.chunksIds
+				]),
+				files: unique([...extractedMessages[id].files, ...msg.files])
 			}
 		} else {
 			extractedMessages[id] = msg
@@ -56,10 +60,22 @@ export async function extract({
 				})
 			} catch (e) {
 				logger.error('extract', `Error processing file ${fileName} ${e}`)
-				return null
+				failedFiles.push(fileName)
 			}
 		})
 	)
 
+	// A partial extraction would drop the failed files' messages from every
+	// locale on the next translate, so refuse to return one.
+	if (failedFiles.length) {
+		throw new Error(
+			`Failed to process ${failedFiles.length} file(s): ${failedFiles.join(', ')}`
+		)
+	}
+
 	return extractedMessages
+}
+
+function unique<T>(items: T[]): T[] {
+	return [...new Set(items)]
 }
