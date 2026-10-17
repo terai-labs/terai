@@ -1,5 +1,9 @@
 # @terai/types
 
+## 0.0.19
+
+No changes in this release.
+
 ## 0.0.18
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @terai/dev
 
+## 0.0.19
+
+### Patch Changes
+
+- @terai/extractor@0.0.19
+  - @terai/runtime@0.0.19
+  - @terai/translator@0.0.19
+  - @terai/types@0.0.19
+  - @terai/utils@0.0.19
+
 ## 0.0.18
 
 ### Patch Changes

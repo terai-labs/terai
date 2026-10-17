@@ -1,6 +1,6 @@
 {
 	"name": "@terai/dev",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"description": "The user-facing package for Terai",
 	"engines": {
 		"node": ">=22.13.0"
