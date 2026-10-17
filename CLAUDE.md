@@ -157,12 +157,16 @@ const loadedDictionary = useMemo(() => {
 
 Location: `packages/react/src/persistence.ts`
 
-Versioned localStorage keys prevent stale data:
+The locale key is stable so the user's language survives upgrades; dictionaries
+are cached per version so a stale cache is never reused:
 
 ```typescript
-localStorage.setItem('terai-locale-0.0.16', locale)
-localStorage.setItem('terai-dictionaries-0.0.16', JSON.stringify(dictionaries))
+localStorage.setItem('terai-locale', locale)
+localStorage.setItem('terai-dictionaries-0.0.19', JSON.stringify(dictionaries))
 ```
+
+On load, a locale saved under a pre-0.0.19 `terai-locale-{version}` key moves to
+`terai-locale`, and other versions' keys are removed.
 
 ### Code Splitting
 
@@ -317,8 +321,7 @@ export default defineConfig({
 - Wrap in `<Suspense>` boundary
 
 **Locale not persisting:**
-- Check localStorage keys match version
-- Keys: `terai-locale-{version}`, `terai-dictionaries-{version}`
+- Keys: `terai-locale`, `terai-dictionaries-{version}`
 
 **Build failing:**
 ```bash

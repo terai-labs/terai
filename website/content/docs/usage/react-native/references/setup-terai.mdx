@@ -120,7 +120,7 @@ Unlike the React web version, React Native uses AsyncStorage for persistence. Th
 - Locale is saved to AsyncStorage when changed via `setLocale`
 - Dictionaries are cached in AsyncStorage after loading
 - Data is restored on app startup for instant experience
-- Storage keys are versioned to prevent conflicts on updates
+- The locale is kept across Terai updates; cached dictionaries are stored per Terai version
 
 ## Platform Differences
 
