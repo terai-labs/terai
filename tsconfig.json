@@ -4,7 +4,6 @@
 		"allowSyntheticDefaultImports": true,
 		"declaration": true,
 		"declarationMap": true,
-		"downlevelIteration": true,
 		"esModuleInterop": true,
 		"incremental": true,
 		"isolatedModules": true,

@@ -7,22 +7,26 @@
 		"dev": "vite",
 		"build": "pnpm localize && tsc && vite build --base=./",
 		"localize": "pnpm terai extract && pnpm terai translate",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"lint": "eslint . --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@ai-sdk/groq": "^2.0.29",
+		"@ai-sdk/groq": "^4.0.63",
 		"@terai/react": "workspace:*",
-		"ai": "^5.0.95",
-		"dedent": "^1.7.0",
-		"zod": "^3.25.76"
+		"ai": "^7.0.143",
+		"dedent": "^1.7.2",
+		"zod": "^4.6.7"
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@terai/dev": "workspace:*",
-		"@vitejs/plugin-react": "^4",
-		"eslint": "^8",
-		"eslint-plugin-react-hooks": "^4",
-		"eslint-plugin-react-refresh": "^0",
-		"vite": "^5"
+		"@vitejs/plugin-react": "^6.1.2",
+		"eslint": "^10.13.0",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"eslint-plugin-react-refresh": "^0.5.7",
+		"globals": "^17.13.0",
+		"typescript": "~6.0.3",
+		"typescript-eslint": "^8.71.2",
+		"vite": "^8.3.4"
 	}
 }

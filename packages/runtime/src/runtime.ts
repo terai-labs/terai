@@ -1,20 +1,10 @@
 import { bundleNRequire } from 'bundle-n-require'
 import { logger } from '@terai/logger'
 import { lookItUpSync } from 'look-it-up'
-import chokidar from 'chokidar'
+import { watch } from 'chokidar'
 import glob from 'fast-glob'
-import {
-	copySync,
-	emptyDirSync,
-	ensureDirSync,
-	ensureFileSync,
-	existsSync,
-	outputFileSync,
-	readdirSync,
-	readFileSync,
-	removeSync,
-	renameSync
-} from 'fs-extra'
+import fs from 'fs-extra'
+import picomatch from 'picomatch'
 import {
 	dirname,
 	extname,
@@ -49,17 +39,17 @@ export const runtime = {
 		}
 	},
 	fs: {
-		copy: copySync,
-		emptyDir: emptyDirSync,
-		ensureDir: ensureDirSync,
-		ensureFile: ensureFileSync,
-		exists: existsSync,
-		readDir: readdirSync,
-		readFile: (path: string) => readFileSync(path, 'utf8'),
-		remove: removeSync,
+		copy: fs.copySync,
+		emptyDir: fs.emptyDirSync,
+		ensureDir: fs.ensureDirSync,
+		ensureFile: fs.ensureFileSync,
+		exists: fs.existsSync,
+		readDir: fs.readdirSync,
+		readFile: (path: string) => fs.readFileSync(path, 'utf8'),
+		remove: fs.removeSync,
 		findUp: lookItUpSync,
-		rename: renameSync,
-		write: outputFileSync,
+		rename: fs.renameSync,
+		write: fs.outputFileSync,
 		glob: (opts: { include: string[]; exclude?: string[]; cwd?: string }) => {
 			if (!opts.include) return []
 
@@ -76,14 +66,36 @@ export const runtime = {
 			cwd?: string
 			poll?: boolean
 		}) => {
-			const { include, exclude, cwd, poll } = options
+			const { include, exclude = [], cwd = process.cwd(), poll } = options
 			const coalesce = poll || process.platform === 'win32'
-			const watcher = chokidar.watch(include, {
+
+			// chokidar >= 4 does not support globs: watch the base directory of
+			// each include pattern and filter files with picomatch
+			const normalize = (pattern: string) =>
+				isAbsolute(pattern)
+					? relative(cwd, pattern)
+					: pattern.replace(/^\.\//, '')
+			const isIncluded = picomatch(include.map(normalize), { dot: true })
+			const isExcluded = picomatch(exclude.map(normalize), { dot: true })
+			const dirs = [
+				...new Set(
+					include.map((pattern) =>
+						resolve(cwd, picomatch.scan(normalize(pattern)).base)
+					)
+				)
+			]
+
+			const watcher = watch(dirs, {
 				usePolling: poll,
 				cwd,
 				ignoreInitial: true,
 				ignorePermissionErrors: true,
-				ignored: exclude,
+				ignored: (path, stats) => {
+					const rel = relative(cwd, resolve(cwd, path))
+					if (!rel || rel.startsWith('..')) return false
+					if (exclude.length && isExcluded(rel)) return true
+					return !!stats?.isFile() && !isIncluded(rel)
+				},
 				awaitWriteFinish: coalesce
 					? { stabilityThreshold: 50, pollInterval: 10 }
 					: false

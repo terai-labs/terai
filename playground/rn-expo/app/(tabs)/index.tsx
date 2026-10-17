@@ -1,13 +1,13 @@
 import { Image } from 'expo-image'
-import { Platform, StyleSheet, Button as RNButton, View } from 'react-native'
+import { StyleSheet, Button as RNButton, View } from 'react-native'
+import type { Locale } from '@terai/types'
 
 import { HelloWave } from '@/components/hello-wave'
 import ParallaxScrollView from '@/components/parallax-scroll-view'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { Link } from 'expo-router'
-import { useTs } from '@terai/react-native'
-import { setLocale, useLocale, useFormat } from '@terai/react-native'
+import { useTs, setLocale, useLocale, useFormat } from '@terai/react-native'
 
 export default function HomeScreen() {
 	const { ts } = useTs()
@@ -104,7 +104,7 @@ function LocaleSwitcher() {
 	)
 }
 
-function Button({ locale }: { locale: string }) {
+function Button({ locale }: { locale: Locale }) {
 	return <RNButton title={locale} onPress={() => setLocale(locale)} />
 }
 

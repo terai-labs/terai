@@ -1,11 +1,11 @@
 import { defineConfig } from '@terai/dev'
 import { createGroq } from '@ai-sdk/groq'
-import { generateObject } from 'ai'
+import { generateText, Output } from 'ai'
 import { z } from 'zod'
 import dedent from 'dedent'
 
 const groq = createGroq({
-	apiKey: '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'
+	apiKey: process.env.GROQ_API_KEY
 })
 
 // https://console.groq.com/docs/structured-outputs#supported-models
@@ -23,17 +23,16 @@ export default defineConfig({
 	outDir: './locale',
 	outLocales: ['en-GB', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP'],
 	translator: async ({ dictionary, locale, projectLocale }) => {
-		const { object: translation } = await generateObject({
-			mode: 'json',
+		const { output: translation } = await generateText({
 			model: model,
-			schema: z.record(z.string()),
+			output: Output.object({ schema: z.record(z.string(), z.string()) }),
 			prompt: dedent`
 								Translate the following JSON from "${projectLocale}" to "${locale}".
 								<target-json>
 									${JSON.stringify(dictionary, null, 2)}
 								</target-json>
 							`,
-			system: dedent`
+			instructions: dedent`
 								# Translation Expert: ${projectLocale} → ${locale}
 			
 								## Your Role

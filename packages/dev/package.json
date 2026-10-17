@@ -2,9 +2,17 @@
 	"name": "@terai/dev",
 	"version": "0.0.16",
 	"description": "The user-facing package for Terai",
+	"engines": {
+		"node": ">=22.13.0"
+	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/index.d.mts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/dev"
+	},
 	"private": false,
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"bin": {
@@ -35,23 +43,23 @@
 		}
 	},
 	"dependencies": {
-		"@inquirer/prompts": "^3",
+		"@inquirer/prompts": "^8.7.3",
 		"@terai/extractor": "workspace:*",
 		"@terai/runtime": "workspace:*",
 		"@terai/translator": "workspace:*",
-		"@terai/utils": "workspace:*",
 		"@terai/types": "workspace:*",
-		"cac": "^6",
-		"dotenv": "^1",
-		"inquirer": "^9",
-		"kleur": "^4",
-		"perfect-debounce": "^1",
-		"preferred-pm": "^3"
+		"@terai/utils": "workspace:*",
+		"cac": "^7.1.0",
+		"dotenv": "^18.0.8",
+		"inquirer": "^14.2.3",
+		"kleur": "^4.1.5",
+		"perfect-debounce": "^2.1.0",
+		"preferred-pm": "^5.0.1"
 	},
 	"devDependencies": {
 		"@terai/generator": "workspace:*",
 		"@terai/logger": "workspace:*",
-		"@types/update-notifier": "^6",
-		"update-notifier": "^6"
+		"@types/update-notifier": "^6.0.8",
+		"update-notifier": "^7.3.1"
 	}
 }

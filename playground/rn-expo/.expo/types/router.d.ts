@@ -15,6 +15,13 @@ declare module 'expo-router' {
 						pathname: Router.ExternalPathString
 						params?: Router.UnknownInputParams
 				  }
+				| { pathname: `/modal`; params?: Router.UnknownInputParams }
+				| { pathname: `/_sitemap`; params?: Router.UnknownInputParams }
+				| {
+						pathname: `${'/(tabs)'}/explore` | `/explore`
+						params?: Router.UnknownInputParams
+				  }
+				| { pathname: `${'/(tabs)'}` | `/`; params?: Router.UnknownInputParams }
 			hrefOutputParams:
 				| {
 						pathname: Router.RelativePathString
@@ -24,15 +31,35 @@ declare module 'expo-router' {
 						pathname: Router.ExternalPathString
 						params?: Router.UnknownOutputParams
 				  }
+				| { pathname: `/modal`; params?: Router.UnknownOutputParams }
+				| { pathname: `/_sitemap`; params?: Router.UnknownOutputParams }
+				| {
+						pathname: `${'/(tabs)'}/explore` | `/explore`
+						params?: Router.UnknownOutputParams
+				  }
+				| {
+						pathname: `${'/(tabs)'}` | `/`
+						params?: Router.UnknownOutputParams
+				  }
 			href:
 				| Router.RelativePathString
 				| Router.ExternalPathString
+				| `/modal${`?${string}` | `#${string}` | ''}`
+				| `/_sitemap${`?${string}` | `#${string}` | ''}`
+				| `${'/(tabs)'}/explore${`?${string}` | `#${string}` | ''}`
+				| `/explore${`?${string}` | `#${string}` | ''}`
+				| `${'/(tabs)'}${`?${string}` | `#${string}` | ''}`
+				| `/${`?${string}` | `#${string}` | ''}`
 				| {
-						pathname: Router.RelativePathString
-						params?: Router.UnknownInputParams
-				  }
-				| {
-						pathname: Router.ExternalPathString
+						pathname:
+							| Router.RelativePathString
+							| Router.ExternalPathString
+							| `/modal`
+							| `/_sitemap`
+							| `${'/(tabs)'}/explore`
+							| `/explore`
+							| `${'/(tabs)'}`
+							| `/`
 						params?: Router.UnknownInputParams
 				  }
 		}

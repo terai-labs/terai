@@ -6,4 +6,4 @@ export function defineConfig(config: Config) {
 
 export * from '@terai/translator/translators'
 
-export * from '@terai/types'
+export type * from '@terai/types'

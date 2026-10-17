@@ -3,7 +3,7 @@ import { findConfig, setupConfig } from '@terai/runtime'
 import { input } from '@inquirer/prompts'
 import { logger } from '@terai/logger'
 import { outdent } from 'outdent'
-import getPackageManager from 'preferred-pm'
+import { preferredPM } from 'preferred-pm'
 
 // Types
 import type { Config, Locale } from '@terai/types'
@@ -25,7 +25,7 @@ export function createInitCommand(cli: CAC, cwd: string) {
 export async function initCmd({ cwd, force }: InitOptions) {
 	logger.heading('init', 'Initialize config file')
 	const configFile = findConfig({ cwd })
-	const pmResult = await getPackageManager(cwd)
+	const pmResult = await preferredPM(cwd)
 	const pm = pmResult?.name ?? 'npm'
 	const cmd = pm === 'npm' ? 'npm run' : pm
 

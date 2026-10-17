@@ -2,9 +2,17 @@
 	"name": "@terai/runtime",
 	"version": "0.0.16",
 	"description": "terai node utilities",
+	"engines": {
+		"node": ">=22.13.0"
+	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/index.d.mts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/terai-labs/terai.git",
+		"directory": "packages/runtime"
+	},
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
 		"dev": "tsdown --format=esm --no-dts --watch",
@@ -31,16 +39,18 @@
 	},
 	"dependencies": {
 		"@terai/logger": "workspace:*",
-		"bundle-n-require": "^1",
-		"chokidar": "^3",
-		"fast-glob": "^3",
-		"fs-extra": "^1",
-		"look-it-up": "^2",
-		"outdent": "^0",
-		"pathe": "^1"
+		"bundle-n-require": "^1.1.2",
+		"chokidar": "^5.0.0",
+		"fast-glob": "^3.3.3",
+		"fs-extra": "^11.4.1",
+		"look-it-up": "^2.1.0",
+		"outdent": "^0.8.0",
+		"pathe": "^2.0.3",
+		"picomatch": "^4.0.7"
 	},
 	"devDependencies": {
 		"@terai/types": "workspace:*",
-		"@types/fs-extra": "^11"
+		"@types/fs-extra": "^11.0.4",
+		"@types/picomatch": "^4.0.3"
 	}
 }
