@@ -23,7 +23,7 @@ export default function App() {
 	)
 }
 
-function Button({ locale }: { locale: string }) {
+function Button({ locale }: { locale: Parameters<typeof setLocale>[0] }) {
 	return (
 		<button
 			type='button'
