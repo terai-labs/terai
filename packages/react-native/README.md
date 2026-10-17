@@ -181,7 +181,7 @@ Terai automatically persists translations and locale preferences using AsyncStor
 - Locale preference is remembered across app restarts
 - No flash of untranslated content
 
-The data is stored with versioned keys to prevent conflicts when updating Terai versions.
+The locale is kept across Terai updates. Cached dictionaries are stored per Terai version, so an update never reuses a stale cache.
 
 ## Differences from @terai/react
 
