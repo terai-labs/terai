@@ -10,7 +10,7 @@ export function interpolate({ message, variables }: InterpolateProps) {
 		const variable = variables[index]
 		index++
 
-		if (!variable) return null
+		if (variable == null) return ''
 
 		return variable
 	})
