@@ -19,26 +19,27 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@terai/ts": "workspace:*",
+		"@terai/formatter": "workspace:*",
 		"@terai/react": "workspace:*",
-		"@terai/formatter": "workspace:*"
+		"@terai/ts": "workspace:*"
 	},
 	"devDependencies": {
+		"@babel/core": "^8",
+		"@babel/plugin-transform-runtime": "^8",
+		"@babel/preset-env": "^8",
+		"@babel/preset-react": "^8",
+		"@rollup/plugin-alias": "^6",
+		"@rollup/plugin-babel": "^7",
+		"@rollup/plugin-commonjs": "^29",
+		"@rollup/plugin-node-resolve": "^16",
+		"@rollup/plugin-terser": "^1",
+		"@rollup/plugin-typescript": "^12",
 		"@terai/types": "workspace:*",
-		"@babel/plugin-transform-runtime": "^7",
-		"@babel/preset-env": "^7",
-		"@babel/preset-react": "^7",
-		"@rollup/plugin-alias": "^5",
-		"@rollup/plugin-typescript": "^11",
-		"@rollup/plugin-babel": "^6",
-		"@rollup/plugin-commonjs": "^25",
-		"@rollup/plugin-node-resolve": "^15",
-		"@rollup/plugin-terser": "^0",
-		"rollup": "^4",
-		"rollup-plugin-preserve-directives": "^0"
+		"rollup": "^4.64.8",
+		"rollup-plugin-preserve-directives": "^0.4.0"
 	},
 	"peerDependencies": {
-		"next": "^15",
+		"next": "^15 || ^16",
 		"react": "^19"
 	}
 }

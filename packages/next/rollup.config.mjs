@@ -41,6 +41,7 @@ const config = {
 	plugins: [
 		typescript({
 			declarationDir: 'dist',
+			outDir: 'dist',
 			outputToFilesystem: true
 		}),
 		nodeResolve({
