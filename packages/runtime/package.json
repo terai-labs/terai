@@ -32,15 +32,17 @@
 	"dependencies": {
 		"@terai/logger": "workspace:*",
 		"bundle-n-require": "^1",
-		"chokidar": "^3",
+		"chokidar": "^5",
 		"fast-glob": "^3",
-		"fs-extra": "^1",
+		"fs-extra": "^11",
 		"look-it-up": "^2",
 		"outdent": "^0",
-		"pathe": "^1"
+		"pathe": "^2",
+		"picomatch": "^4"
 	},
 	"devDependencies": {
 		"@terai/types": "workspace:*",
-		"@types/fs-extra": "^11"
+		"@types/fs-extra": "^11",
+		"@types/picomatch": "^4"
 	}
 }
