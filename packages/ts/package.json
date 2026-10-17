@@ -1,7 +1,7 @@
 {
 	"name": "@terai/ts",
 	"description": "terai translation source function",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.mts",

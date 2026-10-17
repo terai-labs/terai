@@ -1,5 +1,13 @@
 # @terai/generator
 
+## 0.0.19
+
+### Patch Changes
+
+- @terai/runtime@0.0.19
+  - @terai/translator@0.0.19
+  - @terai/utils@0.0.19
+
 ## 0.0.18
 
 ### Patch Changes

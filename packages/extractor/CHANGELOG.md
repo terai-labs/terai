@@ -1,5 +1,13 @@
 # @terai/extractor
 
+## 0.0.19
+
+### Patch Changes
+
+- @terai/logger@0.0.19
+  - @terai/runtime@0.0.19
+  - @terai/transformer@0.0.19
+
 ## 0.0.18
 
 ### Patch Changes
