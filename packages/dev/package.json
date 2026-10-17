@@ -35,23 +35,23 @@
 		}
 	},
 	"dependencies": {
-		"@inquirer/prompts": "^3",
+		"@inquirer/prompts": "^8",
 		"@terai/extractor": "workspace:*",
 		"@terai/runtime": "workspace:*",
 		"@terai/translator": "workspace:*",
 		"@terai/utils": "workspace:*",
 		"@terai/types": "workspace:*",
-		"cac": "^6",
-		"dotenv": "^1",
-		"inquirer": "^9",
+		"cac": "^7",
+		"dotenv": "^18",
+		"inquirer": "^14",
 		"kleur": "^4",
-		"perfect-debounce": "^1",
-		"preferred-pm": "^3"
+		"perfect-debounce": "^2",
+		"preferred-pm": "^5"
 	},
 	"devDependencies": {
 		"@terai/generator": "workspace:*",
 		"@terai/logger": "workspace:*",
 		"@types/update-notifier": "^6",
-		"update-notifier": "^6"
+		"update-notifier": "^7"
 	}
 }
