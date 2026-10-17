@@ -1,5 +1,17 @@
 # @terai/next
 
+## 0.0.17
+
+### Patch Changes
+
+- 7c404f8: Update dependencies and build tooling, support current translation providers and Next.js 16, preserve glob-based watching with Chokidar 5, and fix CommonJS CLI loading. Declare TypeScript 6 compiler API dependencies explicitly for extraction and transformation. Preserve empty strings, zero, and false during interpolation. CLI/runtime tooling now requires Node.js 22.13 or newer.
+  
+  Correct package entry points and TypeScript declaration paths. Skip browser-only storage during React Native web static rendering.
+- Updated dependencies [7c404f8]
+  - @terai/formatter@0.0.17
+  - @terai/react@0.0.17
+  - @terai/ts@0.0.17
+
 ## 0.0.16
 
 ### Patch Changes

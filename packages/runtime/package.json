@@ -1,6 +1,6 @@
 {
 	"name": "@terai/runtime",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"description": "terai node utilities",
 	"engines": {
 		"node": ">=22.13.0"
