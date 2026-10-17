@@ -1,5 +1,20 @@
 # @terai/dev
 
+## 0.0.17
+
+### Patch Changes
+
+- 7c404f8: Update dependencies and build tooling, support current translation providers and Next.js 16, preserve glob-based watching with Chokidar 5, and fix CommonJS CLI loading. Declare TypeScript 6 compiler API dependencies explicitly for extraction and transformation. Preserve empty strings, zero, and false during interpolation. CLI/runtime tooling now requires Node.js 22.13 or newer.
+  
+  Correct package entry points and TypeScript declaration paths. Skip browser-only storage during React Native web static rendering.
+- 21ad21a: `translate`: parse each chunk file once per locale and dedupe `chunksIds`. The cache lookup re-read and re-parsed the whole chunk file for every message, which made `translate` spend minutes at 100% CPU on large projects before translating anything.
+- Updated dependencies [7c404f8]
+  - @terai/extractor@0.0.17
+  - @terai/runtime@0.0.17
+  - @terai/translator@0.0.17
+  - @terai/types@0.0.17
+  - @terai/utils@0.0.17
+
 ## 0.0.16
 
 ### Patch Changes
