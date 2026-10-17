@@ -58,10 +58,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Restore source before snapshot versioning
+        if: steps.changesets.outputs.has-changesets == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
       - name: Release to dev tag
         if: steps.changesets.outputs.has-changesets == 'true'
         run: |
-          git checkout master
           pnpm changeset version --snapshot dev
           pnpm build
           pnpm changeset publish --tag dev
