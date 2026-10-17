@@ -20,6 +20,7 @@ export type Config = {
 }
 
 let globalConfig: Config | null = null
+let unsubscribePersistence: (() => void) | null = null
 
 export const getConfig = (): Config => {
 	if (!globalConfig) {
@@ -49,7 +50,12 @@ export async function setupTerai(config: Config) {
 		}))
 	}
 
-	store.subscribe(() => {
+	// Clean up previous subscription (prevents listener accumulation on re-init/HMR)
+	if (unsubscribePersistence) unsubscribePersistence()
+
+	// Subscribe to store changes and persist to AsyncStorage
+	// saveToStorage is debounced internally for performance
+	unsubscribePersistence = store.subscribe(() => {
 		const state = store.getState()
 		saveToStorage(state)
 	})

@@ -1,5 +1,5 @@
 // Dependencies
-import { use, useCallback, useMemo } from 'react'
+import { use, useCallback, useMemo, useRef } from 'react'
 import { createTs } from '@terai/ts'
 import { tsRender } from './ts-render'
 import { store } from './store'
@@ -20,6 +20,11 @@ import type { Locale, Loader, Dictionary, DictionaryId } from '@terai/types'
 const dictionaryPromises = new Map<string, Promise<Dictionary>>()
 
 /**
+ * Stable empty dictionary reference to avoid breaking memoization
+ */
+const EMPTY_DICTIONARY: Dictionary = {}
+
+/**
  * Main hook for using translations
  * Supports both Suspense and non-Suspense modes based on config
  *
@@ -37,6 +42,7 @@ const dictionaryPromises = new Map<string, Promise<Dictionary>>()
  * - If dictionary exists in store (from cache or previous load): instant return
  * - Only re-renders when the specific dictionary for this locale/chunk changes
  * - This ensures locale changes are instant when dictionaries are cached
+ * - The ts function identity is stable via useRef (no recreation on locale/dict change)
  */
 export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 	const locale = useLocale()
@@ -74,25 +80,26 @@ export const useTs = ({ chunkId }: { chunkId?: string } = {}) => {
 		return existingPromise
 	}, [locale, dictionaryId, dictionary, loaderId, config.loader])
 
-	let loadedDictionary: Dictionary
+	const loadedDictionary = dictionary
+		? dictionary
+		: config.suspense && promise
+			? use(promise)
+			: EMPTY_DICTIONARY
 
-	if (dictionary) {
-		loadedDictionary = dictionary
-	} else if (config.suspense && promise) {
-		loadedDictionary = use(promise)
-	} else {
-		loadedDictionary = {}
-	}
+	// Use ref so the ts function can read current locale/dictionary without
+	// being recreated on every change (stable function identity)
+	const stateRef = useRef({ locale, dictionary: loadedDictionary })
+	stateRef.current = { locale, dictionary: loadedDictionary }
 
 	const ts = useCallback(
 		createTs<string>((props) =>
 			tsRender({
 				...props,
-				locale,
-				dictionary: loadedDictionary
+				locale: stateRef.current.locale,
+				dictionary: stateRef.current.dictionary
 			})
 		),
-		[locale, loadedDictionary]
+		[]
 	)
 
 	return { ts }
@@ -109,18 +116,23 @@ const loadDictionary = async ({
 	dictionaryId: DictionaryId
 	loader: Loader
 }): Promise<Dictionary> => {
-	const dic = await loader(locale, loaderId)
+	try {
+		const dic = await loader(locale, loaderId)
 
-	store.setState((prev) => ({
-		...prev,
-		dictionaries: {
-			...prev.dictionaries,
-			[dictionaryId]: {
-				...prev.dictionaries[dictionaryId],
-				...dic
+		store.setState((prev) => ({
+			...prev,
+			dictionaries: {
+				...prev.dictionaries,
+				[dictionaryId]: {
+					...prev.dictionaries[dictionaryId],
+					...dic
+				}
 			}
-		}
-	}))
+		}))
 
-	return dic
+		return dic
+	} catch (error) {
+		console.error(`[terai] Failed to load dictionary "${dictionaryId}":`, error)
+		return {}
+	}
 }

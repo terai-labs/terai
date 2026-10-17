@@ -9,7 +9,7 @@ export function merge<A extends Record<any, any>>(obj1: A, obj2: A): A {
 			) {
 				// biome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
 				if (!obj1.hasOwnProperty(key)) {
-					// @ts-ignore
+					// @ts-expect-error
 					obj1[key] = {}
 				}
 				obj1[key] = merge(obj1[key], obj2[key])

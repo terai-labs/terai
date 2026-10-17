@@ -62,7 +62,7 @@ export const store = new Store()
 
 export const getInitialState = (): State => ({
 	dictionaries: {},
-	locale: 'en-US'
+	locale: 'en'
 })
 
 // Selector helpers

@@ -9,12 +9,15 @@ export type FormatNumberProps = {
 	options?: FormatNumberOptions
 }
 
+// Cache
+import { getCachedIntl } from './intl-cache'
+
 export function formatNumber({
 	value,
 	locale,
 	options
 }: FormatNumberProps): ReturnType<Intl.NumberFormat['format']> {
-	const formatter = new Intl.NumberFormat(locale, options)
+	const formatter = getCachedIntl(Intl.NumberFormat, locale, options)
 
 	return formatter.format(value)
 }

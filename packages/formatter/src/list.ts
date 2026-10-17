@@ -9,12 +9,15 @@ export type FormatListProps = {
 	options?: FormatListOptions
 }
 
+// Cache
+import { getCachedIntl } from './intl-cache'
+
 export function formatList({
 	value,
 	locale,
 	options
 }: FormatListProps): ReturnType<Intl.ListFormat['format']> {
-	const formatter = new Intl.ListFormat(locale, options)
+	const formatter = getCachedIntl(Intl.ListFormat, locale, options)
 
 	return formatter.format(value)
 }

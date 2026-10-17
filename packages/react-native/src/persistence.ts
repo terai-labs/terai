@@ -20,14 +20,17 @@ export async function loadFromStorage(): Promise<Partial<State> | null> {
 	try {
 		const stored: Partial<State> = {}
 
-		const localeData = await AsyncStorage.getItem(STORAGE_KEYS.locale)
+		const results = await AsyncStorage.multiGet([
+			STORAGE_KEYS.locale,
+			STORAGE_KEYS.dictionaries
+		])
+
+		const localeData = results[0][1]
 		if (localeData) {
 			stored.locale = JSON.parse(localeData)
 		}
 
-		const dictionariesData = await AsyncStorage.getItem(
-			STORAGE_KEYS.dictionaries
-		)
+		const dictionariesData = results[1][1]
 		if (dictionariesData) {
 			stored.dictionaries = JSON.parse(dictionariesData)
 		}

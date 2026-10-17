@@ -1,5 +1,5 @@
 // Dependencies
-import NextLink from 'next/link'
+import type NextLink from 'next/link'
 
 // Types
 import type { UrlObject } from 'url'
