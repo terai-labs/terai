@@ -13,7 +13,8 @@
 	"author": "Hugo Corta <corta.hugo@gmail.com>",
 	"scripts": {
 		"dev": "tsdown --format=esm --no-dts --watch",
-		"build": "tsdown"
+		"build": "tsdown",
+		"generate:locales": "node scripts/generate-locales.mjs"
 	},
 	"files": [
 		"dist"
