@@ -85,9 +85,14 @@ export async function extractCmd(options: ExtractOptions) {
 
 	logger.info('Extraction:', 'Extracting messages...')
 
-	const msgCount = await extractor()
-
-	done(`Extracted ${msgCount} messages`)
+	try {
+		const msgCount = await extractor()
+		done(`Extracted ${msgCount} messages`)
+	} catch (err) {
+		logger.error('extract', err instanceof Error ? err.message : String(err))
+		process.exitCode = 1
+		if (!options.watch) return
+	}
 
 	if (options.watch) {
 		logger.log('')
@@ -103,9 +108,15 @@ export async function extractCmd(options: ExtractOptions) {
 				const done = logger.time.success()
 				logger.info('Extraction:', 'Files changed, processing messages...')
 
-				const msgCount = await extractor()
-
-				done(`Extracted ${msgCount} messages`)
+				try {
+					const msgCount = await extractor()
+					done(`Extracted ${msgCount} messages`)
+				} catch (err) {
+					logger.error(
+						'extract',
+						err instanceof Error ? err.message : String(err)
+					)
+				}
 				logger.log('')
 			})
 		)

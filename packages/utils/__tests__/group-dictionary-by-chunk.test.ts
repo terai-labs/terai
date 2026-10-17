@@ -67,3 +67,18 @@ describe('groupDictionaryByChunks', () => {
     `)
 	})
 })
+
+describe('groupDictionaryByChunks with missing translations', () => {
+	test('leaves untranslated messages out instead of writing undefined', () => {
+		const output = groupDictionaryByChunks(
+			{ gOngMQ: 'Hola, ${var}!' },
+			manifest,
+			'es'
+		)
+
+		expect(output).toEqual({
+			es: { gOngMQ: 'Hola, ${var}!' },
+			server: { gOngMQ: 'Hola, ${var}!' }
+		})
+	})
+})

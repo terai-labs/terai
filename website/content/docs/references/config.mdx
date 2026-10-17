@@ -6,7 +6,7 @@ description: Configuration Reference
 Customize how terai works via the `terai.config.ts` file in your project.
 
 ```tsx
-import { defineConfig } from '@pandacss/dev'
+import { defineConfig } from '@terai/dev'
 
 export default defineConfig({
   // your configuration options here...
@@ -89,3 +89,28 @@ The aditional locales you want to support
 - **Default**: `undefined`
 
 The translator for your messages
+
+### batchSize
+
+- **Type**: `number`
+- **Default**: `undefined` (all untranslated messages in a single call)
+
+Maximum number of messages sent to the translator in a single call. Batches run
+concurrently and are saved independently: if one batch fails, the others are
+still written to the cache and the locale files, and only the failed messages
+are retried on the next `terai translate`.
+
+```json
+{
+  "batchSize": 20
+}
+```
+
+## Translate behaviour
+
+- Translations in the locale files win over the cache, so you can fix a
+  translation by editing the JSON file directly.
+- Only the message ids that were requested are kept from the translator
+  response. Missing or empty values are reported and retried on the next run.
+- If any locale fails to translate, `terai translate` lists the failed locales
+  and exits with code `1`.

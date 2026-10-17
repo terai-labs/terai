@@ -34,4 +34,11 @@ export type Config = {
 	 * The translator for your messages
 	 */
 	translator: Translator
+
+	/**
+	 * Maximum number of messages sent to the translator in a single call.
+	 * Batches run concurrently and are saved independently, so a failing batch
+	 * does not discard the others. Defaults to sending every message at once.
+	 */
+	batchSize?: number
 }

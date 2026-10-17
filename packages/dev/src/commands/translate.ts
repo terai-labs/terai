@@ -2,15 +2,24 @@
 import { generate } from '@terai/generator'
 import { loadConfig, runtime } from '@terai/runtime'
 import { logger } from '@terai/logger'
-import { translate } from '@terai/translator'
-import { merge, stringify, groupDictionaryByChunks } from '@terai/utils'
+import { translateDictionary } from '@terai/translator'
+import {
+	stringify,
+	groupDictionaryByChunks,
+	resolveLocaleDictionary
+} from '@terai/utils'
 
 // Types
 import type { CAC } from 'cac'
-import type { Dictionary, BuildManifest } from '@terai/types'
+import type { Dictionary, BuildManifest, Locale } from '@terai/types'
 
 export type TranslateOptions = {
 	cwd: string
+}
+
+type LocaleFailure = {
+	locale: Locale
+	reason: string
 }
 
 export function createTranslateCommand(cli: CAC, cwd: string) {
@@ -31,6 +40,7 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 	const manifestPath = runtime.path.resolve(tmuDirPath, 'locale-manifest.json')
 	const existsManifest = runtime.fs.exists(manifestPath)
 	if (!existsManifest) {
+		process.exitCode = 1
 		return logger.error(
 			'translate',
 			`No locale-manifest.json found in ${tmuDirPath}. Please run "extract" first.`
@@ -43,25 +53,20 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 
 	let totalTranslatedMsgs = 0
 	let totalCachedMsgs = 0
+	const failures: LocaleFailure[] = []
 
 	await Promise.all(
 		config.outLocales.map(async (locale) => {
 			try {
-				let translatedDictionary: Dictionary = {}
-				const untranslatedDictionary: Dictionary = {}
 				const localeDirPath = runtime.path.resolve(outDirPath, locale)
 				const localeCachePath = runtime.path.resolve(
 					tmuDirPath,
 					'cache',
 					`${locale}.cache.json`
 				)
-				const cacheExists = runtime.fs.exists(localeCachePath)
-				let cache: Dictionary = cacheExists
+				const cache: Dictionary = runtime.fs.exists(localeCachePath)
 					? JSON.parse(runtime.fs.readFile(localeCachePath))
 					: {}
-
-				let localeCachedMsgs = 0
-				let localeTranslatedMsgs = 0
 
 				// Parse each chunk file once per locale: re-reading it for every
 				// message made this loop O(messages × chunk size).
@@ -81,57 +86,59 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 					return chunk
 				}
 
-				for (const id in buildManifest.messages) {
-					const { value, chunksIds } = buildManifest.messages[id]
-					// `chunksIds` holds one entry per file the message appears in.
-					const chnks = new Set(chunksIds.length ? chunksIds : [locale])
+				const { translated, untranslated } = resolveLocaleDictionary({
+					manifest: buildManifest,
+					locale,
+					cache,
+					readChunk
+				})
+				const localeCachedMsgs = Object.keys(translated).length
+				const untranslatedMsgs = Object.keys(untranslated).length
+				let localeTranslatedMsgs = 0
+				const problems: string[] = []
 
-					for (const chunkId of chnks) {
-						const localeValue = readChunk(chunkId)[id] ?? cache[id]
-
-						if (!localeValue) {
-							untranslatedDictionary[id] = value
-							localeTranslatedMsgs++
-						} else {
-							translatedDictionary[id] = localeValue
-							// Update cache in case local value is different
-							cache[id] = localeValue
-							localeCachedMsgs++
-						}
-					}
-				}
-
-				if (localeTranslatedMsgs > 0) {
-					const translation = await translate({
+				if (untranslatedMsgs > 0) {
+					const result = await translateDictionary({
 						...config,
-						dictionary: untranslatedDictionary,
+						dictionary: untranslated,
 						locale
 					})
 
-					translatedDictionary = merge(translation, translatedDictionary)
+					Object.assign(translated, result.dictionary)
+					localeTranslatedMsgs = Object.keys(result.dictionary).length
+
+					if (result.failed.length) {
+						const reasons = result.errors.map(describeError).join('; ')
+						problems.push(
+							`${result.failed.length} messages failed to translate (${reasons})`
+						)
+					}
+					if (result.missing.length) {
+						problems.push(
+							`${result.missing.length} messages missing from the translator response (${result.missing.slice(0, 5).join(', ')}${result.missing.length > 5 ? ', …' : ''})`
+						)
+					}
 				}
 
-				cache = {
-					...cache,
-					...translatedDictionary
-				}
+				// Save what was translated before touching the locale files, so a
+				// later failure never throws away paid-for translations.
+				runtime.fs.write(
+					localeCachePath,
+					stringify({ ...cache, ...translated })
+				)
 
 				runtime.fs.remove(localeDirPath)
 
-				const dictionaries = groupDictionaryByChunks(
-					translatedDictionary,
-					buildManifest,
-					locale
-				)
-
 				await generate({
 					...config,
-					dictionaries: dictionaries,
+					dictionaries: groupDictionaryByChunks(
+						translated,
+						buildManifest,
+						locale
+					),
 					locale,
 					cwd
 				})
-
-				runtime.fs.write(localeCachePath, stringify(cache))
 
 				totalTranslatedMsgs += localeTranslatedMsgs
 				totalCachedMsgs += localeCachedMsgs
@@ -140,16 +147,30 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 					`Locale ${locale.toUpperCase()}:`,
 					`${localeTranslatedMsgs} new messages translated, ${localeCachedMsgs} recovered from cache`
 				)
-			} catch (err) {
-				if (err instanceof Error) {
-					logger.error(
-						`${locale} translation:`,
-						`Error translating to ${locale}: ${err.message}\n`
-					)
+
+				if (problems.length) {
+					const reason = problems.join(', ')
+					failures.push({ locale, reason })
+					logger.error(`${locale} translation:`, reason)
 				}
+			} catch (err) {
+				const reason = describeError(err)
+				failures.push({ locale, reason })
+				logger.error(
+					`${locale} translation:`,
+					`Error translating to ${locale}: ${reason}\n`
+				)
 			}
 		})
 	)
+
+	if (failures.length) {
+		process.exitCode = 1
+		return logger.error(
+			'translate',
+			`Translation incomplete for ${failures.length}/${config.outLocales.length} locales (${failures.map((f) => f.locale).join(', ')}). Translated ${totalTranslatedMsgs} messages; run "translate" again to retry the rest.`
+		)
+	}
 
 	if (!totalTranslatedMsgs) {
 		return done('Everything up-to-date')
@@ -158,4 +179,10 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 	done(
 		`Translated ${totalTranslatedMsgs} messages, ${totalCachedMsgs} read from cache`
 	)
+}
+
+function describeError(err: unknown): string {
+	if (!(err instanceof Error)) return String(err)
+	// Surface the root cause of wrapped errors, e.g. `new Error(msg, { cause })`
+	return err.cause ? `${err.message}: ${describeError(err.cause)}` : err.message
 }
