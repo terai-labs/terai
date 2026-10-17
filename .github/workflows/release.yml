@@ -68,6 +68,7 @@ jobs:
       - name: Release to dev tag
         if: steps.changesets.outputs.has-changesets == 'true'
         run: |
+          pnpm install --frozen-lockfile
           pnpm changeset version --snapshot dev
           pnpm build
           pnpm changeset publish --tag dev
