@@ -63,20 +63,31 @@ export async function translateCmd({ cwd }: TranslateOptions) {
 				let localeCachedMsgs = 0
 				let localeTranslatedMsgs = 0
 
+				// Parse each chunk file once per locale: re-reading it for every
+				// message made this loop O(messages × chunk size).
+				const chunks = new Map<string, Dictionary>()
+				const readChunk = (chunkId: string): Dictionary => {
+					const cached = chunks.get(chunkId)
+					if (cached) return cached
+
+					const chunkPath = runtime.path.resolve(
+						localeDirPath,
+						`${chunkId}.json`
+					)
+					const chunk: Dictionary = runtime.fs.exists(chunkPath)
+						? JSON.parse(runtime.fs.readFile(chunkPath))
+						: {}
+					chunks.set(chunkId, chunk)
+					return chunk
+				}
+
 				for (const id in buildManifest.messages) {
 					const { value, chunksIds } = buildManifest.messages[id]
-					const chnks = chunksIds.length ? chunksIds : [locale]
+					// `chunksIds` holds one entry per file the message appears in.
+					const chnks = new Set(chunksIds.length ? chunksIds : [locale])
 
 					for (const chunkId of chnks) {
-						const chunkPath = runtime.path.resolve(
-							localeDirPath,
-							`${chunkId}.json`
-						)
-						const existsChunk = runtime.fs.exists(chunkPath)
-						const chunk: Dictionary = existsChunk
-							? JSON.parse(runtime.fs.readFile(chunkPath))
-							: {}
-						const localeValue = chunk[id] ?? cache[id]
+						const localeValue = readChunk(chunkId)[id] ?? cache[id]
 
 						if (!localeValue) {
 							untranslatedDictionary[id] = value
